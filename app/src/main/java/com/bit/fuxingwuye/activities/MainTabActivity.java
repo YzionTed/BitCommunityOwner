@@ -1,10 +1,13 @@
 package com.bit.fuxingwuye.activities;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
@@ -36,6 +39,7 @@ import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.DownloadUtils;
 import com.bit.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.utils.PermissionUtils;
 import com.bit.fuxingwuye.views.TabItem;
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
@@ -71,6 +75,13 @@ public class MainTabActivity extends SupportActivity {
     private OSS oss;
     private String downloadUrl;
     private OssToken ossTokenBean;
+    private static final int REQUEST_CODE_LOCATION = 6;
+    private String[] locPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,//写入权限
+            Manifest.permission.CAMERA,//相机
+            Manifest.permission.CALL_PHONE,//电话
+            Manifest.permission.RECORD_AUDIO//录音
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +124,10 @@ public class MainTabActivity extends SupportActivity {
         String phone = ACache.get(this).getAsString(HttpConstants.MOBILE);
         if(phone!=null){
             yunDuiJIangUtils.login(phone, "123456");
+        }
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            requestPermissions();
         }
     }
 
@@ -354,4 +369,93 @@ public class MainTabActivity extends SupportActivity {
 //
 //        return super.onKeyDown(keyCode, event);
 //    }
+
+    private void requestPermissions() {
+        PermissionUtils.checkMorePermissions(MainTabActivity.this, locPermissions,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                       // initLoc();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        showExplainDialog(permission, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                PermissionUtils.requestMorePermissions(MainTabActivity.this, locPermissions, REQUEST_CODE_LOCATION);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        PermissionUtils.requestMorePermissions(MainTabActivity.this, locPermissions, REQUEST_CODE_LOCATION);
+                    }
+                });
+    }
+
+    /**
+     * 解释权限的dialog
+     */
+    private void showExplainDialog(String[] permission, DialogInterface.OnClickListener onClickListener) {
+        new AlertDialog.Builder(MainTabActivity.this)
+                .setTitle("申请权限")
+                .setMessage("APP需要相关的权限才能正常运行")
+                .setPositiveButton("确定", onClickListener)
+                .show();
+    }
+    private static final int REQUEST_CODE_STORAGE = 5;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CODE_STORAGE:
+                if (PermissionUtils.isPermissionRequestSuccess(grantResults)) {
+                    downloadApk();
+                } else {
+                    Toast.makeText(MainTabActivity.this, "获取读写SD卡权限失败", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case REQUEST_CODE_LOCATION:
+                PermissionUtils.onRequestMorePermissionsResult(MainTabActivity.this, permissions, new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        showExplainDialog(permission, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                PermissionUtils.requestMorePermissions(MainTabActivity.this, locPermissions, REQUEST_CODE_LOCATION);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        showToAppSettingDialog();
+                    }
+                });
+                break;
+        }
+
+    }
+    /**
+     * 显示前往应用设置Dialog
+     */
+    private void showToAppSettingDialog() {
+        new AlertDialog.Builder(MainTabActivity.this)
+                .setTitle("需要权限")
+                .setMessage("我们需要相关权限，才能实现功能，点击前往，将转到应用的设置界面，请开启应用的相关权限。")
+                .setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PermissionUtils.toAppSetting(MainTabActivity.this);
+                    }
+                })
+                .setNegativeButton("取消", null).show();
+    }
 }
