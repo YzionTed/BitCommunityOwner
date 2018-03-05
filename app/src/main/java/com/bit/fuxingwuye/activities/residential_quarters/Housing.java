@@ -29,6 +29,7 @@ import java.util.List;
  */
 
 public class Housing extends BaseActivity<HousingImpl> implements HousingContract.View {
+    public static int HOUSING_TAG = 0 ;
     AcitivityHousingBinding binding;
     HousingPickerAdapter housingPickerAdapter;
     ACache aCache;
@@ -55,26 +56,48 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
         aCache = ACache.get(this);
         village = aCache.getAsString(HttpConstants.village);
         binding = DataBindingUtil.setContentView(this, R.layout.acitivity_housing);
-        binding.toolbar.actionBarTitle.setText("切换小区");
-        binding.toolbar.btnBack.setVisibility(View.VISIBLE);
+        if(HOUSING_TAG == 1){
+            binding.toolbar.actionBarTitle.setText("选择小区");
+            binding.toolbar.btnBack.setVisibility(View.GONE);
+            HOUSING_TAG = 0 ;
+        }else {
+            binding.toolbar.actionBarTitle.setText("切换小区");
+            binding.toolbar.btnBack.setVisibility(View.VISIBLE);
+        }
         binding.toolbar.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+        binding.updata.setVisibility(View.GONE);
         mPresenter.getHousing(aCache.getAsString(HttpConstants.USERID));
+        binding.updata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.getHousing(aCache.getAsString(HttpConstants.USERID));
+            }
+        });
     }
 
     @Override
     protected void initInject() {
         getActivityComponent().inject(this);
     }
-
+    @Override
+    public void showError(){
+        binding.updata.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void showHousing(Community community) {
-        if (community.getRecords().size() > 0) {
+        if(community != null && community.getRecords().isEmpty()){
+            binding.updata.setVisibility(View.VISIBLE);
+
+        }else{
+            binding.updata.setVisibility(View.GONE);
+        }
+        if (community != null && community.getRecords().size() > 0) {
             housingPickerAdapter = new HousingPickerAdapter(R.layout.housing_item, community.getRecords());
             binding.rvRoomList.setLayoutManager(new LinearLayoutManager(this));
             binding.rvRoomList.setAdapter(housingPickerAdapter);

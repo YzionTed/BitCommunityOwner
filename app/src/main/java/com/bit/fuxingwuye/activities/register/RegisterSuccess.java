@@ -26,14 +26,19 @@ public class RegisterSuccess extends AppCompatActivity {
                 Intent intent=new Intent(RegisterSuccess.this, Housing.class);
                 startActivity(intent);
                 finish();
+
             }
         });
         goHousing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RegisterSuccess.this, ReplenishDataActivity.class);
-                intent.putExtra("gohousing",1);
+                Housing.HOUSING_TAG = 1;
+                Intent intent=new Intent(RegisterSuccess.this, Housing.class);
                 startActivity(intent);
+                finish();
+//                Intent intent=new Intent(RegisterSuccess.this, ReplenishDataActivity.class);
+//                intent.putExtra("gohousing",1);
+//                startActivity(intent);
             }
         });
 

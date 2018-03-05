@@ -45,7 +45,7 @@ public class HousingImpl extends BaseRxPresenter<HousingContract.View> implement
 
             @Override
             public void onError(Throwable e) {
-
+                mView.showError();
             }
 
         },context,true);
