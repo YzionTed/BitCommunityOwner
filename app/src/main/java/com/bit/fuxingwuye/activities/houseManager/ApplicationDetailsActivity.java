@@ -152,6 +152,7 @@ public class ApplicationDetailsActivity extends BaseActivity<ApplicationDetailsI
         finish();
     }
 
+
     @Override
     protected void initEventAndData() {
 

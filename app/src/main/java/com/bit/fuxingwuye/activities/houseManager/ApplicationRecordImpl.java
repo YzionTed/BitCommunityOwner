@@ -41,7 +41,7 @@ public class ApplicationRecordImpl extends BaseRxPresenter<ApplicationRecordCont
 
             @Override
             public void onError(Throwable e) {
-
+                mView.NetEorror();
             }
 
         },context,true);

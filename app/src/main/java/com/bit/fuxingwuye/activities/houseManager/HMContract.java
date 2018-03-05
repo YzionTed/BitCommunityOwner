@@ -19,6 +19,7 @@ public class HMContract {
     public interface View extends BaseView {
         void showFloors(List<RoomList> floorBeen);
         void deleteSuccess();
+        void onError();
     }
     public interface Presenter extends BasePresenter<View> {
         void getFloors(Map<String,String> commonBean);

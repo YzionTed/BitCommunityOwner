@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bit.fuxingwuye.R;
@@ -293,5 +294,12 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
     public void deleteSuccess() {
         mPresenter.getFloors(map);
         LogUtil.e(Tag.tag,"删除成功");
+    }
+
+    @Override
+    public void onError() {
+        mBinding.onError.setVisibility(View.VISIBLE);
+        TextView str= (TextView) mBinding.onError.findViewById(R.id.stauttv);
+        str.setText("网络飞走了");
     }
 }
