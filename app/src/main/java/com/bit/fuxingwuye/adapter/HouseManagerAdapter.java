@@ -86,6 +86,12 @@ public class HouseManagerAdapter extends android.widget.BaseAdapter {
             holder.auditStatus.setText("驳回");
         }else if(floorBeen.get(position).getAuditStatus()==-2){
             holder.auditStatus.setText("违规");
+        }else if(floorBeen.get(position).getAuditStatus()==2){
+            holder.auditStatus.setText("已注销");
+        }else if(floorBeen.get(position).getAuditStatus()==3){
+            holder.auditStatus.setText("已解绑");
+        }else{
+            holder.auditStatus.setText("未知");
         }
         if(floorBeen.get(position).getRelationship()==1&&floorBeen.get(position).getAuditStatus()==1){
             holder.auditStatustv.setVisibility(View.VISIBLE);

@@ -45,6 +45,7 @@ import com.jzxiang.pickerview.listener.OnDateSetListener;
 import org.greenrobot.eventbus.EventBus;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -118,13 +119,15 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
                 if(mBinding.idcare.getText().toString().trim().equals("业主")){
                     initdate(1);
                     commint(bean);
-                   /* mPresenter.commitData(bean);*/
+
                 }else if(mBinding.idcare.getText().toString().trim().equals("家属")){
                     initdate(2);
-                    commitMember(bean);
+                    mPresenter.commitMember(bean);
+                   // commitMember(bean);
                 }else{
                     initdate(3);
-                    commitMember(bean);
+                    mPresenter.commitMember(bean);
+                  //  commitMember(bean);
                 }
                 LogUtil.e(Tag.tag, GsonUtil.toJson(bean));
 
@@ -281,7 +284,12 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
             bean.setCurrentAddress(mBinding.currentaddress.getText().toString().trim());
             bean.setWorkUnit(mBinding.workunit.getText().toString().trim());
             //bean.setArea(mBinding.area.getText().toString().trim());
-            bean.setArea(11*100);//写死了
+
+
+            Number num = Float.parseFloat(mBinding.area.getText().toString().trim()) * 100;
+            int area=num.intValue();
+
+            bean.setArea(area);//写死了
             bean.setContract(mBinding.contract.getText().toString().trim());
             bean.setCheckInTime(mBinding.data.getText().toString().trim());
             bean.setTelPhone(mBinding.telphone.getText().toString().trim());

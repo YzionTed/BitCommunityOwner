@@ -35,6 +35,7 @@ import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityLoginBinding;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.utils.SPUtils;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.PushInfo;
 import com.ddclient.jnisdk.InfoUser;
@@ -102,8 +103,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         LoginBean loginBean = new LoginBean();
         loginBean.setVerityType("1");
 
-       /* loginBean.setPhone(SPUtils.getInstance().getString(HttpConstants.PHONE,""));
-        loginBean.setPwd(SPUtils.getInstance().getString(HttpConstants.PASSWORD,""));*/
+        loginBean.setPhone(SPUtils.getInstance().getString(HttpConstants.PHONE,""));
+        loginBean.setPwd(SPUtils.getInstance().getString(HttpConstants.PASSWORD,""));
         mBinding.setBean(loginBean);
         mBinding.toolbar.actionBarTitle.setText("登录");
     }
@@ -111,10 +112,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
 
     @Override
     protected void setupVM() {
-        if (null != mCache.getAsString(HttpConstants.MOBILE)) {
-            mBinding.getBean().setPhone(mCache.getAsString(HttpConstants.MOBILE));
-        }
-
         CommonBean commonBean = new CommonBean();
         try {
             commonBean.setVersion(CommonUtils.getVersionName(LoginActivity.this) + "");
@@ -215,39 +212,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
            mCache.put(HttpConstants.USERNAME, tokenBean.getName());
        }
         mCache.put(HttpConstants.STATUS, "3");
-
-
-
-      /*  SPUtils.getInstance().put(HttpConstants.PHONE,mBinding.etMobile.getText().toString());
-        SPUtils.getInstance().put(HttpConstants.PASSWORD,mBinding.etPwd.getText().toString());*/
-       /* if (null != mBinding.getBean().getPwd()) {
-            mCache.put(HttpConstants.PASSWORD, mBinding.getBean().getPwd());
-        }
-        mCache.put(HttpConstants.USERID, tokenBean.getUserId());
-        mCache.put(HttpConstants.TOKEN, tokenBean.getToken());
-        BaseApplication.getInstance().setToken(tokenBean.getToken());
-        if (null != tokenBean.getOwner()) {
-            mCache.put(HttpConstants.OWNER, tokenBean.getOwner());
-            mCache.put(HttpConstants.STATUS, tokenBean.getIdentityStatus());
-            mCache.put(HttpConstants.USERNAME, tokenBean.getUserName());
-        } else {
-            mCache.put(HttpConstants.OWNER, "0");
-            mCache.put(HttpConstants.STATUS, "2");
-            mCache.put(HttpConstants.USERNAME, "");
-        }
-
-        if (tokenBean.getEmchatStatus().equals("0")) {//环信未注册
-            LoginBean loginBean = new LoginBean();
-            loginBean.setPhone(tokenBean.getMobilePhone());
-            mPresenter.existEmchat(loginBean);
-        } else if (tokenBean.getEmchatStatus().equals("1")) {//环信已注册
-
-        }
-
-        MobclickAgent.onProfileSignIn(mBinding.getBean().getPhone());
-
-        IntercomSDKProxy.initIntercomAccount(mIntercomAccountProxy);
-        IntercomSDKProxy.login(mBinding.getBean().getPhone(), "123456");*/
+        SPUtils.getInstance().put(HttpConstants.PHONE,mBinding.etMobile.getText().toString());
+        SPUtils.getInstance().put(HttpConstants.PASSWORD,mBinding.etPwd.getText().toString());
         if (aCache.getAsString(HttpConstants.village) != null && !"".equals(aCache.getAsString(HttpConstants.village))) {
             Intent intent = new Intent(LoginActivity.this, MainTabActivity.class);
             startActivity(intent);
