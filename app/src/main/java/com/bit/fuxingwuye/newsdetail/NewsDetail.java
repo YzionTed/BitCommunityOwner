@@ -15,6 +15,7 @@ import com.bit.communityOwner.util.LogUtil;
 import com.bit.communityOwner.util.UploadUtils;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
@@ -68,7 +69,8 @@ public class NewsDetail extends AppCompatActivity {
                     oss = new OSSClient(NewsDetail.this, data.getEndPoint(), credentialProvider);
                     try {
                         String url = oss.presignConstrainedObjectURL("bit-app", bean.getThumbnailUrl(),30 * 60);
-                        ImageLoaderUtil.setImage(url, img,R.mipmap.image_default,R.mipmap.image_default);
+//                        ImageLoaderUtil.setImage(url, img,R.mipmap.image_default,R.mipmap.image_default);
+                        GlideUtil.loadImage(NewsDetail.this, url, img);
                     } catch (ClientException e) {
                         e.printStackTrace();
                     }
