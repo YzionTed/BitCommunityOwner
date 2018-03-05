@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.payResult;
+package com.bit.fuxingwuye.activities.payResult;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.payment.PaymentActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.databinding.ActivityPayResultBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.payment.PaymentActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.databinding.ActivityPayResultBinding;
 
 public class PayResultActivity extends BaseActivity<PayResultPresenterImpl> implements PayResultContract.View {
 

@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.dagger.module;
+package com.bit.fuxingwuye.dagger.module;
 
 import android.app.Activity;
 import android.content.Context;
 
-import com.BIT.fuxingwuye.dagger.ActivityScope;
+import com.bit.fuxingwuye.dagger.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;

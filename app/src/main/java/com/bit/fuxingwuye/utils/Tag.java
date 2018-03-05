@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 /**
  * Created by 23 on 2018/2/26.

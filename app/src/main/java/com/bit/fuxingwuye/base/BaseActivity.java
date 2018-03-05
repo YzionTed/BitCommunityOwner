@@ -1,18 +1,18 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.BIT.fuxingwuye.dagger.component.ActivityComponent;
-import com.BIT.fuxingwuye.dagger.component.DaggerActivityComponent;
-import com.BIT.fuxingwuye.dagger.module.ActivityModule;
+import com.bit.fuxingwuye.dagger.component.ActivityComponent;
+import com.bit.fuxingwuye.dagger.component.DaggerActivityComponent;
+import com.bit.fuxingwuye.dagger.module.ActivityModule;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import javax.inject.Inject;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.base
+ * SmartCommunity-com.bit.fuxingwuye.base
  * 作者： YanwuTang
  * 时间： 2017/6/30.
  */

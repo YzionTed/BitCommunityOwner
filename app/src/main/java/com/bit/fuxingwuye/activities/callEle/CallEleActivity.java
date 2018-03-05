@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.callEle;
+package com.bit.fuxingwuye.activities.callEle;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -12,17 +12,17 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.BtAdapter;
-import com.BIT.fuxingwuye.adapter.GateAdapter;
-import com.BIT.fuxingwuye.adapter.HouseholdAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.ElevatorBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityCallEleBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.views.FullyGridLayoutManager;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.BtAdapter;
+import com.bit.fuxingwuye.adapter.GateAdapter;
+import com.bit.fuxingwuye.adapter.HouseholdAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.ElevatorBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityCallEleBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.views.FullyGridLayoutManager;
 import com.inuker.bluetooth.library.BluetoothClientManger;
 import com.inuker.bluetooth.library.base.CardLog;
 import com.inuker.bluetooth.library.base.Conf;

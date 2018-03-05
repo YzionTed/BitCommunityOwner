@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.content.Intent;

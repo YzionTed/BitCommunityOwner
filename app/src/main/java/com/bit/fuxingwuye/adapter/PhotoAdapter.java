@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.util.List;
 

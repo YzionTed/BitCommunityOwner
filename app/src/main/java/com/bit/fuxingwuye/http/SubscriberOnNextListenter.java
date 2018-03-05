@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 /**
  * Created by Dell on 2017/7/26.

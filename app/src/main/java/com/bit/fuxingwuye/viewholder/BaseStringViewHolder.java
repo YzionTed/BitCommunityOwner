@@ -1,13 +1,13 @@
-package com.BIT.fuxingwuye.viewholder;
+package com.bit.fuxingwuye.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.viewholder
+ * SmartCommunity-com.bit.fuxingwuye.viewholder
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  *

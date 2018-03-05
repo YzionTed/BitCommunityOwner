@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.AppConstants;
 
 import java.io.File;
 

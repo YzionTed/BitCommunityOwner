@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.ProprietorBean;
-import com.BIT.fuxingwuye.bean.HouseholdBean;
-import com.BIT.fuxingwuye.bean.RecordData;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.bean.HouseholdBean;
+import com.bit.fuxingwuye.bean.RecordData;
 
 import java.util.List;
 

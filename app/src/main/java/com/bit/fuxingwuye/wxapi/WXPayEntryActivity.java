@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.wxapi;
+package com.bit.fuxingwuye.wxapi;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.onlinePay.OnlinePayActivity;
-import com.BIT.fuxingwuye.activities.payList.PayListActivity;
-import com.BIT.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.onlinePay.OnlinePayActivity;
+import com.bit.fuxingwuye.activities.payList.PayListActivity;
+import com.bit.fuxingwuye.constant.AppConstants;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;

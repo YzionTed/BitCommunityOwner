@@ -1,22 +1,22 @@
-package com.BIT.fuxingwuye.activities.login;
+package com.bit.fuxingwuye.activities.login;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.LoginBean;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.bean.VersionBean;
-import com.BIT.fuxingwuye.bean.request.Code;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
-import com.BIT.fuxingwuye.utils.InstallUtils;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.LoginBean;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.bean.VersionBean;
+import com.bit.fuxingwuye.bean.request.Code;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.utils.InstallUtils;
 
 import javax.inject.Inject;
 
@@ -120,7 +120,7 @@ public class LoginPresenterImpl extends BaseRxPresenter<LoginContract.View> impl
 
             @Override
             public void onComplete(String path) {
-                InstallUtils.installAPK(ctx, path, "com.BIT.fuxingwuye.fileprovider", new InstallUtils.InstallCallBack() {
+                InstallUtils.installAPK(ctx, path, "com.bit.fuxingwuye.fileprovider", new InstallUtils.InstallCallBack() {
                     @Override
                     public void onSuccess() {
                         mView.toastMsg("正在安装程序...");

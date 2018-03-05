@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.NoticeListBean;
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.Tag;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.Tag;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static com.BIT.fuxingwuye.activities.houseManager.ApplicationDetailsActivity.getFormatTime;
+import static com.bit.fuxingwuye.activities.houseManager.ApplicationDetailsActivity.getFormatTime;
 
 /**
  * Created by Dell on 2017/7/5.

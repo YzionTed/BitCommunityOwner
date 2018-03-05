@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,8 +12,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.constant.Constant;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.constant.Constant;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMCallManager;

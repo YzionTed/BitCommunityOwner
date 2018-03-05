@@ -1,13 +1,13 @@
-package com.BIT.fuxingwuye.activities.brake;
+package com.bit.fuxingwuye.activities.brake;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.databinding.ActivityBrakeBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.databinding.ActivityBrakeBinding;
 
 public class BrakeActivity extends BaseActivity<BrakePresenterImpl> implements BrakeContract.View, View.OnClickListener {
 

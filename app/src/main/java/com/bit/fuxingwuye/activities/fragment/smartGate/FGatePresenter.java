@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FacilityBean;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FacilityBean;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.addFaultRepair;
+package com.bit.fuxingwuye.activities.addFaultRepair;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.FindBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.FindBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.bean.UserBean;
 
 import java.io.File;
 import java.util.List;

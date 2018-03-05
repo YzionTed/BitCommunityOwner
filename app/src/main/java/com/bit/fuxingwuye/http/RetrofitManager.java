@@ -1,16 +1,16 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.databinding.BaseObservable;
 
-import com.BIT.communityOwner.util.AppUtil;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.AppInfo;
-import com.BIT.fuxingwuye.utils.CommonUtils;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.communityOwner.util.AppUtil;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.AppInfo;
+import com.bit.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.utils.LogUtil;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.chat.parse;
+package com.bit.fuxingwuye.chat.parse;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.chat.DemoHelper;
+import com.bit.fuxingwuye.chat.DemoHelper;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 

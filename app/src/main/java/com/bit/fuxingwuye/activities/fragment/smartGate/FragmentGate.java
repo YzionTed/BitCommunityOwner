@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 
 import android.bluetooth.BluetoothAdapter;
@@ -27,19 +27,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.GAnimationActivity;
-import com.BIT.fuxingwuye.activities.videoDevices.VideoDevicesActivity;
-import com.BIT.fuxingwuye.adapter.FacilityAdapter;
-import com.BIT.fuxingwuye.adapter.GateAdapter;
-import com.BIT.fuxingwuye.base.BaseFragment;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FacilityBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.BlueToothUtil;
-import com.BIT.fuxingwuye.views.DoughnutProgress;
-import com.BIT.fuxingwuye.views.FullyGridLayoutManager;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.GAnimationActivity;
+import com.bit.fuxingwuye.activities.videoDevices.VideoDevicesActivity;
+import com.bit.fuxingwuye.adapter.FacilityAdapter;
+import com.bit.fuxingwuye.adapter.GateAdapter;
+import com.bit.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FacilityBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.BlueToothUtil;
+import com.bit.fuxingwuye.views.DoughnutProgress;
+import com.bit.fuxingwuye.views.FullyGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.util.Log;
 
 
-import com.BIT.fuxingwuye.activities.fragment.smartGate.VideoUnActiveOpenActivity;
-import com.BIT.fuxingwuye.bean.DoorMiLiDevicesBean;
-import com.BIT.fuxingwuye.constant.PreferenceConst;
-import com.BIT.fuxingwuye.utils.PreferenceUtils;
-import com.BIT.fuxingwuye.utils.ToastUtil;
+import com.bit.fuxingwuye.activities.fragment.smartGate.VideoUnActiveOpenActivity;
+import com.bit.fuxingwuye.bean.DoorMiLiDevicesBean;
+import com.bit.fuxingwuye.constant.PreferenceConst;
+import com.bit.fuxingwuye.utils.PreferenceUtils;
+import com.bit.fuxingwuye.utils.ToastUtil;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.ddclient.dongsdk.PushMsgBean;

@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.houseManager;
+package com.bit.fuxingwuye.activities.houseManager;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.base.ProprietorBean;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.RoomList;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.RoomList;
 
 import java.util.List;
 import java.util.Map;

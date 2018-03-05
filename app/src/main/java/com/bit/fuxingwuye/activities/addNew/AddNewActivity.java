@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.addNew;
+package com.bit.fuxingwuye.activities.addNew;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -14,16 +14,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.ProvincePickerActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.HouseholdBean;
-import com.BIT.fuxingwuye.bean.HouseholdsBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityAddNewBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.ProvincePickerActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.HouseholdBean;
+import com.bit.fuxingwuye.bean.HouseholdsBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityAddNewBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;

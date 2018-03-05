@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.ImagePathBean;
-import com.BIT.fuxingwuye.bean.InformationBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.http.HttpProvider;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.ImagePathBean;
+import com.bit.fuxingwuye.bean.InformationBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.http.HttpProvider;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

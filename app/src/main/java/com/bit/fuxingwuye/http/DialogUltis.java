@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
-import com.BIT.fuxingwuye.views.IOSLoadingDialog;
+import com.bit.fuxingwuye.views.IOSLoadingDialog;
 
 
 

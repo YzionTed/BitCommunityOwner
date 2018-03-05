@@ -25,7 +25,7 @@
                 android:layout_width="@dimen/common_dp_200"
                 android:layout_height="@dimen/common_dp_200">
 
-                <com.BIT.fuxingwuye.views.DoughnutProgress
+                <com.bit.fuxingwuye.views.DoughnutProgress
                     android:id="@+id/circle_progress"
                     android:layout_width="@dimen/common_dp_200"
                     android:layout_height="@dimen/common_dp_200"

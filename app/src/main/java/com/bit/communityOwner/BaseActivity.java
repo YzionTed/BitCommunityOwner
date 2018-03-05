@@ -1,4 +1,4 @@
-package com.BIT.communityOwner;
+package com.bit.communityOwner;
 
 import android.app.Activity;
 import android.graphics.Color;

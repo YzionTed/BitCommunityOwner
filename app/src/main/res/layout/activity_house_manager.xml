@@ -55,7 +55,7 @@
                         android:layout_marginTop="@dimen/common_dp_12"/>
                 </LinearLayout>
 
-                <com.BIT.fuxingwuye.views.MySwipeMenuListView
+                <com.bit.fuxingwuye.views.MySwipeMenuListView
                     android:id="@+id/listView"
                     android:layout_margin="@dimen/common_dp_10"
                     android:divider="#00000000"

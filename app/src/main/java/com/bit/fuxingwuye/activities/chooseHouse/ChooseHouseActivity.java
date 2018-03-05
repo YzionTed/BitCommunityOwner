@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.chooseHouse;
+package com.bit.fuxingwuye.activities.chooseHouse;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -9,14 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.FindBean;
-import com.BIT.fuxingwuye.bean.UserBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityChooseHouseBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.FindBean;
+import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityChooseHouseBinding;
+import com.bit.fuxingwuye.utils.ACache;
 
 import java.util.List;
 

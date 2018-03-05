@@ -1,19 +1,19 @@
-package com.BIT.fuxingwuye.activities.register;
+package com.bit.fuxingwuye.activities.register;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.RegisterBean;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.bean.request.Code;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.RegisterBean;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.bean.request.Code;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
 
 import javax.inject.Inject;
 

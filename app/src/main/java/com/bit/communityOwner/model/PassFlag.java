@@ -1,4 +1,4 @@
-package com.BIT.communityOwner.model;
+package com.bit.communityOwner.model;
 
 /**
  * Created by mac_cai on 2018/3/2.

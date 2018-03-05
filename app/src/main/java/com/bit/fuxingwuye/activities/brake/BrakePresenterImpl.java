@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.brake;
+package com.bit.fuxingwuye.activities.brake;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 import javax.inject.Inject;
 

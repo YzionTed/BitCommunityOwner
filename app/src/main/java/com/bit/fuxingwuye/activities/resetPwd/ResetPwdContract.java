@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.resetPwd;
+package com.bit.fuxingwuye.activities.resetPwd;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.ResetPwdBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.ResetPwdBean;
 
 /**
  * Created by Dell on 2017/7/12.

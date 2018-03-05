@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.chat.util;
+package com.bit.fuxingwuye.chat.util;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.chat.BuildConfig;
+import com.bit.fuxingwuye.chat.BuildConfig;
 
 
 public class RecyclingBitmapDrawable extends BitmapDrawable {

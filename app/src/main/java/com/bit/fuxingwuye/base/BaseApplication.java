@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,11 +13,11 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.BIT.fuxingwuye.Bluetooth.BluetoothApplication;
-import com.BIT.fuxingwuye.dagger.component.AppComponent;
-import com.BIT.fuxingwuye.dagger.component.DaggerAppComponent;
-import com.BIT.fuxingwuye.dagger.module.AppModule;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
+import com.bit.fuxingwuye.dagger.component.AppComponent;
+import com.bit.fuxingwuye.dagger.component.DaggerAppComponent;
+import com.bit.fuxingwuye.dagger.module.AppModule;
+import com.bit.fuxingwuye.utils.LogUtil;
 import com.ddclient.push.DongPushMsgManager;
 import com.facebook.stetho.Stetho;
 import com.hyphenate.chat.EMOptions;
@@ -42,7 +42,7 @@ import java.util.Set;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.base
+ * SmartCommunity-com.bit.fuxingwuye.base
  * 作者： YanwuTang
  * 时间： 2017/6/30.
  */

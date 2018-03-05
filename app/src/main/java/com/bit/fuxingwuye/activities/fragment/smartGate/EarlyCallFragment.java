@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -13,15 +13,15 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.Bluetooth.yunduijiang.YunDuiJIangUtils;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseFragment;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.CommonAdapter;
-import com.BIT.fuxingwuye.utils.PermissionUtils;
-import com.BIT.fuxingwuye.utils.ViewHolder;
-import com.BIT.fuxingwuye.views.NoScrollGridView;
+import com.bit.fuxingwuye.Bluetooth.yunduijiang.YunDuiJIangUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.CommonAdapter;
+import com.bit.fuxingwuye.utils.PermissionUtils;
+import com.bit.fuxingwuye.utils.ViewHolder;
+import com.bit.fuxingwuye.views.NoScrollGridView;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.gViewerX.util.LogUtils;

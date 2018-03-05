@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.payContent;
+package com.bit.fuxingwuye.activities.payContent;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
 
 /**
  * Created by Dell on 2017/8/16.

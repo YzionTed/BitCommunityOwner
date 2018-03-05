@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.BIT.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.AppConstants;
 
 import java.io.Serializable;
 

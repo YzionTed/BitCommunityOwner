@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat.util;
+package com.bit.fuxingwuye.chat.util;
 
 import android.annotation.SuppressLint;
 import android.hardware.Camera;
@@ -9,7 +9,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.StrictMode;
 
 
-import com.BIT.fuxingwuye.chat.ImageGridActivity;
+import com.bit.fuxingwuye.chat.ImageGridActivity;
 
 import java.util.Comparator;
 import java.util.List;

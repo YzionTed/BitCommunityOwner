@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.app.AlertDialog;
 import android.app.DownloadManager;
@@ -17,7 +17,7 @@ import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.util.AppUtil;
+import com.bit.communityOwner.util.AppUtil;
 
 import java.io.File;
 

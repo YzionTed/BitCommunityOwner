@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.householdManager;
+package com.bit.fuxingwuye.activities.householdManager;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,16 +7,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.addNew.AddNewActivity;
-import com.BIT.fuxingwuye.adapter.HouseholdAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.HouseholdBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityHouseholdManagerBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.addNew.AddNewActivity;
+import com.bit.fuxingwuye.adapter.HouseholdAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.HouseholdBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityHouseholdManagerBinding;
+import com.bit.fuxingwuye.utils.ACache;
 
 import net.lemonsoft.lemonhello.LemonHello;
 import net.lemonsoft.lemonhello.LemonHelloAction;

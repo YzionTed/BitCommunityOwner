@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.bean.request;
+package com.bit.fuxingwuye.bean.request;
 
 /**
  * Created by 23 on 2018/2/26.

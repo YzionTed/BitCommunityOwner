@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.commitSuccess;
+package com.bit.fuxingwuye.activities.commitSuccess;
 
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 import javax.inject.Inject;
 

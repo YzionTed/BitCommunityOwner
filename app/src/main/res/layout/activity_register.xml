@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    tools:context="com.BIT.fuxingwuye.activities.register.RegisterActivity">
+    tools:context="com.bit.fuxingwuye.activities.register.RegisterActivity">
     <data>
         <variable
             name="bean"
-            type="com.BIT.fuxingwuye.bean.RegisterBean"/>
+            type="com.bit.fuxingwuye.bean.RegisterBean"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

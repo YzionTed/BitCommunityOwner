@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.faultType;
+package com.bit.fuxingwuye.activities.faultType;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.databinding.ActivityFaultTypeBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.databinding.ActivityFaultTypeBinding;
 
 public class FaultTypeActivity extends Activity implements View.OnClickListener {
 

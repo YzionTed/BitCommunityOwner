@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.bean.CityBean;
-import com.BIT.fuxingwuye.bean.DistrictBean;
-import com.BIT.fuxingwuye.bean.ProvinceBean;
-import com.BIT.fuxingwuye.viewholder.BaseStringViewHolder;
+import com.bit.fuxingwuye.bean.CityBean;
+import com.bit.fuxingwuye.bean.DistrictBean;
+import com.bit.fuxingwuye.bean.ProvinceBean;
+import com.bit.fuxingwuye.viewholder.BaseStringViewHolder;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.adapter
+ * SmartCommunity-com.bit.fuxingwuye.adapter
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  */

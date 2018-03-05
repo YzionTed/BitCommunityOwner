@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.BIT.fuxingwuye.dagger.component.DaggerFragmentComponent;
-import com.BIT.fuxingwuye.dagger.component.FragmentComponent;
-import com.BIT.fuxingwuye.dagger.module.FragmentModule;
+import com.bit.fuxingwuye.dagger.component.DaggerFragmentComponent;
+import com.bit.fuxingwuye.dagger.component.FragmentComponent;
+import com.bit.fuxingwuye.dagger.module.FragmentModule;
 
 import javax.inject.Inject;
 

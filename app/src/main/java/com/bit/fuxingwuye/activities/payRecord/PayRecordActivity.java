@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.payRecord;
+package com.bit.fuxingwuye.activities.payRecord;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,17 +7,17 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.onlinePay.OnlinePayActivity;
-import com.BIT.fuxingwuye.activities.payContent.PayContentActivity;
-import com.BIT.fuxingwuye.activities.payList.PayListActivity;
-import com.BIT.fuxingwuye.adapter.PayAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.PayListBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityPayRecordBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.onlinePay.OnlinePayActivity;
+import com.bit.fuxingwuye.activities.payContent.PayContentActivity;
+import com.bit.fuxingwuye.activities.payList.PayListActivity;
+import com.bit.fuxingwuye.adapter.PayAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PayListBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityPayRecordBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 

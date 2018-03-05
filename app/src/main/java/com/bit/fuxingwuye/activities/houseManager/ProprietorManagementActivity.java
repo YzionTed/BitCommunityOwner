@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.houseManager;
+package com.bit.fuxingwuye.activities.houseManager;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -14,16 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.ProprietorManagerAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.EvenBusConstants;
-import com.BIT.fuxingwuye.base.ProprietorBean;
-import com.BIT.fuxingwuye.bean.EvenBusMessage;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.Tag;
-import com.BIT.fuxingwuye.views.MySwipeMenuListView;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.ProprietorManagerAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.EvenBusConstants;
+import com.bit.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.bean.EvenBusMessage;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.Tag;
+import com.bit.fuxingwuye.views.MySwipeMenuListView;
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;

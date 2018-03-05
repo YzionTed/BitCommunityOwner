@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.activities.payContent;
+package com.bit.fuxingwuye.activities.payContent;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.databinding.ActivityPayContentBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.databinding.ActivityPayContentBinding;
 
 public class PayContentActivity extends BaseActivity<PayContentPresenterImpl> implements PayContentContract.View {
 

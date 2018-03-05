@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.Bluetooth.bean;
+package com.bit.fuxingwuye.Bluetooth.bean;
 
 /**
  * Created by Dell on 2018/2/11.

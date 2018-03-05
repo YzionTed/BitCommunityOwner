@@ -1,7 +1,7 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
 
-import com.BIT.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseEntity;
 
 import java.io.Serializable;
 

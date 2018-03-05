@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.payment;
+package com.bit.fuxingwuye.activities.payment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.databinding.ActivityPaymentBinding;
-import com.BIT.fuxingwuye.utils.ScannerUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.databinding.ActivityPaymentBinding;
+import com.bit.fuxingwuye.utils.ScannerUtils;
 
 public class PaymentActivity extends BaseActivity<PaymentPresenterImpl> implements PaymentContract.View{
 

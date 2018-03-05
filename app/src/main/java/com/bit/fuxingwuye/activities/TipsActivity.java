@@ -1,12 +1,12 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.databinding.ActivityTipsBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.databinding.ActivityTipsBinding;
 
 public class TipsActivity extends AppCompatActivity {
 

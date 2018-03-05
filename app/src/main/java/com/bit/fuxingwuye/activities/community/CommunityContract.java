@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.activities.community;
+package com.bit.fuxingwuye.activities.community;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.InformationBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.bean.ZanBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.InformationBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.bean.ZanBean;
 
 import java.util.List;
 

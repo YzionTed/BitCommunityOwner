@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.Bluetooth.util;
+package com.bit.fuxingwuye.Bluetooth.util;
 
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
-import com.BIT.fuxingwuye.bean.DoorMILiBean;
-import com.BIT.fuxingwuye.bean.ElevatorListBean;
+import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
+import com.bit.fuxingwuye.bean.DoorMILiBean;
+import com.bit.fuxingwuye.bean.ElevatorListBean;
 
 import java.util.ArrayList;
 import java.util.List;

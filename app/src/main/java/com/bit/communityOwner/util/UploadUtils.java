@@ -1,4 +1,4 @@
-package com.BIT.communityOwner.util;
+package com.bit.communityOwner.util;
 
 /**
  * Created by hjw on 17/3/22.
@@ -7,8 +7,8 @@ package com.BIT.communityOwner.util;
 
 import android.util.Log;
 
-import com.BIT.communityOwner.model.OssToken;
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.communityOwner.model.OssToken;
+import com.bit.fuxingwuye.base.BaseApplication;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;

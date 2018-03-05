@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.onlinePay;
+package com.bit.fuxingwuye.activities.onlinePay;
 
 import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
@@ -10,14 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.PayReqBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityOnlinePayBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PayReqBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityOnlinePayBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.alipay.sdk.app.PayTask;
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelpay.PayReq;

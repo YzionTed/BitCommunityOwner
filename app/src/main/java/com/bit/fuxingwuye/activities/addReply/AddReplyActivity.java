@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.addReply;
+package com.bit.fuxingwuye.activities.addReply;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -21,23 +21,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.addFaultRepair.FaultRepairActivity;
-import com.BIT.fuxingwuye.activities.community.CommunityActivity;
-import com.BIT.fuxingwuye.adapter.GridViewAddImgesAdpter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.bean.MenuItem;
-import com.BIT.fuxingwuye.bean.ReplyBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityAddReplyBinding;
-import com.BIT.fuxingwuye.http.ProgressCancelListener;
-import com.BIT.fuxingwuye.http.ProgressDialogHandler;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.FileStorage;
-import com.BIT.fuxingwuye.views.BottomMenuFragment;
-import com.BIT.fuxingwuye.views.MenuItemOnClickListener;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.addFaultRepair.FaultRepairActivity;
+import com.bit.fuxingwuye.activities.community.CommunityActivity;
+import com.bit.fuxingwuye.adapter.GridViewAddImgesAdpter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.MenuItem;
+import com.bit.fuxingwuye.bean.ReplyBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityAddReplyBinding;
+import com.bit.fuxingwuye.http.ProgressCancelListener;
+import com.bit.fuxingwuye.http.ProgressDialogHandler;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.FileStorage;
+import com.bit.fuxingwuye.views.BottomMenuFragment;
+import com.bit.fuxingwuye.views.MenuItemOnClickListener;
 
 import java.io.File;
 import java.util.ArrayList;

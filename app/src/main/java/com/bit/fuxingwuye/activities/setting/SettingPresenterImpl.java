@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.setting;
+package com.bit.fuxingwuye.activities.setting;
 
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 import javax.inject.Inject;
 

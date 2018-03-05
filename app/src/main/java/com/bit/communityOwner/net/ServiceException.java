@@ -1,4 +1,4 @@
-package com.BIT.communityOwner.net;
+package com.bit.communityOwner.net;
 
 /**
  * Created by zhangjiajie on 2015/11/19.

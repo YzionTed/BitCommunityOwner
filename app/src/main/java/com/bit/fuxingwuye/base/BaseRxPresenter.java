@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

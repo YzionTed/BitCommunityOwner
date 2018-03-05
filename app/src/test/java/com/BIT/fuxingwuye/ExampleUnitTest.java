@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye;
+package com.bit.fuxingwuye;
 
 import org.junit.Test;
 

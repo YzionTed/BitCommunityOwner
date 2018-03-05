@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BIT.communityOwner.BaseActivity;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.utils.ToastUtil;
+import com.bit.communityOwner.BaseActivity;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.utils.ToastUtil;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.ddclient.dongsdk.DongSDKProxy;

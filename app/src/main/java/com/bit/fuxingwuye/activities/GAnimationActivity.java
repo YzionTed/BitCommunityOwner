@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.databinding.ActivityGanimationBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.databinding.ActivityGanimationBinding;
 
 public class GAnimationActivity extends Activity {
 

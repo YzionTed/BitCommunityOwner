@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.editPersonal;
+package com.bit.fuxingwuye.activities.editPersonal;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,16 +7,16 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.util.AppUtil;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.personalEdit.PersonalEditActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityEditPersonalBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.communityOwner.util.AppUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.personalEdit.PersonalEditActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityEditPersonalBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 
 public class EditPersonalActivity extends BaseActivity<EpPresenterImpl> implements EpContract.View, View.OnClickListener {
 

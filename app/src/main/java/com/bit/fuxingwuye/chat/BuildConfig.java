@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 /**
  * Created by Dell on 2017/7/28.

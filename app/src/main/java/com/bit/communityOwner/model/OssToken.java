@@ -1,4 +1,4 @@
-package com.BIT.communityOwner.model;
+package com.bit.communityOwner.model;
 
 import java.io.Serializable;
 

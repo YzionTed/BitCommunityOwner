@@ -1,6 +1,6 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
-import com.BIT.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.base.ProprietorBean;
 
 import java.util.List;
 

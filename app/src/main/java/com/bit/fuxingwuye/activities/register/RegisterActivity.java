@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.register;
+package com.bit.fuxingwuye.activities.register;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,22 +11,22 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.TipsActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseHandler;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.RegisterBean;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityRegisterBinding;
-import com.BIT.fuxingwuye.http.DialogUltis;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.TipsActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseHandler;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.RegisterBean;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityRegisterBinding;
+import com.bit.fuxingwuye.http.DialogUltis;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;

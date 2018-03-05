@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.BIT.fuxingwuye"
+    package="com.bit.fuxingwuye"
     android:versionCode="1"
     android:versionName="1.0.0">
 
     <!--
         <permission
-        android:name="com.BIT.fuxingwuye.permission.JPUSH_MESSAGE"
+        android:name="com.bit.fuxingwuye.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
     -->
     //==============================米粒蓝牙开门开始==============================================
@@ -54,7 +54,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="com.BIT.fuxingwuye.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="com.bit.fuxingwuye.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />

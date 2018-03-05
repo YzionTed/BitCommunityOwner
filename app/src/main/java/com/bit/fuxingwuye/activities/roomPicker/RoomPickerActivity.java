@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.roomPicker;
+package com.bit.fuxingwuye.activities.roomPicker;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,22 +8,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
-import com.BIT.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
 
-import com.BIT.fuxingwuye.base.ProprietorBean;
-import com.BIT.fuxingwuye.bean.Building;
-import com.BIT.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.bean.Building;
+import com.bit.fuxingwuye.bean.Community;
 
-import com.BIT.fuxingwuye.bean.Room;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityRoomPickerBinding;
+import com.bit.fuxingwuye.bean.Room;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityRoomPickerBinding;
 
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.GsonUtil;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.GsonUtil;
+import com.bit.fuxingwuye.utils.LogUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.gson.Gson;
@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.activities
+ * SmartCommunity-com.bit.fuxingwuye.activities
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  */

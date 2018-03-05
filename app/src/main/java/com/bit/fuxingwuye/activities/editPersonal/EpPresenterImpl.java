@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.editPersonal;
+package com.bit.fuxingwuye.activities.editPersonal;
 
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 import javax.inject.Inject;
 

@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.BIT.fuxingwuye.chat.db;
+package com.bit.fuxingwuye.chat.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.BIT.fuxingwuye.chat.DemoHelper;
+import com.bit.fuxingwuye.chat.DemoHelper;
 
 
 public class DbOpenHelper extends SQLiteOpenHelper{

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.via;
+package com.bit.fuxingwuye.activities.via;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,23 +20,23 @@ import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.model.PassCode;
-import com.BIT.communityOwner.model.PassFlag;
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.viaRecord.ViaRecordActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.bean.UserBean;
-import com.BIT.fuxingwuye.bean.ViaBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityViaBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.AppInfo;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.communityOwner.model.PassCode;
+import com.bit.communityOwner.model.PassFlag;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.viaRecord.ViaRecordActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityViaBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.AppInfo;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

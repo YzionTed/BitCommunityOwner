@@ -1,13 +1,13 @@
-package com.BIT.fuxingwuye.activities.roomPicker;
+package com.bit.fuxingwuye.activities.roomPicker;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.Building;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.Community;
-import com.BIT.fuxingwuye.bean.PlotInfoBean;
-import com.BIT.fuxingwuye.bean.Room;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.Building;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.bean.PlotInfoBean;
+import com.bit.fuxingwuye.bean.Room;
 
 import java.util.List;
 import java.util.Map;

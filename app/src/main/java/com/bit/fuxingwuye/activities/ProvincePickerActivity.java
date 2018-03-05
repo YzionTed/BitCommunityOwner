@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -8,15 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.ProvincePickerAdapter;
-import com.BIT.fuxingwuye.bean.CityBean;
-import com.BIT.fuxingwuye.bean.DistrictBean;
-import com.BIT.fuxingwuye.bean.ProvinceBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.databinding.ActivityProvincePickerBinding;
-import com.BIT.fuxingwuye.interfaces.OnCommon2Listener;
-import com.BIT.fuxingwuye.utils.ProXmlParserHandler;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.ProvincePickerAdapter;
+import com.bit.fuxingwuye.bean.CityBean;
+import com.bit.fuxingwuye.bean.DistrictBean;
+import com.bit.fuxingwuye.bean.ProvinceBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.databinding.ActivityProvincePickerBinding;
+import com.bit.fuxingwuye.interfaces.OnCommon2Listener;
+import com.bit.fuxingwuye.utils.ProXmlParserHandler;
 
 import java.io.InputStream;
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.activities
+ * SmartCommunity-com.bit.fuxingwuye.activities
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  */

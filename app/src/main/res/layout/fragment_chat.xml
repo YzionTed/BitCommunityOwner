@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.BIT.fuxingwuye.chat.ChatFragment">
+    tools:context="com.bit.fuxingwuye.chat.ChatFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

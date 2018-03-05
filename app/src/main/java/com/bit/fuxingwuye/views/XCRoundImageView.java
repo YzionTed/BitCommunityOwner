@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
 import java.io.Serializable;
 import java.util.List;

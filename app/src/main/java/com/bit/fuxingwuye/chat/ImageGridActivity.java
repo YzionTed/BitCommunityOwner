@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;

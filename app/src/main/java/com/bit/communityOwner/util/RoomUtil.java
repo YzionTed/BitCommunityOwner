@@ -1,7 +1,7 @@
-package com.BIT.communityOwner.util;
+package com.bit.communityOwner.util;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.utils.ACache;
 
 /**
  * Created by zhangjiajie on 18/3/1.

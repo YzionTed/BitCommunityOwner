@@ -5,7 +5,7 @@
     <data>
         <variable
             name="bean"
-            type="com.BIT.fuxingwuye.bean.ResetPwdBean"/>
+            type="com.bit.fuxingwuye.bean.ResetPwdBean"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

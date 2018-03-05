@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.elevatorFragment;
+package com.bit.fuxingwuye.activities.fragment.elevatorFragment;
 
 
 import android.bluetooth.BluetoothAdapter;
@@ -16,15 +16,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.EAnimationActivity;
-import com.BIT.fuxingwuye.adapter.EleAdapter;
-import com.BIT.fuxingwuye.base.BaseFragment;
-import com.BIT.fuxingwuye.bean.ElevatorBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.BlueToothUtil;
-import com.BIT.fuxingwuye.views.FullyGridLayoutManager;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.EAnimationActivity;
+import com.bit.fuxingwuye.adapter.EleAdapter;
+import com.bit.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.bean.ElevatorBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.BlueToothUtil;
+import com.bit.fuxingwuye.views.FullyGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;

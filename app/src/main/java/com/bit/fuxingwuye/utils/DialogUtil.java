@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.widget.ImageView;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 
 /**

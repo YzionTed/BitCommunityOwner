@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.payList;
+package com.bit.fuxingwuye.activities.payList;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,18 +7,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.BaseActivity;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.chooseHouse.ChooseHouseActivity;
-import com.BIT.fuxingwuye.activities.onlinePay.OnlinePayActivity;
-import com.BIT.fuxingwuye.activities.payRecord.PayRecordActivity;
-import com.BIT.fuxingwuye.adapter.PayAdapter;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.PayListBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityPayListBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.communityOwner.BaseActivity;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.chooseHouse.ChooseHouseActivity;
+import com.bit.fuxingwuye.activities.onlinePay.OnlinePayActivity;
+import com.bit.fuxingwuye.activities.payRecord.PayRecordActivity;
+import com.bit.fuxingwuye.adapter.PayAdapter;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PayListBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityPayListBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;

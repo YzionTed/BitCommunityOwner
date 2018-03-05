@@ -1,7 +1,7 @@
-package com.BIT.fuxingwuye.activities.fragment.aroundFragment;
+package com.bit.fuxingwuye.activities.fragment.aroundFragment;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
 
 /**
  * Created by Dell on 2017/8/5.

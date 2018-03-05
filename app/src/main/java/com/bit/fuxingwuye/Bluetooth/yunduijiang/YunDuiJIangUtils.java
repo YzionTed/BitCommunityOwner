@@ -1,15 +1,15 @@
-package com.BIT.fuxingwuye.Bluetooth.yunduijiang;
+package com.bit.fuxingwuye.Bluetooth.yunduijiang;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.bean.DoorMiLiDevicesBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.constant.PreferenceConst;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.PreferenceUtils;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.DoorMiLiDevicesBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.constant.PreferenceConst;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.PreferenceUtils;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.ddclient.dongsdk.PushInfo;

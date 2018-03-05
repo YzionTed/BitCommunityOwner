@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.activities.personalEdit;
+package com.bit.fuxingwuye.activities.personalEdit;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.EditUserBean;
-import com.BIT.fuxingwuye.bean.ResetPwdBean;
-import com.BIT.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.EditUserBean;
+import com.bit.fuxingwuye.bean.ResetPwdBean;
+import com.bit.fuxingwuye.bean.UserBean;
 
 import java.io.File;
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.setting;
+package com.bit.fuxingwuye.activities.setting;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
 
 /**
  * Created by Dell on 2017/7/27.

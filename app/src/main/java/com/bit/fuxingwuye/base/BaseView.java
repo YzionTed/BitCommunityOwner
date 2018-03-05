@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 /**
  * Created by Dell on 2017/7/25.

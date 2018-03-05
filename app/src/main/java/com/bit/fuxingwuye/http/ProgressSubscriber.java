@@ -1,17 +1,17 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.activities.login.LoginActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.bean.EvenBusMessage;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.Tag;
+import com.bit.fuxingwuye.activities.login.LoginActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.bean.EvenBusMessage;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.Tag;
 
 import org.greenrobot.eventbus.EventBus;
 

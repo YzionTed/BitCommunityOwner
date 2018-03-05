@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -27,7 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 
 public class ViewHolder {

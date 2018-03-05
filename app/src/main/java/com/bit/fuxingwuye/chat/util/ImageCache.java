@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.BIT.fuxingwuye.chat.util;
+package com.bit.fuxingwuye.chat.util;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -31,7 +31,7 @@ import android.support.v4.util.LruCache;
 import android.util.Log;
 
 
-import com.BIT.fuxingwuye.chat.BuildConfig;
+import com.bit.fuxingwuye.chat.BuildConfig;
 
 import java.io.File;
 import java.lang.ref.SoftReference;

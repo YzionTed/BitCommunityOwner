@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.via;
+package com.bit.fuxingwuye.activities.via;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.ViaBean;
 
 /**
  * Created by Dell on 2017/11/13.

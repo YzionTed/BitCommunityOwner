@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.fragment.mineFragment;
+package com.bit.fuxingwuye.activities.fragment.mineFragment;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.FindBean;
-import com.BIT.fuxingwuye.bean.OutLogin;
-import com.BIT.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.FindBean;
+import com.bit.fuxingwuye.bean.OutLogin;
+import com.bit.fuxingwuye.bean.UserBean;
 
 /**
  * Created by Dell on 2017/8/9.

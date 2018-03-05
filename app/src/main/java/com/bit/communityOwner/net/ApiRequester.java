@@ -1,16 +1,16 @@
-package com.BIT.communityOwner.net;
+package com.bit.communityOwner.net;
 
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.BIT.communityOwner.util.AppUtil;
-import com.BIT.communityOwner.util.LogUtil;
-import com.BIT.fuxingwuye.BuildConfig;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.AppInfo;
+import com.bit.communityOwner.util.AppUtil;
+import com.bit.communityOwner.util.LogUtil;
+import com.bit.fuxingwuye.BuildConfig;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.AppInfo;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;

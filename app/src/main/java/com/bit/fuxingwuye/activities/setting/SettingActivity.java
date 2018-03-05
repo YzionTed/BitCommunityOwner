@@ -1,15 +1,15 @@
-package com.BIT.fuxingwuye.activities.setting;
+package com.bit.fuxingwuye.activities.setting;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.resetPwd.ResetPwdActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.databinding.ActivitySettingBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.resetPwd.ResetPwdActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.databinding.ActivitySettingBinding;
 
 public class SettingActivity extends BaseActivity<SettingPresenterImpl> implements SettingContract.View{
 

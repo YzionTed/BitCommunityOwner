@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.addReply;
+package com.bit.fuxingwuye.activities.addReply;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.ReplyBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.ReplyBean;
 
 import java.io.File;
 import java.util.List;

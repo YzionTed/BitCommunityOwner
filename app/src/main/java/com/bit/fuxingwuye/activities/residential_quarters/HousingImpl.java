@@ -1,17 +1,17 @@
-package com.BIT.fuxingwuye.activities.residential_quarters;
+package com.bit.fuxingwuye.activities.residential_quarters;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.activities.roomPicker.RoomPickerContract;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.Community;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.activities.roomPicker.RoomPickerContract;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
 
 import javax.inject.Inject;
 

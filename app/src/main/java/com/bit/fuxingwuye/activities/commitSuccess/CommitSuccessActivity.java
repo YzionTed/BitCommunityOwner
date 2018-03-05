@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.activities.commitSuccess;
+package com.bit.fuxingwuye.activities.commitSuccess;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.MainTabActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.databinding.ActivityCommitSuccessBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.databinding.ActivityCommitSuccessBinding;
 
 public class CommitSuccessActivity extends BaseActivity<CSPresenterImpl> implements CSContract.View{
 

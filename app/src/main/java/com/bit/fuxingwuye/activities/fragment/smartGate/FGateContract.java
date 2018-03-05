@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FacilityBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FacilityBean;
 
 import java.util.List;
 

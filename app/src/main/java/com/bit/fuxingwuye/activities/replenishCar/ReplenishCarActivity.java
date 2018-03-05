@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.replenishCar;
+package com.bit.fuxingwuye.activities.replenishCar;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -10,18 +10,18 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.commitSuccess.CommitSuccessActivity;
-import com.BIT.fuxingwuye.activities.parkPicker.ParkPickerActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.bean.CarBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityReplenishCarBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.BitmapAndStringUtils;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.commitSuccess.CommitSuccessActivity;
+import com.bit.fuxingwuye.activities.parkPicker.ParkPickerActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.CarBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityReplenishCarBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.BitmapAndStringUtils;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 public class ReplenishCarActivity extends BaseActivity<RCPresenterImpl> implements RCContract.View{
 

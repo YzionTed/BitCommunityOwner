@@ -11,7 +11,7 @@
         android:padding="@dimen/common_dp_5"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-        <com.BIT.fuxingwuye.views.XCRoundImageView
+        <com.bit.fuxingwuye.views.XCRoundImageView
             android:id="@+id/iv_avatar"
             android:layout_width="@dimen/common_dp_40"
             android:layout_height="@dimen/common_dp_40"

@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.replenishData;
+package com.bit.fuxingwuye.activities.replenishData;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.HouseBean;
-import com.BIT.fuxingwuye.bean.ReplenishBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.HouseBean;
+import com.bit.fuxingwuye.bean.ReplenishBean;
 
 /**
  * Created by Dell on 2017/7/27.

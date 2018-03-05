@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.shops;
+package com.bit.fuxingwuye.activities.shops;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,16 +8,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.goods.GoodsActivity;
-import com.BIT.fuxingwuye.adapter.ShopAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.MerchantBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityShopsBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.goods.GoodsActivity;
+import com.bit.fuxingwuye.adapter.ShopAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.MerchantBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityShopsBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 

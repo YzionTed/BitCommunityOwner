@@ -1,12 +1,12 @@
-package com.BIT.fuxingwuye.activities.fragment.elevatorFrag;
+package com.bit.fuxingwuye.activities.fragment.elevatorFrag;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
-import com.BIT.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.base.BaseFragment;
 
 /**
  * Created by Dell on 2018/3/3.

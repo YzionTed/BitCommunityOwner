@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.videoDevices;
+package com.bit.fuxingwuye.activities.videoDevices;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.VideoAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityVideoDevicesBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.VideoAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityVideoDevicesBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.ddclient.jnisdk.InfoUser;

@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.callEle;
+package com.bit.fuxingwuye.activities.callEle;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.CommonBean;
 
 import javax.inject.Inject;
 

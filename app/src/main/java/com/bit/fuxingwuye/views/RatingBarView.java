@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +10,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 /**
  * Created by Dell on 2017/9/5.

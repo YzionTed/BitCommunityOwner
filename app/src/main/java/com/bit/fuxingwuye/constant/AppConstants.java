@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.constant;
+package com.bit.fuxingwuye.constant;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseApplication;
 
 import java.io.File;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.constant
+ * SmartCommunity-com.bit.fuxingwuye.constant
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  */

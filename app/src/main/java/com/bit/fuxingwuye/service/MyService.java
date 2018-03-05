@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.service;
+package com.bit.fuxingwuye.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,16 +8,16 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.activities.callPolice.CallPoliceActivity;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.activities.callPolice.CallPoliceActivity;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.utils.ACache;
 
 import rx.Observable;
 import rx.Subscriber;

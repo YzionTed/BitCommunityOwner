@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import java.util.List;
 

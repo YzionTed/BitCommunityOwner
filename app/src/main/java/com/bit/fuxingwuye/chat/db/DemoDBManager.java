@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.chat.db;
+package com.bit.fuxingwuye.chat.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.chat.InviteMessage;
-import com.BIT.fuxingwuye.chat.RobotUser;
-import com.BIT.fuxingwuye.constant.Constant;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.chat.InviteMessage;
+import com.bit.fuxingwuye.chat.RobotUser;
+import com.bit.fuxingwuye.constant.Constant;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.HanziToPinyin;

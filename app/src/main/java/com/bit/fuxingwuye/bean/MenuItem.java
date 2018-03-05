@@ -1,6 +1,6 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
-import com.BIT.fuxingwuye.views.MenuItemOnClickListener;
+import com.bit.fuxingwuye.views.MenuItemOnClickListener;
 
 /**
  * Created by guorui.he on 2016/6/19.

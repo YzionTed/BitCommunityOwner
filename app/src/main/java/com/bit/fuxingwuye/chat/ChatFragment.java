@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 
 import android.app.Activity;
@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.MainTabActivity;
-import com.BIT.fuxingwuye.constant.Constant;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.constant.Constant;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;

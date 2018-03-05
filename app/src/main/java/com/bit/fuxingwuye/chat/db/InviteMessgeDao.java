@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.BIT.fuxingwuye.chat.db;
+package com.bit.fuxingwuye.chat.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.chat.InviteMessage;
+import com.bit.fuxingwuye.chat.InviteMessage;
 
 import java.util.List;
 

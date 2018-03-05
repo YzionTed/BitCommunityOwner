@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.fragment.aroundFragment;
+package com.bit.fuxingwuye.activities.fragment.aroundFragment;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 
 /**

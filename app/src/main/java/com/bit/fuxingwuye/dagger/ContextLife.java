@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.dagger;
+package com.bit.fuxingwuye.dagger;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

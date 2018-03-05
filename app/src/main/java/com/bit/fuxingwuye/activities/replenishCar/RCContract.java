@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.replenishCar;
+package com.bit.fuxingwuye.activities.replenishCar;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CarBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CarBean;
 
 /**
  * Created by Dell on 2017/7/27.

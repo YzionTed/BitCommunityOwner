@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.databinding.BaseObservable;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.constant.HttpConstants;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,7 +32,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/1.
  */

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.Bluetooth.mili;
+package com.bit.fuxingwuye.Bluetooth.mili;
 
 /**
  * Created by Dell on 2018/2/11.

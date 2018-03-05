@@ -1,12 +1,12 @@
-package com.BIT.fuxingwuye.activities.register;
+package com.bit.fuxingwuye.activities.register;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.RegisterBean;
-import com.BIT.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.RegisterBean;
+import com.bit.fuxingwuye.bean.TokenBean;
 
 /**
  * Created by Dell on 2017/7/4.

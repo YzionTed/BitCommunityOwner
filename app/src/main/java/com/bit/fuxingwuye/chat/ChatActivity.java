@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.easeui.ui.EaseChatFragment;

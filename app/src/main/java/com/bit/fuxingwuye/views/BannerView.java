@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.content.Context;
 import android.os.Handler;
@@ -13,9 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.utils.LogUtil;
 
 import java.util.List;
 import java.util.Timer;

@@ -7,11 +7,11 @@
 
         <variable
             name="actionHandler"
-            type="com.BIT.fuxingwuye.activities.repairDetail.RepairDetailContract.Presenter" />
+            type="com.bit.fuxingwuye.activities.repairDetail.RepairDetailContract.Presenter" />
 
         <variable
             name="bean"
-            type="com.BIT.fuxingwuye.bean.RepairBean" />
+            type="com.bit.fuxingwuye.bean.RepairBean" />
     </data>
 
     <LinearLayout
@@ -330,7 +330,7 @@
                                 android:layout_marginLeft="@dimen/common_dp_10"
                                 android:text="服务评分："
                                 android:textSize="@dimen/common_sp_14" />
-                            <com.BIT.fuxingwuye.views.RatingBarView
+                            <com.bit.fuxingwuye.views.RatingBarView
                                 android:id="@+id/ratingbar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.PayListBean;
-import com.BIT.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.PayListBean;
+import com.bit.fuxingwuye.bean.ViaBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

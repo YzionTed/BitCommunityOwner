@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bean"
-            type="com.BIT.fuxingwuye.bean.TokenBean"/>
+            type="com.bit.fuxingwuye.bean.TokenBean"/>
     </data>
 
     <LinearLayout
@@ -42,7 +42,7 @@
                     android:text="头像"
                     android:textColor="@color/bs_grary2"
                     android:textSize="@dimen/common_sp_14"/>
-                <com.BIT.fuxingwuye.views.XCRoundImageView
+                <com.bit.fuxingwuye.views.XCRoundImageView
                     android:id="@+id/iv_headimg"
                     android:layout_width="@dimen/common_dp_48"
                     android:layout_height="@dimen/common_dp_48"

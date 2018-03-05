@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.Bluetooth;
+package com.bit.fuxingwuye.Bluetooth;
 
 import android.Manifest;
 import android.app.Activity;
@@ -22,9 +22,9 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
-import com.BIT.fuxingwuye.Bluetooth.interfcace.OnSearchBlueDeviceListener;
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
+import com.bit.fuxingwuye.Bluetooth.interfcace.OnSearchBlueDeviceListener;
+import com.bit.fuxingwuye.base.BaseApplication;
 import com.inuker.bluetooth.library.BluetoothClientManger;
 
 import java.util.ArrayList;

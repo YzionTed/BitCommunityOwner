@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
 /**
  * Created by Dell on 2017/7/16.

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseDialog;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseDialog;
 
 
 /**

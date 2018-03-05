@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.Bluetooth.jinbo;
+package com.bit.fuxingwuye.Bluetooth.jinbo;
 
 /**
  * Created by xiewensheng on 2018/2/9.
@@ -9,7 +9,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.bean.ElevatorListBean;
+import com.bit.fuxingwuye.bean.ElevatorListBean;
 import com.inuker.bluetooth.library.BluetoothClientManger;
 import com.inuker.bluetooth.library.base.CardLog;
 import com.inuker.bluetooth.library.base.Register;

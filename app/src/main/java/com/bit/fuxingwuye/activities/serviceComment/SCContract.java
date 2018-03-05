@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.serviceComment;
+package com.bit.fuxingwuye.activities.serviceComment;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.EvaluationBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.EvaluationBean;
 
 /**
  * Created by Dell on 2017/8/14.

@@ -1,13 +1,13 @@
-package com.BIT.fuxingwuye.activities.personlPage;
+package com.bit.fuxingwuye.activities.personlPage;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FindBean;
-import com.BIT.fuxingwuye.bean.UserBean;
-import com.BIT.fuxingwuye.bean.VersionBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FindBean;
+import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.bean.VersionBean;
 
 /**
  * Created by Dell on 2017/7/26.

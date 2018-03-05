@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.BIT.fuxingwuye.viewholder.BaseViewHolder;
+import com.bit.fuxingwuye.viewholder.BaseViewHolder;
 
 import java.util.List;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.adapter
+ * SmartCommunity-com.bit.fuxingwuye.adapter
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  *

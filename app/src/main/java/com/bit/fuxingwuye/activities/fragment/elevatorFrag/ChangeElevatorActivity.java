@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.elevatorFrag;
+package com.bit.fuxingwuye.activities.fragment.elevatorFrag;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +9,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.BIT.communityOwner.BaseActivity;
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.ElevatorListBean;
-import com.BIT.fuxingwuye.bean.ElevatorListRequestion;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.CommonAdapter;
-import com.BIT.fuxingwuye.utils.ToastUtil;
-import com.BIT.fuxingwuye.utils.ViewHolder;
+import com.bit.communityOwner.BaseActivity;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.ElevatorListBean;
+import com.bit.fuxingwuye.bean.ElevatorListRequestion;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.CommonAdapter;
+import com.bit.fuxingwuye.utils.ToastUtil;
+import com.bit.fuxingwuye.utils.ViewHolder;
 
 import java.util.List;
 

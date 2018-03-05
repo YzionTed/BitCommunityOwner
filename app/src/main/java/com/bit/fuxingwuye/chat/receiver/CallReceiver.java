@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package com.BIT.fuxingwuye.chat.receiver;
+package com.bit.fuxingwuye.chat.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.BIT.fuxingwuye.chat.DemoHelper;
-import com.BIT.fuxingwuye.chat.VideoCallActivity;
-import com.BIT.fuxingwuye.chat.VoiceCallActivity;
+import com.bit.fuxingwuye.chat.DemoHelper;
+import com.bit.fuxingwuye.chat.VideoCallActivity;
+import com.bit.fuxingwuye.chat.VoiceCallActivity;
 import com.hyphenate.util.EMLog;
 
 public class CallReceiver extends BroadcastReceiver{

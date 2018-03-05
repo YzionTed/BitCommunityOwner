@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.MenuItem;
-import com.BIT.fuxingwuye.views.MenuItemOnClickListener;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.MenuItem;
+import com.bit.fuxingwuye.views.MenuItemOnClickListener;
 
 import java.util.List;
 

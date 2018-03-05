@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.LogUtil;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/1.
  */

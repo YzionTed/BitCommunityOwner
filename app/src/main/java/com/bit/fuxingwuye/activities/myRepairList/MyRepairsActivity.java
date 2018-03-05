@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.myRepairList;
+package com.bit.fuxingwuye.activities.myRepairList;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,23 +7,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.repairDetail.RepairDetailActivity;
-import com.BIT.fuxingwuye.adapter.RepairAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityMyRepairsBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.repairDetail.RepairDetailActivity;
+import com.bit.fuxingwuye.adapter.RepairAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityMyRepairsBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.BIT.fuxingwuye.constant.AppConstants.RES_REFRESH_REPAIR;
+import static com.bit.fuxingwuye.constant.AppConstants.RES_REFRESH_REPAIR;
 
 public class MyRepairsActivity extends BaseActivity<MyRepairsPresenterImpl> implements MyRepairsContract.View {
 

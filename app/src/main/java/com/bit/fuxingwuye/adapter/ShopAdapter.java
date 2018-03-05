@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.MerchantBean;
-import com.BIT.fuxingwuye.bean.RepairBean;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.MerchantBean;
+import com.bit.fuxingwuye.bean.RepairBean;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 
 import java.util.List;
 

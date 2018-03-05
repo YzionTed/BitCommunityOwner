@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.bean;
+package com.bit.fuxingwuye.bean;
 
 import java.util.List;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.bean
+ * SmartCommunity-com.bit.fuxingwuye.bean
  * 作者： YanwuTang
  * 时间： 2017/7/14.
  */

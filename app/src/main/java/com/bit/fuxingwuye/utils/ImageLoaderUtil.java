@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;

@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.activities.replenishHouse;
+package com.bit.fuxingwuye.activities.replenishHouse;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.HouseholdsBean;
-import com.BIT.fuxingwuye.bean.ReplenishHouseBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.HouseholdsBean;
+import com.bit.fuxingwuye.bean.ReplenishHouseBean;
 
 /**
  * Created by Dell on 2017/7/27.

@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.feedback;
+package com.bit.fuxingwuye.activities.feedback;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FeedbackBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FeedbackBean;
 
 /**
  * Created by Dell on 2017/7/27.

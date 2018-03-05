@@ -1,15 +1,15 @@
-package com.BIT.fuxingwuye.activities.login;
+package com.bit.fuxingwuye.activities.login;
 
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CodeBean;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.LoginBean;
-import com.BIT.fuxingwuye.bean.TokenBean;
-import com.BIT.fuxingwuye.bean.VersionBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CodeBean;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.LoginBean;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.bean.VersionBean;
 
 /**
  * Created by Dell on 2017/7/3.

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.houseManager;
+package com.bit.fuxingwuye.activities.houseManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,17 +9,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.RecordAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.EvenBusConstants;
-import com.BIT.fuxingwuye.base.ProprietorBean;
-import com.BIT.fuxingwuye.bean.EvenBusMessage;
-import com.BIT.fuxingwuye.bean.RecordData;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.utils.GsonUtil;
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.Tag;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.RecordAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.EvenBusConstants;
+import com.bit.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.bean.EvenBusMessage;
+import com.bit.fuxingwuye.bean.RecordData;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.GsonUtil;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.Tag;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;

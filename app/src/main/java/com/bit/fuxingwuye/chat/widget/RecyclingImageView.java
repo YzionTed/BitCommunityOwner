@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.BIT.fuxingwuye.chat.widget;
+package com.bit.fuxingwuye.chat.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -22,7 +22,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.BIT.fuxingwuye.chat.util.RecyclingBitmapDrawable;
+import com.bit.fuxingwuye.chat.util.RecyclingBitmapDrawable;
 
 
 /**

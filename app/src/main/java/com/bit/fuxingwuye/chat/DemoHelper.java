@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -12,15 +12,15 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.MainTabActivity;
-import com.BIT.fuxingwuye.chat.db.DemoDBManager;
-import com.BIT.fuxingwuye.chat.db.InviteMessgeDao;
-import com.BIT.fuxingwuye.chat.db.UserDao;
-import com.BIT.fuxingwuye.chat.parse.UserProfileManager;
-import com.BIT.fuxingwuye.chat.receiver.CallReceiver;
-import com.BIT.fuxingwuye.constant.Constant;
-import com.BIT.fuxingwuye.chat.util.PreferenceManager;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.chat.db.DemoDBManager;
+import com.bit.fuxingwuye.chat.db.InviteMessgeDao;
+import com.bit.fuxingwuye.chat.db.UserDao;
+import com.bit.fuxingwuye.chat.parse.UserProfileManager;
+import com.bit.fuxingwuye.chat.receiver.CallReceiver;
+import com.bit.fuxingwuye.constant.Constant;
+import com.bit.fuxingwuye.chat.util.PreferenceManager;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
@@ -50,7 +50,7 @@ import com.hyphenate.easeui.model.EaseNotifier.EaseNotificationInfoProvider;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
-import com.BIT.fuxingwuye.chat.InviteMessage.InviteMessageStatus;
+import com.bit.fuxingwuye.chat.InviteMessage.InviteMessageStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;

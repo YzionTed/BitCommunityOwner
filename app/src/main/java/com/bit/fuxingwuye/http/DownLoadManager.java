@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import okhttp3.ResponseBody;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/7.
  */

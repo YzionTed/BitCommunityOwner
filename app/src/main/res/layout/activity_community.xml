@@ -54,7 +54,7 @@
                         android:textColor="@color/blue1"/>
                 </LinearLayout>
             </LinearLayout>
-            <com.BIT.fuxingwuye.views.XCRoundImageView
+            <com.bit.fuxingwuye.views.XCRoundImageView
                 android:id="@+id/iv_head"
                 android:layout_width="@dimen/common_dp_80"
                 android:layout_height="@dimen/common_dp_80"

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.residential_quarters;
+package com.bit.fuxingwuye.activities.residential_quarters;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,16 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.MainTabActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.Community;
-import com.BIT.fuxingwuye.bean.EvenBusMessage;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.AcitivityHousingBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.Tag;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.bean.EvenBusMessage;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.AcitivityHousingBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.Tag;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 

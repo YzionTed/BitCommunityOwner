@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,21 +13,21 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BIT.communityOwner.BaseActivity;
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.bean.DoorMILiBean;
-import com.BIT.fuxingwuye.bean.DoorMILiBeanList;
-import com.BIT.fuxingwuye.bean.DoorMiLiRequestBean;
-import com.BIT.fuxingwuye.constant.PreferenceConst;
-import com.BIT.fuxingwuye.databinding.ActivityAddReplyBinding;
-import com.BIT.fuxingwuye.utils.CommonAdapter;
-import com.BIT.fuxingwuye.utils.PreferenceUtils;
-import com.BIT.fuxingwuye.utils.ToastUtil;
-import com.BIT.fuxingwuye.utils.ViewHolder;
+import com.bit.communityOwner.BaseActivity;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.DoorMILiBean;
+import com.bit.fuxingwuye.bean.DoorMILiBeanList;
+import com.bit.fuxingwuye.bean.DoorMiLiRequestBean;
+import com.bit.fuxingwuye.constant.PreferenceConst;
+import com.bit.fuxingwuye.databinding.ActivityAddReplyBinding;
+import com.bit.fuxingwuye.utils.CommonAdapter;
+import com.bit.fuxingwuye.utils.PreferenceUtils;
+import com.bit.fuxingwuye.utils.ToastUtil;
+import com.bit.fuxingwuye.utils.ViewHolder;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

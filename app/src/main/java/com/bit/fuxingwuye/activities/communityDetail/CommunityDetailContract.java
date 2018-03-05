@@ -1,12 +1,12 @@
-package com.BIT.fuxingwuye.activities.communityDetail;
+package com.bit.fuxingwuye.activities.communityDetail;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.CommunityBean;
-import com.BIT.fuxingwuye.bean.InformationBean;
-import com.BIT.fuxingwuye.bean.ReplyBean;
-import com.BIT.fuxingwuye.bean.ZanBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.CommunityBean;
+import com.bit.fuxingwuye.bean.InformationBean;
+import com.bit.fuxingwuye.bean.ReplyBean;
+import com.bit.fuxingwuye.bean.ZanBean;
 
 /**
  * Created by Dell on 2017/11/6.

@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.payment;
+package com.bit.fuxingwuye.activities.payment;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
 
 import javax.inject.Inject;
 

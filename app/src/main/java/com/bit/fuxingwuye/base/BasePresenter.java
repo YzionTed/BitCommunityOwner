@@ -1,7 +1,7 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.dagger.presenter
+ * SmartCommunity-com.bit.fuxingwuye.dagger.presenter
  * 作者： YanwuTang
  * 时间： 2017/7/4.
  */

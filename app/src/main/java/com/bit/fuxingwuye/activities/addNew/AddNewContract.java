@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.addNew;
+package com.bit.fuxingwuye.activities.addNew;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.HouseholdsBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.HouseholdsBean;
 
 /**
  * Created by Dell on 2017/7/13.

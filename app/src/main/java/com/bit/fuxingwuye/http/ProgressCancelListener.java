@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 public interface ProgressCancelListener {
     void onCancelProgress();

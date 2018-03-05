@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.goods;
+package com.bit.fuxingwuye.activities.goods;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.GoodsBean;
-import com.BIT.fuxingwuye.bean.MerchantBean;
-import com.BIT.fuxingwuye.databinding.ActivityGoodsBinding;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.GoodsBean;
+import com.bit.fuxingwuye.bean.MerchantBean;
+import com.bit.fuxingwuye.databinding.ActivityGoodsBinding;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 
 public class GoodsActivity extends BaseActivity<GoodsPresenterImpl> implements GoodsContract.View {
 

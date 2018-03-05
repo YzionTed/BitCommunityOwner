@@ -49,7 +49,7 @@
                     android:layout_marginRight="@dimen/common_dp_10"
                     android:layout_height="@dimen/common_dp_0.5" />
 
-                <com.BIT.fuxingwuye.views.MySwipeMenuListView
+                <com.bit.fuxingwuye.views.MySwipeMenuListView
                     android:id="@+id/listView"
                     android:divider="#00000000"
                     android:dividerHeight="@dimen/common_dp_6"

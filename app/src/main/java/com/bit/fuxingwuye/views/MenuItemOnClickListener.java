@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.util.Log;
 import android.view.View;
 
-import com.BIT.fuxingwuye.bean.MenuItem;
+import com.bit.fuxingwuye.bean.MenuItem;
 
 /**
  * Created by guorui.he on 2016/6/20.

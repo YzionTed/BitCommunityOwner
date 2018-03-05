@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.community;
+package com.bit.fuxingwuye.activities.community;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,21 +8,21 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.addReply.AddReplyActivity;
-import com.BIT.fuxingwuye.activities.communityDetail.CommunityDetailActivity;
-import com.BIT.fuxingwuye.adapter.CommunityAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.InformationBean;
-import com.BIT.fuxingwuye.bean.UserBean;
-import com.BIT.fuxingwuye.bean.ZanBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityCommunityBinding;
-import com.BIT.fuxingwuye.http.HttpProvider;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.addReply.AddReplyActivity;
+import com.bit.fuxingwuye.activities.communityDetail.CommunityDetailActivity;
+import com.bit.fuxingwuye.adapter.CommunityAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.InformationBean;
+import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.bean.ZanBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityCommunityBinding;
+import com.bit.fuxingwuye.http.HttpProvider;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 

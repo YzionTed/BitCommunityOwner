@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseApplication;
 
 import java.util.ArrayList;
 import java.util.List;

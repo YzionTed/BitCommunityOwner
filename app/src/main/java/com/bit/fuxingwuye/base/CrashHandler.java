@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -8,8 +8,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.utils.LogUtil;
-import com.BIT.fuxingwuye.utils.SDCardUtil;
+import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.SDCardUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

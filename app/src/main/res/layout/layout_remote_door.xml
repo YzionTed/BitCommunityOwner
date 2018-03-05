@@ -24,14 +24,14 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"></View>
 
-            <com.BIT.fuxingwuye.views.NoScrollGridView
+            <com.bit.fuxingwuye.views.NoScrollGridView
                 android:id="@+id/ns_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center"
                 android:numColumns="2"
-                android:paddingBottom="28dp"></com.BIT.fuxingwuye.views.NoScrollGridView>
+                android:paddingBottom="28dp"></com.bit.fuxingwuye.views.NoScrollGridView>
 
             <TextView
                 android:id="@+id/tv_change"

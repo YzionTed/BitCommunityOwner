@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.chat.db.UserDao;
-import com.BIT.fuxingwuye.chat.util.PreferenceManager;
+import com.bit.fuxingwuye.chat.db.UserDao;
+import com.bit.fuxingwuye.chat.util.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 

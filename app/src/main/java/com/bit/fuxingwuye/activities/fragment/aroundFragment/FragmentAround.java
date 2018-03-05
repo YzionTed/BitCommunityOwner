@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.aroundFragment;
+package com.bit.fuxingwuye.activities.fragment.aroundFragment;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 /**
  * A simple {@link Fragment} subclass.

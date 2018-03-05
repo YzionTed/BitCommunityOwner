@@ -1,11 +1,11 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.util.SimpleArrayMap;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseApplication;
 
 import java.util.Collections;
 import java.util.Map;

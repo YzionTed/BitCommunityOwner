@@ -1,15 +1,15 @@
-package com.BIT.fuxingwuye.activities.message;
+package com.bit.fuxingwuye.activities.message;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.NoticeBean;
-import com.BIT.fuxingwuye.databinding.ActivityMessageBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.NoticeBean;
+import com.bit.fuxingwuye.databinding.ActivityMessageBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

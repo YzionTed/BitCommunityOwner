@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 /**
  * Created by Dell on 2017/8/5.

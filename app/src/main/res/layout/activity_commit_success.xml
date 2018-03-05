@@ -6,7 +6,7 @@
     <data>
         <variable
             name="actionhandler"
-            type="com.BIT.fuxingwuye.activities.commitSuccess.CSContract.Presenter"/>
+            type="com.bit.fuxingwuye.activities.commitSuccess.CSContract.Presenter"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

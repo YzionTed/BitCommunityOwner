@@ -1,12 +1,12 @@
-package com.BIT.fuxingwuye.handlers;
+package com.bit.fuxingwuye.handlers;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.activities.payment.PaymentActivity;
-import com.BIT.fuxingwuye.activities.register.RegisterActivity;
-import com.BIT.fuxingwuye.activities.resetPwd.ResetPwdActivity;
+import com.bit.fuxingwuye.activities.payment.PaymentActivity;
+import com.bit.fuxingwuye.activities.register.RegisterActivity;
+import com.bit.fuxingwuye.activities.resetPwd.ResetPwdActivity;
 
 /**
  * Created by Dell on 2017/7/5.

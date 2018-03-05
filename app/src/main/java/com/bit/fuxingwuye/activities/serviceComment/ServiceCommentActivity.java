@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.serviceComment;
+package com.bit.fuxingwuye.activities.serviceComment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -6,12 +6,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.EvaluationBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityServiceCommentBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.EvaluationBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityServiceCommentBinding;
+import com.bit.fuxingwuye.utils.ACache;
 
 public class ServiceCommentActivity extends BaseActivity<SCPresenterImpl> implements SCContract.View {
 

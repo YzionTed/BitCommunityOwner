@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.views;
+package com.bit.fuxingwuye.views;
 
 import android.app.DialogFragment;
 import android.content.Context;
@@ -18,9 +18,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.MenuItemAdapter;
-import com.BIT.fuxingwuye.bean.MenuItem;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.MenuItemAdapter;
+import com.bit.fuxingwuye.bean.MenuItem;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@
             layout="@layout/action_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_dp_48" />
-        <com.BIT.fuxingwuye.views.BannerView
+        <com.bit.fuxingwuye.views.BannerView
             android:id="@+id/bannerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/common_dp_160"

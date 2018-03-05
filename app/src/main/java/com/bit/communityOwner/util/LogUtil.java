@@ -1,4 +1,4 @@
-package com.BIT.communityOwner.util;
+package com.bit.communityOwner.util;
 
 
 import android.util.Log;

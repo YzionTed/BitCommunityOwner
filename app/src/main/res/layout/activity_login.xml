@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.BIT.fuxingwuye.activities.login.LoginActivity">
+    tools:context="com.bit.fuxingwuye.activities.login.LoginActivity">
 
     <data>
         <variable
             name="actionHandler"
-            type="com.BIT.fuxingwuye.activities.login.LoginContract.Presenter"/>
+            type="com.bit.fuxingwuye.activities.login.LoginContract.Presenter"/>
         <variable
             name="bean"
-            type="com.BIT.fuxingwuye.bean.LoginBean"/>
+            type="com.bit.fuxingwuye.bean.LoginBean"/>
     </data>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.constant;
+package com.bit.fuxingwuye.constant;
 
 /**
  * Created by kezhangzhao on 2018/1/9.

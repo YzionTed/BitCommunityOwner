@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.fragment.smartGate;
+package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -11,22 +11,22 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
-import com.BIT.fuxingwuye.Bluetooth.mili.MiLiState;
-import com.BIT.fuxingwuye.Bluetooth.util.BluetoothUtils;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseFragment;
-import com.BIT.fuxingwuye.bean.DoorMILiBean;
-import com.BIT.fuxingwuye.bean.DoorMiLiRequestBean;
-import com.BIT.fuxingwuye.utils.CustomDialog;
-import com.BIT.fuxingwuye.utils.DialogUtil;
-import com.BIT.fuxingwuye.utils.SensorManagerHelper;
-import com.BIT.fuxingwuye.utils.ToastUtil;
-import com.BIT.fuxingwuye.views.DoughnutProgress;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
+import com.bit.fuxingwuye.Bluetooth.mili.MiLiState;
+import com.bit.fuxingwuye.Bluetooth.util.BluetoothUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.bean.DoorMILiBean;
+import com.bit.fuxingwuye.bean.DoorMiLiRequestBean;
+import com.bit.fuxingwuye.utils.CustomDialog;
+import com.bit.fuxingwuye.utils.DialogUtil;
+import com.bit.fuxingwuye.utils.SensorManagerHelper;
+import com.bit.fuxingwuye.utils.ToastUtil;
+import com.bit.fuxingwuye.views.DoughnutProgress;
 import com.smarthome.bleself.sdk.BluetoothApiAction;
 import com.smarthome.bleself.sdk.IBluetoothApiInterface;
 

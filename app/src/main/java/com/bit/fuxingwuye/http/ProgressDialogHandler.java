@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 
-import com.BIT.fuxingwuye.views.CustomProgressDialog;
+import com.bit.fuxingwuye.views.CustomProgressDialog;
 
 
 /**

@@ -1,7 +1,7 @@
-package com.BIT.fuxingwuye.Bluetooth.interfcace;
+package com.bit.fuxingwuye.Bluetooth.interfcace;
 
 
-import com.BIT.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
+import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
 
 import java.util.ArrayList;
 

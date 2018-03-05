@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 
-import com.BIT.fuxingwuye.activities.TagAliasOperatorHelper;
+import com.bit.fuxingwuye.activities.TagAliasOperatorHelper;
 
 import cn.jpush.android.api.JPushMessage;
 import cn.jpush.android.service.JPushMessageReceiver;

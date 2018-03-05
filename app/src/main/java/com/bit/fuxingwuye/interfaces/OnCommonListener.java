@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.interfaces;
+package com.bit.fuxingwuye.interfaces;
 
 /**
  * KangTuUpperComputer-com.kangtu.uppercomputer.listener

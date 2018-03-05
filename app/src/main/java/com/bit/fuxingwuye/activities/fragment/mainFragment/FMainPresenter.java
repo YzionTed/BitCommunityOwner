@@ -1,16 +1,16 @@
-package com.BIT.fuxingwuye.activities.fragment.mainFragment;
+package com.bit.fuxingwuye.activities.fragment.mainFragment;
 
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.FindBean;
-import com.BIT.fuxingwuye.bean.Notice;
-import com.BIT.fuxingwuye.bean.NoticeListBean;
-import com.BIT.fuxingwuye.bean.UserBean;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.FindBean;
+import com.bit.fuxingwuye.bean.Notice;
+import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
 
 import java.util.List;
 

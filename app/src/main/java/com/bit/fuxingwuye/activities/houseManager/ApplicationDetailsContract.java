@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.activities.houseManager;
+package com.bit.fuxingwuye.activities.houseManager;
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.base.ProprietorBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.base.ProprietorBean;
 
 /**
  * Created by 23 on 2018/3/1.

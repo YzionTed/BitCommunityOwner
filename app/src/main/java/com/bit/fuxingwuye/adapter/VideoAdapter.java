@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.BaseAdapter;
 
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 import com.ddclient.dongsdk.DeviceInfo;
 
 import java.util.ArrayList;

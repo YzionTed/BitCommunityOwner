@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.BIT.fuxingwuye.activities.fragment.smartGate.FragmentGate">
+    tools:context="com.bit.fuxingwuye.activities.fragment.smartGate.FragmentGate">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                     <RelativeLayout
                         android:layout_width="@dimen/common_dp_200"
                         android:layout_height="@dimen/common_dp_200">
-                        <com.BIT.fuxingwuye.views.DoughnutProgress
+                        <com.bit.fuxingwuye.views.DoughnutProgress
                             android:id="@+id/circle_progress"
                             android:layout_width="@dimen/common_dp_200"
                             android:layout_height="@dimen/common_dp_200"

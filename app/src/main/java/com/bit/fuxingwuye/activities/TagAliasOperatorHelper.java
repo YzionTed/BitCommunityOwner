@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.BIT.fuxingwuye.service.MyService;
-import com.BIT.fuxingwuye.utils.ExampleUtil;
+import com.bit.fuxingwuye.service.MyService;
+import com.bit.fuxingwuye.utils.ExampleUtil;
 
 import java.util.HashMap;
 import java.util.Locale;

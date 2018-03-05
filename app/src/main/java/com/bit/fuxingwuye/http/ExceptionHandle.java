@@ -1,15 +1,15 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.content.Intent;
 import android.net.ParseException;
 
 
-import com.BIT.fuxingwuye.activities.MainTabActivity;
-import com.BIT.fuxingwuye.activities.login.LoginActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.bean.EvenBusMessage;
-import com.BIT.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.activities.login.LoginActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.bean.EvenBusMessage;
+import com.bit.fuxingwuye.constant.HttpConstants;
 import com.google.gson.JsonParseException;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -21,7 +21,7 @@ import java.net.ConnectException;
 import retrofit2.HttpException;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/7.
  */

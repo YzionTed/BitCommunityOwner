@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.BIT.fuxingwuye.chat.util;
+package com.bit.fuxingwuye.chat.util;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,7 +30,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 
-import com.BIT.fuxingwuye.chat.BuildConfig;
+import com.bit.fuxingwuye.chat.BuildConfig;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;

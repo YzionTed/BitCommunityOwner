@@ -1,7 +1,7 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/11.
  */

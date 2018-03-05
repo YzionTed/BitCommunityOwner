@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <com.BIT.fuxingwuye.views.XCRoundImageView
+        <com.bit.fuxingwuye.views.XCRoundImageView
             android:id="@+id/iv_avatar"
             android:layout_width="@dimen/common_dp_52"
             android:layout_height="@dimen/common_dp_52"

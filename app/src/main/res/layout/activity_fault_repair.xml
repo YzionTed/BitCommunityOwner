@@ -6,10 +6,10 @@
     <data>
         <variable
             name="repairBean1"
-            type="com.BIT.fuxingwuye.bean.RepairBean"/>
+            type="com.bit.fuxingwuye.bean.RepairBean"/>
         <variable
             name="repairBean2"
-            type="com.BIT.fuxingwuye.bean.RepairBean"/>
+            type="com.bit.fuxingwuye.bean.RepairBean"/>
     </data>
 
     <LinearLayout

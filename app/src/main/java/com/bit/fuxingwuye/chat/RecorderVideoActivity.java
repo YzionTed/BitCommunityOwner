@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -27,8 +27,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.chat.util.Utils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.chat.util.Utils;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.PathUtil;

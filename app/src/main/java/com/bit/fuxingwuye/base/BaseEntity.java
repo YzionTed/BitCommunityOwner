@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 
 
-import com.BIT.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Nullable;
@@ -12,7 +12,7 @@ import okhttp3.ResponseBody;
 import okio.BufferedSource;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/1.
  */

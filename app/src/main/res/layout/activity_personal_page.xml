@@ -5,7 +5,7 @@
     <data>
         <variable
             name="actionhandler"
-            type="com.BIT.fuxingwuye.activities.personlPage.PPContract.Presenter"/>
+            type="com.bit.fuxingwuye.activities.personlPage.PPContract.Presenter"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

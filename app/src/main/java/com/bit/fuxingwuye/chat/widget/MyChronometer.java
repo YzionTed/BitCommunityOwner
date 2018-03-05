@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat.widget;
+package com.bit.fuxingwuye.chat.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

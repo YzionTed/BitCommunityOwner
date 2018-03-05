@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.videoDevices;
+package com.bit.fuxingwuye.activities.videoDevices;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.GAnimationActivity;
-import com.BIT.fuxingwuye.databinding.ActivityVideoViewBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.GAnimationActivity;
+import com.bit.fuxingwuye.databinding.ActivityVideoViewBinding;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.DeviceInfo;
 import com.ddclient.jnisdk.InfoUser;

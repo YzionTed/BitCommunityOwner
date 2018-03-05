@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.Bluetooth.jinbo;
+package com.bit.fuxingwuye.Bluetooth.jinbo;
 
 import com.inuker.bluetooth.library.search.SearchResult;
 

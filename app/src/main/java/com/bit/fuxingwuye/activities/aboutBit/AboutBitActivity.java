@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.activities.aboutBit;
+package com.bit.fuxingwuye.activities.aboutBit;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.databinding.ActivityAboutBitBinding;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.databinding.ActivityAboutBitBinding;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 public class AboutBitActivity extends BaseActivity<AboutPresenterImpl> implements AboutContract.View {
 
@@ -41,7 +41,7 @@ public class AboutBitActivity extends BaseActivity<AboutPresenterImpl> implement
 
     @Override
     protected void setupVM() {
-//        Bitmap bitmap = CommonUtils.createQRImage("http://a.app.qq.com/o/simple.jsp?pkgname=com.BIT.fuxingwuye",
+//        Bitmap bitmap = CommonUtils.createQRImage("http://a.app.qq.com/o/simple.jsp?pkgname=com.bit.fuxingwuye",
 //                400,400);
 //        mBinding.ivQrcode.setImageBitmap(bitmap);
     }
@@ -55,7 +55,7 @@ public class AboutBitActivity extends BaseActivity<AboutPresenterImpl> implement
                 share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
                 share_intent.setType("text/plain");//设置分享内容的类型
                 share_intent.putExtra(Intent.EXTRA_SUBJECT, "府兴物业");//添加分享内容标题
-                share_intent.putExtra(Intent.EXTRA_TEXT, "http://a.app.qq.com/o/simple.jsp?pkgname=com.BIT.fuxingwuye");//添加分享内容
+                share_intent.putExtra(Intent.EXTRA_TEXT, "http://a.app.qq.com/o/simple.jsp?pkgname=com.bit.fuxingwuye");//添加分享内容
                 share_intent = Intent.createChooser(share_intent, "分享府兴物业");
                 startActivity(share_intent);
             }

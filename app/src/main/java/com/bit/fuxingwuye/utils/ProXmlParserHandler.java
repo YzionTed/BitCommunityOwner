@@ -1,9 +1,9 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 
-import com.BIT.fuxingwuye.bean.CityBean;
-import com.BIT.fuxingwuye.bean.DistrictBean;
-import com.BIT.fuxingwuye.bean.ProvinceBean;
+import com.bit.fuxingwuye.bean.CityBean;
+import com.bit.fuxingwuye.bean.DistrictBean;
+import com.bit.fuxingwuye.bean.ProvinceBean;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

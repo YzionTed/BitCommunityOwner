@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat;
+package com.bit.fuxingwuye.chat;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -26,11 +26,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.chat.util.ImageCache;
-import com.BIT.fuxingwuye.chat.util.ImageResizer;
-import com.BIT.fuxingwuye.chat.util.Utils;
-import com.BIT.fuxingwuye.chat.widget.RecyclingImageView;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.chat.util.ImageCache;
+import com.bit.fuxingwuye.chat.util.ImageResizer;
+import com.bit.fuxingwuye.chat.util.Utils;
+import com.bit.fuxingwuye.chat.widget.RecyclingImageView;
 import com.hyphenate.util.DateUtils;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.TextFormater;

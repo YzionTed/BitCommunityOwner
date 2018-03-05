@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.myRepairList.MyRepairsActivity;
-import com.BIT.fuxingwuye.databinding.ActivityFaultCommitSuccessBinding;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.myRepairList.MyRepairsActivity;
+import com.bit.fuxingwuye.databinding.ActivityFaultCommitSuccessBinding;
 
 public class FaultCommitSuccessActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.utils;
+package com.bit.fuxingwuye.utils;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-import com.BIT.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseApplication;
 
 import static android.content.Context.TELEPHONY_SERVICE;
 

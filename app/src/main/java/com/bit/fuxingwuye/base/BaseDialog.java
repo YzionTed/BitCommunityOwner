@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.base;
+package com.bit.fuxingwuye.base;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.BIT.fuxingwuye.R;
+import com.bit.fuxingwuye.R;
 
 
 public abstract class BaseDialog extends Dialog {

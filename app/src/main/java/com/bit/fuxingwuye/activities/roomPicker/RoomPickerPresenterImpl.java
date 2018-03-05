@@ -1,21 +1,21 @@
-package com.BIT.fuxingwuye.activities.roomPicker;
+package com.bit.fuxingwuye.activities.roomPicker;
 
 import android.content.Context;
 
 
-import com.BIT.fuxingwuye.base.BaseEntity;
-import com.BIT.fuxingwuye.base.BaseRxPresenter;
-import com.BIT.fuxingwuye.bean.Building;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.Community;
-import com.BIT.fuxingwuye.bean.PlotInfoBean;
-import com.BIT.fuxingwuye.bean.Room;
-import com.BIT.fuxingwuye.constant.NetworkApi;
-import com.BIT.fuxingwuye.http.HttpResultFunc;
-import com.BIT.fuxingwuye.http.ProgressSubscriber;
-import com.BIT.fuxingwuye.http.RetrofitManager;
-import com.BIT.fuxingwuye.http.SubscriberOnNextListenter;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseRxPresenter;
+import com.bit.fuxingwuye.bean.Building;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.bean.PlotInfoBean;
+import com.bit.fuxingwuye.bean.Room;
+import com.bit.fuxingwuye.constant.NetworkApi;
+import com.bit.fuxingwuye.http.HttpResultFunc;
+import com.bit.fuxingwuye.http.ProgressSubscriber;
+import com.bit.fuxingwuye.http.RetrofitManager;
+import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
+import com.bit.fuxingwuye.utils.LogUtil;
 
 import java.util.List;
 import java.util.Map;

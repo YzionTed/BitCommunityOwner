@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.viaRecord;
+package com.bit.fuxingwuye.activities.viaRecord;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -10,17 +10,17 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.adapter.ViaAdapter;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.ViaBean;
-import com.BIT.fuxingwuye.constant.AppConstants;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityViaRecordBinding;
-import com.BIT.fuxingwuye.http.HttpProvider;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.ScannerUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.adapter.ViaAdapter;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.constant.AppConstants;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityViaRecordBinding;
+import com.bit.fuxingwuye.http.HttpProvider;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.ScannerUtils;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 

@@ -1,14 +1,14 @@
-package com.BIT.fuxingwuye.dagger.component;
+package com.bit.fuxingwuye.dagger.component;
 
 import android.app.Activity;
 
 
-import com.BIT.fuxingwuye.activities.fragment.elevatorFragment.ElevatorFragment;
-import com.BIT.fuxingwuye.activities.fragment.mainFragment.FragmentMain;
-import com.BIT.fuxingwuye.activities.fragment.mineFragment.FragmentMine;
-import com.BIT.fuxingwuye.activities.fragment.smartGate.FragmentGate;
-import com.BIT.fuxingwuye.dagger.FragmentScope;
-import com.BIT.fuxingwuye.dagger.module.FragmentModule;
+import com.bit.fuxingwuye.activities.fragment.elevatorFragment.ElevatorFragment;
+import com.bit.fuxingwuye.activities.fragment.mainFragment.FragmentMain;
+import com.bit.fuxingwuye.activities.fragment.mineFragment.FragmentMine;
+import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentGate;
+import com.bit.fuxingwuye.dagger.FragmentScope;
+import com.bit.fuxingwuye.dagger.module.FragmentModule;
 
 import dagger.Component;
 

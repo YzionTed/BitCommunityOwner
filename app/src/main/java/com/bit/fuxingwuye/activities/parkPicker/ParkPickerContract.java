@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.activities.parkPicker;
+package com.bit.fuxingwuye.activities.parkPicker;
 
 
-import com.BIT.fuxingwuye.base.BasePresenter;
-import com.BIT.fuxingwuye.base.BaseView;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.PlotInfoBean;
+import com.bit.fuxingwuye.base.BasePresenter;
+import com.bit.fuxingwuye.base.BaseView;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PlotInfoBean;
 
 import java.util.List;
 

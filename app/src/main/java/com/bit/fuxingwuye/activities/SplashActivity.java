@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities;
+package com.bit.fuxingwuye.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,15 +8,15 @@ import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.activities.login.LoginActivity;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.GetUserRoomListBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivitySplashBinding;
-import com.BIT.fuxingwuye.utils.ACache;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.login.LoginActivity;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.GetUserRoomListBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivitySplashBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;

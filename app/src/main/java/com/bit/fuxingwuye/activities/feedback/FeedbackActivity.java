@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.feedback;
+package com.bit.fuxingwuye.activities.feedback;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -7,17 +7,17 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.bean.CommonBean;
-import com.BIT.fuxingwuye.bean.GetFeedbackBean;
-import com.BIT.fuxingwuye.constant.HttpConstants;
-import com.BIT.fuxingwuye.databinding.ActivityFeedbackBinding;
-import com.BIT.fuxingwuye.utils.ACache;
-import com.BIT.fuxingwuye.utils.LogUtil;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.GetFeedbackBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.databinding.ActivityFeedbackBinding;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.LogUtil;
 
 public class FeedbackActivity extends BaseActivity<FeedbackPresenterImpl> implements FeedbackContract.View {
 

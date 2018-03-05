@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.chat.receiver;
+package com.bit.fuxingwuye.chat.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;

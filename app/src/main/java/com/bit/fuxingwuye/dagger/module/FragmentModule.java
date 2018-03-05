@@ -1,10 +1,10 @@
-package com.BIT.fuxingwuye.dagger.module;
+package com.bit.fuxingwuye.dagger.module;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 
-import com.BIT.fuxingwuye.dagger.FragmentScope;
+import com.bit.fuxingwuye.dagger.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;

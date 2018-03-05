@@ -1,8 +1,8 @@
-package com.BIT.fuxingwuye.http;
+package com.bit.fuxingwuye.http;
 
 import android.databinding.BaseObservable;
 
-import com.BIT.fuxingwuye.base.BaseEntity;
+import com.bit.fuxingwuye.base.BaseEntity;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 /**
- * SmartCommunity-com.BIT.fuxingwuye.http
+ * SmartCommunity-com.bit.fuxingwuye.http
  * 作者： YanwuTang
  * 时间： 2017/7/4.
  */

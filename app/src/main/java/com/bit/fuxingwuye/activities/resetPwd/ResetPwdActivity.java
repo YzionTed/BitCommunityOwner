@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.activities.resetPwd;
+package com.bit.fuxingwuye.activities.resetPwd;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,16 +12,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.base.BaseActivity;
-import com.BIT.fuxingwuye.base.BaseApplication;
-import com.BIT.fuxingwuye.base.BaseHandler;
-import com.BIT.fuxingwuye.bean.ResetPwdBean;
-import com.BIT.fuxingwuye.databinding.ActivityResetPwdBinding;
-import com.BIT.fuxingwuye.utils.CommonUtils;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseActivity;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.base.BaseHandler;
+import com.bit.fuxingwuye.bean.ResetPwdBean;
+import com.bit.fuxingwuye.databinding.ActivityResetPwdBinding;
+import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;

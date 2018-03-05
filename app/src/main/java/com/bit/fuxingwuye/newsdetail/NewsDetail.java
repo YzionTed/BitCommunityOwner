@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.newsdetail;
+package com.bit.fuxingwuye.newsdetail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.communityOwner.model.OssToken;
-import com.BIT.communityOwner.net.Api;
-import com.BIT.communityOwner.net.ResponseCallBack;
-import com.BIT.communityOwner.net.ServiceException;
-import com.BIT.communityOwner.util.LogUtil;
-import com.BIT.communityOwner.util.UploadUtils;
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.bean.NoticeListBean;
-import com.BIT.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.communityOwner.model.OssToken;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
+import com.bit.communityOwner.util.LogUtil;
+import com.bit.communityOwner.util.UploadUtils;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;

@@ -1,4 +1,4 @@
-package com.BIT.fuxingwuye.adapter;
+package com.bit.fuxingwuye.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.BIT.fuxingwuye.R;
-import com.BIT.fuxingwuye.http.HttpProvider;
+import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.http.HttpProvider;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
