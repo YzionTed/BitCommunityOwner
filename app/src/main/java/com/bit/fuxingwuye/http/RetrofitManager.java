@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -52,7 +55,7 @@ public class RetrofitManager {
      * 私有构造方法
      */
     private RetrofitManager() {
-        aCache=ACache.get(BaseApplication.getInstance());
+        aCache = ACache.get(BaseApplication.getInstance());
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         // if (BuildConfig.DEBUG) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -75,11 +78,11 @@ public class RetrofitManager {
                         .addHeader("OS", "2")
                         .addHeader("CLIENT", "1000")
                         .addHeader("OS-VERSION", AppUtil.getSystemVersion())
-                        .addHeader("DEVICE-TYPE",AppUtil.getMobileModel())
-                        .addHeader("DEVICE-ID",AppInfo.getImei())
+                        .addHeader("DEVICE-TYPE", AppUtil.getMobileModel())
+                        .addHeader("DEVICE-ID", AppInfo.getImei())
                         .addHeader("APP-VERSION", AppInfo.getLocalVersionName(BaseApplication.getInstance()))
-                        .addHeader("BIT-TOKEN",""+aCache.getAsString(HttpConstants.TOKEN))
-                        .addHeader("BIT-UID",""+aCache.getAsString(HttpConstants.USERID))
+                        .addHeader("BIT-TOKEN", "" + aCache.getAsString(HttpConstants.TOKEN))
+                        .addHeader("BIT-UID", "" + aCache.getAsString(HttpConstants.USERID))
                         .build();
 
                 return chain.proceed(request);
@@ -126,12 +129,18 @@ public class RetrofitManager {
         builder.writeTimeout(20, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
+        builder.hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        });
         mOkHttpClient = builder.build();
 
         mRetrofit = new Retrofit.Builder()
 
-               //.addConverterFactory(FastJsonConverterFactory.create())
-               .addConverterFactory(GsonConverterFactory.create(buildGson()))
+                //.addConverterFactory(FastJsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(buildGson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(HttpProvider.getHttpIpAdds())
                 .client(mOkHttpClient)
@@ -186,7 +195,7 @@ public class RetrofitManager {
         return mRetrofit;
     }
 
-    public OkHttpClient getmOkHttpClient(){
+    public OkHttpClient getmOkHttpClient() {
         return mOkHttpClient;
     }
 
@@ -222,7 +231,7 @@ public class RetrofitManager {
         public BaseEntity<T> call(BaseEntity<T> response) {
             if (!response.isSuccess()) {
 //                throw new RuntimeException(response.getCode() + "" + response.getResult() != null ? response.getResult() : "");
-                if (response.getResultCode() != HttpConstants.OPERAT_OK){  // 操作成功
+                if (response.getResultCode() != HttpConstants.OPERAT_OK) {  // 操作成功
                     throw ExceptionHandle.handleHttpException(response);
                 }
             }
@@ -234,7 +243,7 @@ public class RetrofitManager {
         return mRetrofit.create(service);
     }
 
-    public  <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
+    public <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
         o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

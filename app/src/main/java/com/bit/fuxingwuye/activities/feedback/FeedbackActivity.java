@@ -3,6 +3,7 @@ package com.bit.fuxingwuye.activities.feedback;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ public class FeedbackActivity extends BaseActivity<FeedbackPresenterImpl> implem
         mBinding.btnCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mBinding.getBean().getMessage().length() < 3) {
+                if (TextUtils.isEmpty(mBinding.getBean().getMessage()) || mBinding.getBean().getMessage().length() < 3) {
                     Toast.makeText(FeedbackActivity.this, "请输入至少3个字", Toast.LENGTH_SHORT).show();
                     return;
                 }

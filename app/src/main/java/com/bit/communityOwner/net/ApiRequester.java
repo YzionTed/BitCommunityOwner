@@ -23,8 +23,21 @@ import java.net.ConnectException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 
 /**
@@ -56,6 +69,7 @@ public class ApiRequester {
         }
 
         RequestParams requestParams = createRequestParams(url);
+//        requestParams.setSslSocketFactory(getSocketFactory());
 
         if (paramsMap != null) {
             Iterator it = paramsMap.keySet().iterator();
@@ -113,6 +127,39 @@ public class ApiRequester {
         });
     }
 
+    private static SSLSocketFactory getSocketFactory() {
+        try {
+            SSLContext sslContext = SSLContext.getInstance("TSL");
+            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+
+                @Override
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+                }
+
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[]{};
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] arg0, String arg1)
+                        throws CertificateException {
+
+                }
+
+            }}, new SecureRandom());
+            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            return sslSocketFactory;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
     public static String createUrl(@NonNull String url, Object... o) {
         String realUrl = String.format(url, o);
         return realUrl;
@@ -163,6 +210,7 @@ public class ApiRequester {
         }
 
         RequestParams requestParams = createRequestParams(url);
+//        requestParams.setSslSocketFactory(getSocketFactory());
 
         requestParams.setAsJsonContent(true);
         if (paramsBean != null) {
@@ -210,6 +258,15 @@ public class ApiRequester {
             @Override
             public void onFinished() {
 
+            }
+        });
+    }
+
+    static {
+        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
             }
         });
     }
