@@ -46,12 +46,11 @@ android {
 
 
     signingConfigs {  // 用的是和 电梯调试工具 同一个 keystore
-
         config {
-            storeFile file("smartCommunity.keystore")
-            storePassword "bit2017"
-            keyAlias "smartCommunity.keystore"
-            keyPassword "bit2017"
+            storeFile file('C:/Users/Dell/Desktop/keystore.jks')
+            storePassword 'bit1210'
+            keyAlias 'bit'
+            keyPassword 'bit1210'
             v2SigningEnabled false
         }
     }
@@ -123,39 +122,43 @@ final RXLIFECYCLE_VERSION = "2.1.0"
 final Dagger2_Version = "2.4"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     compile 'org.xutils:xutils:3.3.42'
     compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+
     // 调试网络
     compile "com.facebook.stetho:stetho:${STETHO_VERSION}"
     compile "com.facebook.stetho:stetho-okhttp3:${STETHO_VERSION}"
+
     //控制rxJava生命周期
+
     //    compile "com.trello.rxlifecycle2:rxlifecycle:${RXLIFECYCLE_VERSION}"  // 跟appcompat-v7:25.1.1 有点冲突
+
     //    compile "com.trello.rxlifecycle2:rxlifecycle-components:${RXLIFECYCLE_VERSION}"
+
     // Java标注 android
     compile "com.google.dagger:dagger:${Dagger2_Version}"
     annotationProcessor "com.google.dagger:dagger-compiler:${Dagger2_Version}"
+
     // 图片
+
     // 自定义的对话框
+
     //    compile 'com.android.support.constraint:constraint-layout:1.0.2'   // 拖动控件的工具
     compile project(':easeui')
     compile files('libs/BASE64.jar')
     compile(name: 'mylibs', ext: 'aar')
+
     // 此处以JPush 3.0.9 版本为例。
+
     // 此处以JCore 1.1.7 版本为例。
-
-
     compile files('libs/mid-sdk-2.3.jar')
     compile files('libs/mta-android-stat-sdk-2.2.0_20160504.jar')
-
     compile files('libs/recyclerview-v7-22.2.1-sources.jar')
     compile files('libs/xgcameralib.jar')
-
     compile files('libs/alipaySdk-20170922.jar')
     compile 'com.android.support:multidex:1.0.1'
-
     compile 'com.android.support:design:25.1.1'
     compile 'com.trello:rxlifecycle:0.5.0'
     compile 'com.trello:rxlifecycle-components:0.5.0'
@@ -171,9 +174,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.4.2'
     compile 'net.vidageek:mirror:1.6.1'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-
     compile 'com.contrarywind:Android-PickerView:3.2.7'
-
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
     compile 'org.greenrobot:eventbus:3.0.0'
@@ -183,7 +184,6 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     //==============对讲机=========================================
-
     compile files('libs/YunIntercomSDK-1.0.jar')
     compile files('libs/DongDongSDK-1.1.1.1.jar')
     compile files('libs/GetuiSDK2.9.5.0.jar')
@@ -194,13 +194,14 @@ dependencies {
     compile(name: 'HMS-SDK-2.4.0.300', ext: 'aar')
 
     //==============对讲机=========================================
+
     //==============米粒蓝牙开门=========================================
     compile files('libs/bcprov-jdk16-146.jar')
     compile files('libs/mtblesdk-2.45.jar')
     compile files('libs/platform-1.0.jar')
     compile files('libs/smarthome-sdk-bleself-1.1.jar')
-    //==============米粒蓝牙开门=========================================
 
+    //==============米粒蓝牙开门=========================================
     compile('cn.qqtheme.framework:WheelPicker:latest.release') {
         exclude group: 'com.android.support'
     }
