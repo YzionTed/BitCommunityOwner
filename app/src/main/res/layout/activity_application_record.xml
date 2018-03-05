@@ -5,6 +5,10 @@
     android:orientation="vertical">
 
     <include layout="@layout/action_bar"></include>
+    <include
+        android:id="@+id/onError"
+        android:visibility="gone"
+        layout="@layout/bg_view"></include>
 
     <ListView
         android:id="@+id/fm_xrecyclerview"

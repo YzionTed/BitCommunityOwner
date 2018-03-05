@@ -43,9 +43,10 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
     String roomladdress="";
     Intent intent;
     MySwipeMenuListView listView;
-    TextView room,title,record;
+    TextView room,title,record,state;
     SwipeMenuCreator creator;
     ImageView btback;
+    View v;
     @Override
     public void toastMsg(String msg) {
 
@@ -60,7 +61,8 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
         title= (TextView) findViewById(R.id.action_bar_title);
         record= (TextView) findViewById(R.id.record);
         btback= (ImageView) findViewById(R.id.btn_back);
-
+        v=findViewById(R.id.onError);
+        state= (TextView) v.findViewById(R.id.stauttv);
         intent=getIntent();
         Bundle bundle=intent.getExtras();
         if(bundle!=null){
@@ -197,6 +199,12 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
         }
 
 
+    }
+
+    @Override
+    public void onNetEroor() {
+        v.setVisibility(View.VISIBLE);
+        state.setText("网络飞走了");
     }
 
     private int dp2px(int dp) {
