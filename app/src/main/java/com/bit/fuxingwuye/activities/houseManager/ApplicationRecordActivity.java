@@ -129,6 +129,6 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
 
     @Override
     public void NetEorror() {
-      c
+
     }
 }

@@ -27,7 +27,15 @@ public class ElevatorListBean implements Serializable {
     private String name;
     private boolean temporary;
     private boolean isFirst;
+    private boolean isFirstChecked=false;
 
+    public boolean isFirstChecked() {
+        return isFirstChecked;
+    }
+
+    public void setFirstChecked(boolean checked) {
+        isFirstChecked = checked;
+    }
     public boolean isFirst() {
         return isFirst;
     }

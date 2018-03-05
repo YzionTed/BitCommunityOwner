@@ -108,10 +108,12 @@ public class MainTabActivity extends SupportActivity {
         initOssToken();
 
         yunDuiJIangUtils = new YunDuiJIangUtils();
-        //  yunDuiJIangUtils.login("13500000000", "123456");
+//          yunDuiJIangUtils.login("13500000000", "123456");
 
         String phone = ACache.get(this).getAsString(HttpConstants.MOBILE);
-        yunDuiJIangUtils.login(phone, "123456");
+        if(phone!=null){
+            yunDuiJIangUtils.login(phone, "123456");
+        }
     }
 
 
