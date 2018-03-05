@@ -193,8 +193,13 @@ public class ResetPwdActivity extends BaseActivity<ResetPwdPresenterImpl> implem
 
     @Override
     protected void onDestroy() {
-        unableTimerTask();
         super.onDestroy();
+        try {
+            unableTimerTask();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

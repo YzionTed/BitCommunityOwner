@@ -104,7 +104,6 @@
         <activity
             android:name=".activities.login.LoginActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/splashThem" />
         <activity
