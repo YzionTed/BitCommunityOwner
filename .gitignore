@@ -4,3 +4,5 @@ local.properties
 *.apk
 .gradle
 .idea
+.DS_Store
+app/bit
