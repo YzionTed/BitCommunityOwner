@@ -196,12 +196,30 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
             grid_pass.setOnClickListener(this);
         } else if ((!TextUtils.isEmpty(topName) && "虚拟小区".equals(topName)) || (!TextUtils.isEmpty(topName) && "金碧花园".equals(topName)) ||
                 (!TextUtils.isEmpty(topName) && "213".equals(topName))) {
-            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_qt, (ViewGroup) mView.findViewById(android.R.id.content),
+//            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_qt, (ViewGroup) mView.findViewById(android.R.id.content),
+//                    false);
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+//            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//            fm_xrecyclerview.setLayoutManager(linearLayoutManager);
+//            fm_xrecyclerview.addHeaderView(header);
+            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_hx, (ViewGroup) mView.findViewById(android.R.id.content),
                     false);
+            grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
+            grid_repair = (LinearLayout) header.findViewById(R.id.grid_repair);
+            grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
+            grid_police = (LinearLayout) header.findViewById(R.id.grid_police);
+            grid_video = (LinearLayout) header.findViewById(R.id.grid_video);
+            grid_pass = (LinearLayout) header.findViewById(R.id.grid_pass);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             fm_xrecyclerview.setLayoutManager(linearLayoutManager);
             fm_xrecyclerview.addHeaderView(header);
+            grid_pay.setOnClickListener(this);
+            grid_communition.setOnClickListener(this);
+            grid_repair.setOnClickListener(this);
+            grid_police.setOnClickListener(this);
+            grid_video.setOnClickListener(this);
+            grid_pass.setOnClickListener(this);
         }
 
 //        Log.e("=========top====", "===========top====" + chosehousing.getText().toString());
