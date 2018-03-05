@@ -14,6 +14,11 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.oss.ClientException;
+import com.alibaba.sdk.android.oss.OSS;
+import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
+import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
@@ -25,7 +30,6 @@ import com.bit.fuxingwuye.activities.fragment.elevatorFrag.ElevatorFragment;
 import com.bit.fuxingwuye.activities.fragment.mainFragment.FragmentMain;
 import com.bit.fuxingwuye.activities.fragment.mineFragment.FragmentMine;
 import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentDoor;
-import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentGate;
 import com.bit.fuxingwuye.activities.replenishData.ReplenishDataActivity;
 import com.bit.fuxingwuye.activities.residential_quarters.Housing;
 import com.bit.fuxingwuye.base.BaseApplication;
@@ -34,18 +38,11 @@ import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityMainTabBinding;
-import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.DownloadUtils;
-import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 import com.bit.fuxingwuye.utils.PermissionUtils;
 import com.bit.fuxingwuye.views.TabItem;
-import com.alibaba.sdk.android.oss.ClientException;
-import com.alibaba.sdk.android.oss.OSS;
-import com.alibaba.sdk.android.oss.OSSClient;
-import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
-import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.umeng.analytics.MobclickAgent;
 
 import net.lemonsoft.lemonhello.LemonHelloAction;
@@ -196,7 +193,7 @@ public class MainTabActivity extends SupportActivity {
                             .getAccessKeyId(), data.getAccessKeySecret(), data.getSecurityToken());
                     oss = new OSSClient(MainTabActivity.this, data.getEndPoint(), credentialProvider);
                 }
-               // getAppVersion();
+                getAppVersion();
             }
 
             @Override
