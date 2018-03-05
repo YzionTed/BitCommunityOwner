@@ -36,9 +36,10 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
     ListView listview;
     RecordAdapter adapter;
     Intent intent;
-    TextView title;
+    TextView title,state;
     ImageView back;
     String roomid;
+
     @Override
     public void toastMsg(String msg) {
 
@@ -51,6 +52,7 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
         listview = (ListView) findViewById(R.id.fm_xrecyclerview);
         title = (TextView) findViewById(R.id.action_bar_title);
         back = (ImageView) findViewById(R.id.btn_back);
+
         intent = getIntent();
         EventBus.getDefault().register(this);
         Bundle bundle = intent.getExtras();
@@ -123,4 +125,11 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
         listview.setAdapter(adapter);
 
     }
+
+    @Override
+    public void NetEorror() {
+
+    }
+
+
 }
