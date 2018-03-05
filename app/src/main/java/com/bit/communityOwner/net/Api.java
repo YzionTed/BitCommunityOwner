@@ -50,6 +50,9 @@ public class Api {
     public static void Replanish(ReplenishBean replenishBean, ResponseCallBack<HouseBean> callBack) {
         ApiRequester.post(HttpConstants.REPLENISH, replenishBean, callBack);
     }
+    public static  void commitMember(ReplenishBean replenishBean, ResponseCallBack<HouseBean> callBack){
+        ApiRequester.post(HttpConstants.MEMBER, replenishBean, callBack);
+    }
 
     /**
      * 获取oss鉴权

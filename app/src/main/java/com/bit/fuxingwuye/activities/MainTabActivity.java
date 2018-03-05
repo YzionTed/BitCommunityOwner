@@ -179,7 +179,7 @@ public class MainTabActivity extends SupportActivity {
                             .getAccessKeyId(), data.getAccessKeySecret(), data.getSecurityToken());
                     oss = new OSSClient(MainTabActivity.this, data.getEndPoint(), credentialProvider);
                 }
-                getAppVersion();
+               // getAppVersion();
             }
 
             @Override

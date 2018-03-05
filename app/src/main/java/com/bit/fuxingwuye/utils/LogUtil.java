@@ -8,7 +8,7 @@ import android.util.Log;
  * 时间： 2016/10/9.
  */
 public class LogUtil {
-    public static boolean D = true; // debug
+    public static boolean D = false; // debug
 
     /**
      * 打印普通消息 （常用）

@@ -21,7 +21,7 @@ public class HttpConstants {
      * 服务器地址
      */
     // TODO: 2017/7/1
-    public static final String HTTP_IP_ADDS = "192.168.3.104:";
+    public static final String HTTP_IP_ADDS = "smcm.bitiot.com.cn";
     public static final String HTTP_IP_ADDS_TEST = "39.106.249.8:";
 
     /********************************************************************************

@@ -197,13 +197,28 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     @Override
     public void loginSuccess(TokenBean tokenBean) {
         mCache.put(HttpConstants.TOKENBEAN, tokenBean);
-        mCache.put(HttpConstants.MOBILE, mBinding.getBean().getPhone());
-        mCache.put(HttpConstants.TOKEN, tokenBean.getToken());
-        mCache.put(HttpConstants.USERID, tokenBean.getId());
+        if(mBinding.getBean().getPhone()!=null){
+            mCache.put(HttpConstants.MOBILE, mBinding.getBean().getPhone());
+        }
+        if(tokenBean.getToken()!=null){
+            mCache.put(HttpConstants.TOKEN, tokenBean.getToken());
+        }
+        if(tokenBean.getId()!=null){
+            mCache.put(HttpConstants.USERID, tokenBean.getId());
+        }
+        if(tokenBean.getNickName()!=null){
+            mCache.put(HttpConstants.NICKNAME, tokenBean.getNickName());
+        }
+        if(tokenBean.getPhone()!=null){
+            mCache.put(HttpConstants.PHONE, tokenBean.getPhone());
+        }
+       if(tokenBean.getName()!=null){
+           mCache.put(HttpConstants.USERNAME, tokenBean.getName());
+       }
         mCache.put(HttpConstants.STATUS, "3");
-        mCache.put(HttpConstants.NICKNAME, tokenBean.getNickName());
-        mCache.put(HttpConstants.PHONE, tokenBean.getPhone());
-        mCache.put(HttpConstants.USERNAME, tokenBean.getName());
+
+
+
       /*  SPUtils.getInstance().put(HttpConstants.PHONE,mBinding.etMobile.getText().toString());
         SPUtils.getInstance().put(HttpConstants.PASSWORD,mBinding.etPwd.getText().toString());*/
        /* if (null != mBinding.getBean().getPwd()) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bit.fuxingwuye.base.BaseEntity;
+
 import com.bit.fuxingwuye.base.BaseRxPresenter;
 import com.bit.fuxingwuye.bean.CodeBean;
 import com.bit.fuxingwuye.bean.CommonBean;

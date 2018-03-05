@@ -19,7 +19,7 @@ public class HttpProvider {
         if (LogUtil.D) {
             return HttpConstants.HTTP + HttpConstants.HTTP_IP_ADDS_TEST + HttpConstants.PORT;
         } else {
-            return HttpConstants.HTTP + HttpConstants.HTTP_IP_ADDS + HttpConstants.TPORT;
+            return HttpConstants.HTTPS + HttpConstants.HTTP_IP_ADDS;
         }
     }
 }

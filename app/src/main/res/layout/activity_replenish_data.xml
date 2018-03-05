@@ -209,7 +209,7 @@
                                 android:hint="*请填写合同编号"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text="12345678"
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>
@@ -235,7 +235,7 @@
 
                             <EditText
                                 android:id="@+id/area"
-                                android:inputType="number"
+                                android:inputType="number|numberDecimal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left|center_vertical"
@@ -243,7 +243,7 @@
                                 android:hint="*请填写个人身份证号码"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text="54"
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>
@@ -276,7 +276,7 @@
                                 android:hint="*请选择入户时间"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text=""
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>
@@ -313,7 +313,7 @@
                             android:hint="*请填写身份证上的真实姓名"
                             android:padding="@dimen/common_dp_10"
                             android:singleLine="true"
-                            android:text="测试"
+
                             android:textColorHint="@color/bs_grary3"
                             android:textSize="@dimen/common_sp_12" />
                     </LinearLayout>
@@ -427,7 +427,7 @@
                             android:hint="*请填写个人身份证号码"
                             android:padding="@dimen/common_dp_10"
                             android:singleLine="true"
-                            android:text="440883199009212278"
+
                             android:textColorHint="@color/bs_grary3"
                             android:textSize="@dimen/common_sp_12" />
                     </LinearLayout>
@@ -466,7 +466,7 @@
                                 android:layout_weight="6"
                                 android:hint="*请选择户口所在地"
                                 android:padding="@dimen/common_dp_10"
-                                android:text=""
+
                                 android:textSize="@dimen/common_sp_12" />
 
                             <ImageView
@@ -505,7 +505,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|center_vertical"
                             android:padding="@dimen/common_dp_10"
-                            android:text="13042044436"
+
                             android:background="@null"
                             android:textSize="@dimen/common_sp_12" />
                     </LinearLayout>
@@ -547,7 +547,7 @@
                                 android:maxLength="16"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text="0766-5805462"
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>
@@ -633,7 +633,7 @@
                                 android:hint="*请填写个人工作单位"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text="测试地址"
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>
@@ -666,7 +666,7 @@
                                 android:hint="*请填写现住址"
                                 android:padding="@dimen/common_dp_10"
                                 android:singleLine="true"
-                                android:text="测试地址"
+
                                 android:textColorHint="@color/bs_grary3"
                                 android:textSize="@dimen/common_sp_12" />
                         </LinearLayout>

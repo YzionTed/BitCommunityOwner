@@ -31,6 +31,7 @@ import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityReplenishDataBinding;
+import com.bit.fuxingwuye.http.DialogUltis;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
 import com.bit.fuxingwuye.utils.GsonUtil;
@@ -82,7 +83,7 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
         mBinding.setBean(replenishBean);*/
         mBinding.toolbar.actionBarTitle.setText("房产认证");
         mBinding.toolbar.btnBack.setVisibility(View.VISIBLE);
-        mBinding.tvMobile.setText(ACache.get(this).getAsString(HttpConstants.MOBILE));
+       // mBinding.tvMobile.setText(ACache.get(this).getAsString(HttpConstants.MOBILE));
     }
 
     @Override
@@ -120,12 +121,10 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
                    /* mPresenter.commitData(bean);*/
                 }else if(mBinding.idcare.getText().toString().trim().equals("家属")){
                     initdate(2);
-                    commint(bean);
-                   // mPresenter.commitMember(bean);
+                    commitMember(bean);
                 }else{
                     initdate(3);
-                    commint(bean);
-                    //mPresenter.commitMember(bean);
+                    commitMember(bean);
                 }
                 LogUtil.e(Tag.tag, GsonUtil.toJson(bean));
 
@@ -316,6 +315,9 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
             Intent intent=new Intent(ReplenishDataActivity.this, MainTabActivity.class);
             startActivity(intent);
         }else{
+            EvenBusMessage message=new EvenBusMessage();
+            message.setEvent(EvenBusConstants.HouseManagerAcitvity);
+            EventBus.getDefault().post(message);
             finish();
         }
 
@@ -377,6 +379,24 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
 
              @Override
              public void onFailure(ServiceException e) {
+                 Toast.makeText(ReplenishDataActivity.this,e.getMsg(),Toast.LENGTH_LONG).show();
+                 super.onFailure(e);
+             }
+         });
+     }
+     private void commitMember(ReplenishBean replenishBean){
+         DialogUltis.showDialog(getSupportFragmentManager(),"提交中");
+         Api.commitMember(replenishBean, new ResponseCallBack<HouseBean>() {
+             @Override
+             public void onSuccess(HouseBean data) {
+                 getMemberSuccess(data);
+                 DialogUltis.closeDialog();
+                 super.onSuccess(data);
+             }
+
+             @Override
+             public void onFailure(ServiceException e) {
+                 DialogUltis.closeDialog();
                  Toast.makeText(ReplenishDataActivity.this,e.getMsg(),Toast.LENGTH_LONG).show();
                  super.onFailure(e);
              }
