@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.BIT.fuxingwuye.bean.ReplenishHouseBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/common_dp_12"
+                    android:src="@mipmap/step2" />
+                <LinearLayout
+                    android:id="@+id/ll_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/common_dp_5"
+                    android:layout_marginLeft="@dimen/common_dp_30"
+                    android:layout_marginRight="@dimen/common_dp_30">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/common_sp_12"
+                        android:gravity="center"
+                        android:text="填写个人信息"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/common_sp_12"
+                        android:gravity="center"
+                        android:textColor="@color/blue1"
+                        android:text="填写房产、住户信息"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/common_sp_12"
+                        android:gravity="center"
+                        android:text="填写车位信息"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_dp_8"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/ll_house"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:background="@drawable/bg_btn_normal_whrite"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/common_dp_10"
+                            android:text="        住房："
+                            android:textColor="@color/bs_grary2"
+                            android:textSize="@dimen/common_sp_14" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_house"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_weight="6"
+                                android:hint="*请选择住房房号"
+                                android:padding="@dimen/common_dp_10"
+                                android:textSize="@dimen/common_sp_12" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_weight="1"
+                                android:src="@mipmap/icon_next" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:background="@color/bs_grary4_line" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:background="@drawable/bg_btn_normal_whrite"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/common_dp_10"
+                            android:text="合同编号："
+                            android:textColor="@color/bs_grary2"
+                            android:textSize="@dimen/common_sp_14" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:background="@null"
+                            android:hint="请填写合同编号（选填）"
+                            android:singleLine="true"
+                            android:text="@={bean.contractNo}"
+                            android:padding="@dimen/common_dp_10"
+                            android:textColorHint="@color/bs_grary3"
+                            android:textSize="@dimen/common_sp_12" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:background="@color/bs_grary4_line" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:background="@drawable/bg_btn_normal_whrite"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/common_dp_10"
+                            android:text="住房面积："
+                            android:textColor="@color/bs_grary2"
+                            android:textSize="@dimen/common_sp_14" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:background="@null"
+                            android:hint="*请填写住房面积"
+                            android:text="@={bean.area}"
+                            android:singleLine="true"
+                            android:padding="@dimen/common_dp_10"
+                            android:textColorHint="@color/bs_grary3"
+                            android:textSize="@dimen/common_sp_12" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:background="@color/bs_grary4_line" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_houseday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:background="@drawable/bg_btn_normal_whrite"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/common_dp_10"
+                            android:text="入户时间："
+                            android:textColor="@color/bs_grary2"
+                            android:textSize="@dimen/common_sp_14" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/tv_houseday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:padding="@dimen/common_dp_10"
+                                android:singleLine="true"
+                                android:text="*请填写入户时间"
+                                android:textColorHint="@color/bs_grary3"
+                                android:textSize="@dimen/common_sp_12" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/common_dp_12"
+                                android:src="@mipmap/icon_calendar" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/common_dp_10"
+                        android:clickable="true"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/common_dp_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/common_dp_60"
+                                android:layout_gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/common_dp_2"
+                                    android:layout_height="@dimen/common_dp_48"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@color/blue1" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="@dimen/common_dp_3"
+                                    android:paddingLeft="@dimen/common_dp_10"
+                                    android:paddingTop="@dimen/common_dp_3">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/common_dp_48"
+                                        android:layout_height="@dimen/common_dp_48"
+                                        android:src="@mipmap/avatar_big" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/common_dp_5">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:id="@+id/tv_type"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="@dimen/common_dp_12"
+                                                android:background="@drawable/bg_edittext"
+                                                android:text="业主"
+                                                android:textColor="@color/blue1" />
+
+                                            <TextView
+                                                android:id="@+id/tv_name"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="@dimen/common_dp_12"
+                                                android:text=""
+                                                android:textColor="@color/black1" />
+
+                                            <TextView
+                                                android:id="@+id/tv_phone"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="@dimen/common_dp_12"
+                                                android:text="(12312312312312)"
+                                                android:textColor="@color/black1" />
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_marginLeft="@dimen/common_dp_12"
+                                            android:layout_weight="1"
+                                            android:gravity="center_vertical"
+                                            android:text="到期日期：不限" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/common_dp_1"
+                                android:layout_marginLeft="@dimen/common_dp_5"
+                                android:layout_marginRight="@dimen/common_dp_5"
+                                android:background="@color/bs_grary3" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:clipToPadding="false"
+                                    android:paddingBottom="@dimen/common_dp_6"
+                                    android:paddingTop="@dimen/common_dp_6"
+                                    android:visibility="gone"/>
+                            </RelativeLayout>
+
+                            <Button
+                                android:id="@+id/btn_add_household"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/common_dp_40"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/common_dp_5"
+                                android:layout_marginTop="@dimen/common_dp_5"
+                                android:background="@drawable/bg_btn_blue"
+                                android:paddingLeft="@dimen/common_dp_5"
+                                android:paddingRight="@dimen/common_dp_5"
+                                android:text="添加住户"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/common_sp_18" />
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <Button
+                        android:id="@+id/btn_commit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_40"
+                        android:layout_marginLeft="@dimen/common_dp_16"
+                        android:layout_marginRight="@dimen/common_dp_16"
+                        android:layout_marginTop="@dimen/common_dp_24"
+                        android:background="@drawable/bg_btn_blue"
+                        android:text="下一步"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/common_sp_18" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/common_dp_24"
+                        android:layout_marginTop="@dimen/common_dp_10"
+                        android:layout_gravity="center_horizontal"
+                        android:checked="true"
+                        android:text="我已阅读并同意《用户协议及隐私条款》"
+                        android:textColor="@color/blue1"
+                        android:textSize="@dimen/common_sp_12"
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

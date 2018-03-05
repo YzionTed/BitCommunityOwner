@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/common_dp_2"
+            android:layout_height="match_parent"
+            android:background="@color/blue1" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/communityname"
+            android:paddingLeft="@dimen/common_dp_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/auditStatustv"
+            android:visibility="gone"
+            android:textSize="@dimen/common_sp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue1"
+            android:text="住户管理 >"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_dp_6"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_center" />
+
+        <TextView
+            android:id="@+id/relationship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_dp_6"
+            android:background="@drawable/bg_blue_8"
+            android:padding="@dimen/common_dp_2"
+            android:textSize="@dimen/common_sp_12"
+            android:textColor="@color/blue1" />
+
+        <TextView
+            android:id="@+id/roomLocation"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_dp_6"
+            android:textColor="@color/grary3"
+            android:textSize="@dimen/common_sp_16" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/common_dp_8"
+        android:background="@color/grary0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_dp_6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="审核状态："
+            android:textColor="@color/grary3" />
+
+        <TextView
+            android:id="@+id/auditStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/grary3" />
+    </LinearLayout>
+
+
+</LinearLayout>

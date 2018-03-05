@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/bs_grary3_bg">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <ImageView
+            android:layout_width="@dimen/common_dp_60"
+            android:layout_height="@dimen/common_dp_60"
+            android:layout_marginTop="@dimen/common_dp_40"
+            android:src="@mipmap/icon_success"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_sp_16"
+            android:textColor="@color/common_bg_blue3"
+            android:layout_marginTop="@dimen/common_dp_12"
+            android:text="提交成功"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_sp_16"
+            android:layout_margin="@dimen/common_dp_10"
+            android:text="@string/commitSuccess"/>
+
+        <Button
+            android:id="@+id/btn_commit_success"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="查看故障报修进度"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18"  />
+    </LinearLayout>
+</layout>

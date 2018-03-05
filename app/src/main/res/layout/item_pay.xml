@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/common_dp_10"
+        android:layout_marginLeft="@dimen/common_dp_10"
+        android:layout_marginRight="@dimen/common_dp_10"
+        android:paddingLeft="@dimen/common_dp_10"
+        android:paddingTop="@dimen/common_dp_10"
+        android:paddingBottom="@dimen/common_dp_10">
+
+        <ImageView
+            android:layout_width="@dimen/common_dp_48"
+            android:layout_height="@dimen/common_dp_48"
+            android:src="@mipmap/icon_pay_round" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/common_dp_5">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_pay_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_dp_12"
+                    android:text="x月份物业管理费"
+                    android:textSize="@dimen/common_sp_14" />
+                <ImageView
+                    android:id="@+id/iv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_unpay"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_pay_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_dp_12"
+                android:gravity="center_vertical"
+                android:text="￥521.50"
+                android:textColor="@color/colorP9"
+                android:textSize="@dimen/common_sp_18"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

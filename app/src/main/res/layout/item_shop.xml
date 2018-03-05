@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/common_dp_5"
+    android:layout_marginTop="@dimen/common_dp_1">
+
+    <ImageView
+        android:id="@+id/iv_shopicon"
+        android:layout_width="@dimen/common_dp_100"
+        android:layout_height="@dimen/common_dp_100"
+        android:scaleType="fitXY"
+        android:src="@mipmap/image_default_small"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/common_dp_10"
+        android:paddingRight="@dimen/common_dp_10"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_shopname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/common_sp_18"
+            android:text="shop name"/>
+        <TextView
+            android:id="@+id/tv_shopaddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_sp_16"
+            android:layout_marginTop="@dimen/common_dp_5"
+            android:text="shop address"/>
+        <TextView
+            android:id="@+id/tv_shopphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_sp_16"
+            android:layout_marginTop="@dimen/common_dp_5"
+            android:text="shop telephone"/>
+    </LinearLayout>
+</LinearLayout>

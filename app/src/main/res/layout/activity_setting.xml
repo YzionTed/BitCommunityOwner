@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dp_48" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/common_dp_12"
+            android:background="@drawable/bg_btn_normal_whrite">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_dp_15"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/common_sp_16"
+                    android:text="新消息提醒"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:checked="true"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+            <RelativeLayout
+                android:id="@+id/rl_changepwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_dp_15"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/common_sp_16"
+                    android:text="修改登录密码"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_next"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_normal_whrite"
+            android:text="退出登录"
+            android:textColor="@color/blue1"
+            android:textSize="@dimen/common_sp_18" />
+    </LinearLayout>
+</layout>

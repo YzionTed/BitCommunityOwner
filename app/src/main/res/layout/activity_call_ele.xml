@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <RadioGroup
+            android:id="@+id/rg_ele"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_bluetooth"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/radio_bg_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingBottom="@dimen/common_dp_5"
+                android:paddingTop="@dimen/common_dp_5"
+                android:text="蓝牙梯禁"
+                android:textColor="@drawable/radio_color_selector"
+                android:textSize="@dimen/common_dp_16" />
+
+            <RadioButton
+                android:id="@+id/rb_remote"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/radio_bg_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingBottom="@dimen/common_dp_5"
+                android:paddingTop="@dimen/common_dp_5"
+                android:text="远程召梯"
+                android:textColor="@drawable/radio_color_selector"
+                android:textSize="@dimen/common_dp_16" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/ll_bluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_elevators"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white1"
+                android:padding="@dimen/common_dp_10"
+                android:layout_marginTop="@dimen/common_dp_15"
+                android:layout_marginLeft="@dimen/common_dp_10"
+                android:layout_marginRight="@dimen/common_dp_10">
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dp_10"
+                android:layout_marginLeft="@dimen/common_dp_10"
+                android:layout_marginRight="@dimen/common_dp_10"
+                android:textColor="@color/grary1"
+                android:text="* 蓝牙梯禁功能需用户打开手机蓝牙功能"/>
+            <Button
+                android:id="@+id/btn_c"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="扫描"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18" />
+
+            <Button
+                android:id="@+id/btn_d"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_e"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="开梯"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_dp_5"/>
+            <TextView
+                android:id="@+id/tv_state2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_dp_5"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ele_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dp_5"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/common_dp_6"
+                android:paddingTop="@dimen/common_dp_6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_remote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/ll_ele_address"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_marginLeft="@dimen/common_dp_10"
+                android:layout_marginRight="@dimen/common_dp_10"
+                android:layout_marginTop="@dimen/common_dp_20"
+                android:background="@drawable/bg_white2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="召梯单元："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_ele_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="6"
+                        android:hint=""
+                        android:padding="@dimen/common_dp_10"
+                        android:textSize="@dimen/common_sp_12" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="1"
+                        android:src="@mipmap/icon_next" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_dp_10"
+                android:layout_marginRight="@dimen/common_dp_10"
+                android:layout_marginTop="@dimen/common_dp_20"
+                android:background="@drawable/bg_white2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:layout_marginLeft="@dimen/common_dp_10"
+                        android:gravity="center_vertical"
+                        android:text="从"
+                        android:textColor="@color/bs_grary2"
+                        android:textSize="@dimen/common_sp_14" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:background="@color/bs_grary4_line" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/common_dp_48"
+                        android:layout_marginLeft="@dimen/common_dp_10"
+                        android:gravity="center_vertical"
+                        android:text="到"
+                        android:textColor="@color/bs_grary2"
+                        android:textSize="@dimen/common_sp_14" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/common_dp_60"
+                    android:layout_height="@dimen/common_dp_60"
+                    android:src="@mipmap/avatar_small"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_48"/>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_commit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="召梯"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

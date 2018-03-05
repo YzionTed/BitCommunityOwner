@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorP0">#EE00EE</color>
+    <color name="colorP1">#EEC900</color>
+    <color name="colorP2">#9ACD32</color>
+    <color name="colorP3">#8B8B00</color>
+    <color name="colorP4">#7D26CD</color>
+    <color name="colorP5">#436EEE</color>
+    <color name="colorP6">#228B22</color>
+    <color name="colorP7">#303F9F</color>
+    <color name="colorP8">#8B2323</color>
+    <color name="colorP9">#EE3B3B</color>
+    <color name="colorP10">#F4A460</color>
+    <color name="colorP11">#FFBBFF</color>
+    <color name="colorP12">#1af6f3</color>
+    <color name="colorP13">#c14500</color>
+
+    <color name="blue0">#b4edfb</color>
+    <color name="blue1">#017bee</color>
+
+    <color name="black">#000000</color>
+    <color name="black1">#111111</color>
+    <color name="white">#FFFFFF</color>
+    <color name="halfwhite">#eeffffff</color>
+    <color name="grary3">#444444</color>
+    <color name="grary2">#847d7b</color>
+    <color name="grary1">#a69e9d</color>
+    <color name="grary0">#dddddd</color>
+    <color name="test">#FFC0CB</color>
+
+    <!--  ******************************* 以下是正式稿的颜色 ********************* -->
+    <!--text -->
+    <color name="bs_grary1">#c0d2ff</color>
+    <color name="bs_grary2">#666666</color>
+    <color name="bs_grary3">#999999</color>
+    <color name="bs_grary4">#333333</color>
+    <color name="bs_red">#f83030</color>
+
+    <!-- bg -->
+    <color name="common_bg_blue">#5182ff</color>
+    <color name="common_bg_blue2">#a4beff</color>
+    <color name="common_bg_blue3">#5182ff</color>
+    <color name="bs_grary3_bg">#f1f1f1</color>
+    <color name="bs_grary4_line">#c9c9c9</color>
+    <color name="common_grary5">#c2c2c2</color>
+    <color name="common_grary6">#ededed</color>
+    <!-- 半透明 -->
+    <color name="transparent">#00000000</color>
+    <color name="bs_tran1">#36000000</color>
+
+    <color name="dialog_bg">#77000000</color>
+</resources>

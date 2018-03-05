@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.BIT.fuxingwuye.bean.TokenBean"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_16"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_photo"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_60"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="头像"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <com.BIT.fuxingwuye.views.XCRoundImageView
+                    android:id="@+id/iv_headimg"
+                    android:layout_width="@dimen/common_dp_48"
+                    android:layout_height="@dimen/common_dp_48"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/avatar_meddlel"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_name"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="姓名"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:text="@{bean.name}"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+            <RelativeLayout
+                android:id="@+id/rl_sex"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="性别"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_shengri"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="@dimen/common_dp_48"-->
+                <!--android:layout_gravity="center_vertical">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+                    <!--android:text="生日"-->
+                    <!--android:textColor="@color/bs_grary2"-->
+                    <!--android:textSize="@dimen/common_sp_14"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_shengri"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="@dimen/common_dp_16"-->
+                    <!--android:text="0000-00-00"/>-->
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/common_dp_0.5"-->
+                <!--android:background="@color/bs_grary4_line"/>-->
+
+            <RelativeLayout
+                android:id="@+id/rl_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="手机号码"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:text="@{bean.phone}"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="身份证号"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:text="@{bean.identityCard}"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_lanya"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="蓝牙"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14"/>
+                <TextView
+                    android:id="@+id/tvLanya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:text="00:00:00:00"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

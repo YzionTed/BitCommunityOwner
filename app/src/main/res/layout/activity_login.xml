@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.BIT.fuxingwuye.activities.login.LoginActivity">
+
+    <data>
+        <variable
+            name="actionHandler"
+            type="com.BIT.fuxingwuye.activities.login.LoginContract.Presenter"/>
+        <variable
+            name="bean"
+            type="com.BIT.fuxingwuye.bean.LoginBean"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+        <RadioGroup
+            android:id="@+id/rg_login_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_pwd"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/radio_bg_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingBottom="@dimen/common_dp_5"
+                android:paddingTop="@dimen/common_dp_5"
+                android:text="密码登陆"
+                android:textColor="@drawable/radio_color_selector"
+                android:textSize="@dimen/common_dp_16" />
+
+            <RadioButton
+                android:id="@+id/rb_code"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_weight="1"
+                android:button="@null"
+                android:text="验证码登陆"
+                android:textSize="@dimen/common_dp_16"
+                android:textColor="@drawable/radio_color_selector"
+                android:paddingTop="@dimen/common_dp_5"
+                android:paddingBottom="@dimen/common_dp_5"
+                android:gravity="center"
+                android:background="@drawable/radio_bg_selector"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_16"
+            android:background="@drawable/bg_btn_normal_whrite"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dp_30"
+                    android:layout_height="@dimen/common_dp_30"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_phone"/>
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:background="@null"
+                    android:hint="请输入已注册手机号码"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:padding="@dimen/common_dp_10"
+                    android:textColorHint="@color/bs_grary3"
+                    android:textSize="@dimen/common_sp_12"
+                    android:text="@={bean.phone}"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/common_dp_30"
+                    android:layout_height="@dimen/common_dp_30"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_password"/>
+
+                <EditText
+                    android:id="@+id/et_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:background="@null"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:padding="@dimen/common_dp_10"
+                    android:textColorHint="@color/bs_grary3"
+                    android:textSize="@dimen/common_sp_12"
+                    android:text="@={bean.pwd}"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+
+            <RelativeLayout
+                android:id="@+id/rl_vericode"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_mobile_vericode"
+                    android:layout_width="@dimen/common_dp_30"
+                    android:layout_height="@dimen/common_dp_30"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_code"/>
+
+                <EditText
+                    android:id="@+id/et_mobile_vericode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_mobile_vericode"
+                    android:background="@null"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="@dimen/common_dp_10"
+                    android:textColorHint="@color/bs_grary3"
+                    android:textSize="@dimen/common_sp_12"
+                    android:text="@={bean.code}"/>
+
+                <Button
+                    android:id="@+id/btn_get_mobile_vericode"
+                    android:layout_width="@dimen/common_dp_100"
+                    android:layout_height="@dimen/common_dp_32"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_8"
+                    android:layout_marginRight="@dimen/common_dp_8"
+                    android:background="@drawable/bg_btn_blue"
+                    android:maxLines="1"
+                    android:text="获取验证码"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_sp_12" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_16">
+
+            <TextView
+                android:id="@+id/tv_forget_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="忘记密码"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_14"
+                android:onClick="@{() -> actionHandler.gotoReset()}"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_login_in"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18" />
+
+        <Button
+            android:id="@+id/btn_fast_regist"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_normal_whrite"
+            android:onClick="@{() -> actionHandler.gotoRegister()}"
+            android:text="还没账号 马上注册"
+            android:textColor="@color/blue1"
+            android:textSize="@dimen/common_sp_18" />
+    </LinearLayout>
+</layout>

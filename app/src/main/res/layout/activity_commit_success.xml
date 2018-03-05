@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="actionhandler"
+            type="com.BIT.fuxingwuye.activities.commitSuccess.CSContract.Presenter"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bs_grary3_bg"
+        android:gravity="center_horizontal">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <ImageView
+            android:layout_width="@dimen/common_dp_60"
+            android:layout_height="@dimen/common_dp_60"
+            android:layout_marginTop="@dimen/common_dp_60"
+            android:src="@mipmap/icon_success"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_15"
+            android:textColor="@color/blue1"
+            android:textSize="@dimen/common_dp_16"
+            android:text="个人信息提交成功!"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_12"
+            android:textSize="@dimen/common_dp_16"
+            android:text="个人信息提交成功,请耐心等待物业管理人员审核" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18"
+            android:onClick="@{() -> actionhandler.complete()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_12"
+            android:background="@drawable/bg_btn_normal_whrite"
+            android:text="提交其他房产信息"
+            android:textColor="@color/blue1"
+            android:visibility="gone"
+            android:textSize="@dimen/common_sp_18"
+            android:onClick="@{() -> actionhandler.continue_replenish()}"/>
+    </LinearLayout>
+</layout>

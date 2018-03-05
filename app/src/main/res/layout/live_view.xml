@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <com.BIT.fuxingwuye.views.CPlayView
+            android:id="@+id/liveview_View"
+            android:layout_width="match_parent"
+            android:layout_height="270dp" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:stretchColumns="0,1,2,3" >
+
+            <TableRow>
+                <Spinner
+                    android:id="@+id/channelList"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/ViewWin"
+                    android:clickable="true" />
+
+                <Button
+                    android:id="@+id/startLiveView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play"/>
+
+                <Button
+                    android:id="@+id/stopLiveView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stop" />
+
+                <Button
+                    android:id="@+id/capture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Capture" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:stretchColumns="0,1,2" >
+
+
+        </TableLayout>
+        */
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:stretchColumns="0,1,2,3,4" >
+
+            <TableRow>
+                <Button
+                    android:id="@+id/left_up"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="◤" />
+
+                <Button
+                    android:id="@+id/up"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="▲" />
+
+                <Button
+                    android:id="@+id/right_up"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="◥" />
+
+                <Button
+                    android:id="@+id/far"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Far"/>
+
+                <Button
+                    android:id="@+id/zoomin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" />
+
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:id="@+id/left"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="◀" />
+
+                <Button
+                    android:id="@+id/stopptz"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="■" />
+
+                <Button
+                    android:id="@+id/right"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="▶" />
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:id="@+id/left_down"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="◣" />
+
+                <Button
+                    android:id="@+id/down"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="▼"/>
+
+                <Button
+                    android:id="@+id/right_down"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="◢" />
+
+                <Button
+                    android:id="@+id/near"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Near" />
+
+                <Button
+                    android:id="@+id/zoomout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:stretchColumns="0,1,2" >
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preset" />
+
+                <Button
+                    android:id="@+id/set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Set"
+                    />
+
+                <Button
+                    android:id="@+id/get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Get" />
+
+            </TableRow>
+        </TableLayout>
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bs_grary3_bg">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/common_dp_10">
+            <LinearLayout
+                android:id="@+id/ll_brake"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="开启车闸："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+                <TextView
+                    android:id="@+id/tv_brake"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="5"
+                    android:paddingLeft="@dimen/common_dp_10" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/icon_next"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+            <LinearLayout
+                android:id="@+id/ll_carcode"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="车牌号码："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+                <TextView
+                    android:id="@+id/tv_carcode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="5"
+                    android:paddingLeft="@dimen/common_dp_10" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/icon_next"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_open"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="开启车闸"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18" />
+
+    </LinearLayout>
+</layout>

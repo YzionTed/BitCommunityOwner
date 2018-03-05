@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="bean"
+            type="com.BIT.fuxingwuye.bean.CommonBean"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_226"
+            android:layout_margin="@dimen/common_dp_20"
+            android:padding="@dimen/common_dp_10"
+            android:background="@drawable/bg_edittext"
+            android:gravity="left"
+            android:maxLength="150"
+            android:hint="请简要描述所遇到的问题或建议"
+            android:text="@={bean.message}"
+            android:textColorHint="@color/grary1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/common_dp_20"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_gravity="right">
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/150"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18" />
+    </LinearLayout>
+</layout>

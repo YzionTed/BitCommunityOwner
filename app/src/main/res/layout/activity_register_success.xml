@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.BIT.fuxingwuye.activities.register.RegisterSuccess">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/common_dp_20"
+        android:src="@drawable/ic_zccg"/>
+    <TextView
+        android:id="@+id/tv"
+        android:text="注册成功"
+        android:textSize="@dimen/common_sp_18"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_below="@id/tv"
+        android:layout_margin="@dimen/common_dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/goHousing"
+            android:text="房产认证"
+            android:background="@drawable/bg_btn_blue"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/nowmain"
+            android:layout_marginTop="@dimen/common_dp_10"
+            android:layout_width="match_parent"
+            android:textColor="@color/blue1"
+            android:text="马上体验"
+            android:background="@drawable/bg_edittext"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

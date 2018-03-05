@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/common_dp_3"
+                    android:paddingLeft="@dimen/common_dp_10"
+                    android:paddingTop="@dimen/common_dp_6">
+
+                    <ImageView
+                        android:layout_width="@dimen/common_dp_34"
+                        android:layout_height="@dimen/common_dp_34"
+                        android:src="@mipmap/icon_center" />
+
+                    <TextView
+                        android:id="@+id/tv_infotype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="info_type"
+                        android:textColor="@color/bs_grary2"
+                        android:textSize="@dimen/common_sp_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:id="@+id/tv_infotitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/common_dp_5"
+                            android:layout_marginLeft="@dimen/common_dp_12"
+                            android:ellipsize="end"
+                            android:lineSpacingMultiplier="1.2"
+                            android:maxLength="50"
+                            android:text="info_title"
+                            android:textSize="@dimen/common_sp_14" />
+
+                        <TextView
+                            android:id="@+id/tv_infotime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_infotitle"
+                            android:layout_marginBottom="@dimen/common_dp_5"
+                            android:layout_marginLeft="@dimen/common_dp_12"
+                            android:paddingTop="@dimen/common_dp_3"
+                            android:text="info_time"
+                            android:textColor="@color/bs_grary3"
+                            android:textSize="@dimen/common_sp_12" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginRight="@dimen/common_dp_10"
+                android:src="@mipmap/icon_next" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

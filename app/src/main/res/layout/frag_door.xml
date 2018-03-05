@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_dp_38"
+        android:background="@color/blue1"
+        android:gravity="center"
+        android:text="门禁"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_sp_16" />
+
+    <RadioGroup
+        android:id="@+id/rg_gate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_bluetooth"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_weight="1"
+            android:background="@drawable/radio_bg_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="@dimen/common_dp_5"
+            android:paddingTop="@dimen/common_dp_5"
+            android:text="蓝牙门禁"
+            android:textColor="@drawable/radio_color_selector"
+            android:textSize="@dimen/common_dp_16" />
+
+        <RadioButton
+            android:id="@+id/rb_remote_gate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_weight="1"
+            android:background="@drawable/radio_bg_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/common_dp_5"
+            android:paddingTop="@dimen/common_dp_5"
+            android:text="远程门禁"
+            android:textColor="@drawable/radio_color_selector"
+            android:textSize="@dimen/common_dp_16" />
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

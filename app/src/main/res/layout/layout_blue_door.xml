@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_dp_10"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/common_dp_5">
+
+            <RelativeLayout
+                android:layout_width="@dimen/common_dp_200"
+                android:layout_height="@dimen/common_dp_200">
+
+                <com.BIT.fuxingwuye.views.DoughnutProgress
+                    android:id="@+id/circle_progress"
+                    android:layout_width="@dimen/common_dp_200"
+                    android:layout_height="@dimen/common_dp_200"
+                    android:layout_centerInParent="true" />
+
+                <ImageView
+                    android:id="@+id/iv_animation"
+                    android:layout_width="@dimen/common_dp_136"
+                    android:layout_height="@dimen/common_dp_136"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="@dimen/common_dp_4"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/btn_gate" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/common_dp_10"
+                android:text="点击开门"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_16" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+
+            <RelativeLayout
+                android:id="@+id/rl_change_gate"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_52"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="@dimen/common_dp_30"
+                    android:layout_height="@dimen/common_dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:src="@mipmap/icon_change_gate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_toRightOf="@+id/iv1"
+                    android:text="切换门禁"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_12"
+                    android:src="@mipmap/icon_next" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_52"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="@dimen/common_dp_30"
+                    android:layout_height="@dimen/common_dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:src="@mipmap/icon_shake" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_toRightOf="@+id/iv2"
+                    android:text="摇一摇开门"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <Switch
+                    android:id="@+id/shake_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_dp_12"
+                    android:checked="true"
+                    android:src="@mipmap/icon_next" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tip_gate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_5"
+            android:gravity="right"
+            android:paddingRight="@dimen/common_dp_10"
+            android:text="*蓝牙门禁功能需用户打开手机蓝牙功能"
+            android:textColor="@color/blue1"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

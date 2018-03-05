@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <LinearLayout
+            android:id="@+id/ll_nopay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="visible">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_200"
+                android:src="@mipmap/bg_no_paylist"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dp_12"
+                android:text="暂无缴费记录"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_16"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/xrecyclerview"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/common_dp_6"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</layout>

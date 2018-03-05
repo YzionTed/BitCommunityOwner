@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48"/>
+        <include
+            android:id="@+id/bg"
+            layout="@layout/bg_view"></include>
+
+        <LinearLayout
+
+            android:id="@+id/ll_no"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_height="@dimen/common_dp_200"
+                android:src="@mipmap/bg_no_paylist"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dp_16"
+                android:text="功能迭代中，敬请期待！"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_16"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_housename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:padding="@dimen/common_dp_5">
+            <TextView
+                android:id="@+id/tv_housename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择住房"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/icon_next"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_nopay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_200"
+                android:src="@mipmap/bg_no_paylist"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dp_12"
+                android:text="暂无缴费记录"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_16"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/xrecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/common_dp_6"
+            android:visibility="gone"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="bean"
+            type="com.BIT.fuxingwuye.bean.NoticeBean"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_dp_12"
+                    android:textSize="@dimen/common_sp_16"
+                    android:gravity="center_horizontal"
+                    android:text="@{bean.title}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/common_dp_12"
+                    android:textSize="@dimen/common_sp_14"
+                    android:text="@{bean.content}"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dp_160"
+                    android:layout_margin="@dimen/common_dp_10"
+                    android:src="@mipmap/image_default"
+                    android:scaleType="fitXY"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/common_dp_12"
+                    android:gravity="right"
+                    android:text="@{bean.creator}" />
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/common_dp_12"
+                    android:gravity="right" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

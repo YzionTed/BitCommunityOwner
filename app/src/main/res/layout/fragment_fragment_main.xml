@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bs_grary3_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/blue1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/icon_location" />
+
+        <TextView
+            android:id="@+id/choseHousing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:padding="@dimen/common_dp_8"
+            android:text="切换小区"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="府兴物业"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_dp_18" />
+    </RelativeLayout>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/fm_xrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+
+</LinearLayout>

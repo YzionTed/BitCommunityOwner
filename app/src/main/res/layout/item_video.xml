@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:padding="@dimen/common_dp_5"
+    android:layout_margin="@dimen/common_dp_10">
+
+    <ImageView
+        android:layout_width="@dimen/common_dp_80"
+        android:layout_height="@dimen/common_dp_80"
+        android:scaleType="fitXY"
+        android:src="@mipmap/image_default_small"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/common_dp_80"
+        android:layout_weight="2"
+        android:paddingLeft="@dimen/common_dp_10"
+        android:paddingRight="@dimen/common_dp_10"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_videoname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/common_sp_20"
+            android:text="shop name"/>
+        <TextView
+            android:id="@+id/tv_videocode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_sp_16"
+            android:layout_marginTop="@dimen/common_dp_5"
+            android:text="shop address"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_videostate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="运行正常"
+        android:textSize="@dimen/common_sp_20"
+        android:textColor="@color/blue0"/>
+</LinearLayout>

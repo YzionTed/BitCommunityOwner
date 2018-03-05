@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="@dimen/common_dp_10">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/common_dp_10">
+            <ImageView
+                android:id="@+id/iv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_small_water"
+                android:layout_gravity="center_vertical"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_dp_12"
+                android:layout_marginRight="@dimen/common_dp_12"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/repair_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个人水电报修"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_sp_18"/>
+                    <TextView
+                        android:id="@+id/repair_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="time"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/repair_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="已受理"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/bs_red"
+                    android:textSize="@dimen/common_sp_16"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

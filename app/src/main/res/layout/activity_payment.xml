@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.BIT.fuxingwuye.activities.payment.PaymentActivity">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/ll_payment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_btn_normal_whrite"-->
+        <!--android:layout_marginTop="@dimen/common_dp_16"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_16"-->
+        <!--android:layout_marginRight="@dimen/common_dp_16"-->
+        <!--android:layout_below="@+id/toolbar"-->
+        <!--android:orientation="vertical"-->
+        <!--android:visibility="gone">-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/common_dp_48"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="缴费金额："-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/et_pay_amount"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="left|center_vertical"-->
+        <!--android:padding="@dimen/common_dp_10"-->
+        <!--android:background="@null"-->
+        <!--android:hint="请当面与物业核实缴费金额"-->
+        <!--android:textColorHint="@color/bs_grary3"-->
+        <!--android:maxLines="1"-->
+        <!--android:inputType="phone"-->
+        <!--android:maxLength="11"-->
+        <!--android:textSize="@dimen/common_sp_12" />-->
+        <!--</LinearLayout>-->
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/common_dp_0.5"-->
+        <!--android:background="@color/bs_grary4_line"/>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/common_dp_48"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="缴费项目："-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="本季度物业管理费用"-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+        <!--</LinearLayout>-->
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/common_dp_0.5"-->
+        <!--android:background="@color/bs_grary4_line"/>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/common_dp_48"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="对应住房："-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+
+        <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="left|center_vertical"-->
+        <!--android:padding="@dimen/common_dp_10"-->
+        <!--android:background="@null"-->
+        <!--android:hint="请输入对应住房地址（如东区一栋2楼205）"-->
+        <!--android:textColorHint="@color/bs_grary3"-->
+        <!--android:maxLines="1"-->
+        <!--android:inputType="phone"-->
+        <!--android:maxLength="11"-->
+        <!--android:textSize="@dimen/common_sp_12" />-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_payType"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="缴费方式"-->
+        <!--android:layout_marginTop="@dimen/common_dp_20"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_16"-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14"-->
+        <!--android:layout_below="@+id/ll_payment"-->
+        <!--android:visibility="gone"/>-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/ll_payType"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_btn_normal_whrite"-->
+        <!--android:layout_marginTop="@dimen/common_dp_16"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_16"-->
+        <!--android:layout_marginRight="@dimen/common_dp_16"-->
+        <!--android:layout_below="@+id/tv_payType"-->
+        <!--android:orientation="vertical"-->
+        <!--android:visibility="gone">-->
+        <!--<RelativeLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/common_dp_48"-->
+        <!--android:layout_gravity="center_vertical">-->
+        <!--<ImageView-->
+        <!--android:id="@+id/icon_wechat"-->
+        <!--android:layout_width="@dimen/common_dp_30"-->
+        <!--android:layout_height="@dimen/common_dp_30"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@mipmap/u24"/>-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="微信支付"-->
+        <!--android:layout_toRightOf="@+id/icon_wechat"-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_wechat"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="@dimen/common_dp_20"-->
+        <!--android:checked="true"/>-->
+
+        <!--</RelativeLayout>-->
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/common_dp_0.5"-->
+        <!--android:background="@color/bs_grary4_line"/>-->
+        <!--<RelativeLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/common_dp_48"-->
+        <!--android:layout_gravity="center_vertical">-->
+        <!--<ImageView-->
+        <!--android:id="@+id/icon_alipay"-->
+        <!--android:layout_width="@dimen/common_dp_30"-->
+        <!--android:layout_height="@dimen/common_dp_30"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@mipmap/u24"/>-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_10"-->
+        <!--android:text="支付宝支付"-->
+        <!--android:layout_toRightOf="@+id/icon_alipay"-->
+        <!--android:textColor="@color/bs_grary2"-->
+        <!--android:textSize="@dimen/common_sp_14" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_alipay"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="@dimen/common_dp_20"/>-->
+        <!--</RelativeLayout>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/btn_pay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/common_dp_40"-->
+        <!--android:layout_marginLeft="@dimen/common_dp_16"-->
+        <!--android:layout_marginRight="@dimen/common_dp_16"-->
+        <!--android:layout_marginBottom="@dimen/common_dp_16"-->
+        <!--android:background="@drawable/bg_btn_blue"-->
+        <!--android:text="确认缴费"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/common_sp_18"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:visibility="gone"/>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_dp_10"
+            android:text="使用包商银行转账"
+            android:textColorHint="@color/bs_grary3"
+            android:textSize="@dimen/common_sp_12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_normal_whrite"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="    开户行："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <TextView
+                    android:id="@+id/et_pay_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:padding="@dimen/common_dp_10"
+                    android:text="包商银行包头分行"
+                    android:textSize="@dimen/common_sp_14" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="        账号："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:layout_weight="3"
+                    android:text="610044134"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <Button
+                    android:id="@+id/btn_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_dp_10"
+                    android:background="@drawable/bg_btn_blue"
+                    android:text="复制账号"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/common_sp_14" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_dp_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="使用微信/支付宝扫码支付"
+                android:textSize="@dimen/common_sp_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(长按下方二维码保存到本地)"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/common_sp_12" />
+        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_qr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/common_dp_10"
+                android:padding="@dimen/common_dp_5"
+                android:scaleType="fitXY"
+                android:src="@mipmap/qr" />
+
+    </LinearLayout>
+</layout>

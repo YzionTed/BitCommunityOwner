@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.BIT.fuxingwuye"
+    android:versionCode="1"
+    android:versionName="1.0.0">
+
+    <!--
+        <permission
+        android:name="com.BIT.fuxingwuye.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    -->
+    //==============================米粒蓝牙开门开始==============================================
+    <!-- 使用网络、蓝牙功能所需权限 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+    //==============================米粒蓝牙开门结束==============================================
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 手机状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.BIT.fuxingwuye.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- 需要将以下权限拷贝到集成SDK的应用中去 -->
+    <uses-permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.${applicationId}" />
+    <uses-permission android:name="getui.permission.GetuiService.${applicationId}" />
+
+    <permission
+        android:name="getui.permission.GetuiService.${applicationId}"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" />
+
+    <!-- 统计 渠道商编号 -->
+    <!-- <meta-data -->
+    <!-- android:name="CHANNEL" -->
+    <!-- android:value="${CHANNEL_VALUE}" /> -->
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <activity
+            android:name=".activities.SplashActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.login.LoginActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.register.RegisterActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.payment.PaymentActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.payResult.PayResultActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.personlPage.PersonalPageActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.editPersonal.EditPersonalActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.replenishData.ReplenishDataActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.commitSuccess.CommitSuccessActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.residential_quarters.Housing"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        //适配7.0文件路径，下载更新用
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".activities.aboutBit.AboutBitActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.feedback.FeedbackActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.houseManager.HouseManagerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.householdManager.HouseholdManagerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.carManager.CarManagerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.resetPwd.ResetPwdActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.addNew.AddNewActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.replenishHouse.ReplenishHouseActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.replenishCar.ReplenishCarActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.message.MessageActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.setting.SettingActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.ProvincePickerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.roomPicker.RoomPickerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.parkPicker.ParkPickerActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.TipsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5971671f310c935176000359" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Bit" />
+        /--------------------------------环信------------------------------------/
+        <activity
+            android:name=".chat.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 设置环信应用的appkey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1189170726178754#com-bit-fuxingwuye" />
+        <!-- 声明sdk所需的service -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <!-- 声明sdk所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- mi push -->
+        <service
+            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedService" />
+        <service
+            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+            android:enabled="true" />
+
+        <receiver
+            android:name="com.hyphenate.chat.EMMipushReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR" />
+            </intent-filter>
+        </receiver>
+        <!-- mi push end -->
+
+
+        <!-- huawei push 第三方相关 :接收Push消息（注册、Push消息、Push连接状态、标签，LBS上报结果）广播 -->
+        <receiver
+            android:name="com.hyphenate.chat.EMHuaweiPushReceiver"
+            android:exported="true">
+            <intent-filter>
+
+                <!-- 必须,用于接收token -->
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <!-- 必须，用于接收消息 -->
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+            </intent-filter>
+            />
+            <meta-data
+                android:name="CS_cloud_ablitity"
+                android:value="successRateAnalytics" />
+        </receiver>
+
+        <!-- PushSDK:PushSDK接收外部请求事件入口 -->
+        <receiver
+            android:name="com.huawei.android.pushagent.PushEventReceiver"
+            android:exported="true"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL" />
+                <action android:name="com.huawei.intent.action.PUSH" />
+                <action android:name="com.huawei.intent.action.PUSH_ON" />
+                <action android:name="com.huawei.android.push.PLUGIN" />
+            </intent-filter>
+        </receiver>
+
+        <!-- PushSDK:Push服务 -->
+        <service
+            android:name="com.huawei.android.pushagent.PushService"
+            android:process=":pushservice" />
+
+        <!-- huawei push end -->
+
+
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
+
+        <activity android:name=".chat.VideoCallActivity" />
+        <activity android:name=".chat.VoiceCallActivity" />
+        <activity android:name=".chat.ImageGridActivity" />
+        <activity
+            android:name=".chat.RecorderVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        /--------------------------------环信------------------------------------/
+        <activity
+            android:name=".activities.addFaultRepair.FaultRepairActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.FaultCommitSuccessActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.myRepairList.MyRepairsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.repairDetail.RepairDetailActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.callPolice.CallPoliceActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDStyle" />
+        <activity
+            android:name=".activities.MainTabActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.shops.ShopsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.community.CommunityActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.chooseHouse.ChooseHouseActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.callEle.CallEleActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.serviceComment.ServiceCommentActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.payList.PayListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.payContent.PayContentActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.faultType.FaultTypeActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.onlinePay.OnlinePayActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.EAnimationActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDStyle" />
+        <activity
+            android:name=".activities.GAnimationActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDStyle" />
+        <activity
+            android:name=".activities.videoDevices.VideoDevicesActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashThem" />
+        <activity
+            android:name=".activities.videoDevices.VideoViewActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.goods.GoodsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.addReply.AddReplyActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.communityDetail.CommunityDetailActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.personalEdit.PersonalEditActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.payRecord.PayRecordActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.via.ViaActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.viaRecord.ViaRecordActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.brake.BrakeActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- //微信支付// -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxcdfd01ff3e101e7f" />
+            </intent-filter>
+        </activity>
+
+        <!--
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        /////////支付宝/////
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <meta-data
+            android:name="BIT_APPID"
+            android:value="5a961e7c0cf2c1914073dece" />
+
+        <!-- ======================== 云对讲开始========================================================= -->
+        <!--
+              ////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////
+              /////////以下内容全部复制到需要集成SDK的应用的AndriodManifest.xml中/////
+              ////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////
+        -->
+
+        <!-- 配置DongSDK参数属性 -->
+        <meta-data
+            android:name="DONG_APPID"
+            android:value="${DONG_APPID_VALUE}" />
+        <!-- 个推SDK配置开始 -->
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="${GT_PUSH_APPID_VALUE}" />
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="${GT_PUSH_APPSECRET_VALUE}" />
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="${GT_PUSH_APPKEY_VALUE}" />
+        <!-- 配置SDK核心服务 -->
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:label="NotificationCenter"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.service.message" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.igexin.sdk.PushReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.igexin.sdk.GActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service
+            android:name="com.igexin.download.DownloadService"
+            android:process=":pushservice" />
+
+        <receiver android:name="com.igexin.download.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.${applicationId}"
+            android:exported="true"
+            android:process=":pushservice" />
+
+        <!-- 用户自定义服务继承自GTIntentService,作为SDK与APP桥梁服务,用来接收各种消息和命令回复 -->
+        <service android:name="com.ddclient.push.GTPushIntentService" />
+
+        <!-- 用户自定义服务名 -->
+        <service
+            android:name="com.ddclient.push.GTPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+
+        <!-- 必要配置 -->
+        <receiver android:name="com.meizu.cloud.pushsdk.SystemReceiver">
+            <intent-filter>
+                <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+
+
+        //===================================云对讲结束===============================================
+        <receiver android:name=".utils.MyJPushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.MyService" />
+
+        <activity android:name=".activities.register.RegisterSuccess" />
+        <activity android:name=".activities.houseManager.ProprietorManagementActivity" />
+        <activity android:name=".activities.houseManager.ApplicationRecordActivity"></activity>
+        <activity android:name=".activities.houseManager.ApplicationDetailsActivity"></activity>
+        <activity android:name=".activities.fragment.smartGate.ChangeAccessActivity"></activity>
+        <activity android:name=".activities.fragment.smartGate.VideoActiveOpenActivity"></activity>
+        <activity android:name=".activities.fragment.smartGate.VideoUnActiveOpenActivity"></activity>
+        <activity android:name=".activities.fragment.elevatorFrag.ChangeElevatorActivity"></activity>
+        <activity android:name=".newsdetail.NewsDetail"></activity>
+    </application>
+
+</manifest>

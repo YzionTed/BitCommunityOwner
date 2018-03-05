@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="@dimen/common_dp_6">
+
+    <ImageView
+        android:id="@+id/item_iv"
+        android:layout_width="@dimen/common_dp_100"
+        android:layout_height="@dimen/common_dp_100"
+        android:scaleType="centerInside"
+        android:src="@mipmap/image_default_small"/>
+</RelativeLayout>

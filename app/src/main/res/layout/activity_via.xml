@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+    <LinearLayout
+        android:id="@+id/et_via_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bs_grary3_bg">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <LinearLayout
+            android:id="@+id/via_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/common_dp_20"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="    申请人："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <TextView
+                    android:id="@+id/et_via_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="left|center_vertical"
+                    android:padding="@dimen/common_dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/common_sp_12" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:text="有效时间："
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <TextView
+                    android:id="@+id/et_via_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_gravity="left|center_vertical"
+                    android:hint="开始时间"
+                    android:singleLine="true"
+                    android:padding="@dimen/common_dp_10"
+                    android:textSize="@dimen/common_sp_12" />
+                <ImageView
+                    android:id="@+id/iv_starttime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/icon_calender_light"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/common_dp_48"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_dp_10"
+                    android:textColor="@color/bs_grary2"
+                    android:textSize="@dimen/common_sp_14" />
+
+                <TextView
+                    android:id="@+id/et_via_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_gravity="left|center_vertical"
+                    android:hint="结束时间"
+                    android:singleLine="true"
+                    android:padding="@dimen/common_dp_10"
+                    android:textSize="@dimen/common_sp_12" />
+                <ImageView
+                    android:id="@+id/iv_endtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/icon_calender_light"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/via_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/common_dp_20"
+        android:padding="@dimen/common_dp_10"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="@dimen/common_dp_10"
+            android:text="放行理由："
+            android:textColor="@color/bs_grary2"
+            android:textSize="@dimen/common_sp_14" />
+        <EditText
+            android:id="@+id/et_personal_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:background="@null"
+            android:hint="*须注明携带的大型物品以及放行原因"
+            android:paddingLeft="@dimen/common_dp_10"
+            android:paddingRight="@dimen/common_dp_10"
+            android:textColorHint="@color/bs_grary3"
+            android:textSize="@dimen/common_sp_12" />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_40"
+            android:layout_marginLeft="@dimen/common_dp_16"
+            android:layout_marginRight="@dimen/common_dp_16"
+            android:layout_marginTop="@dimen/common_dp_24"
+            android:background="@drawable/bg_btn_blue"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_sp_18" />
+
+        <LinearLayout
+            android:id="@+id/et_via_ercode_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_ercode_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/cycle_loading"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:text="放行条"
+                android:textSize="@dimen/common_sp_18" />
+
+            <TextView
+                android:id="@+id/iv_ercode_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textColor="@color/btn_gray_normal"
+                android:text="有效期"
+                android:textSize="@dimen/common_sp_12" />
+
+            <Button
+                android:id="@+id/iv_save_ercode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="保存本地"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+</layout>

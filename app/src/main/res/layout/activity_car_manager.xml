@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/common_dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_wjl"/>
+                    <TextView
+                        android:text="暂无记录"
+                        android:textSize="@dimen/common_sp_16"
+                        android:textColor="@color/blue1"
+                        android:layout_marginTop="@dimen/common_dp_10"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/common_dp_12"
+                    android:paddingTop="@dimen/common_dp_12">
+
+                    <LinearLayout
+                        android:id="@+id/ll_nocar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dp_24"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="@dimen/common_dp_80"
+                            android:layout_height="@dimen/common_dp_80"
+                            android:src="@mipmap/icon_warning" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common_dp_12"
+                            android:text="暂无车位"
+                            android:textColor="@color/bs_red"
+                            android:textSize="@dimen/common_sp_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common_dp_12"
+                            android:text="暂无车位信息，请点击添加车位" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingBottom="@dimen/common_dp_6"
+                        android:paddingTop="@dimen/common_dp_6"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btn_addcar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_40"
+                        android:layout_marginLeft="@dimen/common_dp_16"
+                        android:layout_marginRight="@dimen/common_dp_16"
+                        android:layout_marginTop="@dimen/common_dp_24"
+                        android:background="@drawable/bg_btn_normal_whrite"
+                        android:text="新增车位"
+                        android:textColor="@color/blue1"
+                        android:textSize="@dimen/common_sp_18" />
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

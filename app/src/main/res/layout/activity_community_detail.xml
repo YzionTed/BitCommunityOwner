@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/common_dp_10">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.BIT.fuxingwuye.views.XCRoundImageView
+                            android:id="@+id/iv_avatar"
+                            android:layout_width="@dimen/common_dp_60"
+                            android:layout_height="@dimen/common_dp_60"
+                            android:src="@mipmap/avatar_default" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_avatar"
+                            android:text="name"
+                            android:textColor="@color/blue1"
+                            android:textSize="@dimen/common_sp_16" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/common_dp_10"
+                        android:text="" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_images"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dp_10"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/iv_content1"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/common_dp_100"
+                            android:layout_weight="1"
+                            android:padding="@dimen/common_dp_1"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/image_default" />
+
+                        <ImageView
+                            android:id="@+id/iv_content2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/common_dp_100"
+                            android:layout_weight="1"
+                            android:padding="@dimen/common_dp_1"
+                            android:src="@mipmap/image_default"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:id="@+id/iv_content3"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/common_dp_100"
+                            android:layout_weight="1"
+                            android:padding="@dimen/common_dp_1"
+                            android:src="@mipmap/image_default"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/common_dp_10">
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0911 20:00" />
+
+                        <TextView
+                            android:id="@+id/tv_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_dp_10"
+                            android:layout_toRightOf="@+id/tv_time"
+                            android:text="删除"
+                            android:textColor="@color/blue1"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/common_dp_20"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/iv_reply"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/common_dp_20"
+                                    android:layout_height="@dimen/common_dp_20"
+                                    android:src="@mipmap/icon_reply" />
+
+                                <TextView
+                                    android:id="@+id/tv_reply_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/common_dp_10"
+                                    android:text="0" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/iv_zan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/common_dp_20"
+                                    android:layout_height="@dimen/common_dp_20"
+                                    android:layout_marginLeft="@dimen/common_dp_20"
+                                    android:src="@mipmap/icon_zangrey" />
+
+                                <TextView
+                                    android:id="@+id/tv_zan_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/common_dp_10"
+                                    android:text="0" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:background="@color/bs_grary4_line" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/common_dp_10"
+                    android:padding="@dimen/common_dp_5"
+                    android:background="@color/white">
+                    <ImageView
+                        android:id="@+id/iv_zanstate"
+                        android:layout_width="@dimen/common_dp_24"
+                        android:layout_height="@dimen/common_dp_24"
+                        android:src="@mipmap/icon_zangrey"/>
+                    <TextView
+                        android:id="@+id/tv_names"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/xrecyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/common_dp_5"
+                    android:layout_marginTop="@dimen/common_dp_10"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/common_dp_6"
+                    android:visibility="visible"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_0.5"
+                android:background="@color/bs_grary4_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_reply_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_20"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/common_dp_10"
+                        android:text=""/>
+                    <EditText
+                        android:id="@+id/et_reply"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/MyEditText"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_send"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/bg_btn_normal_whrite"
+                    android:layout_margin="@dimen/common_dp_10"
+                    android:textColor="@color/blue1"
+                    android:text="发送"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

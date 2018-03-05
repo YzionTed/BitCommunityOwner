@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bs_grary3_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dp_48" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/common_dp_12"
+                android:paddingTop="@dimen/common_dp_12">
+
+                <LinearLayout
+                    android:id="@+id/ll_noidentified"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_dp_24"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/common_dp_80"
+                        android:layout_height="@dimen/common_dp_80"
+                        android:src="@mipmap/image_default_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dp_12"
+                        android:text="权限不足"
+                        android:textColor="@color/bs_red"
+                        android:textSize="@dimen/common_sp_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_dp_12"
+                        android:text="该功能仅对业主开放，如需添加住户请联系业主" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rl_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_dp_10"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_34"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="@dimen/common_dp_2"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/common_dp_2"
+                            android:layout_marginTop="@dimen/common_dp_2"
+                            android:background="@color/blue1" />
+
+                        <TextView
+                            android:id="@+id/tv_community"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/common_dp_12"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textColor="@color/blue1"
+                            android:textSize="@dimen/common_sp_18"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_dp_0.5"
+                        android:layout_marginLeft="@dimen/common_dp_5"
+                        android:layout_marginRight="@dimen/common_dp_5"
+                        android:background="@color/bs_grary4_line" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common_dp_5"
+                            android:clipToPadding="false"
+                            android:paddingBottom="@dimen/common_dp_6"
+                            android:paddingTop="@dimen/common_dp_6" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_addnew"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_dp_40"
+                    android:layout_marginLeft="@dimen/common_dp_16"
+                    android:layout_marginRight="@dimen/common_dp_16"
+                    android:layout_marginTop="@dimen/common_dp_12"
+                    android:background="@drawable/bg_btn_normal_whrite"
+                    android:text="新增住户"
+                    android:textColor="@color/blue1"
+                    android:textSize="@dimen/common_sp_18" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,210 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.bit.communityOwner"
+        minSdkVersion 18
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0.0"
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi"
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME          : applicationId,
+                JPUSH_APPKEY           : "ab053b981dc7f79f4c40e639", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL          : "developer-default", //暂时填写默认值即可.
+
+                BUILD_TIME_VALUE       : new Date().format('yyyyMMdd'),
+                DONG_APPID_VALUE       : 'eJBYvZ3ozrUtv7v5L7mqs2SjKPH/MBGLJcNuytIdWPKZ0VUxG0xYwaVQei5XazBcRIzEn/ItXG4=',//AppID(公司生成)
+                GT_PUSH_APPID_VALUE    : 'Douj1wHWKo6PoBF14HeCI1',//个推AppID
+                GT_PUSH_APPSECRET_VALUE: 'yBGetMm5O56I9vh9gWcAa9',//个推App Secret
+                GT_PUSH_APPKEY_VALUE   : 'm00SBQasWw7rjOAp3CGcl4',//个推App Key
+                APP_PACKAGE_NAME_VALUE : 'com.bit.communityOwner',//自己应用的包名
+                BAIDU_API_KEY_VALUE    : '',//百度api key
+                JIGUANG_APPKEY_VALUE   : '1850ece854037939b7bf3b50',//极光AppKey
+                HUAWEI_APPID_VALUE     : '',//华为AppId
+                XIAOMI_APPID_VALUE     : '',//小米AppId
+                XIAOMI_APPKEY_VALUE    : '',//小米AppKey
+                MEIZU_APPID_VALUE      : '',//魅族AppID
+                MEIZU_APPKEY_VALUE     : ''//魅族AppKey
+        ]
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
+    }
+
+
+    signingConfigs {  // 用的是和 电梯调试工具 同一个 keystore
+
+        config {
+            storeFile file("smartCommunity.keystore")
+            storePassword "bit2017"
+            keyAlias "smartCommunity.keystore"
+            keyPassword "bit2017"
+            v2SigningEnabled false
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //代码混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            zipAlignEnabled false
+
+            signingConfig signingConfigs.config
+        }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            //代码混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //Zipalign优化
+            zipAlignEnabled false
+
+            // 移除无用的resource文件
+            shrinkResources false
+
+            //签名
+            signingConfig signingConfigs.config
+        }
+
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    // 请在加入统计之后，添加相应的渠道，注意把manifest的channel 打开， 没加入统计的时候，暂可不用
+    productFlavors {
+        "bit" {}
+//        "baidu" {}
+//        ..... 请根据申请的平台添加
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+
+    //在生成的apk文件，修改下命名而已
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                def fileName = "SmartCommunity_V" + defaultConfig.versionName + "(" + productFlavors[0].name + ")" + ".apk"
+//                output.outputFile = new File(output.outputFile.parent, fileName)
+//            }
+//        }
+//    }
+}
+
+final RETROFIT_VERSION = '2.3.0'
+final STETHO_VERSION = "1.5.0"
+final RXLIFECYCLE_VERSION = "2.1.0"
+final Dagger2_Version = "2.4"
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    compile 'org.xutils:xutils:3.3.42'
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+    // 调试网络
+    compile "com.facebook.stetho:stetho:${STETHO_VERSION}"
+    compile "com.facebook.stetho:stetho-okhttp3:${STETHO_VERSION}"
+    //控制rxJava生命周期
+    //    compile "com.trello.rxlifecycle2:rxlifecycle:${RXLIFECYCLE_VERSION}"  // 跟appcompat-v7:25.1.1 有点冲突
+    //    compile "com.trello.rxlifecycle2:rxlifecycle-components:${RXLIFECYCLE_VERSION}"
+    // Java标注 android
+    compile "com.google.dagger:dagger:${Dagger2_Version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${Dagger2_Version}"
+    // 图片
+    // 自定义的对话框
+    //    compile 'com.android.support.constraint:constraint-layout:1.0.2'   // 拖动控件的工具
+    compile project(':easeui')
+    compile files('libs/BASE64.jar')
+    compile(name: 'mylibs', ext: 'aar')
+    // 此处以JPush 3.0.9 版本为例。
+    // 此处以JCore 1.1.7 版本为例。
+
+
+    compile files('libs/mid-sdk-2.3.jar')
+    compile files('libs/mta-android-stat-sdk-2.2.0_20160504.jar')
+
+    compile files('libs/recyclerview-v7-22.2.1-sources.jar')
+    compile files('libs/xgcameralib.jar')
+
+    compile files('libs/alipaySdk-20170922.jar')
+    compile 'com.android.support:multidex:1.0.1'
+
+    compile 'com.android.support:design:25.1.1'
+    compile 'com.trello:rxlifecycle:0.5.0'
+    compile 'com.trello:rxlifecycle-components:0.5.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.github.1em0nsOft:LemonHello4Android:1.0.1'
+    compile 'com.android.support:cardview-v7:25.1.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.jcodecraeer:xrecyclerview:1.3.2'
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'com.parse:parse-android:1.13.1'
+    compile 'me.yokeyword:fragmentation:0.7.9'
+    compile 'pub.devrel:easypermissions:0.4.2'
+    compile 'net.vidageek:mirror:1.6.1'
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
+
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+    compile 'com.baoyz.swipemenulistview:library:1.3.0'
+    testCompile 'junit:junit:4.12'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    //==============对讲机=========================================
+
+    compile files('libs/YunIntercomSDK-1.0.jar')
+    compile files('libs/DongDongSDK-1.1.1.1.jar')
+    compile files('libs/GetuiSDK2.9.5.0.jar')
+    compile files('libs/pushservice-5.1.0.48.jar')
+    compile 'cn.jiguang.sdk:jpush:3.0.9'
+    compile 'cn.jiguang.sdk:jcore:1.1.7'
+    compile 'com.meizu.flyme.internet:push-internal-publish:3.3.170110'
+    compile(name: 'HMS-SDK-2.4.0.300', ext: 'aar')
+
+    //==============对讲机=========================================
+    //==============米粒蓝牙开门=========================================
+    compile files('libs/bcprov-jdk16-146.jar')
+    compile files('libs/mtblesdk-2.45.jar')
+    compile files('libs/platform-1.0.jar')
+    compile files('libs/smarthome-sdk-bleself-1.1.jar')
+    //==============米粒蓝牙开门=========================================
+
+    compile('cn.qqtheme.framework:WheelPicker:latest.release') {
+        exclude group: 'com.android.support'
+    }
+}
+repositories {
+    flatDir { dirs 'aars' }
+}
