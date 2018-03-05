@@ -12,6 +12,7 @@ public class ApplicationDetailsContract {
     public interface View extends BaseView {
         void ShowApplication();
         void ShowDismissApplication();
+
     }
     public interface Presenter extends BasePresenter<ApplicationDetailsContract.View> {
         void GetApplication(ProprietorBean.RecordsBean bean);

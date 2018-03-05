@@ -35,7 +35,6 @@ import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityLoginBinding;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
-import com.bit.fuxingwuye.utils.SPUtils;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.PushInfo;
 import com.ddclient.jnisdk.InfoUser;
@@ -400,6 +399,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
         }
+    }
+
+    public static Intent createIntent(Context context) {
+        return new Intent(context, LoginActivity.class);
     }
 
     /**

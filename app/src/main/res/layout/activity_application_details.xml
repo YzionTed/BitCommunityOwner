@@ -5,6 +5,7 @@
     <include
         android:id="@+id/bar"
         layout="@layout/action_bar"></include>
+
     <LinearLayout
         android:background="@color/white"
         android:layout_below="@id/bar"

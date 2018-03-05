@@ -12,6 +12,10 @@
         android:orientation="vertical">
        <include
             layout="@layout/action_bar"></include>
+        <include
+            android:id="@+id/onError"
+            android:visibility="gone"
+            layout="@layout/bg_view"></include>
         <ScrollView
             android:background="@color/white"
             android:layout_width="match_parent"

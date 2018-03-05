@@ -17,6 +17,7 @@ public class ProprietorManagementContract {
     public interface View extends BaseView {
         void showProprietorData(ProprietorBean proprietorBean);
         void showRelieveSuccess();
+        void onNetEroor();
 
     }
     public interface Presenter extends BasePresenter<ProprietorManagementContract.View> {

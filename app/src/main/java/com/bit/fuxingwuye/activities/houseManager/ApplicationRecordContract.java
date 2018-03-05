@@ -17,6 +17,7 @@ import java.util.Map;
 public class ApplicationRecordContract {
     public interface View extends BaseView {
         void ShowRecord(ProprietorBean recordData);
+        void NetEorror();
     }
     public interface Presenter extends BasePresenter<ApplicationRecordContract.View> {
         void GetRecord(String str);

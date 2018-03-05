@@ -51,7 +51,7 @@ public class HMPresenterImpl extends BaseRxPresenter<HMContract.View> implements
 
             @Override
             public void onError(Throwable e) {
-
+                mView.onError();
             }
 
         },context,true);
