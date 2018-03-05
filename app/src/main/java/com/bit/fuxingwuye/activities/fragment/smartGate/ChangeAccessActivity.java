@@ -39,7 +39,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
     String Tag = "ChangeAccessActivity";
     private ListView lv_list;
     private CommonAdapter commonAdapter;
-    private DoorMILiBean doorMILiBean;
+    private DoorMILiBean doorMiLiBean;
     private TextView actionBarTitle;
     private TextView btnRightActionBar;
     private ImageView btnBack;
@@ -60,7 +60,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
 
 
     protected void initView() {
-        doorMILiBean = (DoorMILiBean) getIntent().getSerializableExtra("doorMILiBean");
+        doorMiLiBean = (DoorMILiBean) getIntent().getSerializableExtra("doorMILiBean");
         actionBarTitle = (TextView) findViewById(R.id.action_bar_title);
         btnRightActionBar = (TextView) findViewById(R.id.btn_right_action_bar);
         btnBack = (ImageView) findViewById(R.id.btn_back);
@@ -78,8 +78,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
         commonAdapter = new CommonAdapter<DoorMILiBean>(this, R.layout.item_door_access) {
             @Override
             public void convert(final ViewHolder holder, final DoorMILiBean doorMILiBean, int position, View convertView) {
-
-                itemDo(holder, doorMILiBean);
+                itemDo(holder, doorMILiBean, position);
             }
         };
         lv_list.setAdapter(commonAdapter);
@@ -143,14 +142,25 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
      *
      * @param holder
      * @param doorMILiBean
+     * @param position
      */
-    private void itemDo(final ViewHolder holder, final DoorMILiBean doorMILiBean) {
+    private void itemDo(final ViewHolder holder, final DoorMILiBean doorMILiBean, final int position) {
 
-        if (ChangeAccessActivity.this.doorMILiBean != null) {
-            if (ChangeAccessActivity.this.doorMILiBean.getMac() != null) {
-                if (ChangeAccessActivity.this.doorMILiBean.getMac().equals(doorMILiBean.getMac())) {
+        if (ChangeAccessActivity.this.doorMiLiBean != null) {
+            if (ChangeAccessActivity.this.doorMiLiBean.isFirstChecked()) {
+                if(position==0){
                     ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
                 }
+            } else {
+                if (ChangeAccessActivity.this.doorMiLiBean.getMac() != null) {
+                    if (ChangeAccessActivity.this.doorMiLiBean.getMac().equals(doorMILiBean.getMac())) {
+                        ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                    }
+                }
+            }
+        } else {
+            if (position == 0) {
+                ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
             }
         }
 
@@ -158,16 +168,18 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
         holder.setOnClickListener(R.id.tv_item, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (position == 0) {
+                    doorMILiBean.setFirstChecked(true);
+                } else {
+                    doorMILiBean.setFirstChecked(false);
+                }
+
                 ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent();
-                        intent.putExtra("doorMILiBean", doorMILiBean);
-                        setResult(10, intent);
-                        finish();
-                    }
-                }, 500);
+                Intent intent = new Intent();
+                intent.putExtra("doorMILiBean", doorMILiBean);
+                setResult(10, intent);
+                finish();
+
             }
         });
     }

@@ -15,7 +15,7 @@ public class FragmentDoor extends BaseFragment {
 
     private RadioGroup rg_gate;
     private BluetoothDoorFragment bluetoothDoorFragment;
-    private EarlyCallFragment earlyCallFragment;
+    private RemoteDoorFragment remoteDoorFragment;
 
     @Override
     public void toastMsg(String msg) {
@@ -66,11 +66,11 @@ public class FragmentDoor extends BaseFragment {
     private void checkRemoteDoorFragment() {
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         setAllFragmentHide(fragmentTransaction);
-        if (earlyCallFragment == null) {
-            earlyCallFragment = new EarlyCallFragment();
-            fragmentTransaction.add(R.id.rl_content, earlyCallFragment).commit();
+        if (remoteDoorFragment == null) {
+            remoteDoorFragment = new RemoteDoorFragment();
+            fragmentTransaction.add(R.id.rl_content, remoteDoorFragment).commit();
         } else {
-            fragmentTransaction.show(earlyCallFragment).commit();
+            fragmentTransaction.show(remoteDoorFragment).commit();
         }
     }
 
@@ -78,8 +78,8 @@ public class FragmentDoor extends BaseFragment {
      * 将所有的Fragment都置为隐藏状态。
      */
     public void setAllFragmentHide(FragmentTransaction fragmentTransaction) {
-        if (earlyCallFragment != null) {
-            fragmentTransaction.hide(earlyCallFragment);
+        if (remoteDoorFragment != null) {
+            fragmentTransaction.hide(remoteDoorFragment);
         }
         if (bluetoothDoorFragment != null) {
             fragmentTransaction.hide(bluetoothDoorFragment);

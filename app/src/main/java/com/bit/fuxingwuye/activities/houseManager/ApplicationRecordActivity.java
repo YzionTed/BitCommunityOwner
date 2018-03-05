@@ -39,7 +39,7 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
     TextView title,state;
     ImageView back;
     String roomid;
-
+    View v;
     @Override
     public void toastMsg(String msg) {
 
@@ -52,7 +52,8 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
         listview = (ListView) findViewById(R.id.fm_xrecyclerview);
         title = (TextView) findViewById(R.id.action_bar_title);
         back = (ImageView) findViewById(R.id.btn_back);
-
+        v=findViewById(R.id.onError);
+        state= (TextView) v.findViewById(R.id.stauttv);
         intent = getIntent();
         EventBus.getDefault().register(this);
         Bundle bundle = intent.getExtras();
@@ -130,6 +131,4 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
     public void NetEorror() {
 
     }
-
-
 }

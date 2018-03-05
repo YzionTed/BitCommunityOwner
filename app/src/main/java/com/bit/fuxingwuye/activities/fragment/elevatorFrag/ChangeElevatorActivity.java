@@ -57,7 +57,6 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
     }
 
 
-
     public void initViewData() {
         actionBarTitle.setText("切换电梯");
         doorJinBoBean = (ElevatorListBean) getIntent().getSerializableExtra("doorJinBoBean");
@@ -80,13 +79,24 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
     private void initListView() {
         commonAdapter = new CommonAdapter<ElevatorListBean>(this, R.layout.item_access_child) {
             @Override
-            public void convert(ViewHolder holder, final ElevatorListBean elevatorListBean, int position, View convertView) {
+            public void convert(ViewHolder holder, final ElevatorListBean elevatorListBean, final int position, View convertView) {
 
-                if (doorJinBoBean != null) {
-                    if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress() != null) {
-                        if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress().equals(elevatorListBean.getMacAddress())) {
+
+                if (ChangeElevatorActivity.this.doorJinBoBean != null) {
+                    if (ChangeElevatorActivity.this.doorJinBoBean.isFirstChecked()) {
+                        if (position == 0) {
                             ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
                         }
+                    } else {
+                        if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress() != null) {
+                            if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress().equals(elevatorListBean.getMacAddress())) {
+                                ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                            }
+                        }
+                    }
+                } else {
+                    if (position == 0) {
+                        ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
                     }
                 }
 
@@ -94,6 +104,11 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                 holder.setOnClickListener(R.id.tv_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (position == 0) {
+                            elevatorListBean.setFirstChecked(true);
+                        } else {
+                            elevatorListBean.setFirstChecked(false);
+                        }
                         Intent intent = new Intent();
                         intent.putExtra("elevatorListBean", elevatorListBean);
                         setResult(10, intent);
@@ -118,7 +133,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                 if (elevatorListBeans != null) {
                     if (elevatorListBeans.size() > 0) {
                         ElevatorListBean elevatorListBean = new ElevatorListBean();
-                        elevatorListBean.setName("一键开梯");
+                        elevatorListBean.setName("一键开门");
                         elevatorListBean.setElevatorNum("");
                         elevatorListBean.setFirst(true);
                         elevatorListBeans.add(0, elevatorListBean);

@@ -85,7 +85,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
             public void onShake() {
                 // TODO Auto-generated method stub
                 System.out.println("shake");
-                Toast.makeText(getActivity(), "你在摇哦", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "你在摇哦", Toast.LENGTH_SHORT).show();
                 Log.e(Tag, "shake==");
                 if (isNeedShake) {
                     circle_progress.start();

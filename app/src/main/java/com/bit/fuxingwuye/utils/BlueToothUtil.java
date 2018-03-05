@@ -409,7 +409,7 @@ public class BlueToothUtil {
         if (wCharacter != null) {
             wCharacter.setValue(bvalue);
         }
-
+      // wCharacter.setValue("A1B2C3D4F5D6");
         runnable = new Runnable() {
             @Override
             public void run() {
