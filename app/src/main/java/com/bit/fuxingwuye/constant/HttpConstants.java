@@ -8,6 +8,7 @@ package com.bit.fuxingwuye.constant;
 
 public class HttpConstants {
 
+
     public static final String HTTP = "http://";
     public static final String HTTPS = "https://";
 
@@ -15,10 +16,10 @@ public class HttpConstants {
      * 端口
      */
     public static final String PORT = "9000";   //28080
-    public static final String TPORT = "9000";
+
 
     /**
-     * 服务器地址
+     * 服务器地址接口
      */
     // TODO: 2017/7/1
     public static final String HTTP_IP_ADDS = "smcm.bitiot.com.cn";
