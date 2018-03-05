@@ -110,12 +110,11 @@ public class Api {
      * @param callBack
      */
     public static void editUserSex(int sex, ResponseCallBack<UserInfo> callBack) {
-
         TokenBean userBean = (TokenBean) ACache.get(BaseApplication.getInstance())
                 .getAsObject(HttpConstants.TOKENBEAN);
-        userBean.setSex(String.valueOf(sex));
-        userBean.setIdentityCard("440883199009212278");
-        userBean.setPhone("13710032112");
+        TokenBean edit = new TokenBean();
+        edit.setId(userBean.getId());
+        edit.setSex(String.valueOf(sex));
         ApiRequester.post(Url.V1_USER_EDIT, userBean, callBack);
     }
 
@@ -225,7 +224,8 @@ public class Api {
     public static void lanyaElevatorLists(ElevatorListRequestion doorMiLiRequestBean, ResponseCallBack<List<ElevatorListBean>> callBack) {
         ApiRequester.post(HttpConstants.lanya_elevator_lists, doorMiLiRequestBean, callBack);
     }
-    public static void rpass(PassFlag passFlag, ResponseCallBack<PassCode> callBack){
+
+    public static void rpass(PassFlag passFlag, ResponseCallBack<PassCode> callBack) {
         ApiRequester.post(Url.V1_USER_ADD_PASS_FLAG, passFlag, callBack);
     }
 }

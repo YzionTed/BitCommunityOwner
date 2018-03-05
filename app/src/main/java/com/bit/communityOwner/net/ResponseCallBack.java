@@ -110,13 +110,10 @@ public abstract class ResponseCallBack<T> {
             jo = je.getAsJsonObject();
             int stateCode = jo.getAsJsonPrimitive(FIELD_CODE).getAsInt();
             if (stateCode != 0) { // 检查服务端返回的状态码,如果不为0则返回错误
-//                if (stateCode == 10) {
-//                    EventBus.getDefault().post(new LogOut("登录失效", true), "clear");
-//                } else if (stateCode == 1048) {//绑定手机号
-//                    EventBus.getDefault().post("1048", "bindPhone");
-//                }
                 String stateDesc = jo.getAsJsonPrimitive(FIELD_MSG).getAsString();
-                throw new ServiceException(stateCode, stateDesc);
+                ServiceException serviceException = new ServiceException(stateCode, stateDesc);
+                ExceptionHandler.handle(serviceException);
+                throw serviceException;
             }
         } catch (RuntimeException e) {
             throw new ServiceException(e);
