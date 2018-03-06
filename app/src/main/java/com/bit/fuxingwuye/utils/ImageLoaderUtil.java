@@ -14,7 +14,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 /**
  * Created by Dell on 2017/7/5.
  */
-
+@Deprecated
 public class ImageLoaderUtil {
     public static void setImageWithCache(String imgUrl, ImageView imageView) {
         //显示图片的配置

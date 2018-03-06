@@ -25,6 +25,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
+import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.model.UserInfo;
 import com.bit.communityOwner.net.Api;
@@ -49,11 +51,10 @@ import com.bit.fuxingwuye.http.ProgressDialogHandler;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
 import com.bit.fuxingwuye.utils.FileStorage;
-import com.bit.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.utils.GlideUtil;
+import com.bit.fuxingwuye.utils.OssManager;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
-import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
-import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,7 +96,8 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
         mCache = ACache.get(this);
         userBean = (TokenBean) mCache.getAsObject(HttpConstants.TOKENBEAN);
         if (null != userBean.getHeadImg() && !TextUtils.isEmpty(userBean.getHeadImg())) {
-            ImageLoaderUtil.setImageWithCache(userBean.getHeadImg(), mBinding.ivHead);
+            String url = OssManager.getInstance().getUrl(userBean.getHeadImg());
+            GlideUtil.loadImage(mContext, url, mBinding.ivHead);
         }
         editUserBean.setId(userBean.getId());
         switch (getIntent().getIntExtra("style", 1)) {
