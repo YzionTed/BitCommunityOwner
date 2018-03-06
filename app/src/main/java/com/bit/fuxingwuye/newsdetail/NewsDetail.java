@@ -31,6 +31,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 
+/**
+ * 公告详情
+ */
 public class NewsDetail extends AppCompatActivity {
 
    Gson gson=new Gson();
@@ -58,7 +61,6 @@ public class NewsDetail extends AppCompatActivity {
             info.setText(bean.getBody());
             action_bar_title.setText(bean.getTitle());
             editorName.setText(bean.getEditorName());
-
         }
         Api.ossToken(new ResponseCallBack<OssToken>() {
             @Override

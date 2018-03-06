@@ -190,6 +190,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         Toast.makeText(this, msg + "", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param tokenBean
+     * 登录成功返回的数据
+     */
     @Override
     public void loginSuccess(TokenBean tokenBean) {
         mCache.put(HttpConstants.TOKENBEAN, tokenBean);

@@ -257,6 +257,11 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         Toast.makeText(getActivity().getApplicationContext(), msg + "", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param notices
+     * @param type
+     * 请求公告成功时返回的数据
+     */
     @Override
     public void showNotices(NoticeListBean notices, int type) {
         if(type==0){
@@ -285,6 +290,10 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         mCache.put(HttpConstants.USERID, userBean.getId());
     }
 
+    /**
+     * @param activity
+     * 判断是否有选择小区和权限
+     */
     private void HavaPermission(Class<?> activity) {
         if (mCache.getAsString(HttpConstants.COMMUNIYID) == null || "".equals(mCache.getAsString(HttpConstants.COMMUNIYID))) {
             Toast.makeText(getActivity(), "请选择小区", Toast.LENGTH_LONG).show();
@@ -468,6 +477,10 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         super.onDestroy();
     }
 
+    /**
+     * @param messageEvent
+     * 小区改变时进入这里进行更新公告
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setChosehousing(EvenBusMessage messageEvent) {
         if (messageEvent.getEvent().equals(HttpConstants.village)) {

@@ -143,6 +143,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
         Toast.makeText(this,msg+"",Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param tokenBean
+     * 注册成功返回的数据
+     */
     @Override
     public void registerSuccess(TokenBean tokenBean) {
 

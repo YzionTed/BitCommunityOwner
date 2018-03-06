@@ -87,6 +87,7 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
        // mBinding.tvMobile.setText(ACache.get(this).getAsString(HttpConstants.MOBILE));
     }
 
+
     @Override
     protected void setupHandlers() {
         mBinding.btnCommit.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +134,7 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
 
             }
         });
-        mBinding.area.addTextChangedListener(new TextWatcher() {
+        mBinding.area.addTextChangedListener(new TextWatcher() {//监听输入框只能输入小数点后两位
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -266,6 +267,10 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
             }
         });
     }
+
+    /**
+     * @param i==1表示业主，2表示家属3表示租客，根据这个给bean填对应数据
+     */
     private void initdate(int i){
         bean.setDataStatus(1);
         bean.setProprietorId(mCache.getAsString(HttpConstants.USERID));
@@ -289,7 +294,7 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
             Number num = Float.parseFloat(mBinding.area.getText().toString().trim()) * 100;
             int area=num.intValue();
 
-            bean.setArea(area);//写死了
+            bean.setArea(area);
             bean.setContract(mBinding.contract.getText().toString().trim());
             bean.setCheckInTime(mBinding.data.getText().toString().trim());
             bean.setTelPhone(mBinding.telphone.getText().toString().trim());
@@ -314,6 +319,10 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
         Toast.makeText(this,msg+"",Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param str
+     * 添加业主成功返回的数据
+     */
     @Override
     public void commitSuccess(HouseBean str) {
         mCache.put(HttpConstants.OWNER,AppConstants.HOUSE_OWNER);
@@ -330,7 +339,10 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
         }
 
     }
-
+    /**
+     * @param str
+     * 添加家属和租客成功返回的数据
+     */
     @Override
     public void getMemberSuccess(HouseBean str) {
         LogUtil.e(Tag.tag,"添加家属和租客成功");
@@ -344,7 +356,11 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
             finish();
         }
     }
-
+    /**
+     * 时间选择框
+     * @param
+     *
+     */
     private void showDatePicker(final TextView tv1) {
         final Calendar c = Calendar.getInstance();
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -361,11 +377,11 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
-            case 200:
+            case 200://选择地区返回
                 bean.setHouseholdAddress(data.getStringExtra("account"));
                 mBinding.tvAccount.setText(data.getStringExtra("account"));
                 break;
-            case 300:
+            case 300://选择房间返回
                 mBinding.houselist.setText(data.getStringExtra("room"));
                 break;
             default:
@@ -376,6 +392,11 @@ public class ReplenishDataActivity extends BaseActivity<RDPresenterImpl> impleme
         Date d = new Date(time);
         return sf.format(d);
     }
+
+    /**
+     * 提交业主申请
+     * @param replenishBean
+     */
      private void commint(ReplenishBean replenishBean){
          Api.Replanish(replenishBean, new ResponseCallBack<HouseBean>() {
              @Override

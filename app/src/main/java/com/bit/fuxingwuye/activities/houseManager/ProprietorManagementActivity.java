@@ -34,6 +34,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
+ * 住户管理
  * Created by 23 on 2018/2/28.
  */
 
@@ -98,6 +99,11 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+    /**
+     * @param messageEvent
+     * 刷新页面，当后面操作会影响这个页面，例如后面通过认证，或驳回
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Updata(EvenBusMessage messageEvent) {
         if(messageEvent.getEvent().equals(EvenBusConstants.ApplicationRecordActivity)){
@@ -189,6 +195,9 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
 
     }
 
+    /**
+     * 用户请求解绑时成功后刷新页面
+     */
     @Override
     public void showRelieveSuccess() {
         if(roomid!=null&&!"".equals(roomid)){
@@ -200,6 +209,9 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
 
     }
 
+    /**
+     * 网络出错
+     */
     @Override
     public void onNetEroor() {
         v.setVisibility(View.VISIBLE);
