@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *住房管理主页面
  *
  */
 public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implements HMContract.View {
@@ -111,6 +112,10 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
             }
         });
     }
+
+    /**
+     * 侧滑交互
+     */
 
     @Override
     protected void setupVM() {
@@ -289,6 +294,10 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
     }
 
 
+    /**
+     * 加载列表
+     * @param floorBeen
+     */
 
     @Override
     public void showFloors(List<RoomList> floorBeen) {
@@ -303,6 +312,9 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
        }
     }
 
+    /**
+     * 侧滑关闭操作
+     */
     @Override
     public void deleteSuccess() {
         if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null&&mCache.getAsString(HttpConstants.USERID)!=null){
@@ -315,6 +327,9 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
         LogUtil.e(Tag.tag,"删除成功");
     }
 
+    /**
+     * 网络异常
+     */
     @Override
     public void onError() {
         mBinding.onError.setVisibility(View.VISIBLE);
