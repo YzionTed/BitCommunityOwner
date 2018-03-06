@@ -34,7 +34,9 @@ import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.ImageLoaderUtil;
+import com.bit.fuxingwuye.utils.OssManager;
 import com.bit.fuxingwuye.views.XCRoundImageView;
 
 import net.lemonsoft.lemonhello.LemonHelloAction;
@@ -154,7 +156,9 @@ public class FragmentMine extends BaseFragment<FMinePresenter> implements FMineC
                 tv_mine_name.setText(tokenBean.getName());
             }
 
-            ImageLoaderUtil.setImageWithCache(tokenBean.getHeadImg(), iv_mine_avatar);
+            String url = OssManager.getInstance().getUrl(tokenBean.getHeadImg());
+            GlideUtil.loadImage(getContext(), url, iv_mine_avatar);
+//            ImageLoaderUtil.setImageWithCache(tokenBean.getHeadImg(), iv_mine_avatar);
         }
     }
 

@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide;
  */
 
 public class GlideUtil {
-    public static void loadImage(Context mContext, String path, ImageView mImageView){
+    public static void loadImage(Context mContext, String path, ImageView mImageView) {
         Glide.with(mContext).load(new CacheGlideUrl(path))
-                .placeholder(R.mipmap.image_default)
-                .error(R.mipmap.image_default)
+                .placeholder(R.mipmap.image_default_small)
+                .error(R.mipmap.image_default_small)
                 .into(mImageView);
     }
 }
