@@ -47,7 +47,7 @@ android {
 
     signingConfigs {  // 用的是和 电梯调试工具 同一个 keystore
         config {
-            storeFile file('C:/Users/Dell/Desktop/keystore.jks')
+            storeFile file('keystore.jks')
             storePassword 'bit1210'
             keyAlias 'bit'
             keyPassword 'bit1210'

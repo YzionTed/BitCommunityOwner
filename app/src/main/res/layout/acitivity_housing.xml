@@ -10,8 +10,30 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/action_bar"></include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/updata"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_dp_40"
+                android:layout_marginLeft="@dimen/common_dp_16"
+                android:layout_marginRight="@dimen/common_dp_16"
+                android:layout_marginTop="@dimen/common_dp_24"
+                android:background="@drawable/bg_btn_blue"
+                android:text="暂无数据，点击刷新"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_sp_18" />
+
+
+            activities
+        </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_room_list"
+
             android:layout_marginTop="@dimen/common_dp_10"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

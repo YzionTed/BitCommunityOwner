@@ -36,6 +36,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="府兴物业"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/common_dp_18" />
     </RelativeLayout>

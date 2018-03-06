@@ -16,6 +16,7 @@ import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.TipsActivity;
+import com.bit.fuxingwuye.activities.login.LoginActivity;
 import com.bit.fuxingwuye.base.BaseActivity;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.base.BaseHandler;
@@ -30,6 +31,8 @@ import com.bit.fuxingwuye.utils.CommonUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implements RegisterContract.View{
 
@@ -54,31 +57,43 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
 
     @Override
     protected void setupHandlers() {
+
         mBinding.btnGetMobileVericode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseApplication.getInstance().checkPhoneEnable(RegisterActivity.this);
-                if(CommonUtils.verifyPhone(mBinding.getBean().getMobilePhone())){
-                   // mPresenter.getCode(new CodeBean(mBinding.getBean().getMobilePhone(),"0",1));
-                    DialogUltis.showDialog(getSupportFragmentManager(),"获取验证码");
-                    Api.getVerfriyCode(mBinding.getBean().getMobilePhone(), 1, new ResponseCallBack<String>() {
-                        @Override
-                        public void onSuccess(String data) {
-                            DialogUltis.closeDialog();
-                            super.onSuccess(data);
-                        }
 
-                        @Override
-                        public void onFailure(ServiceException e) {
-                            DialogUltis.closeDialog();
-                            super.onFailure(e);
-                        }
-                    });
-                }else{
-                    Toast.makeText(RegisterActivity.this,"请检查手机号",Toast.LENGTH_SHORT).show();
+                if (CommonUtils.verifyPhone(mBinding.getBean().getMobilePhone())) {
+                    mPresenter.getCode(new CodeBean(mBinding.getBean().getMobilePhone(), "0", 1));
+                } else {
+                    Toast.makeText(RegisterActivity.this, "请检查手机号", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+//        mBinding.btnGetMobileVericode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                BaseApplication.getInstance().checkPhoneEnable(RegisterActivity.this);
+//                if(CommonUtils.verifyPhone(mBinding.getBean().getMobilePhone())){
+//                    mPresenter.getCode(new CodeBean(mBinding.getBean().getMobilePhone(),"0",1));
+//                    DialogUltis.showDialog(getSupportFragmentManager(),"获取验证码");
+//                    Api.getVerfriyCode(mBinding.getBean().getMobilePhone(), 1, new ResponseCallBack<String>() {
+//                        @Override
+//                        public void onSuccess(String data) {
+//                            DialogUltis.closeDialog();
+//                            super.onSuccess(data);
+//                        }
+//
+//                        @Override
+//                        public void onFailure(ServiceException e) {
+//                            DialogUltis.closeDialog();
+//                            super.onFailure(e);
+//                        }
+//                    });
+//                }else{
+//                    Toast.makeText(RegisterActivity.this,"请检查手机号",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
         mBinding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
