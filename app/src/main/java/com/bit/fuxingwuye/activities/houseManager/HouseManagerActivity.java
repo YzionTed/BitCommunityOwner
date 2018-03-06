@@ -37,6 +37,7 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.bit.fuxingwuye.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -68,9 +69,14 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void update(EvenBusMessage messageEvent) {
         if(messageEvent.getEvent().equals(EvenBusConstants.HouseManagerAcitvity)){
-            map.put("communityId",""+mCache.getAsString(HttpConstants.COMMUNIYID));
-            map.put("userId",""+mCache.getAsString(HttpConstants.USERID));
-            mPresenter.getFloors(map);
+            if(mCache.getAsString(HttpConstants.COMMUNIYID)==null||mCache.getAsString(HttpConstants.USERID)==null){
+                ToastUtil.showSingletonText(HouseManagerActivity.this,"缺少必要参数",300);
+            }else{
+                map.put("communityId",""+mCache.getAsString(HttpConstants.COMMUNIYID));
+                map.put("userId",""+mCache.getAsString(HttpConstants.USERID));
+                mPresenter.getFloors(map);
+            }
+
         }
     }
     @Override
@@ -110,7 +116,9 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
     protected void setupVM() {
        // mAppList = getPackageManager().getInstalledApplications(0);
         mCache = ACache.get(this);
-        userBean = (UserBean) mCache.getAsObject("user");
+        if(mCache.getAsObject("user")!=null){
+            userBean = (UserBean) mCache.getAsObject("user");
+        }
         /*commonBean = new CommonBean();
         commonBean.setUserId(mCache.getAsString(HttpConstants.USERID));*/
 
@@ -263,10 +271,15 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
             case AppConstants.RES_ADD_HOUSE:
+                if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null&&mCache.getAsString(HttpConstants.USERID)!=null){
+                    map.put("communityId",""+mCache.getAsString(HttpConstants.COMMUNIYID));
+                    map.put("userId",""+mCache.getAsString(HttpConstants.USERID));
+                    mPresenter.getFloors(map);
+                }else{
+                    ToastUtil.showSingletonText(HouseManagerActivity.this,"缺少必要参数",3000);
+                }
 
-                map.put("communityId",""+mCache.getAsString(HttpConstants.COMMUNIYID));
-                map.put("userId",""+mCache.getAsString(HttpConstants.USERID));
-                mPresenter.getFloors(map);
+
                 break;
         }
     }
@@ -292,7 +305,13 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
 
     @Override
     public void deleteSuccess() {
-        mPresenter.getFloors(map);
+        if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null&&mCache.getAsString(HttpConstants.USERID)!=null){
+            map.put("communityId",""+mCache.getAsString(HttpConstants.COMMUNIYID));
+            map.put("userId",""+mCache.getAsString(HttpConstants.USERID));
+            mPresenter.getFloors(map);
+        }else{
+            ToastUtil.showSingletonText(HouseManagerActivity.this,"缺少必要参数",3000);
+        }
         LogUtil.e(Tag.tag,"删除成功");
     }
 

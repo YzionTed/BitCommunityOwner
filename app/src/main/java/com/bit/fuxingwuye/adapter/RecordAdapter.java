@@ -53,6 +53,7 @@ public class RecordAdapter extends android.widget.BaseAdapter{
             new ViewHolder(convertView);
         }
         ViewHolder holder = (ViewHolder) convertView.getTag();
+
         if(datas.get(position).getRelationship()==1){
             holder.relationship.setText("业主");
         }else if(datas.get(position).getRelationship()==2){

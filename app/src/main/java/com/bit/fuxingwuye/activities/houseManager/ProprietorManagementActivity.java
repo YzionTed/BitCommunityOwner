@@ -68,14 +68,13 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
         if(bundle!=null){
             roomid=bundle.getString(HttpConstants.ROOMID);
             roomladdress=bundle.getString("roomladdress");
-
         }
         if(roomid!=null&&!"".equals(roomid)){
             mPresenter.GetProprietorData(roomid);
         }else{
             Toast.makeText(this,"请重新选择社区",Toast.LENGTH_LONG).show();
         }
-        room.setText(roomladdress);
+        room.setText(""+roomladdress);
         title.setText("住户管理");
         record.setVisibility(View.VISIBLE);
         btback.setOnClickListener(new View.OnClickListener() {
