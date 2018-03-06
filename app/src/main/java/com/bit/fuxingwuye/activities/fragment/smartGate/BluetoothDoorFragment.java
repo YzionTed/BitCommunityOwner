@@ -305,36 +305,42 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
     /**
      * 米粒的开门
      */
-    private void clickBlueMiLi(String destMac, String destPin, final int type) {
+    private void clickBlueMiLi(final String destMac, final String destPin, final int type) {
         Log.e(Tag, "打开米粒门 mac=" + destMac + " destPin=" + destPin);
 
-        //F0:C7:7F:9D:66:37
-        BluetoothApiAction.bluetoothActionUnlock(destMac, destPin, getActivity(), new IBluetoothApiInterface.IBluetoothApiCallback<Object>() {
-
+        getActivity().runOnUiThread(new Runnable() {
             @Override
-            public void onFailure(final String arg0) {
-                circle_progress.stop();
-                isNeedClickAble = true;
-                if (type == 2) {
-                    isNeedShake = true;
-                }
-                Log.e(Tag, "" + MiLiState.getCodeDesc(arg0));
-                getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                //F0:C7:7F:9D:66:37
+                BluetoothApiAction.bluetoothActionUnlock(destMac, destPin, getActivity(), new IBluetoothApiInterface.IBluetoothApiCallback<Object>() {
+
                     @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), "开门失败" + MiLiState.getCodeDesc(arg0), Toast.LENGTH_LONG).show();
+                    public void onFailure(final String arg0) {
+                        circle_progress.stop();
+                        isNeedClickAble = true;
+                        if (type == 2) {
+                            isNeedShake = true;
+                        }
+                        Log.e(Tag, "" + MiLiState.getCodeDesc(arg0));
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "开门失败" + MiLiState.getCodeDesc(arg0), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onSuccess(Object arg0) {
+                        if (type == 2) {
+                            isNeedShake = true;
+                        }
+                        succssAnimation();
                     }
                 });
             }
-
-            @Override
-            public void onSuccess(Object arg0) {
-                if (type == 2) {
-                    isNeedShake = true;
-                }
-                succssAnimation();
-            }
         });
+
     }
 
 
