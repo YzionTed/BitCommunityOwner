@@ -45,10 +45,11 @@ public class ViaAdapter extends RecyclerView.Adapter<ViaAdapter.ViewHolder> impl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Date date1 = new Date(datas.get(position).getCreateAt());
+        Date date1 = new Date(datas.get(position).getBeginAt());
         Date date2 = new Date(datas.get(position).getEndAt());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         holder.tv_via_time.setText(sdf.format(date1)+" ~ "+sdf.format(date2));
+        holder.tv_via_name.setText(datas.get(position).getItems()+"");
         if (datas.get(position).getAuditStatus()==-1){
             holder.tv_status.setText("已过期");
             holder.tv_status.setTextColor(Color.RED);

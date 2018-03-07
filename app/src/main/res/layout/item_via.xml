@@ -37,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/common_dp_12"
                 android:textColor="@color/black"
-                android:text="临时通行"
                 android:textSize="@dimen/common_sp_18" />
 
             <TextView
