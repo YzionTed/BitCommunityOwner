@@ -65,7 +65,7 @@ public class ViaActivity extends BaseActivity<ViaPresenterImpl> implements ViaCo
         mBinding.toolbar.actionBarTitle.setText("放行条");
         mBinding.toolbar.btnBack.setVisibility(View.VISIBLE);
         mBinding.toolbar.btnBack.setOnClickListener(this);
-        mBinding.toolbar.ivRightActionBar.setVisibility(View.GONE);
+        mBinding.toolbar.ivRightActionBar.setVisibility(View.VISIBLE);
         mBinding.toolbar.ivRightActionBar.setImageResource(R.mipmap.icon_viahistory);
         mBinding.toolbar.ivRightActionBar.setOnClickListener(this);
         mBinding.ivStarttime.setOnClickListener(this);

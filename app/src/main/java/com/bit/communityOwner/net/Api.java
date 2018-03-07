@@ -18,6 +18,7 @@ import com.bit.fuxingwuye.bean.FeedbackBean;
 import com.bit.fuxingwuye.bean.GetFeedbackBean;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.HouseBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
@@ -230,5 +231,11 @@ public class Api {
 
     public static void rpass(PassFlag passFlag, ResponseCallBack<PassCode> callBack) {
         ApiRequester.post(Url.V1_USER_ADD_PASS_FLAG, passFlag, callBack);
+    }
+
+
+    public static void  getPassCodeList(PropertyBean bean, ResponseCallBack<String> callBack){
+        ApiRequester.post(Url.V1_PASSCODE_LIST,bean,callBack);
+
     }
 }

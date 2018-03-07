@@ -35,6 +35,7 @@ import com.bit.fuxingwuye.bean.ParkBean;
 import com.bit.fuxingwuye.bean.PayListBean;
 import com.bit.fuxingwuye.bean.PayReqBean;
 import com.bit.fuxingwuye.bean.PlotInfoBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.RegisterBean;
 import com.bit.fuxingwuye.bean.RepairBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
@@ -237,7 +238,7 @@ public interface NetworkApi {
     Observable<BaseEntity<String>> addVia(@Body ViaBean viaBean);
 
     @POST(HttpConstants.GET_VIA_LIST)
-    Observable<BaseEntity<List<ViaBean>>> getViaList(@Body CommonBean commonBean);
+    Observable<BaseEntity<List<ViaBean>>> getViaList(@Body PropertyBean commonBean);
 
     @POST(HttpConstants.GET_VIA_CONTENT)
     Observable<BaseEntity<ViaBean>> getViaContent(@Body CommonBean commonBean);

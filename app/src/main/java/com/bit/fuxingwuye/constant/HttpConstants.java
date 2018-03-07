@@ -200,7 +200,7 @@ public class HttpConstants {
     public static final String SET_JPUSH_ALIAS = "/ktwlw_rest/wplot/app/common/setJpushAlias";      //设置极光别名
 
     public static final String ADD_VIA = "/ktwlw_rest/wplot/app/via/add";      //新增放行条
-    public static final String GET_VIA_LIST = "/ktwlw_rest/wplot/app/via/getByUserId";      //根据用户ID获取放行条列表
+    public static final String GET_VIA_LIST = "v1/property/rpass/page";      //根据用户ID获取放行条列表
     public static final String GET_VIA_CONTENT = "/ktwlw_rest/wplot/app/via/getById";      //获取放行条详细信息
     public static final String DELETE_VIA = "/ktwlw_rest/wplot/app/via/delete";      //删除放行条
 

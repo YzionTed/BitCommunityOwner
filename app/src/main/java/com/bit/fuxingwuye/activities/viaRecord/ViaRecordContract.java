@@ -3,6 +3,7 @@ package com.bit.fuxingwuye.activities.viaRecord;
 import com.bit.fuxingwuye.base.BasePresenter;
 import com.bit.fuxingwuye.base.BaseView;
 import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ViaBean;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public class ViaRecordContract {
     }
 
     public interface Presenter extends BasePresenter<View>{
-        void getVias(CommonBean commonBean,int type);
+        void getVias(PropertyBean commonBean, int type);
     }
 }
