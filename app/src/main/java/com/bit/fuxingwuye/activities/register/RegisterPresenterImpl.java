@@ -35,6 +35,10 @@ public class RegisterPresenterImpl extends BaseRxPresenter<RegisterContract.View
         this.context = context;
     }
 
+    /**
+     * 获取验证码接口
+     * @param codeBean
+     */
     @Override
     public void getCode(CodeBean codeBean) {
         Observable observable = RetrofitManager.getInstace()
@@ -63,6 +67,10 @@ public class RegisterPresenterImpl extends BaseRxPresenter<RegisterContract.View
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 注册接口
+     * @param registerBean
+     */
     @Override
     public void register(RegisterBean registerBean) {
         Observable observable = RetrofitManager.getInstace()
