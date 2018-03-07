@@ -9,7 +9,7 @@ package com.bit.fuxingwuye.constant;
 public class HttpConstants {
 
 
-    public static final String HTTP = "https://";
+    public static final String HTTP = "http://";
     public static final String HTTPS = "https://";
 
     /**
@@ -23,7 +23,7 @@ public class HttpConstants {
      */
     // TODO: 2017/7/1
     public static final String HTTP_IP_ADDS = "api.smcm.bitiot.com.cn";
-    public static final String HTTP_IP_ADDS_TEST = "39.106.249.8:";
+    public static final String HTTP_IP_ADDS_TEST = "apismcm.test.bitiot.com.cn";
 
     /********************************************************************************
      *                                    ERROR CODE                               **

@@ -17,7 +17,7 @@ public class HttpProvider {
      */
     public static String getHttpIpAdds() {
         if (LogUtil.D) {
-            return HttpConstants.HTTP + HttpConstants.HTTP_IP_ADDS_TEST + HttpConstants.PORT;
+            return HttpConstants.HTTP + HttpConstants.HTTP_IP_ADDS_TEST ;
         } else {
             return HttpConstants.HTTPS + HttpConstants.HTTP_IP_ADDS;
         }
