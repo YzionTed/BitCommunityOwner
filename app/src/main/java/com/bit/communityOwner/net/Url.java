@@ -117,4 +117,11 @@ public class Url {
      */
     public static final String V1_USER_ADD_PASS_FLAG = "/v1/property/rpass/add";
 
+    /**
+     * 获取放行条列表
+     */
+    public static final String V1_PASSCODE_LIST = "/v1/property/rpass/page";
+
+
+
 }

@@ -6,14 +6,20 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bit.communityOwner.model.PassCode;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.adapter.ViaAdapter;
 import com.bit.fuxingwuye.base.BaseActivity;
 import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ViaBean;
 import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
@@ -32,7 +38,7 @@ import java.util.List;
 public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> implements ViaRecordContract.View {
 
     private ActivityViaRecordBinding mBinding;
-    private CommonBean commonBean = new CommonBean();
+    private PropertyBean commonBean = new PropertyBean();
     private List<ViaBean> lists = new ArrayList<>();
     private int page = 1;
     private ViaAdapter mAdapter;
@@ -67,6 +73,8 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     @Override
     protected void setupVM() {
         commonBean.setUserId(ACache.get(this).getAsString(HttpConstants.USERID));
+        commonBean.setCommunityId(ACache.get(this).getAsString(HttpConstants.COMMUNIYID));
+        commonBean.setSize(10);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mBinding.xrecyclerview.setLayoutManager(linearLayoutManager);
@@ -78,15 +86,38 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             @Override
             public void onRefresh() {
                 page = 1;
-                commonBean.setCurrentPage(page+"");
-                mPresenter.getVias(commonBean,0);
+                commonBean.setPage(page);
+
+                Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        super.onSuccess(data);
+                        Log.e("data","------data:"+data);
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                    }
+                });
             }
 
             @Override
             public void onLoadMore() {
                 page++;
-                commonBean.setCurrentPage(page+"");
-                mPresenter.getVias(commonBean,1);
+                commonBean.setPage(page);
+                Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        super.onSuccess(data);
+                        Log.e("data","------data:"+data);
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                    }
+                });
             }
         });
 
@@ -105,6 +136,23 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             viaBean.setViaStatus(1);
             showQR(viaBean);
         }
+
+        page = 1;
+        commonBean.setPage(page);
+
+        Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String data) {
+                super.onSuccess(data);
+                Log.e("data","---111---data:"+data);
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+                Log.e("data","---222---ee:"+e);
+            }
+        });
 
     }
 

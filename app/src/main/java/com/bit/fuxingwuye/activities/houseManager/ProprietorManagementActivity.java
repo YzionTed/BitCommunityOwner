@@ -133,8 +133,10 @@ public class ProprietorManagementActivity extends BaseActivity<ProprietorManagem
 
     @Override
     public void showProprietorData(ProprietorBean bean) {
-        adapter=new ProprietorManagerAdapter(this,bean.getRecords());
-        listView.setAdapter(adapter);
+        if(bean != null && !bean.getRecords().isEmpty()){
+            adapter=new ProprietorManagerAdapter(this,bean.getRecords());
+            listView.setAdapter(adapter);
+        }
         creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {

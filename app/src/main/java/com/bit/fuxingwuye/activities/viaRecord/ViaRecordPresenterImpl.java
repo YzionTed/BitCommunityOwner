@@ -5,6 +5,7 @@ import android.content.Context;
 import com.bit.fuxingwuye.base.BaseEntity;
 import com.bit.fuxingwuye.base.BaseRxPresenter;
 import com.bit.fuxingwuye.bean.CommonBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ViaBean;
 import com.bit.fuxingwuye.constant.NetworkApi;
 import com.bit.fuxingwuye.http.HttpResultFunc;
@@ -35,7 +36,7 @@ public class ViaRecordPresenterImpl extends BaseRxPresenter<ViaRecordContract.Vi
     }
 
     @Override
-    public void getVias(CommonBean commonBean, final int type) {
+    public void getVias(PropertyBean commonBean, final int type) {
         Observable observable = RetrofitManager.getInstace()
                 .create(NetworkApi.class).getViaList(commonBean)
                 .map(new HttpResultFunc<List<ViaBean>>());
