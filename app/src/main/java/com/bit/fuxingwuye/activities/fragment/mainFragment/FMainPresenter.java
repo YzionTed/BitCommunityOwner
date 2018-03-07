@@ -12,7 +12,9 @@ import com.bit.fuxingwuye.http.ProgressSubscriber;
 import com.bit.fuxingwuye.http.RetrofitManager;
 import com.bit.fuxingwuye.http.SubscriberOnNextListenter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,8 +38,12 @@ public class FMainPresenter extends BaseRxPresenter<FMainContract.View> implemen
 
     @Override
     public void getNotices(String communityId,int page, final int type) {
+        Map<String,Object> map=new HashMap();
+        map.put("communityId",communityId);
+        map.put("page",1000);
+        map.put("size",10);
         Observable observable = RetrofitManager.getInstace()
-                .create(NetworkApi.class).getNotices(communityId,page);
+                .create(NetworkApi.class).getNotices(map);
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<NoticeListBean>>() {
             @Override
             public void next(BaseEntity<NoticeListBean> o) {

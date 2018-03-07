@@ -105,7 +105,11 @@ public class Url {
     /**
      * 公告列表
      */
-    public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/{communityId}/page";
+  //  public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/{communityId}/page";
+    /**
+     * 公告列表
+     */
+    public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/page";
 
 
     /**

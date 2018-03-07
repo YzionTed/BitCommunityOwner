@@ -111,8 +111,10 @@ public interface NetworkApi {
     @POST(HttpConstants.GET_FLOORS)
 
     Observable<BaseEntity<List<RoomList>>> getFloors(@Body Map<String,String> f);
-    @GET(Url.V1_PROPERTY_NOTICE_PAGE)
-    Observable<BaseEntity<NoticeListBean>> getNotices(@Path("communityId") String communityId,@Query("page") int page);
+
+    @POST(Url.V1_PROPERTY_NOTICE_PAGE)
+    Observable<BaseEntity<NoticeListBean>> getNotices(@Body Map<String,Object> f);
+
     @POST(HttpConstants.GET_NOTICE)
     Observable<BaseEntity<NoticeBean>> getNotice(@Body CommonBean commonBean);
     @POST(HttpConstants.CHECK_VERSION)
