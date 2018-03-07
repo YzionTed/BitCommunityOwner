@@ -9,8 +9,8 @@ package com.bit.fuxingwuye.constant;
 public class HttpConstants {
 
 
-    public static final String HTTP = "https://";
-    public static final String HTTPS = "https://";
+    public static final String HTTP = "http://";
+    public static final String HTTPS = "http://";
 
     /**
      * 端口
@@ -22,7 +22,7 @@ public class HttpConstants {
      * 服务器地址接口
      */
     // TODO: 2017/7/1
-    public static final String HTTP_IP_ADDS = "api.smcm.bitiot.com.cn";
+    public static final String HTTP_IP_ADDS = "apismcm.test.bitiot.com.cn";
     public static final String HTTP_IP_ADDS_TEST = "39.106.249.8:";
 
     /********************************************************************************

@@ -22,6 +22,7 @@ import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
+import com.bit.fuxingwuye.bean.request.PassCodeListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
@@ -234,7 +235,7 @@ public class Api {
     }
 
 
-    public static void  getPassCodeList(PropertyBean bean, ResponseCallBack<String> callBack){
+    public static void  getPassCodeList(PropertyBean bean, ResponseCallBack<PassCodeListBean> callBack){
         ApiRequester.post(Url.V1_PASSCODE_LIST,bean,callBack);
 
     }

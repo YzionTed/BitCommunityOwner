@@ -21,6 +21,8 @@ import com.bit.fuxingwuye.base.BaseActivity;
 import com.bit.fuxingwuye.bean.CommonBean;
 import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.bean.request.PassCodeBean;
+import com.bit.fuxingwuye.bean.request.PassCodeListBean;
 import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityViaRecordBinding;
@@ -39,8 +41,9 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
 
     private ActivityViaRecordBinding mBinding;
     private PropertyBean commonBean = new PropertyBean();
-    private List<ViaBean> lists = new ArrayList<>();
+    private List<PassCodeBean> lists = new ArrayList<>();
     private int page = 1;
+    private int mTotalPage = 0;
     private ViaAdapter mAdapter;
     private int type = 0;//0 列表，1 二维码,2 新增放行条
 
@@ -74,25 +77,56 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     protected void setupVM() {
         commonBean.setUserId(ACache.get(this).getAsString(HttpConstants.USERID));
         commonBean.setCommunityId(ACache.get(this).getAsString(HttpConstants.COMMUNIYID));
-        commonBean.setSize(10);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mBinding.xrecyclerview.setLayoutManager(linearLayoutManager);
         mBinding.xrecyclerview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mBinding.xrecyclerview.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         mBinding.xrecyclerview.setArrowImageView(R.mipmap.iconfont_downgrey);
+        mAdapter = new ViaAdapter(lists);
+        mBinding.xrecyclerview.setAdapter(mAdapter);
+
+
+        commonBean.setPage(page);
+        commonBean.setSize(5);
+        Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
+            @Override
+            public void onSuccess(PassCodeListBean data) {
+                super.onSuccess(data);
+                mTotalPage = data.getTotalPage();
+                Log.e("data","--top---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage());
+                lists.clear();
+                for (PassCodeBean viaBean:  data.getRecords()){
+                    lists.add(viaBean);
+                }
+                mAdapter.notifyDataSetChanged();
+                mBinding.xrecyclerview.refreshComplete();
+
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+            }
+        });
 
         mBinding.xrecyclerview.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 page = 1;
                 commonBean.setPage(page);
-
-                Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
+                Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
                     @Override
-                    public void onSuccess(String data) {
+                    public void onSuccess(PassCodeListBean data) {
                         super.onSuccess(data);
-                        Log.e("data","------data:"+data);
+                        Log.e("data","--onRefresh---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage()+"  "+data.getRecords().size());
+                        lists.clear();
+                        for (PassCodeBean viaBean:  data.getRecords()){
+                            lists.add(viaBean);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                        mBinding.xrecyclerview.refreshComplete();
+
                     }
 
                     @Override
@@ -104,26 +138,36 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
 
             @Override
             public void onLoadMore() {
-                page++;
-                commonBean.setPage(page);
-                Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
-                    @Override
-                    public void onSuccess(String data) {
-                        super.onSuccess(data);
-                        Log.e("data","------data:"+data);
-                    }
+                if(page <= mTotalPage){
+                    page = page+1;
+                    commonBean.setSize(5);
+                    commonBean.setPage(2);
+                    Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
+                        @Override
+                        public void onSuccess(PassCodeListBean data) {
+                            super.onSuccess(data);
+                            Log.e("data","--onLoadMore---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage()+"  "+data.getRecords().size());
+                            List<PassCodeBean>  mlist =  data.getRecords();
+                            for (PassCodeBean viaBean: mlist){
+                                lists.add(viaBean);
+                            }
+                            mAdapter.notifyDataSetChanged();
+                            mBinding.xrecyclerview.refreshComplete();
 
-                    @Override
-                    public void onFailure(ServiceException e) {
-                        super.onFailure(e);
-                    }
-                });
+                        }
+
+                        @Override
+                        public void onFailure(ServiceException e) {
+                            super.onFailure(e);
+                        }
+                    });
+                }else{
+                    toastMsg("已经到底了!");
+                }
             }
         });
 
-
-
-        if (type==AppConstants.VIA_TYPE_LIST||type==AppConstants.VIA_TYPE_QR){
+/*        if (type==AppConstants.VIA_TYPE_LIST||type==AppConstants.VIA_TYPE_QR){
             mAdapter = new ViaAdapter(lists);
             mBinding.xrecyclerview.setAdapter(mAdapter);
             mBinding.xrecyclerview.refresh();
@@ -135,24 +179,7 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             viaBean.setUrl(getIntent().getStringExtra("url"));
             viaBean.setViaStatus(1);
             showQR(viaBean);
-        }
-
-        page = 1;
-        commonBean.setPage(page);
-
-        Api.getPassCodeList(commonBean, new ResponseCallBack<String>() {
-            @Override
-            public void onSuccess(String data) {
-                super.onSuccess(data);
-                Log.e("data","---111---data:"+data);
-            }
-
-            @Override
-            public void onFailure(ServiceException e) {
-                super.onFailure(e);
-                Log.e("data","---222---ee:"+e);
-            }
-        });
+        }*/
 
     }
 
@@ -167,16 +194,16 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     }
 
     @Override
-    public void showList(List<ViaBean> viaBeanList, int type) {
+    public void showList(List<PassCodeBean> viaBeanList, int type) {
         if(type==0){
             lists.clear();
-            for (ViaBean viaBean:viaBeanList){
+            for (PassCodeBean viaBean:viaBeanList){
                 lists.add(viaBean);
             }
             mAdapter.notifyDataSetChanged();
             mBinding.xrecyclerview.refreshComplete();
         }else if(type == 1){
-            for (ViaBean viaBean:viaBeanList){
+            for (PassCodeBean viaBean:viaBeanList){
                 lists.add(viaBean);
             }
             mBinding.xrecyclerview.loadMoreComplete();
@@ -206,26 +233,29 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
         });
     }
 
-    private void showQR(ViaBean viaBean) {
+    private void showQR(PassCodeBean viaBean) {
 
         String url = HttpProvider.getHttpIpAdds()+ viaBean.getUrl();
         final Bitmap bitmap = ScannerUtils.createQRImage(url,800,800, BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
         mBinding.xrecyclerview.setVisibility(View.GONE);
         mBinding.llShow.setVisibility(View.VISIBLE);
-        if (viaBean.getViaStatus()== -1){
+        if (viaBean.getAuditStatus()== -1){
             mBinding.btnCommit.setVisibility(View.GONE);
-        }else if(viaBean.getViaStatus()== 1){
+        }else if(viaBean.getAuditStatus()== 1){
             mBinding.btnCommit.setVisibility(View.VISIBLE);
         }
         mBinding.ivCode.setImageBitmap(bitmap);
         if (type==AppConstants.VIA_TYPE_LIST||type==AppConstants.VIA_TYPE_QR){
-            Date date1 = new Date(Long.parseLong(viaBean.getBeginTime()));
-            Date date2 = new Date(Long.parseLong(viaBean.getEndTime()));
+            Date date1 = new Date(viaBean.getCreateAt());
+            Date date2 = new Date(viaBean.getEndAt());
             SimpleDateFormat sdf = new SimpleDateFormat("MMdd HH:mm");
             mBinding.tvTime.setText("有效期："+sdf.format(date1)+"-"+sdf.format(date2));
             type = AppConstants.VIA_TYPE_QR;
         }else if(type==AppConstants.VIA_TYPE_ADD){
-            mBinding.tvTime.setText("有效期："+viaBean.getBeginTime()+"-"+viaBean.getEndTime());
+            Date date1 = new Date(viaBean.getCreateAt());
+            Date date2 = new Date(viaBean.getEndAt());
+            SimpleDateFormat sdf = new SimpleDateFormat("MMdd HH:mm");
+            mBinding.tvTime.setText("有效期："+sdf.format(date1)+"-"+sdf.format(date2));
             type = AppConstants.VIA_TYPE_ADD;
         }
 

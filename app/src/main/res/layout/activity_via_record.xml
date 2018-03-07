@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/common_dp_24"
             android:orientation="vertical"
             android:gravity="center"
-            android:visibility="visible">
+            android:visibility="gone">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common_dp_200"
@@ -44,8 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/common_dp_6"
-            android:visibility="gone"/>
+            android:paddingBottom="@dimen/common_dp_6"/>
 
         <LinearLayout
             android:id="@+id/ll_show"
