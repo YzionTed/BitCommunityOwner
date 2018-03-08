@@ -128,6 +128,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     String topName;
     NoticeListBean notice;
     NoticeReqBean mNoticeReq = new NoticeReqBean();
+    List<NoticeBean> Alldata =new ArrayList<>();
     private int size = 5;
     private int mTotalPage;
     /**
@@ -232,14 +233,11 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     @Override
                     public void onSuccess(DataPagesBean<NoticeBean> data) {
                         super.onSuccess(data);
-                        List<NoticeBean> datas =data.getRecords();
-                        Log.e("datas","----datas size:"+datas.size());
+                        Alldata.clear();
+                        Alldata.addAll(data.getRecords());
 
-                        for(int i=0;i<datas.size();i++){
-                            NoticeBean bean =  datas.get(i);
-                            String body =  bean.getBody();
-                            Log.e("body","----body:"+body);
-                        }
+                        showNotices(Alldata);
+
 
 
                     }
@@ -260,13 +258,11 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                         public void onSuccess(DataPagesBean<NoticeBean> data) {
                             super.onSuccess(data);
                             List<NoticeBean> datas =data.getRecords();
-                            Log.e("datas","----datas size:"+datas.size());
-
-                            for(int i=0;i<datas.size();i++){
-                                NoticeBean bean =  datas.get(i);
-                                String body =  bean.getBody();
-                                Log.e("body","----body:"+body);
+                            if(datas!=null&&!datas.isEmpty()){
+                                Alldata.addAll(data.getRecords());
                             }
+                            showNotices(Alldata);
+
 
 
                         }
@@ -288,11 +284,8 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     List<NoticeBean> datas =data.getRecords();
                     Log.e("datas","----datas size:"+datas.size());
                     mTotalPage = data.getTotalPage();
-                    for(int i=0;i<datas.size();i++){
-                        NoticeBean bean =  datas.get(i);
-                        String body =  bean.getBody();
-                        Log.e("body","----body:"+body);
-                    }
+
+                    showNotices(datas);
 
 
                 }
@@ -300,6 +293,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 @Override
                 public void onFailure(ServiceException e) {
                     super.onFailure(e);
+                    Log.e("datas","----datas eeee:"+e);
                 }
             });
 
@@ -318,21 +312,20 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     }
 
     /**
-     * @param notices
-     * @param type
-     * 请求公告成功时返回的数据
+     * @param
+     * @param请求公告成功时返回的数据
+     *
      */
-    @Override
-    public void showNotices(NoticeListBean notices, int type) {
-        if(type==0){
-            notice=notices;
-            mAdapter = new ServicesAdapter(notices.getRecords());
-            fm_xrecyclerview.setAdapter(mAdapter);
-        }else if(type==1){
 
-            mAdapter.LoadMore(notices.getRecords());
+    public void showNotices(List<NoticeBean> datas) {
+
+            mAdapter = new ServicesAdapter(datas);
+            fm_xrecyclerview.setAdapter(mAdapter);
+
+
+            mAdapter.LoadMore(datas);
             fm_xrecyclerview.loadMoreComplete();
-        }
+
 
         mAdapter.setOnItemClickListener(new ServicesAdapter.OnItemClickListener() {
             @Override
@@ -547,7 +540,26 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         if (messageEvent.getEvent().equals(HttpConstants.village)) {
             chosehousing.setText(messageEvent.getValuse());
             if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null){
-                mPresenter.getNotices(mCache.getAsString(HttpConstants.COMMUNIYID),1,0);
+                page = 1;
+                Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+                    @Override
+                    public void onSuccess(DataPagesBean<NoticeBean> data) {
+                        super.onSuccess(data);
+                        List<NoticeBean> datas =data.getRecords();
+                        Alldata.clear();
+                        if(datas!=null&&!datas.isEmpty()){
+                            showNotices(datas);
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                    }
+                });
             }
             getActivity().finish();
             startActivity(new Intent(getContext(), MainTabActivity.class));
