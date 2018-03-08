@@ -5,6 +5,7 @@ import com.bit.fuxingwuye.base.BaseView;
 import com.bit.fuxingwuye.bean.CommonBean;
 import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.bean.request.PassCodeBean;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class ViaRecordContract {
 
     public interface View extends BaseView{
-        void showList(List<ViaBean> viaBeanList,int type);
+        void showList(List<PassCodeBean> viaBeanList, int type);
     }
 
     public interface Presenter extends BasePresenter<View>{

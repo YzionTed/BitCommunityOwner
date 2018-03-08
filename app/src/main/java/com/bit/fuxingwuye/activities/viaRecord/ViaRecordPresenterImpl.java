@@ -42,7 +42,7 @@ public class ViaRecordPresenterImpl extends BaseRxPresenter<ViaRecordContract.Vi
                 .map(new HttpResultFunc<List<ViaBean>>());
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<List<ViaBean>>>() {
             @Override
-            public void next(BaseEntity<List<ViaBean>> o) {
+            public void next(BaseEntity<List<ViaBean>> o) {/*
                 if(o.isSuccess()){
                     if (null==o.getData()){
                         mView.showList(null,4);
@@ -53,7 +53,7 @@ public class ViaRecordPresenterImpl extends BaseRxPresenter<ViaRecordContract.Vi
                     }
                 }else{
                     mView.showList(null,4);
-                }
+                }*/
             }
 
             @Override

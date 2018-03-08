@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.bean.PayListBean;
 import com.bit.fuxingwuye.bean.ViaBean;
+import com.bit.fuxingwuye.bean.request.PassCodeBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,9 +24,9 @@ import java.util.List;
 
 public class ViaAdapter extends RecyclerView.Adapter<ViaAdapter.ViewHolder> implements View.OnClickListener {
 
-    private List<ViaBean> datas;
+    private List<PassCodeBean> datas;
 
-    public ViaAdapter(List<ViaBean> datas) {
+    public ViaAdapter(List<PassCodeBean> datas) {
         this.datas = datas;
     }
     private OnItemClickListener mOnItemClickListener = null;
@@ -44,14 +45,15 @@ public class ViaAdapter extends RecyclerView.Adapter<ViaAdapter.ViewHolder> impl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Date date1 = new Date(Long.parseLong(datas.get(position).getBeginTime()));
-        Date date2 = new Date(Long.parseLong(datas.get(position).getEndTime()));
-        SimpleDateFormat sdf = new SimpleDateFormat("MMdd HH:mm");
-        holder.tv_via_time.setText(sdf.format(date1)+"-"+sdf.format(date2));
-        if (datas.get(position).getViaStatus()==-1){
-            holder.tv_status.setText("已过期");
+        Date date1 = new Date(datas.get(position).getBeginAt());
+        Date date2 = new Date(datas.get(position).getEndAt());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        holder.tv_via_time.setText(sdf.format(date1)+" ~ "+sdf.format(date2));
+        holder.tv_via_name.setText(datas.get(position).getItems()+"");
+        if (datas.get(position).getAuditStatus() == -1 || datas.get(position).getAuditStatus() == 1){
+            holder.tv_status.setText("已使用");
             holder.tv_status.setTextColor(Color.RED);
-        }if (datas.get(position).getViaStatus()==1){
+        }if (datas.get(position).getAuditStatus()==0){
             holder.tv_status.setText("可使用");
             holder.tv_status.setTextColor(Color.BLUE);
         }
