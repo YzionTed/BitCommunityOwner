@@ -27,7 +27,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
- * 住户申请详情
+ * 住户申请详情审核
  * Created by 23 on 2018/3/1.
  */
 
