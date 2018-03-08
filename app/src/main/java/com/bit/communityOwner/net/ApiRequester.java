@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.bit.communityOwner.util.AppUtil;
 import com.bit.communityOwner.util.LogUtil;
-import com.bit.fuxingwuye.BuildConfig;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
@@ -23,21 +22,12 @@ import java.net.ConnectException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.Map;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -62,12 +52,11 @@ public class ApiRequester {
             return;
         }
 
-        if (!url.toLowerCase().startsWith("http")) {
-            if (BuildConfig.BUILD_TYPE.equals("release")) {
-                url = Url.BASE_URL + url;
-            } else {
-                url = Url.BASE_TEST_URL + url;
-            }
+        if (HttpConstants.isFormalEnvironment) {
+            url =   HttpConstants.Base_Url_Formal+url;
+            return ;
+        } else {
+            url = HttpConstants.Base_Url_Test+url;
         }
 
         RequestParams requestParams = createRequestParams(url);
@@ -104,6 +93,7 @@ public class ApiRequester {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.d(TAG, "response:" + ex.getMessage());
                 if (ex instanceof ServiceException) {
                     //checknetwork();
                     callBack.onFailure((ServiceException) ex);
@@ -129,38 +119,38 @@ public class ApiRequester {
         });
     }
 
-    private static SSLSocketFactory getSocketFactory() {
-        try {
-            SSLContext sslContext = SSLContext.getInstance("TSL");
-            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
-                }
-
-                @Override
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[]{};
-                }
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] arg0, String arg1)
-                        throws CertificateException {
-
-                }
-
-            }}, new SecureRandom());
-            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-            return sslSocketFactory;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }
+//    private static SSLSocketFactory getSocketFactory() {
+//        try {
+//            SSLContext sslContext = SSLContext.getInstance("TSL");
+//            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+//
+//                @Override
+//                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//
+//                }
+//
+//                @Override
+//                public X509Certificate[] getAcceptedIssuers() {
+//                    return new X509Certificate[]{};
+//                }
+//
+//                @Override
+//                public void checkServerTrusted(X509Certificate[] arg0, String arg1)
+//                        throws CertificateException {
+//
+//                }
+//
+//            }}, new SecureRandom());
+//            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+//            return sslSocketFactory;
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (KeyManagementException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//
+//    }
 
     public static String createUrl(@NonNull String url, Object... o) {
         String realUrl = String.format(url, o);
@@ -198,18 +188,25 @@ public class ApiRequester {
         post(HttpMethod.POST, url, params, callBack);
     }
 
-    private static <T, K> void post(@NonNull HttpMethod method, @NonNull String url, @NonNull T paramsBean,
+    private static <T, K> void post(@NonNull HttpMethod method, @NonNull String url, T paramsBean,
                                     @NonNull final ResponseCallBack<K> callBack) {
         if (TextUtils.isEmpty(url)) {
             return;
         }
 
-        if (!url.toLowerCase().startsWith("http")) {
-            if (BuildConfig.BUILD_TYPE.equals("release")) {
-                url = Url.BASE_URL + url;
-            } else {
-                url = Url.BASE_TEST_URL + url;
-            }
+//        if (!url.toLowerCase().startsWith("http")) {
+//            if (BuildConfig.BUILD_TYPE.equals("release")) {
+//                url = Url.BASE_URL + url;
+//            } else {
+//                url = Url.BASE_TEST_URL + url;
+//            }
+//        }
+
+        if (HttpConstants.isFormalEnvironment) {
+            url =  HttpConstants.Base_Url_Formal+url;
+            return ;
+        } else {
+            url =  HttpConstants.Base_Url_Test+url;
         }
 
         RequestParams requestParams = createRequestParams(url);

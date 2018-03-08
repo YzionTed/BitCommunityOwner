@@ -56,6 +56,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
     private TextView tv_name;
     private boolean isNeedShake = true;
     ElevatorListBean doorJinBoBean;
+    ElevatorListBean haiKangdoorJinBoBean;
     private String village;
     private int villageType;//1:天津会展 2:和谐景苑
     private boolean connected = false;
@@ -68,6 +69,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     protected void initInject() {
+
         mCache = ACache.get(getActivity());
 
         village = mCache.getAsString(HttpConstants.village);
@@ -75,13 +77,6 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         BlueToothUtil.getInstance().setContext(getActivity());
         BlueToothUtil.getInstance().setBTUtilListener(this);
         BlueToothUtil.getInstance().setOnCharacteristicListener(this);
-
-//        if (village.equals("天津展会")) {
-//            villageType = 1;
-//
-//        } else if (village.equals("和谐景苑")) {
-//            villageType = 2;
-//        }
 
 
         circle_progress = (CircleProgressBar) mView.findViewById(R.id.loading_view);
@@ -106,50 +101,43 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 circle_progress.start();
 
                 // doorJinBoBean.setKeyType(1);
-                BlueToothUtil.getInstance().connectLeDevice("44:A6:E5:14:CE:43");
+                //    BlueToothUtil.getInstance().connectLeDevice("44:A6:E5:14:CE:43");
 ////                   doorJinBoBean=new ElevatorListBean();
 ////                   doorJinBoBean.setMacAddress("E6:48:3C:5A:D4:1D");
 ////                   doorJinBoBean.setMacType(1);
 ////                   doorJinBoBean.setKeyNo("123456123457");
 //
-//                new Thread(){
-//                    @Override
-//                    public void run() {
-//                        super.run();
-//                        if (doorJinBoBean == null || doorJinBoBean.isFirst()) {
-//                            BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
-//                                @Override
-//                                public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
-//                                    getDevice(searchBlueDeviceBeanList, 1);
-//                                }
-//                            });
-////                    new Handler().postDelayed(new Runnable() {
-////                        @Override
-////                        public void run() {
-////                            ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
-////
-////                        }
-////                    }, 2000);
-//                        } else if (doorJinBoBean.getMacType() == 1) {
-//                            JiBoUtils.getInstance(getActivity()).openDevice(doorJinBoBean, openLift(doorJinBoBean), new JiBoUtils.OnOpenLiftCallBackListenter() {
-//                                @Override
-//                                public void OpenLiftCallBackListenter(int backState, String msg) {
-//                                    tv_name.setText(doorJinBoBean.getElevatorNum() + doorJinBoBean.getName() + msg);
-//                                    if (backState == 1) {//成功
-//                                        circle_progress.stop();
-//                                        succssAnimation();
-//                                    } else {//失败
-//                                        circle_progress.stop();
-//                                    }
-//                                }
-//                            });
-//                        } else if (doorJinBoBean.getMacType() == 2) {
-//                            Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
-//                            BlueToothUtil.getInstance().connectLeDevice(doorJinBoBean.getMacAddress());
-//                        }
-//                    }
-//                }.start();
-
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        if (doorJinBoBean == null || doorJinBoBean.isFirst()) {
+                            BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
+                                @Override
+                                public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
+                                    getDevice(searchBlueDeviceBeanList, 1);
+                                }
+                            });
+                        } else if (doorJinBoBean.getMacType() == 1) {
+                            JiBoUtils.getInstance(getActivity()).openDevice(doorJinBoBean, openLift(doorJinBoBean), new JiBoUtils.OnOpenLiftCallBackListenter() {
+                                @Override
+                                public void OpenLiftCallBackListenter(int backState, String msg) {
+                                    tv_name.setText(doorJinBoBean.getElevatorNum() + doorJinBoBean.getName() + msg);
+                                    if (backState == 1) {//成功
+                                        circle_progress.stop();
+                                        succssAnimation();
+                                    } else {//失败
+                                        circle_progress.stop();
+                                    }
+                                }
+                            });
+                        } else if (doorJinBoBean.getMacType() == 2) {
+                            Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
+                            haiKangdoorJinBoBean = doorJinBoBean;
+                            BlueToothUtil.getInstance().connectLeDevice(haiKangdoorJinBoBean.getMacAddress());
+                        }
+                    }
+                }.start();
 
                 break;
             case R.id.rl_change_gate:
@@ -245,7 +233,13 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                         });
                     } else if (doorJinBoBean.getMacType() == 2) {
                         Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
-                        BlueToothUtil.getInstance().connectLeDevice(doorJinBoBean.getMacAddress());
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                haiKangdoorJinBoBean = doorJinBoBean;
+                                BlueToothUtil.getInstance().connectLeDevice(haiKangdoorJinBoBean.getMacAddress());
+                            }
+                        });
                     } else {
                         Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
                     }
@@ -323,6 +317,17 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 isNeedShake = isChecked;
             }
         });
+        BlueToothUtil.getInstance().setOnBluetoothStateCallBack(new BlueToothUtil.OnBluetoothStateCallBack() {
+            @Override
+            public void OnBluetoothState(final String state) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_name.setText(state);
+                    }
+                });
+            }
+        });
     }
 
 
@@ -361,6 +366,9 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         return arry;
     }
 
+    /**
+     * 成功开梯动画
+     */
     public void succssAnimation() {
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -368,7 +376,6 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 getActivity().startActivity(new Intent(getActivity(), EAnimationActivity.class));
             }
         });
-
     }
 
     @Override
@@ -398,8 +405,14 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onDisConnected(BluetoothDevice mCurDevice) {
-        circle_progress.stop();
-        connected = false;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                circle_progress.stop();
+                connected = false;
+            }
+        });
+
     }
 
     @Override
@@ -410,7 +423,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onNotificationSetted() {
-        BlueToothUtil.getInstance().sendOpen();
+        BlueToothUtil.getInstance().sendOpen(haiKangdoorJinBoBean);
     }
 
     @Override
@@ -433,8 +446,17 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+
     @Override
     public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-
+        if (status == BluetoothGatt.GATT_SUCCESS) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    succssAnimation();
+                }
+            });
+            //  Log.e(Tag,"写入数据成功");
+        }
     }
 }
