@@ -20,14 +20,19 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.bit.fuxingwuye.bean.ElevatorListBean;
 
 import net.vidageek.mirror.dsl.Mirror;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 /**
@@ -76,6 +81,10 @@ public class BlueToothUtil {
     int count = 0;
     private boolean isConnected = false;
     private boolean broadcastState = false;
+    private OnBluetoothStateCallBack onBluetoothStateCallBack;
+
+    private boolean isOpenSuccess = false;
+
 
     public static synchronized BlueToothUtil getInstance() {
         if (mInstance == null) {
@@ -149,7 +158,7 @@ public class BlueToothUtil {
         }
     }
 
-    public boolean isBroadcastOpen(){
+    public boolean isBroadcastOpen() {
         return broadcastState;
     }
 
@@ -239,11 +248,20 @@ public class BlueToothUtil {
                     mCurDevice = gatt.getDevice();
                     mListener.onConnected(mCurDevice);
                     gatt.discoverServices(); //搜索连接设备所支持的service
+                    if (onBluetoothStateCallBack != null) {
+                        onBluetoothStateCallBack.OnBluetoothState("连接成功");
+                    }
                     break;
                 case BluetoothProfile.STATE_DISCONNECTED:
                     isConnected = false;
                     mListener.onDisConnected(mCurDevice);
                     disConnGatt();
+                    if (onBluetoothStateCallBack != null) {
+                        if (!isOpenSuccess) {
+                            isOpenSuccess=false;
+                            onBluetoothStateCallBack.OnBluetoothState("开梯失败，重新开梯");
+                        }
+                    }
                     Log.e(TAG, "STATE_DISCONNECTED");
                     break;
                 case BluetoothProfile.STATE_CONNECTING:
@@ -263,7 +281,7 @@ public class BlueToothUtil {
                 serviceList = gatt.getServices();
                 for (int i = 0; i < serviceList.size(); i++) {
                     BluetoothGattService theService = serviceList.get(i);
-                    if (theService.getUuid().equals(KT_UUID)){
+                    if (theService.getUuid().equals(KT_UUID)) {
                         characterList = theService.getCharacteristics();
                         for (int j = 0; j < characterList.size(); j++) {
                             UUID uuid = characterList.get(j).getUuid();
@@ -295,6 +313,16 @@ public class BlueToothUtil {
             Log.e(TAG, "onCharacteristicWrite");
             if (mCharacteristicListener != null) {
                 mCharacteristicListener.onCharacteristicWrite(gatt, characteristic, status);
+            }
+            if (onBluetoothStateCallBack != null) {
+                if (status == BluetoothGatt.GATT_SUCCESS) {
+                    isOpenSuccess = true;
+                    onBluetoothStateCallBack.OnBluetoothState("开梯成功");
+                    //  Log.e(Tag,"写入数据成功");
+                } else {
+                    isOpenSuccess = false;
+                    onBluetoothStateCallBack.OnBluetoothState("开梯失败");
+                }
             }
         }
 
@@ -343,34 +371,35 @@ public class BlueToothUtil {
     }
 
     //接收数据,对其进行处理
-    public void handleResult(BluetoothGattCharacteristic ch){
+    public void handleResult(BluetoothGattCharacteristic ch) {
         if (ch.getValue() != null) {
             String uuid = ch.getUuid().toString();
             String hexData = HexUtil.byteArrayToHex(ch.getValue()).trim().replace(" ", "");
             Log.e(TAG, "onCharacteristicChanged() - " + ", " + uuid + ", " + hexData);
-            Log.e(TAG, "接收---" + hexData );
-            if (hexData.equals("4B540AFE")){
+            Log.e(TAG, "接收---" + hexData);
+            if (hexData.equals("4B540AFE")) {
                 count = 0;
                 handler.removeCallbacks(runnable);
                 mGatt.disconnect();
             }
         }
     }
+
     //接收数据,对其进行处理
-    public void handleResultCallBack(BluetoothGattCharacteristic ch,OnCallBackListener onCallBackListener){
+    public void handleResultCallBack(BluetoothGattCharacteristic ch, OnCallBackListener onCallBackListener) {
         if (ch.getValue() != null) {
             String uuid = ch.getUuid().toString();
             String hexData = HexUtil.byteArrayToHex(ch.getValue()).trim().replace(" ", "");
             Log.e(TAG, "onCharacteristicChanged() - " + ", " + uuid + ", " + hexData);
-            Log.e(TAG, "接收---" + hexData );
-            if (hexData.equals("4B540AFE")){
+            Log.e(TAG, "接收---" + hexData);
+            if (hexData.equals("4B540AFE")) {
                 count = 0;
                 handler.removeCallbacks(runnable);
                 mGatt.disconnect();
-                if(onCallBackListener!=null){
+                if (onCallBackListener != null) {
                     onCallBackListener.OnCallBack(1);
                 }
-            }else {
+            } else {
                 onCallBackListener.OnCallBack(2);
 
             }
@@ -379,7 +408,7 @@ public class BlueToothUtil {
 
 
     //谢文胜 临时加的代码
-    public interface OnCallBackListener{
+    public interface OnCallBackListener {
         void OnCallBack(int state);//1:代表成功 2：代表失败
     }
 
@@ -392,50 +421,101 @@ public class BlueToothUtil {
     }
 
     //发送开梯指令
-    public void sendOpen(){
-        String[] str = getBtAddressViaReflection().split(":");
+    public void sendOpen() {
+        String[] str = "29:44:25:DD:31:E5".split(":");
         StringBuffer sbf = new StringBuffer();
-        for (int i=0;i<str.length;i++){
+        for (int i = 0; i < str.length; i++) {
             sbf.append(str[i]);
         }
-        String sum = HexUtil.getCheckSUMByte("0A"+sbf.toString());
+        String sum = HexUtil.getCheckSUMByte("0A" + sbf.toString());
 
-        byte[] head = HexUtil.getMergeBytes("K".getBytes(),"T".getBytes());
-        byte[] content = HexUtil.strTobyte("0A"+sbf.toString());
-        head = HexUtil.getMergeBytes(head,content);
-        byte[] end = HexUtil.getMergeBytes(HexUtil.strTobyte(sum),new byte[]{(byte) 0xFE});
-        byte[] bvalue = HexUtil.getMergeBytes(head,end);
+        byte[] head = HexUtil.getMergeBytes("K".getBytes(), "T".getBytes());
+        byte[] content = HexUtil.strTobyte("0A" + sbf.toString());
+        head = HexUtil.getMergeBytes(head, content);
+        byte[] end = HexUtil.getMergeBytes(HexUtil.strTobyte(sum), new byte[]{(byte) 0xFE});
+        byte[] bvalue = HexUtil.getMergeBytes(head, end);
 
+        Log.e(TAG, "电梯指令：" + new String(bvalue));
         if (wCharacter != null) {
             wCharacter.setValue(bvalue);
         }
-      // wCharacter.setValue("A1B2C3D4F5D6");
+        // wCharacter.setValue("A1B2C3D4F5D6");
         runnable = new Runnable() {
             @Override
             public void run() {
-                if (mGatt!=null){
+                if (mGatt != null) {
                     mGatt.writeCharacteristic(wCharacter);
                     count++;
-                    if (count<6){
-                        handler.postDelayed(this,200);
-                    }else{
+                    if (count < 6) {
+                        handler.postDelayed(this, 200);
+                    } else {
                         handler.removeCallbacks(this);
                         count = 0;
                         mGatt.disconnect();
                     }
-                }else{
+                } else {
                     handler.removeCallbacks(this);
                     count = 0;
-                    if (mGatt!=null){
+                    if (mGatt != null) {
                         mGatt.disconnect();
                     }
 
                 }
             }
         };
-        handler.postDelayed(runnable,0);
+        handler.postDelayed(runnable, 0);
 
     }
+
+    //发送开梯指令
+    public void sendOpen(ElevatorListBean doorJinBoBean) {
+
+        if (onBluetoothStateCallBack != null) {
+            onBluetoothStateCallBack.OnBluetoothState("发送开梯指令");
+        }
+
+        StringBuffer sbf = new StringBuffer(doorJinBoBean.getKeyNo());
+        Log.e(TAG, "doorJinBoBean.getKeyNo()==" + sbf.toString());
+        String sum = HexUtil.getCheckSUMByte("0A" + sbf.toString());
+
+        byte[] head = HexUtil.getMergeBytes("K".getBytes(), "T".getBytes());
+        byte[] content = HexUtil.strTobyte("0A" + sbf.toString());
+        head = HexUtil.getMergeBytes(head, content);
+        byte[] end = HexUtil.getMergeBytes(HexUtil.strTobyte(sum), new byte[]{(byte) 0xFE});
+        byte[] bvalue = HexUtil.getMergeBytes(head, end);
+
+        Log.e(TAG, "电梯指令：" + new String(bvalue));
+        if (wCharacter != null) {
+            wCharacter.setValue(bvalue);
+        }
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mGatt != null) {
+                    mGatt.writeCharacteristic(wCharacter);
+                    count++;
+                    if (count < 6) {
+                        handler.postDelayed(this, 200);
+                    } else {
+                        handler.removeCallbacks(this);
+                        count = 0;
+                        mGatt.disconnect();
+                    }
+                } else {
+                    handler.removeCallbacks(this);
+                    count = 0;
+                    if (mGatt != null) {
+                        mGatt.disconnect();
+                    }
+                }
+            }
+        };
+        handler.postDelayed(runnable, 0);
+
+    }
+
+    Timer timer;
+
 
     //检查设备是否连接了
     private boolean checkConnGatt(String mac) {
@@ -452,30 +532,43 @@ public class BlueToothUtil {
         close();
 
         mGatt = mCurDevice.connectGatt(mContext, false, mGattCallback);
-        if (mGatt.connect()){
-            new Handler().postDelayed(new Runnable() {
+        if (mGatt.connect()) {
+
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+
                 @Override
                 public void run() {
-                    if (!isConnected){
+                    if (!isConnected) {
                         try {
-                            if (null!=mGatt){
+                            if (null != mGatt) {
                                 mGatt.disconnect();
                                 mGatt.close();
                                 mGatt = null;
                                 mListener.onDisConnected(mCurDevice);
+                                if (onBluetoothStateCallBack != null) {
+                                    if (!isOpenSuccess) {
+                                        isOpenSuccess=false;
+                                        onBluetoothStateCallBack.OnBluetoothState("开梯失败，重新开梯");
+                                    }
+                                }
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                             mListener.onDisConnected(mCurDevice);
                         }
                     }
+                    timer.cancel();
+
+                    Log.e("lzp", "timer excute");
                 }
-            },3000);
-        }else{
+            }, 3000);
+        } else {
         }
 
         return true;
     }
+
 
     /**
      * 断开设备连接
@@ -495,6 +588,7 @@ public class BlueToothUtil {
     public void setBTUtilListener(BTUtilListener listener) {
         mListener = listener;
     }
+
     public void setOnCharacteristicListener(OnCharacteristicListener listener) {
         this.mCharacteristicListener = listener;
     }
@@ -554,9 +648,23 @@ public class BlueToothUtil {
         }
         Object address = new Mirror().on(bluetoothManagerService).invoke().method("getAddress").withoutArgs();
         if (address != null && address instanceof String) {
-            return (String) address;
+            // return (String) address;
+            return (String) "74:23:44:6E:67:7D";
         } else {
             return null;
         }
     }
+
+    /**
+     * 电梯状态的返回监听
+     */
+    public interface OnBluetoothStateCallBack {
+        void OnBluetoothState(String state);
+    }
+
+    public void setOnBluetoothStateCallBack(OnBluetoothStateCallBack onBluetoothStateCallBack) {
+        this.onBluetoothStateCallBack = onBluetoothStateCallBack;
+    }
+
+
 }

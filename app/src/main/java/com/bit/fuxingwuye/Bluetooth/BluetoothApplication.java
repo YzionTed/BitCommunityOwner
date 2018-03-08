@@ -326,6 +326,14 @@ public class BluetoothApplication {
     }
 
     public ArrayList<SearchBlueDeviceBean> getSearchBlueDeviceBeanList() {
+        StringBuffer sb=new StringBuffer();
+        sb.append("蓝牙地址：");
+        if(searchBlueDeviceBeanList.size()>0){
+            for(int i=0;i<searchBlueDeviceBeanList.size();i++){
+                sb.append(searchBlueDeviceBeanList.get(i).getBluetoothDevice().getAddress()+"   ");
+            }
+        }
+        Log.e(TAG,""+sb.toString());
         return searchBlueDeviceBeanList;
     }
 

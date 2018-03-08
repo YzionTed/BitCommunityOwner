@@ -6,15 +6,6 @@ package com.bit.communityOwner.net;
 
 public class Url {
 
-    /**
-     * 测试环境
-     */
-    public static final String BASE_TEST_URL = "http://apismcm.test.bitiot.com.cn";
-
-    /**
-     * 正式环境
-     */
-    public static final String BASE_URL = "https://api.smcm.bitiot.com.cn";
 
     /**
      * 获取oss token
@@ -105,7 +96,7 @@ public class Url {
     /**
      * 公告列表
      */
-  //  public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/{communityId}/page";
+    //  public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/{communityId}/page";
     /**
      * 公告列表
      */
@@ -121,7 +112,6 @@ public class Url {
      * 获取放行条列表
      */
     public static final String V1_PASSCODE_LIST = "/v1/property/rpass/page";
-
 
 
 }

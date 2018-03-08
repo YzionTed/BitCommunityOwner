@@ -95,8 +95,8 @@ public class BaseApplication extends MultiDexApplication {
 
         bluetoothClientManger = new BluetoothClientManger(this);
         //初始化极光推送
-//        JPushInterface.setDebugMode(true);
-//        JPushInterface.init(this);
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
         blueToothApp = new BluetoothApplication(this);
 
