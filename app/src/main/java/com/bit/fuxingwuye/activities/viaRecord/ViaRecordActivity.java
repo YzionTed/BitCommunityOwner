@@ -60,10 +60,6 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void initEventAndData() {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_via_record);
         mBinding.toolbar.actionBarTitle.setText("放行条记录");
         type = getIntent().getIntExtra("type",0);
@@ -71,14 +67,7 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
         mBinding.toolbar.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (type== AppConstants.VIA_TYPE_LIST||type==AppConstants.VIA_TYPE_ADD){
-                    finish();
-                }else if(type==AppConstants.VIA_TYPE_QR){
-                    mBinding.llShow.setVisibility(View.GONE);
-                    mBinding.xrecyclerview.setVisibility(View.VISIBLE);
-                    mBinding.xrecyclerview.refresh();
-                    type = AppConstants.VIA_TYPE_LIST;
-                }
+                finish();
             }
         });
 
@@ -98,22 +87,36 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             @Override
             public void onSuccess(PassCodeListBean data) {
                 super.onSuccess(data);
-                mTotalPage = data.getTotalPage();
-                Log.e("data","--top---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage());
-                lists.clear();
-                for (PassCodeBean viaBean:  data.getRecords()){
-                    lists.add(viaBean);
+                if(data.getRecords().isEmpty()){
+                    mBinding.llNovia.setVisibility(View.VISIBLE);
+                    mBinding.xrecyclerview.setVisibility(View.GONE);
+                }else{
+                    mBinding.xrecyclerview.setVisibility(View.VISIBLE);
+                    mBinding.llNovia.setVisibility(View.GONE);
+                    mTotalPage = data.getTotalPage();
+                    lists.clear();
+                    for (PassCodeBean viaBean:  data.getRecords()){
+                        lists.add(viaBean);
+                    }
+                    mAdapter.notifyDataSetChanged();
+                    mBinding.xrecyclerview.refreshComplete();
                 }
-                mAdapter.notifyDataSetChanged();
-                mBinding.xrecyclerview.refreshComplete();
 
             }
 
             @Override
             public void onFailure(ServiceException e) {
                 super.onFailure(e);
+                if(lists.isEmpty()){
+                    mBinding.llNovia.setVisibility(View.VISIBLE);
+                    mBinding.xrecyclerview.setVisibility(View.GONE);
+                }else{
+                    mBinding.xrecyclerview.setVisibility(View.VISIBLE);
+                    mBinding.llNovia.setVisibility(View.GONE);
+                }
             }
         });
+
 
         mBinding.xrecyclerview.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -186,6 +189,11 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
                 showQR(lists.get(position));
             }
         });
+    }
+
+    @Override
+    protected void initEventAndData() {
+
     }
 
     @Override
