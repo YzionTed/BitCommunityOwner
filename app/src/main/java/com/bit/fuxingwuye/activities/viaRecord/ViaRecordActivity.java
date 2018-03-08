@@ -52,6 +52,7 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     private PropertyBean commonBean = new PropertyBean();
     private List<PassCodeBean> lists = new ArrayList<>();
     private int page = 1;
+    private int size = 10;
     private int mTotalPage = 0;
     private ViaAdapter mAdapter;
     private int type = 0;//0 列表，1 二维码,2 新增放行条
@@ -96,9 +97,7 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
         mBinding.xrecyclerview.setAdapter(mAdapter);
 
 
-        commonBean.setPage(page);
-        commonBean.setSize(5);
-        Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
+        Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
             @Override
             public void onSuccess(PassCodeListBean data) {
                 super.onSuccess(data);
@@ -123,12 +122,10 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             @Override
             public void onRefresh() {
                 page = 1;
-                commonBean.setPage(page);
-                Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
+                Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
                     @Override
                     public void onSuccess(PassCodeListBean data) {
                         super.onSuccess(data);
-                        Log.e("data","--onRefresh---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage()+"  "+data.getRecords().size());
                         lists.clear();
                         for (PassCodeBean viaBean:  data.getRecords()){
                             lists.add(viaBean);
@@ -149,15 +146,11 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             public void onLoadMore() {
                 if(page <= mTotalPage){
                     page = page+1;
-                    commonBean.setSize(5);
-                    commonBean.setPage(2);
-                    Api.getPassCodeList(commonBean, new ResponseCallBack<PassCodeListBean>() {
+                    Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
                         @Override
                         public void onSuccess(PassCodeListBean data) {
                             super.onSuccess(data);
-                            Log.e("data","--onLoadMore---data size:"+data.getTotal()+"  "+data.getTotalPage()+"  "+data.getCurrentPage()+"  "+data.getRecords().size());
-                            List<PassCodeBean>  mlist =  data.getRecords();
-                            for (PassCodeBean viaBean: mlist){
+                            for (PassCodeBean viaBean: data.getRecords()){
                                 lists.add(viaBean);
                             }
                             mAdapter.notifyDataSetChanged();
@@ -205,7 +198,8 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
 
     @Override
     public void toastMsg(String msg) {
-
+     Toast.makeText(getBaseContext(),""+msg,Toast.LENGTH_SHORT).show();
+        mBinding.xrecyclerview.loadMoreComplete();
     }
 
     @Override
@@ -244,9 +238,9 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
     }
 
     private void showQR(PassCodeBean viaBean) {
-
-        String url = HttpProvider.getHttpIpAdds()+ viaBean.getUrl();
-        final Bitmap bitmap = ScannerUtils.createQRImage(url,800,800, BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
+        String  id =  viaBean.getId();
+        String erCode = "http://bit.cn/bit/"+1+"/"+1000+"/"+"no/"+"001"+"/para/"+"id/"+id;
+        final Bitmap bitmap = ScannerUtils.createQRImage(erCode,800,800, BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
         mBinding.xrecyclerview.setVisibility(View.GONE);
         mBinding.llShow.setVisibility(View.VISIBLE);
         mBinding.btnCommit.setVisibility(View.VISIBLE);

@@ -50,10 +50,10 @@ public class ViaAdapter extends RecyclerView.Adapter<ViaAdapter.ViewHolder> impl
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         holder.tv_via_time.setText(sdf.format(date1)+" ~ "+sdf.format(date2));
         holder.tv_via_name.setText(datas.get(position).getItems()+"");
-        if (datas.get(position).getAuditStatus()==-1){
-            holder.tv_status.setText("已过期");
+        if (datas.get(position).getAuditStatus() == -1 || datas.get(position).getAuditStatus() == 1){
+            holder.tv_status.setText("已使用");
             holder.tv_status.setTextColor(Color.RED);
-        }if (datas.get(position).getAuditStatus()==1){
+        }if (datas.get(position).getAuditStatus()==0){
             holder.tv_status.setText("可使用");
             holder.tv_status.setTextColor(Color.BLUE);
         }
