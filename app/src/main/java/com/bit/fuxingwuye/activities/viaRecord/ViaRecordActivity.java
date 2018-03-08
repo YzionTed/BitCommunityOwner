@@ -81,10 +81,7 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
                 }
             }
         });
-    }
 
-    @Override
-    protected void setupVM() {
         commonBean.setUserId(ACache.get(this).getAsString(HttpConstants.USERID));
         commonBean.setCommunityId(ACache.get(this).getAsString(HttpConstants.COMMUNIYID));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -189,6 +186,11 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
                 showQR(lists.get(position));
             }
         });
+    }
+
+    @Override
+    protected void setupVM() {
+
     }
 
     @Override
