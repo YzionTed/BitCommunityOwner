@@ -27,6 +27,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
+ * 住户申请详情
  * Created by 23 on 2018/3/1.
  */
 
@@ -134,6 +135,9 @@ public class ApplicationDetailsActivity extends BaseActivity<ApplicationDetailsI
         });
     }
 
+    /**
+     * 同意申请成功返回，EventBus刷新前面两个页面数据
+     */
     @Override
     public void ShowApplication() {
          Toast.makeText(this,"申请成功",Toast.LENGTH_LONG).show();
@@ -142,7 +146,9 @@ public class ApplicationDetailsActivity extends BaseActivity<ApplicationDetailsI
         EventBus.getDefault().post(message);
         finish();
     }
-
+    /**
+     * 驳回成功返回，EventBus刷新前面两个页面数据
+     */
     @Override
     public void ShowDismissApplication() {
         EvenBusMessage message=new EvenBusMessage();

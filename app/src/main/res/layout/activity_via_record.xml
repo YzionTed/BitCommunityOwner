@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/common_dp_24"
             android:orientation="vertical"
             android:gravity="center"
-            android:visibility="visible">
+            android:visibility="gone">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common_dp_200"
@@ -44,8 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/common_dp_6"
-            android:visibility="gone"/>
+            android:paddingBottom="@dimen/common_dp_6"/>
 
         <LinearLayout
             android:id="@+id/ll_show"
@@ -66,16 +65,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="府兴物业放行条"
+                android:text="放行条"
                 android:layout_margin="@dimen/common_dp_5"
                 android:textSize="@dimen/common_sp_18"/>
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="府兴物业放行条"
                 android:layout_margin="@dimen/common_dp_5"
-                android:textSize="@dimen/common_sp_16"/>
+                android:textSize="@dimen/common_sp_12"/>
         </LinearLayout>
 
         <Button

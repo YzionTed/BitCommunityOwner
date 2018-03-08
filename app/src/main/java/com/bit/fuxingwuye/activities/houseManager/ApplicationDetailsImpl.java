@@ -31,6 +31,10 @@ public class ApplicationDetailsImpl extends BaseRxPresenter<ApplicationDetailsCo
         this.context = context;
     }
 
+    /**
+     * 同意认证接口
+     * @param bean
+     */
     @Override
     public void GetApplication(ProprietorBean.RecordsBean bean) {
         Observable observable = RetrofitManager.getInstace()
@@ -52,6 +56,10 @@ public class ApplicationDetailsImpl extends BaseRxPresenter<ApplicationDetailsCo
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 驳回接口
+     * @param bean
+     */
     @Override
     public void DismissApplication(ProprietorBean.RecordsBean bean) {
         Observable observable = RetrofitManager.getInstace()

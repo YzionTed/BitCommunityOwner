@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
+import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
 import com.bit.fuxingwuye.Bluetooth.mili.MiLiState;
 import com.bit.fuxingwuye.Bluetooth.util.BluetoothUtils;
@@ -26,6 +27,7 @@ import com.bit.fuxingwuye.utils.CustomDialog;
 import com.bit.fuxingwuye.utils.DialogUtil;
 import com.bit.fuxingwuye.utils.SensorManagerHelper;
 import com.bit.fuxingwuye.utils.ToastUtil;
+import com.bit.fuxingwuye.views.CircleProgressBar;
 import com.bit.fuxingwuye.views.DoughnutProgress;
 import com.smarthome.bleself.sdk.BluetoothApiAction;
 import com.smarthome.bleself.sdk.IBluetoothApiInterface;
@@ -39,15 +41,15 @@ import java.util.List;
 
 public class BluetoothDoorFragment extends BaseFragment implements View.OnClickListener {
 
-    private ImageView iv_animation;
+    private ImageView iv_open;
     private Switch shake_switch;
-    private DoughnutProgress circle_progress;
+    private CircleProgressBar circle_progress;
     private DoorMILiBean doorMILiBean;
     private String Tag = "BluetoothDoorFragment";
     private RelativeLayout rl_change_gate;
     private TextView tv_name;
 
-    private boolean isNeedShake=true;
+    private boolean isNeedShake = true;
 
     @Override
     protected int getLayoutId() {
@@ -61,13 +63,13 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
 
     @Override
     protected void initEventAndData() {
-        iv_animation = (ImageView) mView.findViewById(R.id.iv_animation);
-        circle_progress = (DoughnutProgress) mView.findViewById(R.id.circle_progress);
+        iv_open = (ImageView) mView.findViewById(R.id.iv_open);
+        circle_progress = (CircleProgressBar) mView.findViewById(R.id.loading_view);
         shake_switch = (Switch) mView.findViewById(R.id.shake_switch);
         rl_change_gate = (RelativeLayout) mView.findViewById(R.id.rl_change_gate);
         tv_name = (TextView) mView.findViewById(R.id.tv_name);
 
-        iv_animation.setOnClickListener(this);
+        iv_open.setOnClickListener(this);
         rl_change_gate.setOnClickListener(this);
 
         initListener();
@@ -85,19 +87,43 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
             public void onShake() {
                 // TODO Auto-generated method stub
                 System.out.println("shake");
-               // Toast.makeText(getActivity(), "你在摇哦", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "你在摇哦", Toast.LENGTH_SHORT).show();
                 Log.e(Tag, "shake==");
                 if (isNeedShake) {
                     circle_progress.start();
                     isNeedShake = false;
-                    BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000);
-                    new Handler().postDelayed(new Runnable() {
+                    new Thread() {
                         @Override
                         public void run() {
-                            ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
-                            getMenJinMiLi(searchBlueDeviceBeanList, 2);
+                            super.run();
+                            if (doorMILiBean == null || doorMILiBean.isFirst()) {
+                                BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
+                                    @Override
+                                    public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
+
+                                        getMenJinMiLi(searchBlueDeviceBeanList, 2);
+                                    }
+                                });
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
+//                            }
+//                        }, 2000);
+//                            } else {
+//                                clickBlueMiLi(doorMILiBean.getMac(), doorMILiBean.getPin(), 1);
+                            }
                         }
-                    }, 2000);
+                    }.start();
+
+//                    BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
+//                            getMenJinMiLi(searchBlueDeviceBeanList, 2);
+//                        }
+//                    }, 2000);
                 }
             }
         });
@@ -111,23 +137,40 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
         });
     }
 
+    boolean isNeedClickAble = true;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_animation:
-                circle_progress.start();
-                if (doorMILiBean == null || doorMILiBean.isFirst()) {
-                    BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000);
-                    new Handler().postDelayed(new Runnable() {
+            case R.id.iv_open:
+                if (isNeedClickAble) {
+                    circle_progress.start();
+                    new Thread() {
                         @Override
                         public void run() {
-                            ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
-                            getMenJinMiLi(searchBlueDeviceBeanList, 1);
+                            super.run();
+                            if (doorMILiBean == null || doorMILiBean.isFirst()) {
+                                BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
+                                    @Override
+                                    public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
+
+                                        getMenJinMiLi(searchBlueDeviceBeanList, 1);
+                                    }
+                                });
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
+//                            }
+//                        }, 2000);
+                            } else {
+                                clickBlueMiLi(doorMILiBean.getMac(), doorMILiBean.getPin(), 1);
+                            }
                         }
-                    }, 2000);
-                } else {
-                    clickBlueMiLi(doorMILiBean.getMac(), doorMILiBean.getPin(), 1);
+                    }.start();
+
                 }
+
                 break;
             case R.id.rl_change_gate:
                 Intent intent = new Intent(mActivity, ChangeAccessActivity.class);
@@ -160,19 +203,33 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
         //  BluetoothUtils.getMiliBluetooth(searchBlueDeviceBeanList);
 
         if (BaseApplication.getInstance().getBlueToothApp().isLocationEnalbe()) {
-            ToastUtil.showShort("请打开您的定位权限！");
-            circle_progress.stop();
-            if (type == 2) {
-                isNeedShake = true;
-            }
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtil.showShort("请打开您的定位权限！");
+                    circle_progress.stop();
+                    isNeedClickAble = true;
+                    if (type == 2) {
+                        isNeedShake = true;
+                    }
+                }
+            });
+
+
             return;
         }
         if (searchBlueDeviceBeanList.size() < 1) {
-            ToastUtil.showShort("没有找到蓝牙设备");
-            circle_progress.stop();
-            if (type == 2) {
-                isNeedShake = true;
-            }
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtil.showShort("没有找到蓝牙设备");
+                    circle_progress.stop();
+                    isNeedClickAble = true;
+                    if (type == 2) {
+                        isNeedShake = true;
+                    }
+                }
+            });
             return;
         }
 
@@ -207,6 +264,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
                                 isNeedShake = true;
                             }
                             circle_progress.stop();
+                            isNeedClickAble = true;
                             ToastUtil.showShort("没有搜索到门的设备");
                             Log.e(Tag, "没有搜索到门的设备！");
                         }
@@ -215,6 +273,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
                             isNeedShake = true;
                         }
                         circle_progress.stop();
+                        isNeedClickAble = true;
                         ToastUtil.showShort("没有搜索到门的设备");
                         Log.e(Tag, "没有有用的蓝牙设备");
                     }
@@ -224,6 +283,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
                     }
                     ToastUtil.showShort("没有搜索到门的设备");
                     circle_progress.stop();
+                    isNeedClickAble = true;
                     Log.e(Tag, "没有有用的蓝牙设备");
                 }
 
@@ -233,6 +293,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
             public void onFailure(ServiceException e) {
                 super.onFailure(e);
                 circle_progress.stop();
+                isNeedClickAble = true;
                 if (type == 2) {
                     isNeedShake = true;
                 }
@@ -244,35 +305,42 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
     /**
      * 米粒的开门
      */
-    private void clickBlueMiLi(String destMac, String destPin, final int type) {
+    private void clickBlueMiLi(final String destMac, final String destPin, final int type) {
         Log.e(Tag, "打开米粒门 mac=" + destMac + " destPin=" + destPin);
 
-        //F0:C7:7F:9D:66:37
-        BluetoothApiAction.bluetoothActionUnlock(destMac, destPin, getActivity(), new IBluetoothApiInterface.IBluetoothApiCallback<Object>() {
-
+        getActivity().runOnUiThread(new Runnable() {
             @Override
-            public void onFailure(final String arg0) {
-                circle_progress.stop();
-                if (type == 2) {
-                    isNeedShake = true;
-                }
-                Log.e(Tag, "" + MiLiState.getCodeDesc(arg0));
-                getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                //F0:C7:7F:9D:66:37
+                BluetoothApiAction.bluetoothActionUnlock(destMac, destPin, getActivity(), new IBluetoothApiInterface.IBluetoothApiCallback<Object>() {
+
                     @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), "开门失败" + MiLiState.getCodeDesc(arg0), Toast.LENGTH_LONG).show();
+                    public void onFailure(final String arg0) {
+                        circle_progress.stop();
+                        isNeedClickAble = true;
+                        if (type == 2) {
+                            isNeedShake = true;
+                        }
+                        Log.e(Tag, "" + MiLiState.getCodeDesc(arg0));
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "开门失败" + MiLiState.getCodeDesc(arg0), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onSuccess(Object arg0) {
+                        if (type == 2) {
+                            isNeedShake = true;
+                        }
+                        succssAnimation();
                     }
                 });
             }
-
-            @Override
-            public void onSuccess(Object arg0) {
-                if (type == 2) {
-                    isNeedShake = true;
-                }
-                succssAnimation();
-            }
         });
+
     }
 
 
@@ -292,6 +360,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
                         if (customDialog != null && customDialog.isShowing()) {
                             customDialog.dismiss();
                             circle_progress.stop();
+                            isNeedClickAble = true;
                         }
                     }
                 }, 3000);

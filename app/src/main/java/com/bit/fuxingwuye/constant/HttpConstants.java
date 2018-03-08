@@ -9,8 +9,8 @@ package com.bit.fuxingwuye.constant;
 public class HttpConstants {
 
 
-    public static final String HTTP = "https://";
-    public static final String HTTPS = "https://";
+    public static final String HTTP = "http://";
+    public static final String HTTPS = "http://";
 
     /**
      * 端口
@@ -22,7 +22,7 @@ public class HttpConstants {
      * 服务器地址接口
      */
     // TODO: 2017/7/1
-    public static final String HTTP_IP_ADDS = "api.smcm.bitiot.com.cn";
+    public static final String HTTP_IP_ADDS = "apismcm.test.bitiot.com.cn";
     public static final String HTTP_IP_ADDS_TEST = "39.106.249.8:";
 
     /********************************************************************************
@@ -200,7 +200,7 @@ public class HttpConstants {
     public static final String SET_JPUSH_ALIAS = "/ktwlw_rest/wplot/app/common/setJpushAlias";      //设置极光别名
 
     public static final String ADD_VIA = "/ktwlw_rest/wplot/app/via/add";      //新增放行条
-    public static final String GET_VIA_LIST = "/ktwlw_rest/wplot/app/via/getByUserId";      //根据用户ID获取放行条列表
+    public static final String GET_VIA_LIST = "v1/property/rpass/page";      //根据用户ID获取放行条列表
     public static final String GET_VIA_CONTENT = "/ktwlw_rest/wplot/app/via/getById";      //获取放行条详细信息
     public static final String DELETE_VIA = "/ktwlw_rest/wplot/app/via/delete";      //删除放行条
 

@@ -190,6 +190,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         Toast.makeText(this, msg + "", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param tokenBean
+     * 登录成功返回的数据
+     */
     @Override
     public void loginSuccess(TokenBean tokenBean) {
         mCache.put(HttpConstants.TOKENBEAN, tokenBean);
@@ -368,7 +372,9 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     }
 
     public static Intent createIntent(Context context) {
-        return new Intent(context, LoginActivity.class);
+        Intent intent=  new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
     }
 
     /**

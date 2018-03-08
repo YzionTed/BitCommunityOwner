@@ -56,6 +56,7 @@
                 <com.bit.fuxingwuye.views.MySwipeMenuListView
                     android:id="@+id/listView"
                     android:divider="#00000000"
+
                     android:dividerHeight="@dimen/common_dp_6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

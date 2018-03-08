@@ -29,6 +29,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.Iterator;
 
 /**
+ * 申请记录
  * Created by 23 on 2018/2/28.
  */
 
@@ -83,6 +84,11 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
             }
         });
     }
+
+    /**
+     * 刷新该页面数据，但后面数据状态发生改变时刷新页面，就是后面页面同意或驳回
+     * @param messageEvent
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Updata(EvenBusMessage messageEvent) {
         if(messageEvent.getEvent().equals(EvenBusConstants.ApplicationRecordActivity)){
@@ -109,6 +115,10 @@ public class ApplicationRecordActivity extends BaseActivity<ApplicationRecordImp
         getActivityComponent().inject(this);
     }
 
+    /**
+     * 请求申请记录成功时返回的数据
+     * @param recordData
+     */
     @Override
     public void ShowRecord(ProprietorBean recordData) {
         LogUtil.e(Tag.tag, "请求成功：" + GsonUtil.toJson(recordData));

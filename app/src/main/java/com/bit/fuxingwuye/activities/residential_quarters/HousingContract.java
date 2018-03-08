@@ -14,9 +14,10 @@ import com.bit.fuxingwuye.bean.Room;
 public class HousingContract {
     public interface View extends BaseView {
          void showHousing(Community community);
+        void showError();
 
     }
-    public interface Presenter extends BasePresenter<HousingContract.View> {
+    public interface Presenter extends BasePresenter<View> {
         void getHousing(String userId);
     }
 }

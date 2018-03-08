@@ -35,6 +35,7 @@ import com.bit.fuxingwuye.bean.ParkBean;
 import com.bit.fuxingwuye.bean.PayListBean;
 import com.bit.fuxingwuye.bean.PayReqBean;
 import com.bit.fuxingwuye.bean.PlotInfoBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.RegisterBean;
 import com.bit.fuxingwuye.bean.RepairBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
@@ -110,8 +111,10 @@ public interface NetworkApi {
     @POST(HttpConstants.GET_FLOORS)
 
     Observable<BaseEntity<List<RoomList>>> getFloors(@Body Map<String,String> f);
-    @GET(Url.V1_PROPERTY_NOTICE_PAGE)
-    Observable<BaseEntity<NoticeListBean>> getNotices(@Path("communityId") String communityId,@Query("page") int page);
+
+    @POST(Url.V1_PROPERTY_NOTICE_PAGE)
+    Observable<BaseEntity<NoticeListBean>> getNotices(@Body Map<String,Object> f);
+
     @POST(HttpConstants.GET_NOTICE)
     Observable<BaseEntity<NoticeBean>> getNotice(@Body CommonBean commonBean);
     @POST(HttpConstants.CHECK_VERSION)
@@ -237,7 +240,7 @@ public interface NetworkApi {
     Observable<BaseEntity<String>> addVia(@Body ViaBean viaBean);
 
     @POST(HttpConstants.GET_VIA_LIST)
-    Observable<BaseEntity<List<ViaBean>>> getViaList(@Body CommonBean commonBean);
+    Observable<BaseEntity<List<ViaBean>>> getViaList(@Body PropertyBean commonBean);
 
     @POST(HttpConstants.GET_VIA_CONTENT)
     Observable<BaseEntity<ViaBean>> getViaContent(@Body CommonBean commonBean);

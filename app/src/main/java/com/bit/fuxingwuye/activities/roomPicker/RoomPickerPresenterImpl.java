@@ -42,7 +42,10 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
     }
 
 
-
+    /**
+     * 获取社区接口
+     * @param userid
+     */
     @Override
     public void getcommunity(String userid) {
         Observable observable = RetrofitManager.getInstace()
@@ -66,7 +69,10 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
     }
 
 
-
+    /**
+     * 获取楼房接口
+     * @param map
+     */
     @Override
     public void getbuilding(String map) {
         Observable observable = RetrofitManager.getInstace()
@@ -89,6 +95,10 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 获取房间的接口
+     * @param buildingId
+     */
     @Override
     public void getroom(String buildingId) {
         Observable observable = RetrofitManager.getInstace()

@@ -31,6 +31,11 @@ public class HousingImpl extends BaseRxPresenter<HousingContract.View> implement
     public HousingImpl(Context context) {
         this.context = context;
     }
+
+    /**
+     * 获取社区的接口
+     * @param userId 用户登录时的id
+     */
     @Override
     public void getHousing(String userId) {
         Observable observable = RetrofitManager.getInstace()
@@ -45,7 +50,7 @@ public class HousingImpl extends BaseRxPresenter<HousingContract.View> implement
 
             @Override
             public void onError(Throwable e) {
-
+                mView.showError();
             }
 
         },context,true);

@@ -39,6 +39,10 @@ public class LoginPresenterImpl extends BaseRxPresenter<LoginContract.View> impl
         this.context = context;
     }
 
+    /**
+     * 获取验证码接口
+     * @param codeBean
+     */
     @Override
     public void getCode(CodeBean codeBean) {
         Observable observable = RetrofitManager.getInstace()
@@ -66,6 +70,11 @@ public class LoginPresenterImpl extends BaseRxPresenter<LoginContract.View> impl
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 验证码接口
+     * @param loginBean
+     * @param ctx
+     */
     @Override
     public void login(LoginBean loginBean, Context ctx) {
         Observable observable = RetrofitManager.getInstace()
