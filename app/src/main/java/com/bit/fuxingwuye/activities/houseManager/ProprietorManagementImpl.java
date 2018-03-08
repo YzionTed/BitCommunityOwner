@@ -32,6 +32,10 @@ public class ProprietorManagementImpl extends BaseRxPresenter<ProprietorManageme
         this.context = context;
     }
 
+    /**
+     * 住户管理接口
+     * @param roomid
+     */
     @Override
     public void GetProprietorData(String roomid) {
         Observable observable = RetrofitManager.getInstace()
@@ -53,6 +57,10 @@ public class ProprietorManagementImpl extends BaseRxPresenter<ProprietorManageme
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 解绑接口
+     * @param id
+     */
     @Override
     public void Relieve(String id) {
         Observable observable = RetrofitManager.getInstace()

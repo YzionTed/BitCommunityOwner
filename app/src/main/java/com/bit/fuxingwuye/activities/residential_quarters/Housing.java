@@ -89,6 +89,10 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
         binding.updata.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * 获取社区返回的数据
+     * @param community
+     */
     @Override
     public void showHousing(Community community) {
         if(community != null && community.getRecords().isEmpty()){

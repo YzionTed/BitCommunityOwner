@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -37,6 +38,7 @@ import com.bit.fuxingwuye.databinding.ActivityViaBinding;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.utils.ScannerUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -65,7 +67,7 @@ public class ViaActivity extends BaseActivity<ViaPresenterImpl> implements ViaCo
         mBinding.toolbar.actionBarTitle.setText("放行条");
         mBinding.toolbar.btnBack.setVisibility(View.VISIBLE);
         mBinding.toolbar.btnBack.setOnClickListener(this);
-        mBinding.toolbar.ivRightActionBar.setVisibility(View.GONE);
+        mBinding.toolbar.ivRightActionBar.setVisibility(View.VISIBLE);
         mBinding.toolbar.ivRightActionBar.setImageResource(R.mipmap.icon_viahistory);
         mBinding.toolbar.ivRightActionBar.setOnClickListener(this);
         mBinding.ivStarttime.setOnClickListener(this);
@@ -208,7 +210,7 @@ public class ViaActivity extends BaseActivity<ViaPresenterImpl> implements ViaCo
                            String  id =  data.getId();
 
                             String erCode = "http://bit.cn/bit/"+1+"/"+1000+"/"+"no/"+"001"+"/para/"+"id/"+id;
-                            final Bitmap bitmap = CommonUtils.createQRImage(erCode, 550,550);
+                            final Bitmap bitmap = ScannerUtils.createQRImage(erCode, 800,800, BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
 
                             Log.e("url id","ercode url:"+erCode);
 

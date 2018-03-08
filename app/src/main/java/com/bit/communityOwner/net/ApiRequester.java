@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.bit.communityOwner.util.AppUtil;
 import com.bit.communityOwner.util.LogUtil;
-import com.bit.fuxingwuye.BuildConfig;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
@@ -51,12 +50,11 @@ public class ApiRequester {
             return;
         }
 
-        if (!url.toLowerCase().startsWith("http")) {
-            if (BuildConfig.BUILD_TYPE.equals("release")) {
-                url = Url.BASE_URL + url;
-            } else {
-                url = Url.BASE_TEST_URL + url;
-            }
+        if (HttpConstants.isFormalEnvironment) {
+            url =   HttpConstants.Base_Url_Formal+url;
+            return ;
+        } else {
+            url = HttpConstants.Base_Url_Test+url;
         }
 
         RequestParams requestParams = createRequestParams(url);
@@ -93,6 +91,7 @@ public class ApiRequester {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.d(TAG, "response:" + ex.getMessage());
                 if (ex instanceof ServiceException) {
                     //checknetwork();
                     callBack.onFailure((ServiceException) ex);
@@ -192,12 +191,19 @@ public class ApiRequester {
             return;
         }
 
-        if (!url.toLowerCase().startsWith("http")) {
-            if (BuildConfig.BUILD_TYPE.equals("release")) {
-                url = Url.BASE_URL + url;
-            } else {
-                url = Url.BASE_TEST_URL + url;
-            }
+//        if (!url.toLowerCase().startsWith("http")) {
+//            if (BuildConfig.BUILD_TYPE.equals("release")) {
+//                url = Url.BASE_URL + url;
+//            } else {
+//                url = Url.BASE_TEST_URL + url;
+//            }
+//        }
+
+        if (HttpConstants.isFormalEnvironment) {
+            url =  HttpConstants.Base_Url_Formal+url;
+            return ;
+        } else {
+            url =  HttpConstants.Base_Url_Test+url;
         }
 
         RequestParams requestParams = createRequestParams(url);

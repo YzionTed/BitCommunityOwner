@@ -1,7 +1,6 @@
 package com.bit.fuxingwuye.http;
 
 import com.bit.fuxingwuye.constant.HttpConstants;
-import com.bit.fuxingwuye.utils.LogUtil;
 
 /**
  * SmartCommunity-com.bit.fuxingwuye.http
@@ -16,10 +15,10 @@ public class HttpProvider {
      * @return
      */
     public static String getHttpIpAdds() {
-        if (LogUtil.D) {
-            return HttpConstants.HTTP + HttpConstants.HTTP_IP_ADDS_TEST + HttpConstants.PORT;
+        if (HttpConstants.isFormalEnvironment) {
+            return HttpConstants.Base_Url_Formal;
         } else {
-            return HttpConstants.HTTPS + HttpConstants.HTTP_IP_ADDS;
+            return HttpConstants.Base_Url_Test;
         }
     }
 }

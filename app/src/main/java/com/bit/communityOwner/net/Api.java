@@ -18,9 +18,11 @@ import com.bit.fuxingwuye.bean.FeedbackBean;
 import com.bit.fuxingwuye.bean.GetFeedbackBean;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.HouseBean;
+import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
+import com.bit.fuxingwuye.bean.request.PassCodeListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
@@ -230,5 +232,11 @@ public class Api {
 
     public static void rpass(PassFlag passFlag, ResponseCallBack<PassCode> callBack) {
         ApiRequester.post(Url.V1_USER_ADD_PASS_FLAG, passFlag, callBack);
+    }
+
+
+    public static void  getPassCodeList(PropertyBean bean,int page,int size, ResponseCallBack<PassCodeListBean> callBack){
+        ApiRequester.post(Url.V1_PASSCODE_LIST+"?page="+page+"&size="+size,bean,callBack);
+
     }
 }

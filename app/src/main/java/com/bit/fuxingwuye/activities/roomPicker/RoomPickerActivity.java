@@ -107,6 +107,10 @@ public class RoomPickerActivity extends BaseActivity<RoomPickerPresenterImpl> im
     }
 
 
+    /**
+     * 获取网络社区成功返回的数据
+     * @param community
+     */
     @Override
     public void showcommunity(Community community) {
         LogUtil.e("backinfo", "请求成功：返回数据：" + GsonUtil.toJson(community));
@@ -114,6 +118,10 @@ public class RoomPickerActivity extends BaseActivity<RoomPickerPresenterImpl> im
         setcommunity(community);
 
     }
+    /**
+     * 设置rvRoomList的社区数据
+     * @param
+     */
     private void setcommunity(Community community){
         roomPickerAdapter = new RoomPickerAdapter(R.layout.communtiy_item, community.getRecords());
 
@@ -144,6 +152,10 @@ public class RoomPickerActivity extends BaseActivity<RoomPickerPresenterImpl> im
         });
     }
 
+    /**
+     * 获取楼房成功返回的数据
+     * @param building
+     */
     @Override
     public void showbuilding(Building building) {
         LogUtil.e("back",GsonUtil.toJson(building));
@@ -151,6 +163,11 @@ public class RoomPickerActivity extends BaseActivity<RoomPickerPresenterImpl> im
         setbuilding(building);
 
     }
+
+    /**
+     * 设置rvRoomList数据
+     * @param building
+     */
    private void setbuilding(Building building){
         LogUtil.e("backinfo","解析"+GsonUtil.formatBeanToJson(building));
        if (building!=null&&building.getRecords().size() > 0) {
@@ -176,6 +193,11 @@ public class RoomPickerActivity extends BaseActivity<RoomPickerPresenterImpl> im
            Toast.makeText(RoomPickerActivity.this, "暂无数据", Toast.LENGTH_LONG).show();
        }
    }
+
+    /**
+     * 获取房间成功返回的数据
+     * @param room
+     */
     @Override
     public void showroom(Room room) {
        LogUtil.e("backinfo","数据："+ GsonUtil.toJson(room));

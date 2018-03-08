@@ -37,6 +37,10 @@ public class HMPresenterImpl extends BaseRxPresenter<HMContract.View> implements
         this.context = context;
     }
 
+    /**
+     * 得到住房接口
+     * @param commonBean
+     */
     @Override
     public void getFloors(Map<String,String> commonBean) {
         Observable observable = RetrofitManager.getInstace()
@@ -59,6 +63,10 @@ public class HMPresenterImpl extends BaseRxPresenter<HMContract.View> implements
         addSubscrebe(rxSubscription);
     }
 
+    /**
+     * 关闭接口
+     * @param id
+     */
     @Override
     public void deleteFloor(String id) {
         Observable observable = RetrofitManager.getInstace()

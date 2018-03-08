@@ -28,6 +28,10 @@ public class ApplicationRecordImpl extends BaseRxPresenter<ApplicationRecordCont
         this.context = context;
     }
 
+    /**
+     * 申请记录接口
+     * @param roomid
+     */
     @Override
     public void GetRecord(String roomid) {
         Observable observable = RetrofitManager.getInstace()
