@@ -8,22 +8,17 @@ package com.bit.fuxingwuye.constant;
 
 public class HttpConstants {
 
-
-    public static final String HTTP = "http://";
-    public static final String HTTPS = "http://";
-
-    /**
-     * 端口
-     */
-    public static final String PORT = "9000";   //28080
-
+    public static final boolean isFormalEnvironment = false;//正式环境和测试环境的更改
 
     /**
      * 服务器地址接口
      */
     // TODO: 2017/7/1
-    public static final String HTTP_IP_ADDS = "apismcm.test.bitiot.com.cn";
-    public static final String HTTP_IP_ADDS_TEST = "apismcm.test.bitiot.com.cn";
+    public static final String Base_Url_Formal = "https://api.smcm.bitiot.com.cn";//正式环境域名
+    //  public static final String Base_Url_Test = "http://apismcm.test.bitiot.com.cn";//测试环境域名 1
+    public static final String Base_Url_Test = "http://39.106.249.8:9000";//测试环境域名 2
+
+
 
     /********************************************************************************
      *                                    ERROR CODE                               **
@@ -103,7 +98,7 @@ public class HttpConstants {
     public static final String PHONE = "phone";//电话
     public static final String TOKENBEAN = "tokenbean";
     public static final String ID = "id";
-    public static final String auditstatus="auditstatus";
+    public static final String auditstatus = "auditstatus";
 
     /**
      * 选择小区名称
@@ -114,7 +109,7 @@ public class HttpConstants {
     public static final String GET_CODE = "/v1/user/getVerificationCode";    // 	根据手机号获取验证码
     public static final String REGISTER = "/v1/user/add";    // 	用户注册
     public static final String LOGIN = "/v1/user/signIn";    // 	用户登录
- //   public static final String CHANGE_PWD = "/ktwlw_rest/wplot/app/common/changePwd";   // 	修改密码
+    //   public static final String CHANGE_PWD = "/ktwlw_rest/wplot/app/common/changePwd";   // 	修改密码
 
     public static final String CHANGE_PWD = "/v1/user/resetPassword";   // 	修改密码
 
@@ -140,7 +135,7 @@ public class HttpConstants {
     public static final String GET_NOTICES = "/ktwlw_rest/wplot/app/common/getWpNoticeList";   // 获取通知列表
     public static final String GET_NOTICE = "/ktwlw_rest/wplot/app/common/getWpNotice";   // 根据通知ID获取通知详情
     public static final String CHECK_VERSION = "/ktwlw_rest/wplot/app/common/inspectVersion";   // 检查版本号
-//  public static final String GET_TALIKING = "/ktwlw_rest/wplot/app/common/getTickling";   // 用户反馈
+    //  public static final String GET_TALIKING = "/ktwlw_rest/wplot/app/common/getTickling";   // 用户反馈
     public static final String GET_TALIKING = "/v1/sys/feedback/add";   // 用户反馈
 
     public static final String EDIT_USER = "/ktwlw_rest/wplot/app/user/editUser";   // 修改用户信息
@@ -167,7 +162,7 @@ public class HttpConstants {
 
     public static final String GETIMAGES = "/ktwlw_rest/wplot/app/file/getImages";   // 获取图片信息
 
-   // public static final String CALLPOLICE = "/ktwlw_rest/wplot/app/callPolice/add";   // 一键报警
+    // public static final String CALLPOLICE = "/ktwlw_rest/wplot/app/callPolice/add";   // 一键报警
 
 
     public static final String WX_PAY = "/ktwlw_rest/wplot/app/order/wx/pay";      //微信支付
@@ -214,7 +209,6 @@ public class HttpConstants {
     public static final String community = "/v1/community/page";      //获取社区
     public static final String building = "/v1/community/building/page";      //获取楼栋
     public static final String room = "/v1/community/room/page";      //获取房间
-
 
 
     public static final String CALLPOLICE = "/v1/property/alarm/add";   // 一键报警
