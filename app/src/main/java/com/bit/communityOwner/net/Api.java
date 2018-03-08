@@ -236,9 +236,9 @@ public class Api {
     }
 
 
-    public static void  getPassCodeList(PropertyBean bean,int page,int size, ResponseCallBack<PassCodeListBean> callBack){
-        ApiRequester.post(Url.V1_PASSCODE_LIST+"?page="+page+"&size="+size,bean,callBack);
-
+    public static void  getPassCodeList(PropertyBean bean,int page,int size, ResponseCallBack<PassCodeListBean> callBack) {
+        ApiRequester.post(Url.V1_PASSCODE_LIST + "?page=" + page + "&size=" + size, bean, callBack);
+    }
     /**
      * 公告详情
      * @param callBack

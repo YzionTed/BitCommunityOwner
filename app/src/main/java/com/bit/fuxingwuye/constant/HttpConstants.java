@@ -15,8 +15,8 @@ public class HttpConstants {
      */
     // TODO: 2017/7/1
     public static final String Base_Url_Formal = "https://api.smcm.bitiot.com.cn";//正式环境域名
-    //  public static final String Base_Url_Test = "http://apismcm.test.bitiot.com.cn";//测试环境域名 1
-    public static final String Base_Url_Test = "http://39.106.249.8:9000";//测试环境域名 2
+      public static final String Base_Url_Test = "http://apismcm.test.bitiot.com.cn";//测试环境域名 1
+//    public static final String Base_Url_Test = "http://39.106.249.8:9000";//测试环境域名 2
 
 
 
