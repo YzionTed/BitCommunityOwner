@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -83,6 +84,7 @@ public class RetrofitManager {
                         .addHeader("APP-VERSION", AppInfo.getLocalVersionName(BaseApplication.getInstance()))
                         .addHeader("BIT-TOKEN", "" + aCache.getAsString(HttpConstants.TOKEN))
                         .addHeader("BIT-UID", "" + aCache.getAsString(HttpConstants.USERID))
+                        .addHeader("PUSH-ID", JPushInterface.getRegistrationID(BaseApplication.getInstance()))
                         .build();
 
                 return chain.proceed(request);

@@ -24,6 +24,7 @@ import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
 import com.bit.fuxingwuye.bean.request.PassCodeListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 
@@ -237,6 +238,14 @@ public class Api {
 
     public static void  getPassCodeList(PropertyBean bean, ResponseCallBack<PassCodeListBean> callBack){
         ApiRequester.post(Url.V1_PASSCODE_LIST,bean,callBack);
+    }
 
+    /**
+     * 公告详情
+     * @param callBack
+     * @param o
+     */
+    public static void getNoticeDetail(ResponseCallBack<NewsDetailBean> callBack, Object... o){
+        ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
     }
 }

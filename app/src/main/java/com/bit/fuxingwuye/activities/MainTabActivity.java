@@ -19,6 +19,7 @@ import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
+import com.bit.communityOwner.KeyString;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
@@ -30,6 +31,8 @@ import com.bit.fuxingwuye.activities.fragment.elevatorFrag.ElevatorFragment;
 import com.bit.fuxingwuye.activities.fragment.mainFragment.FragmentMain;
 import com.bit.fuxingwuye.activities.fragment.mineFragment.FragmentMine;
 import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentDoor;
+import com.bit.fuxingwuye.activities.houseManager.ApplicationRecordActivity;
+import com.bit.fuxingwuye.activities.houseManager.HouseManagerActivity;
 import com.bit.fuxingwuye.activities.replenishData.ReplenishDataActivity;
 import com.bit.fuxingwuye.activities.residential_quarters.Housing;
 import com.bit.fuxingwuye.base.BaseApplication;
@@ -38,11 +41,13 @@ import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityMainTabBinding;
+import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.DownloadUtils;
 import com.bit.fuxingwuye.utils.PermissionUtils;
 import com.bit.fuxingwuye.views.TabItem;
+import com.push.message.JPushBean;
 import com.umeng.analytics.MobclickAgent;
 
 import net.lemonsoft.lemonhello.LemonHelloAction;
@@ -57,6 +62,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.qqtheme.framework.AppConfig;
 import me.yokeyword.fragmentation.SupportActivity;
 
 public class MainTabActivity extends SupportActivity {
@@ -125,6 +131,30 @@ public class MainTabActivity extends SupportActivity {
 
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions();
+        }
+
+        //从通知点击启动
+        Bundle bundle = getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE);
+        if (bundle != null) {
+            JPushBean jPushBean = (JPushBean) bundle.getSerializable("jpushbean");
+            if (jPushBean != null) {
+                switch (jPushBean.getAction()) {
+                    case "100101"://社区公告
+                        startActivity(new Intent(this, NewsDetail.class).putExtra("id", jPushBean.getData().getNotice_id()));
+                        break;
+                    case "100401"://房屋认证
+                        startActivity(new Intent(this, HouseManagerActivity.class).putExtra("id", jPushBean.getData().getCommunityId()));
+                        break;
+                    case "100402"://房屋绑定
+                        if (jPushBean.getData().getUserId().equals(aCache.getAsString(HttpConstants.USERID))){
+                            //如果申请人是自己，则跳到住房管理页面
+                            startActivity(new Intent(this, HouseManagerActivity.class).putExtra("id", jPushBean.getData().getCommunityId()));
+                        }else{
+                            startActivity(new Intent(this, ApplicationRecordActivity.class).putExtra(HttpConstants.ROOMID, jPushBean.getData().getRoomId()));
+                        }
+                        break;
+                }
+            }
         }
     }
 

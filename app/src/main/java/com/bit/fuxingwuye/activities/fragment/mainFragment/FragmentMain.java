@@ -278,7 +278,8 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
             @Override
             public void onItemClick(View view, String id, int position) {
                 Intent intent=new Intent(getActivity(),NewsDetail.class);
-                intent.putExtra("newsdetail",GsonUtil.toJson(mAdapter.getData(position)));
+//                intent.putExtra("newsdetail",GsonUtil.toJson(mAdapter.getData(position)));
+                intent.putExtra("id",mAdapter.getData(position).getId());
                 startActivity(intent);
             }
         });

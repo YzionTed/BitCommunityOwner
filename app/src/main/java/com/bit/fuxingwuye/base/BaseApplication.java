@@ -81,8 +81,8 @@ public class BaseApplication extends MultiDexApplication {
         getScreenSize();
         initImageLoader();
         IntercomSDK.initIntercomSDK(this);
-        JPushInterface.setDebugMode(false);
-        JPushInterface.init(this);
+//        JPushInterface.setDebugMode(false);
+//        JPushInterface.init(this);
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
@@ -95,8 +95,8 @@ public class BaseApplication extends MultiDexApplication {
 
         bluetoothClientManger = new BluetoothClientManger(this);
         //初始化极光推送
-//        JPushInterface.setDebugMode(true);
-//        JPushInterface.init(this);
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
         blueToothApp = new BluetoothApplication(this);
 
@@ -328,6 +328,18 @@ public class BaseApplication extends MultiDexApplication {
 
     public static void addActivity(Activity activity) {
         listActivity.add(activity);
+    }
+
+    /**
+     * 获取界面数量
+     *
+     * @return activity size
+     */
+    public static int getActivitySize() {
+        if (listActivity != null) {
+            return listActivity.size();
+        }
+        return 0;
     }
 
     public static void finishAllActivity() {

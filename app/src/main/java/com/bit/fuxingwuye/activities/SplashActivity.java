@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bit.communityOwner.KeyString;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.fuxingwuye.R;
@@ -20,6 +21,8 @@ import com.bit.fuxingwuye.utils.ACache;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
+
+import cn.qqtheme.framework.AppConfig;
 
 public class SplashActivity extends BaseActivity {
 
@@ -58,15 +61,17 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Intent intent = null;
                 if (aCache.getAsString(HttpConstants.TOKEN) != null && !"".equals(aCache.getAsString(HttpConstants.TOKEN))) {
-                    Intent intent = new Intent(SplashActivity.this, MainTabActivity.class);
-                    startActivity(intent);
-                    finish();
+                    intent = new Intent(SplashActivity.this, MainTabActivity.class);
                 } else {
-                    Intent it = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(it);
-                    finish();
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
                 }
+                if (getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE) != null) {
+                    intent.putExtra(KeyString.EXTRA_BUNDLE, getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE));
+                }
+                startActivity(intent);
+                finish();
 
             }
         }, 3000);
