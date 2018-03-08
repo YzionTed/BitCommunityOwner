@@ -8,30 +8,24 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bit.communityOwner.model.PassCode;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.adapter.ViaAdapter;
 import com.bit.fuxingwuye.base.BaseActivity;
-import com.bit.fuxingwuye.bean.CommonBean;
 import com.bit.fuxingwuye.bean.PropertyBean;
-import com.bit.fuxingwuye.bean.ViaBean;
 import com.bit.fuxingwuye.bean.request.PassCodeBean;
-import com.bit.fuxingwuye.bean.request.PassCodeListBean;
+import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityViaRecordBinding;
-import com.bit.fuxingwuye.http.HttpProvider;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.ScannerUtils;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -83,9 +77,9 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
         mBinding.xrecyclerview.setAdapter(mAdapter);
 
 
-        Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
+        Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<DataPagesBean<PassCodeBean>>() {
             @Override
-            public void onSuccess(PassCodeListBean data) {
+            public void onSuccess(DataPagesBean data) {
                 super.onSuccess(data);
                 if(data.getRecords().isEmpty()){
                     mBinding.llNovia.setVisibility(View.VISIBLE);
@@ -95,7 +89,8 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
                     mBinding.llNovia.setVisibility(View.GONE);
                     mTotalPage = data.getTotalPage();
                     lists.clear();
-                    for (PassCodeBean viaBean:  data.getRecords()){
+                    List<PassCodeBean> datas = (List<PassCodeBean>) data.getRecords();
+                    for (PassCodeBean viaBean:  datas){
                         lists.add(viaBean);
                     }
                     mAdapter.notifyDataSetChanged();
@@ -122,12 +117,13 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             @Override
             public void onRefresh() {
                 page = 1;
-                Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
+                Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<DataPagesBean<PassCodeBean>>() {
                     @Override
-                    public void onSuccess(PassCodeListBean data) {
+                    public void onSuccess(DataPagesBean data) {
                         super.onSuccess(data);
                         lists.clear();
-                        for (PassCodeBean viaBean:  data.getRecords()){
+                        List<PassCodeBean> datas = (List<PassCodeBean>) data.getRecords();
+                        for (PassCodeBean viaBean:  datas){
                             lists.add(viaBean);
                         }
                         mAdapter.notifyDataSetChanged();
@@ -146,11 +142,12 @@ public class ViaRecordActivity extends BaseActivity<ViaRecordPresenterImpl> impl
             public void onLoadMore() {
                 if(page <= mTotalPage){
                     page = page+1;
-                    Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<PassCodeListBean>() {
+                    Api.getPassCodeList(commonBean,page,size, new ResponseCallBack<DataPagesBean<PassCodeBean>>() {
                         @Override
-                        public void onSuccess(PassCodeListBean data) {
+                        public void onSuccess(DataPagesBean data) {
                             super.onSuccess(data);
-                            for (PassCodeBean viaBean: data.getRecords()){
+                            List<PassCodeBean> datas = (List<PassCodeBean>) data.getRecords();
+                            for (PassCodeBean viaBean: datas){
                                 lists.add(viaBean);
                             }
                             mAdapter.notifyDataSetChanged();

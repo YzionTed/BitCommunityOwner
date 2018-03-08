@@ -6,7 +6,7 @@ import java.util.List;
  * Created by mac_cai on 2018/3/7.
  */
 
-public class PassCodeListBean {
+public class DataPagesBean<T> {
 
     public int getCurrentPage() {
         return currentPage;
@@ -16,11 +16,11 @@ public class PassCodeListBean {
         this.currentPage = currentPage;
     }
 
-    public List<PassCodeBean> getRecords() {
+    public List<T> getRecords() {
         return records;
     }
 
-    public void setRecords(List<PassCodeBean> records) {
+    public void setRecords(List<T> records) {
         this.records = records;
     }
 
@@ -41,7 +41,7 @@ public class PassCodeListBean {
     }
 
     private int currentPage;
-    private List<PassCodeBean> records;
+    private List<T> records;
     private int total;
     private int totalPage;
 
