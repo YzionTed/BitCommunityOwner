@@ -19,6 +19,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bit.communityOwner.KeyString;
+import com.bit.communityOwner.model.OssToken;
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
 import com.bit.fuxingwuye.activities.register.RegisterActivity;
@@ -36,6 +40,7 @@ import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityLoginBinding;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.utils.OssManager;
 import com.bit.fuxingwuye.utils.SPUtils;
 import com.ddclient.configuration.DongConfiguration;
 import com.ddclient.dongsdk.PushInfo;
@@ -217,9 +222,12 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
        if(tokenBean.getName()!=null){
            mCache.put(HttpConstants.USERNAME, tokenBean.getName());
        }
+
         mCache.put(HttpConstants.STATUS, "3");
         SPUtils.getInstance().put(HttpConstants.PHONE,mBinding.etMobile.getText().toString());
         SPUtils.getInstance().put(HttpConstants.PASSWORD,mBinding.etPwd.getText().toString());
+        SPUtils.getInstance().put(HttpConstants.USERID,tokenBean.getId());
+        initOssToken();
         Intent intent = null;
         if (aCache.getAsString(HttpConstants.village) != null && !"".equals(aCache.getAsString(HttpConstants.village))) {
             intent = new Intent(LoginActivity.this, MainTabActivity.class);
@@ -232,6 +240,24 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         startActivity(intent);
         finish();
 
+    }
+
+    private void initOssToken() {
+        Api.ossToken(new ResponseCallBack<OssToken>() {
+            @Override
+            public void onSuccess(OssToken data) {
+                super.onSuccess(data);
+                if (data!=null){
+                    OssManager.getInstance().init(BaseApplication.getInstance(), data);
+                    aCache.put(HttpConstants.OSSTOKEN, data);
+                }
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+            }
+        });
     }
 
     @Override

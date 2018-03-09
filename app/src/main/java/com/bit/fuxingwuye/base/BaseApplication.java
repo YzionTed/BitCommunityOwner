@@ -17,6 +17,7 @@ import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.dagger.component.AppComponent;
 import com.bit.fuxingwuye.dagger.component.DaggerAppComponent;
 import com.bit.fuxingwuye.dagger.module.AppModule;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.LogUtil;
 import com.ddclient.push.DongPushMsgManager;
 import com.facebook.stetho.Stetho;
@@ -106,6 +107,8 @@ public class BaseApplication extends MultiDexApplication {
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_GETUI);
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_JG);
 
+        //初始化数据库
+        LiteOrmUtil.getInstance().init(this);
     }
 
     public static BaseApplication getInstance() {
