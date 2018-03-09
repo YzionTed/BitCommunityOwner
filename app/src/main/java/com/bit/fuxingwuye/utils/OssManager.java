@@ -53,9 +53,6 @@ public class OssManager {
     }
 
     public String getUrl(String url) {
-        if (uploadInfo != null && TimeUtils.isExpiration(uploadInfo.getExpiration())) {
-            initOssToken();
-        }
         if (oss != null) {
             try {
                 return oss.presignConstrainedObjectURL(StringUtils.getBucket(url), url, 30 * 60);
