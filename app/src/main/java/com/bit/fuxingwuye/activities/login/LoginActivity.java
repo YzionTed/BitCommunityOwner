@@ -76,7 +76,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     private int count = 60;                // 计时倒数 60s
     private static final int RC_READ_WRITE = 120;
     private static final int RC_PHONE = 121;
-    String[] readwrite = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    String[] readwrite = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE};
     String[] phone = {Manifest.permission.READ_PHONE_STATE};
     private LoginActivityIntercomAccountProxy mIntercomAccountProxy = new LoginActivityIntercomAccountProxy();
 

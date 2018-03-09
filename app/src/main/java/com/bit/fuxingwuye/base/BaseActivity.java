@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.bit.fuxingwuye.dagger.component.ActivityComponent;
 import com.bit.fuxingwuye.dagger.component.DaggerActivityComponent;
 import com.bit.fuxingwuye.dagger.module.ActivityModule;
+import com.bit.fuxingwuye.utils.OssManager;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
 
@@ -42,7 +43,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        OssManager.getInstance().refreshToken();
     }
 
     @Override

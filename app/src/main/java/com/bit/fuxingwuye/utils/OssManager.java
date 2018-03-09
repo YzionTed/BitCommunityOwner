@@ -28,7 +28,7 @@ import cn.qqtheme.framework.AppConfig;
 public class OssManager {
     private OssToken uploadInfo;
     private OSS oss;
-
+    ACache aCache;
     public static OssManager getInstance() {
         return OssInstance.instance;
     }
@@ -53,9 +53,6 @@ public class OssManager {
     }
 
     public String getUrl(String url) {
-        if (uploadInfo != null && TimeUtils.isExpiration(uploadInfo.getExpiration())) {
-            initOssToken();
-        }
         if (oss != null) {
             try {
                 return oss.presignConstrainedObjectURL(StringUtils.getBucket(url), url, 30 * 60);
@@ -94,7 +91,8 @@ public class OssManager {
 
 
     public void refreshToken(){
-        if (uploadInfo == null || TimeUtils.isExpiration(uploadInfo.getExpiration())) {
+        aCache = ACache.get(BaseApplication.getInstance());
+        if ((uploadInfo == null || TimeUtils.isExpiration(uploadInfo.getExpiration()))&&(aCache.getAsString(HttpConstants.TOKEN) != null && !"".equals(aCache.getAsString(HttpConstants.TOKEN)))) {
             initOssToken();
         }
     }

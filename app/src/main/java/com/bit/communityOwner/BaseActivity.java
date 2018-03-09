@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bit.fuxingwuye.utils.OssManager;
+
 /**
  * Created by zhangjiajie on 18/3/1.
  */
@@ -19,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        OssManager.getInstance().refreshToken();
     }
 
     /**
