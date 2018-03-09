@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.bit.communityOwner"
         minSdkVersion 18
-        targetSdkVersion 21
+        targetSdkVersion 26
         versionCode 2
         versionName "1.0.1"
         flavorDimensions "versionCode"
@@ -206,6 +206,8 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation files('libs/lite-orm-1.9.2.jar')
+
+    compile project(path: ':uikit')
 }
 repositories {
     flatDir { dirs 'aars' }
