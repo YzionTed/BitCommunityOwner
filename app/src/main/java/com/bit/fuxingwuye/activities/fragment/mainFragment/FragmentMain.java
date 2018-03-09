@@ -248,7 +248,6 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
             public void onSuccess(DataPagesBean<NoticeBean> data) {
                 super.onSuccess(data);
                 List<NoticeBean> datas = data.getRecords();
-                Log.e("datas", "----datas size:" + datas.size());
                 mTotalPage = data.getTotalPage();
                 if (datas != null && !datas.isEmpty()) {
                     Alldata.addAll(datas);
@@ -261,7 +260,6 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
             @Override
             public void onFailure(ServiceException e) {
                 super.onFailure(e);
-                Log.e("datas", "----datas eeee:" + e);
             }
         });
 
