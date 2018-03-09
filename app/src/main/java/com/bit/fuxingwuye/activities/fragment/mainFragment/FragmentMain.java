@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bit.communityOwner.model.IMToken;
 import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ApiRequester;
+import com.bit.communityOwner.net.LogUtil;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
+import com.bit.communityOwner.util.CheckSumBuilder;
 import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
@@ -29,7 +31,6 @@ import com.bit.fuxingwuye.activities.brake.BrakeActivity;
 import com.bit.fuxingwuye.activities.callEle.CallEleActivity;
 import com.bit.fuxingwuye.activities.callPolice.CallPoliceActivity;
 import com.bit.fuxingwuye.activities.community.CommunityActivity;
-import com.bit.fuxingwuye.activities.message.MessageActivity;
 import com.bit.fuxingwuye.activities.payList.PayListActivity;
 import com.bit.fuxingwuye.activities.replenishData.ReplenishDataActivity;
 import com.bit.fuxingwuye.activities.residential_quarters.Housing;
@@ -42,28 +43,25 @@ import com.bit.fuxingwuye.base.BaseFragment;
 import com.bit.fuxingwuye.bean.CommonBean;
 import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.MenuItem;
-import com.bit.fuxingwuye.bean.Notice;
 import com.bit.fuxingwuye.bean.NoticeListBean;
 import com.bit.fuxingwuye.bean.NoticeReqBean;
+import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserBean;
 import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.bean.request.NoticeBean;
-import com.bit.fuxingwuye.bean.request.PassCodeBean;
-import com.bit.fuxingwuye.chat.ChatActivity;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.GsonUtil;
-import com.bit.fuxingwuye.utils.LogUtil;
 import com.bit.fuxingwuye.utils.Tag;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.easeui.EaseConstant;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 
 import net.lemonsoft.lemonhello.LemonHelloAction;
 import net.lemonsoft.lemonhello.LemonHelloInfo;
@@ -73,8 +71,10 @@ import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -85,6 +85,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainContract.View, View.OnClickListener,
         EasyPermissions.PermissionCallbacks {
+    private static final String TAG = FragmentMain.class.getSimpleName();
     TextView chosehousing;
     private XRecyclerView fm_xrecyclerview;
     private ACache mCache;
@@ -124,13 +125,15 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     LinearLayout grid_video = null;
     LinearLayout grid_brake = null;
     LinearLayout grid_pass = null;
+    LinearLayout grid_bom_pass = null;
 
     String topName;
     NoticeListBean notice;
     NoticeReqBean mNoticeReq = new NoticeReqBean();
-    List<NoticeBean> Alldata =new ArrayList<>();
-    private int size = 5;
+    List<NoticeBean> Alldata = new ArrayList<>();
+    private int size = 2;
     private int mTotalPage;
+
     /**
      *
      */
@@ -160,67 +163,35 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         topName = chosehousing.getText().toString();
 
 
+        String communityId = ACache.get(getActivity()).getAsString(HttpConstants.COMMUNIYID);
+        View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_hx, (ViewGroup) mView.findViewById(android.R.id.content),
+                false);
+        grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
+        grid_repair = (LinearLayout) header.findViewById(R.id.grid_repair);
+        grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
+        grid_police = (LinearLayout) header.findViewById(R.id.grid_police);
+        grid_video = (LinearLayout) header.findViewById(R.id.grid_video);
+        grid_pass = (LinearLayout) header.findViewById(R.id.grid_pass);
+        grid_bom_pass = (LinearLayout) header.findViewById(R.id.grid_bom_pass);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        fm_xrecyclerview.setLayoutManager(linearLayoutManager);
+        fm_xrecyclerview.addHeaderView(header);
+        grid_pay.setOnClickListener(this);
+        grid_communition.setOnClickListener(this);
+        grid_repair.setOnClickListener(this);
+        grid_police.setOnClickListener(this);
+        grid_video.setOnClickListener(this);
+        grid_pass.setOnClickListener(this);
+        grid_bom_pass.setOnClickListener(this);
 
-        String  communityId =  ACache.get(getActivity()).getAsString(HttpConstants.COMMUNIYID);
-//
-//        if ("5a8cfa62518089ae7afccc0c".equals(communityId)) {
-//            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header, (ViewGroup) mView.findViewById(android.R.id.content), false);
-//            grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
-//            grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
-//            grid_community = (LinearLayout) header.findViewById(R.id.grid_community);
-//            grid_repair = (LinearLayout) header.findViewById(R.id.grid_repair);
-//            grid_shop = (LinearLayout) header.findViewById(R.id.grid_shop);
-//            grid_police = (LinearLayout) header.findViewById(R.id.grid_police);
-//            grid_video = (LinearLayout) header.findViewById(R.id.grid_video);
-//            grid_brake = (LinearLayout) header.findViewById(R.id.grid_brake);
-//            grid_pass = (LinearLayout) header.findViewById(R.id.grid_pass);
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-//            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//            fm_xrecyclerview.setLayoutManager(linearLayoutManager);
-//            fm_xrecyclerview.addHeaderView(header);
-//
-//            grid_pay.setOnClickListener(this);
-//            grid_communition.setOnClickListener(this);
-//            grid_community.setOnClickListener(this);
-//            grid_repair.setOnClickListener(this);
-//            grid_shop.setOnClickListener(this);
-//            grid_police.setOnClickListener(this);
-//            grid_video.setOnClickListener(this);
-//            grid_brake.setOnClickListener(this);
-//            grid_pass.setOnClickListener(this);
-//
-////            showFunctionModule();
-//
-//        } else
-
-            if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId) || "5a8cfa62518089ae7afccc0c".equals(communityId)) {
-            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_hx, (ViewGroup) mView.findViewById(android.R.id.content),
-                    false);
-            grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
-            grid_repair = (LinearLayout) header.findViewById(R.id.grid_repair);
-            grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
-            grid_police = (LinearLayout) header.findViewById(R.id.grid_police);
-            grid_video = (LinearLayout) header.findViewById(R.id.grid_video);
-            grid_pass = (LinearLayout) header.findViewById(R.id.grid_pass);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            fm_xrecyclerview.setLayoutManager(linearLayoutManager);
-            fm_xrecyclerview.addHeaderView(header);
-            grid_pay.setOnClickListener(this);
-            grid_communition.setOnClickListener(this);
-            grid_repair.setOnClickListener(this);
-            grid_police.setOnClickListener(this);
-            grid_video.setOnClickListener(this);
-            grid_pass.setOnClickListener(this);
+        if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId)) {
+            grid_pass.setVisibility(View.VISIBLE);
+            grid_bom_pass.setVisibility(View.GONE);
+        } else if ("5a8cfa62518089ae7afccc0c".equals(communityId)) {
+            grid_pass.setVisibility(View.GONE);
+            grid_bom_pass.setVisibility(View.VISIBLE);
         }
-//        else if ("5a8cfc54518089ae7afccc0d".equals(communityId)) {
-//            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_qt, (ViewGroup) mView.findViewById(android.R.id.content),
-//                    false);
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-//            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//            fm_xrecyclerview.setLayoutManager(linearLayoutManager);
-//            fm_xrecyclerview.addHeaderView(header);
-//        }
 
         chosehousing.setOnClickListener(this);
         commonBean = new CommonBean();
@@ -235,15 +206,13 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                         super.onSuccess(data);
                         Alldata.clear();
                         Alldata.addAll(data.getRecords());
-
+                        fm_xrecyclerview.refreshComplete();
                         showNotices(Alldata);
-
-
-
                     }
 
                     @Override
                     public void onFailure(ServiceException e) {
+                        fm_xrecyclerview.refreshComplete();
                         super.onFailure(e);
                     }
                 });
@@ -251,54 +220,59 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
 
             @Override
             public void onLoadMore() {
-                if(page <= mTotalPage){
+                if (page <= mTotalPage) {
                     page = page + 1;
                     Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
                         @Override
                         public void onSuccess(DataPagesBean<NoticeBean> data) {
                             super.onSuccess(data);
-                            List<NoticeBean> datas =data.getRecords();
-                            if(datas!=null&&!datas.isEmpty()){
-                                Alldata.addAll(data.getRecords());
+                            List<NoticeBean> datas = data.getRecords();
+                            Log.e(Tag.tag, "加载前：" + GsonUtil.toJson(Alldata));
+                            if (datas != null && !datas.isEmpty()) {
+                                Alldata.addAll(datas);
+                                showNotices(Alldata);
                             }
-                            showNotices(Alldata);
-
-
+                            Log.e(Tag.tag, "加载后：" + GsonUtil.toJson(Alldata));
+                            fm_xrecyclerview.loadMoreComplete();
 
                         }
 
                         @Override
                         public void onFailure(ServiceException e) {
+                            fm_xrecyclerview.loadMoreComplete();
                             super.onFailure(e);
                         }
                     });
+                } else {
+                    fm_xrecyclerview.loadMoreComplete();
                 }
             }
         });
-            mNoticeReq.setCommunityId(ACache.get(getContext()).getAsString(HttpConstants.COMMUNIYID));
-            mNoticeReq.setNoticeType(1);
-            Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
-                @Override
-                public void onSuccess(DataPagesBean<NoticeBean> data) {
-                    super.onSuccess(data);
-                    List<NoticeBean> datas =data.getRecords();
-                    Log.e("datas","----datas size:"+datas.size());
-                    mTotalPage = data.getTotalPage();
-
-                    showNotices(datas);
-
-
+        mNoticeReq.setCommunityId(ACache.get(getContext()).getAsString(HttpConstants.COMMUNIYID));
+        mNoticeReq.setNoticeType(1);
+        Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+            @Override
+            public void onSuccess(DataPagesBean<NoticeBean> data) {
+                super.onSuccess(data);
+                List<NoticeBean> datas = data.getRecords();
+                mTotalPage = data.getTotalPage();
+                if (datas != null && !datas.isEmpty()) {
+                    Alldata.addAll(datas);
+                    showNotices(Alldata);
                 }
 
-                @Override
-                public void onFailure(ServiceException e) {
-                    super.onFailure(e);
-                    Log.e("datas","----datas eeee:"+e);
-                }
-            });
+
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+            }
+        });
 
         fm_xrecyclerview.setPullRefreshEnabled(true);
 
+        createAccountId();
     }
 
     @Override
@@ -314,25 +288,19 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     /**
      * @param
      * @param请求公告成功时返回的数据
-     *
      */
 
     public void showNotices(List<NoticeBean> datas) {
-
-            mAdapter = new ServicesAdapter(datas);
-            fm_xrecyclerview.setAdapter(mAdapter);
-
-
-            mAdapter.LoadMore(datas);
-            fm_xrecyclerview.loadMoreComplete();
-
-
+        Log.e(Tag.tag, GsonUtil.toJson(datas));
+        mAdapter.setDatas(datas);
+        mAdapter.notifyDataSetChanged();
+        fm_xrecyclerview.loadMoreComplete();
         mAdapter.setOnItemClickListener(new ServicesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, String id, int position) {
-                Intent intent=new Intent(getActivity(),NewsDetail.class);
+                Intent intent = new Intent(getActivity(), NewsDetail.class);
 //                intent.putExtra("newsdetail",GsonUtil.toJson(mAdapter.getData(position)));
-                intent.putExtra("id",mAdapter.getData(position).getId());
+                intent.putExtra("id", mAdapter.getData(position).getId());
                 startActivity(intent);
             }
         });
@@ -345,8 +313,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     }
 
     /**
-     * @param activity
-     * 判断是否有选择小区和权限
+     * @param activity 判断是否有选择小区和权限
      */
     private void HavaPermission(Class<?> activity) {
         if (mCache.getAsString(HttpConstants.COMMUNIYID) == null || "".equals(mCache.getAsString(HttpConstants.COMMUNIYID))) {
@@ -377,38 +344,39 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     final BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
 
                     List<MenuItem> menuItemList = new ArrayList<MenuItem>();
-//                    MenuItem menuItem1 = new MenuItem();
-//                    menuItem1.setText("在线客服");
-//                    menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
-//                        @Override
-//                        public void onClickMenuItem(View v, MenuItem menuItem) {
-//                            if(!EasyPermissions.hasPermissions(getActivity(),media)){
-//                                EasyPermissions.requestPermissions(getActivity(),"需要获取拍照和录音权限",RC_MEDIA,media);
-//                            }else{
-//                                if(EMClient.getInstance().isConnected()){
+                    MenuItem menuItem1 = new MenuItem();
+                    menuItem1.setText("在线客服");
+                    menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+                            if (!EasyPermissions.hasPermissions(getActivity(), media)) {
+                                EasyPermissions.requestPermissions(getActivity(), "需要获取拍照和录音权限", RC_MEDIA, media);
+                            } else {
+                                startP2P();
+//                                if (EMClient.getInstance().isConnected()) {
 //                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-//                                }else{
+//                                } else {
 //                                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "123456", new EMCallBack() {
 //                                        @Override
 //                                        public void onSuccess() {
 //                                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID,
-// "fxwy"));
+//                                                    "fxwy"));
 //                                        }
 //
 //                                        @Override
 //                                        public void onError(int i, String s) {
-//                                            Toast.makeText(getActivity(),"登陆聊天系统失败，请电话联系物业",Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
 //                                        }
 //
 //                                        @Override
 //                                        public void onProgress(int i, String s) {
-//                                            Toast.makeText(getActivity(),"正在登陆聊天系统...",Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
 //                                        }
 //                                    });
 //                                }
-//                            }
-//                        }
-//                    });
+                            }
+                        }
+                    });
                     MenuItem menuItem2 = new MenuItem();
                     menuItem2.setText("物业电话0472-710 5404");
                     menuItem2.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem2) {
@@ -444,9 +412,9 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 }
                 break;
             case R.id.grid_police:
-                if(AppInfo.isNetworkAvailable(getContext())){
+                if (AppInfo.isNetworkAvailable(getContext())) {
                     HavaPermission(CallPoliceActivity.class);
-                }else {
+                } else {
                     toastMsg("请检查网络设置!");
                 }
                 // getActivity().startActivity(new Intent(getActivity(), CallPoliceActivity.class));
@@ -467,8 +435,66 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 HavaPermission(ViaActivity.class);
                 //getActivity().startActivity(new Intent(getActivity(), ViaActivity.class));
                 break;
+            case R.id.grid_bom_pass:
+                toastMsg("临时通行");
+                break;
+
         }
     }
+
+    private void createAccountId() {
+        RequestParams requestParams = new RequestParams();
+        requestParams.addHeader("AppKey", "c7d64ed61462dfac25c0089ab171eaa4");
+        requestParams.addHeader("Nonce", "123456");
+        String curTime = String.valueOf((new Date()).getTime() / 1000L);
+        requestParams.addHeader("CurTime", curTime);
+        requestParams.addHeader("CheckSum", CheckSumBuilder.getCheckSum("744182fbc16c", "123456", curTime));
+        requestParams.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        TokenBean tokenBean = (TokenBean) ACache.get(mContext).getAsObject(HttpConstants.TOKENBEAN);
+        if (tokenBean != null) {
+            requestParams.addBodyParameter("accid", tokenBean.getPhone());
+        }
+//        requestParams.addBodyParameter("accid", "15900020005");
+
+//        String url = "https://api.netease.im/nimserver/user/create.action";//{"desc":"already register","code":414}
+        String url = "https://api.netease.im/nimserver/user/refreshToken.action";
+//        ApiRequester.sendRequest(url0, requestParams, mResponseCallBack);
+        ApiRequester.sendRequest(url, requestParams, mResponseCallBack);
+    }
+
+
+    //{"code":200,"info":{"token":"338fdb41436631cd5ced4d73950154d1","accid":"15900010001"}}
+    ResponseCallBack mResponseCallBack = new ResponseCallBack<IMToken>(false) {
+
+        @Override
+        public void onSuccess(IMToken data) {
+            Toast.makeText(mContext, "onSuccess", Toast.LENGTH_SHORT).show();
+            NimUIKit.login(new LoginInfo(data.getInfo().getAccid(), data.getInfo().getToken()), new RequestCallback<LoginInfo>() {
+                @Override
+                public void onSuccess(LoginInfo param) {
+                    Toast.makeText(mContext, "login im onSuccess", Toast.LENGTH_SHORT).show();
+                    LogUtil.d(TAG, "login im onSuccess");
+                }
+
+                @Override
+                public void onFailed(int code) {
+                    LogUtil.d(TAG, "onFailed:" + code);
+                }
+
+                @Override
+                public void onException(Throwable exception) {
+                    LogUtil.d(TAG, "onException:" + exception.getMessage());
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailure(ServiceException e) {
+            LogUtil.d(TAG, e.getMsg());
+        }
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -485,26 +511,27 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 startActivity(intent);
                 break;
             case RC_MEDIA:
-                if (EMClient.getInstance().isConnected()) {
-                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-                } else {
-                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "66666", new EMCallBack() {
-                        @Override
-                        public void onSuccess() {
-                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-                        }
-
-                        @Override
-                        public void onError(int i, String s) {
-                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onProgress(int i, String s) {
-                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                startP2P();
+//                if (EMClient.getInstance().isConnected()) {
+//                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+//                } else {
+//                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "66666", new EMCallBack() {
+//                        @Override
+//                        public void onSuccess() {
+//                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+//                        }
+//
+//                        @Override
+//                        public void onError(int i, String s) {
+//                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onProgress(int i, String s) {
+//                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
                 break;
             case RC_LOCATION:
                 getActivity().startActivity(new Intent(getActivity(), CallEleActivity.class));
@@ -516,6 +543,13 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 break;
         }
 
+    }
+
+    private void startP2P() {
+        if (NimUIKit.getAccount() != null) {
+//                                NimUIKit.startP2PSession(getContext(), (String) SPUtil.get(mContext, AppConfig.phone, ""));
+            NimUIKit.startP2PSession(getContext(), "15900020005");
+        }
     }
 
     @Override
@@ -532,25 +566,22 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     }
 
     /**
-     * @param messageEvent
-     * 小区改变时进入这里进行更新公告
+     * @param messageEvent 小区改变时进入这里进行更新公告
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setChosehousing(EvenBusMessage messageEvent) {
         if (messageEvent.getEvent().equals(HttpConstants.village)) {
             chosehousing.setText(messageEvent.getValuse());
-            if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null){
+            if (mCache.getAsString(HttpConstants.COMMUNIYID) != null) {
                 page = 1;
                 Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
                     @Override
                     public void onSuccess(DataPagesBean<NoticeBean> data) {
                         super.onSuccess(data);
-                        List<NoticeBean> datas =data.getRecords();
+                        List<NoticeBean> datas = data.getRecords();
                         Alldata.clear();
-                        if(datas!=null&&!datas.isEmpty()){
-                            showNotices(datas);
-                        }
-
+                        Alldata.addAll(datas);
+                        showNotices(Alldata);
 
 
                     }

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import com.bit.fuxingwuye.R;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,8 +130,8 @@ public class GridViewAddImgesAdpter extends BaseAdapter {
 
             Glide.with(context)
                     .load(R.mipmap.icon_plus)
-                    .priority(Priority.HIGH)
-                    .centerCrop()
+//                    .priority(Priority.HIGH)
+//                    .centerCrop()
                     .into(viewHolder.ivimage);
             viewHolder.ivimage.setScaleType(ImageView.ScaleType.FIT_XY);
             viewHolder.btdel.setVisibility(View.GONE);

@@ -5,16 +5,19 @@ import android.widget.ImageView;
 
 import com.bit.fuxingwuye.R;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.RequestOptions;
 
 /**
  * Created by DELL60 on 2018/3/5.
  */
 
 public class GlideUtil {
-    public static void loadImage(final Context mContext, final String path, final ImageView mImageView) {
+    public static void loadImage(Context mContext, String path, ImageView mImageView) {
+        RequestOptions options = new RequestOptions();
+        options.centerCrop()
+                .placeholder(R.mipmap.image_default_small)
+                .error(R.mipmap.image_default_small)
+                .fallback(R.mipmap.image_default_small);
         Glide.with(mContext).load(new CacheGlideUrl(path)).listener(new RequestListener<CacheGlideUrl, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, CacheGlideUrl model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -33,8 +36,7 @@ public class GlideUtil {
                 return false;
             }
         })
-                .placeholder(R.mipmap.image_default_small)
-                .error(R.mipmap.image_default_small)
+                .apply(options)
                 .into(mImageView);
     }
 }
