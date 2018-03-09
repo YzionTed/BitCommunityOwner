@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +27,6 @@ import com.bit.fuxingwuye.activities.brake.BrakeActivity;
 import com.bit.fuxingwuye.activities.callEle.CallEleActivity;
 import com.bit.fuxingwuye.activities.callPolice.CallPoliceActivity;
 import com.bit.fuxingwuye.activities.community.CommunityActivity;
-import com.bit.fuxingwuye.activities.message.MessageActivity;
 import com.bit.fuxingwuye.activities.payList.PayListActivity;
 import com.bit.fuxingwuye.activities.replenishData.ReplenishDataActivity;
 import com.bit.fuxingwuye.activities.residential_quarters.Housing;
@@ -42,20 +39,17 @@ import com.bit.fuxingwuye.base.BaseFragment;
 import com.bit.fuxingwuye.bean.CommonBean;
 import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.MenuItem;
-import com.bit.fuxingwuye.bean.Notice;
 import com.bit.fuxingwuye.bean.NoticeListBean;
 import com.bit.fuxingwuye.bean.NoticeReqBean;
 import com.bit.fuxingwuye.bean.UserBean;
 import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.bean.request.NoticeBean;
-import com.bit.fuxingwuye.bean.request.PassCodeBean;
 import com.bit.fuxingwuye.chat.ChatActivity;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.GsonUtil;
-import com.bit.fuxingwuye.utils.LogUtil;
 import com.bit.fuxingwuye.utils.Tag;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
@@ -164,7 +158,8 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         String communityId = ACache.get(getActivity()).getAsString(HttpConstants.COMMUNIYID);
 //
 //        if ("5a8cfa62518089ae7afccc0c".equals(communityId)) {
-//            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header, (ViewGroup) mView.findViewById(android.R.id.content), false);
+//            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header, (ViewGroup) mView.findViewById(android.R.id.content),
+// false);
 //            grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
 //            grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
 //            grid_community = (LinearLayout) header.findViewById(R.id.grid_community);
@@ -193,7 +188,8 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
 //
 //        } else
 
-        if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId) || "5a8cfa62518089ae7afccc0c".equals(communityId)) {
+        if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId) || "5a8cfa62518089ae7afccc0c".equals
+                (communityId)) {
             View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_hx, (ViewGroup) mView.findViewById(android.R.id.content),
                     false);
             grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
@@ -258,12 +254,12 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                         public void onSuccess(DataPagesBean<NoticeBean> data) {
                             super.onSuccess(data);
                             List<NoticeBean> datas = data.getRecords();
-                            Log.e(Tag.tag,"加载前："+GsonUtil.toJson(Alldata));
+                            Log.e(Tag.tag, "加载前：" + GsonUtil.toJson(Alldata));
                             if (datas != null && !datas.isEmpty()) {
                                 Alldata.addAll(datas);
                                 showNotices(Alldata);
                             }
-                            Log.e(Tag.tag,"加载后："+GsonUtil.toJson(Alldata));
+                            Log.e(Tag.tag, "加载后：" + GsonUtil.toJson(Alldata));
                             fm_xrecyclerview.loadMoreComplete();
 
                         }
@@ -274,7 +270,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                             super.onFailure(e);
                         }
                     });
-                }else{
+                } else {
                     fm_xrecyclerview.loadMoreComplete();
                 }
             }
@@ -288,11 +284,10 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 List<NoticeBean> datas = data.getRecords();
                 Log.e("datas", "----datas size:" + datas.size());
                 mTotalPage = data.getTotalPage();
-                if(datas!=null&&!datas.isEmpty()){
+                if (datas != null && !datas.isEmpty()) {
                     Alldata.addAll(datas);
                     showNotices(Alldata);
                 }
-
 
 
             }
@@ -324,7 +319,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
      */
 
     public void showNotices(List<NoticeBean> datas) {
-        Log.e(Tag.tag,GsonUtil.toJson(datas));
+        Log.e(Tag.tag, GsonUtil.toJson(datas));
         mAdapter.setDatas(datas);
         mAdapter.notifyDataSetChanged();
         fm_xrecyclerview.loadMoreComplete();
@@ -377,38 +372,38 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     final BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
 
                     List<MenuItem> menuItemList = new ArrayList<MenuItem>();
-//                    MenuItem menuItem1 = new MenuItem();
-//                    menuItem1.setText("在线客服");
-//                    menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
-//                        @Override
-//                        public void onClickMenuItem(View v, MenuItem menuItem) {
-//                            if(!EasyPermissions.hasPermissions(getActivity(),media)){
-//                                EasyPermissions.requestPermissions(getActivity(),"需要获取拍照和录音权限",RC_MEDIA,media);
-//                            }else{
-//                                if(EMClient.getInstance().isConnected()){
-//                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-//                                }else{
-//                                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "123456", new EMCallBack() {
-//                                        @Override
-//                                        public void onSuccess() {
-//                                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID,
-// "fxwy"));
-//                                        }
-//
-//                                        @Override
-//                                        public void onError(int i, String s) {
-//                                            Toast.makeText(getActivity(),"登陆聊天系统失败，请电话联系物业",Toast.LENGTH_SHORT).show();
-//                                        }
-//
-//                                        @Override
-//                                        public void onProgress(int i, String s) {
-//                                            Toast.makeText(getActivity(),"正在登陆聊天系统...",Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        }
-//                    });
+                    MenuItem menuItem1 = new MenuItem();
+                    menuItem1.setText("在线客服");
+                    menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+                            if (!EasyPermissions.hasPermissions(getActivity(), media)) {
+                                EasyPermissions.requestPermissions(getActivity(), "需要获取拍照和录音权限", RC_MEDIA, media);
+                            } else {
+                                if (EMClient.getInstance().isConnected()) {
+                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+                                } else {
+                                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "123456", new EMCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID,
+                                                    "fxwy"));
+                                        }
+
+                                        @Override
+                                        public void onError(int i, String s) {
+                                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onProgress(int i, String s) {
+                                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
                     MenuItem menuItem2 = new MenuItem();
                     menuItem2.setText("物业电话0472-710 5404");
                     menuItem2.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem2) {
