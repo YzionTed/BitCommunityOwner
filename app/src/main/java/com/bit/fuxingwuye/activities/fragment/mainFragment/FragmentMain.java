@@ -178,26 +178,12 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         grid_pass.setOnClickListener(this);
         grid_bom_pass.setOnClickListener(this);
 
-        if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId) || "5a8cfa62518089ae7afccc0c".equals
-                (communityId)) {
-            View header = LayoutInflater.from(getActivity()).inflate(R.layout.f_header_hx, (ViewGroup) mView.findViewById(android.R.id.content),
-                    false);
-            grid_pay = (LinearLayout) header.findViewById(R.id.grid_pay);
-            grid_repair = (LinearLayout) header.findViewById(R.id.grid_repair);
-            grid_communition = (LinearLayout) header.findViewById(R.id.grid_communition);
-            grid_police = (LinearLayout) header.findViewById(R.id.grid_police);
-            grid_video = (LinearLayout) header.findViewById(R.id.grid_video);
-            grid_pass = (LinearLayout) header.findViewById(R.id.grid_pass);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            fm_xrecyclerview.setLayoutManager(linearLayoutManager);
-            fm_xrecyclerview.addHeaderView(header);
-            grid_pay.setOnClickListener(this);
-            grid_communition.setOnClickListener(this);
-            grid_repair.setOnClickListener(this);
-            grid_police.setOnClickListener(this);
-            grid_video.setOnClickListener(this);
-            grid_pass.setOnClickListener(this);
+        if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId)) {
+            grid_pass.setVisibility(View.VISIBLE);
+            grid_bom_pass.setVisibility(View.GONE);
+        }else if("5a8cfa62518089ae7afccc0c".equals(communityId)){
+            grid_pass.setVisibility(View.GONE);
+            grid_bom_pass.setVisibility(View.VISIBLE);
         }
 
         chosehousing.setOnClickListener(this);
