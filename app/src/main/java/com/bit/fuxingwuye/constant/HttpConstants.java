@@ -97,6 +97,7 @@ public class HttpConstants {
     public static final String NICKNAME = "nickName";//房间id
     public static final String PHONE = "phone";//电话
     public static final String TOKENBEAN = "tokenbean";
+    public static final String OSSTOKEN = "OSSTOKEN";
     public static final String ID = "id";
     public static final String auditstatus = "auditstatus";
 
