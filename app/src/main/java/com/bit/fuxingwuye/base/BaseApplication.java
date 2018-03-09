@@ -23,6 +23,9 @@ import com.facebook.stetho.Stetho;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.inuker.bluetooth.library.BluetoothClientManger;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.util.NIMUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.smarthome.yunintercom.sdk.IntercomSDK;
@@ -106,6 +109,13 @@ public class BaseApplication extends MultiDexApplication {
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_GETUI);
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_JG);
 
+        // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
+        NIMClient.init(this, null, null);
+
+        // ... your codes
+        if (NIMUtil.isMainProcess(this)) {
+            NimUIKit.init(this);
+        }
     }
 
     public static BaseApplication getInstance() {
