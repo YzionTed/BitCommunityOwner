@@ -38,6 +38,9 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         datas.addAll(datas);
 
     }
+    public void setDatas(List<NoticeBean> datas){
+        this.datas = datas;
+    }
     public NoticeBean getData(int position){
         return datas.get(position);
     }
