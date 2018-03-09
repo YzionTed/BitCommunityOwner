@@ -82,6 +82,7 @@ public class MainTabActivity extends SupportActivity {
     private String[] locPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,//写入权限
             Manifest.permission.CAMERA,//相机
+            Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.CALL_PHONE,//电话
             Manifest.permission.RECORD_AUDIO//录音
     };
