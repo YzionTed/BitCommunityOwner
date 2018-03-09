@@ -16,9 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bit.communityOwner.model.IMToken;
 import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ApiRequester;
+import com.bit.communityOwner.net.LogUtil;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
+import com.bit.communityOwner.util.CheckSumBuilder;
 import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
@@ -41,10 +45,10 @@ import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.MenuItem;
 import com.bit.fuxingwuye.bean.NoticeListBean;
 import com.bit.fuxingwuye.bean.NoticeReqBean;
+import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserBean;
 import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.bean.request.NoticeBean;
-import com.bit.fuxingwuye.chat.ChatActivity;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
@@ -53,11 +57,11 @@ import com.bit.fuxingwuye.utils.GsonUtil;
 import com.bit.fuxingwuye.utils.Tag;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.easeui.EaseConstant;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 
 import net.lemonsoft.lemonhello.LemonHelloAction;
 import net.lemonsoft.lemonhello.LemonHelloInfo;
@@ -67,8 +71,10 @@ import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -79,6 +85,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainContract.View, View.OnClickListener,
         EasyPermissions.PermissionCallbacks {
+    private static final String TAG = FragmentMain.class.getSimpleName();
     TextView chosehousing;
     private XRecyclerView fm_xrecyclerview;
     private ACache mCache;
@@ -181,7 +188,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         if ("5a82adf3b06c97e0cd6c0f3d".equals(communityId) || "5a8cfc54518089ae7afccc0d".equals(communityId)) {
             grid_pass.setVisibility(View.VISIBLE);
             grid_bom_pass.setVisibility(View.GONE);
-        }else if("5a8cfa62518089ae7afccc0c".equals(communityId)){
+        } else if ("5a8cfa62518089ae7afccc0c".equals(communityId)) {
             grid_pass.setVisibility(View.GONE);
             grid_bom_pass.setVisibility(View.VISIBLE);
         }
@@ -267,6 +274,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
 
         fm_xrecyclerview.setPullRefreshEnabled(true);
 
+        createAccountId();
     }
 
     @Override
@@ -346,27 +354,28 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                             if (!EasyPermissions.hasPermissions(getActivity(), media)) {
                                 EasyPermissions.requestPermissions(getActivity(), "需要获取拍照和录音权限", RC_MEDIA, media);
                             } else {
-                                if (EMClient.getInstance().isConnected()) {
-                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-                                } else {
-                                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "123456", new EMCallBack() {
-                                        @Override
-                                        public void onSuccess() {
-                                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID,
-                                                    "fxwy"));
-                                        }
-
-                                        @Override
-                                        public void onError(int i, String s) {
-                                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
-                                        }
-
-                                        @Override
-                                        public void onProgress(int i, String s) {
-                                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
+                                startP2P();
+//                                if (EMClient.getInstance().isConnected()) {
+//                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+//                                } else {
+//                                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "123456", new EMCallBack() {
+//                                        @Override
+//                                        public void onSuccess() {
+//                                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID,
+//                                                    "fxwy"));
+//                                        }
+//
+//                                        @Override
+//                                        public void onError(int i, String s) {
+//                                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
+//                                        }
+//
+//                                        @Override
+//                                        public void onProgress(int i, String s) {
+//                                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//                                }
                             }
                         }
                     });
@@ -435,6 +444,60 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         }
     }
 
+    private void createAccountId() {
+        RequestParams requestParams = new RequestParams();
+        requestParams.addHeader("AppKey", "c7d64ed61462dfac25c0089ab171eaa4");
+        requestParams.addHeader("Nonce", "123456");
+        String curTime = String.valueOf((new Date()).getTime() / 1000L);
+        requestParams.addHeader("CurTime", curTime);
+        requestParams.addHeader("CheckSum", CheckSumBuilder.getCheckSum("744182fbc16c", "123456", curTime));
+        requestParams.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        TokenBean tokenBean = (TokenBean) ACache.get(mContext).getAsObject(HttpConstants.TOKENBEAN);
+        if (tokenBean != null) {
+            requestParams.addBodyParameter("accid", tokenBean.getPhone());
+        }
+//        requestParams.addBodyParameter("accid", "15900020005");
+
+//        String url = "https://api.netease.im/nimserver/user/create.action";//{"desc":"already register","code":414}
+        String url = "https://api.netease.im/nimserver/user/refreshToken.action";
+//        ApiRequester.sendRequest(url0, requestParams, mResponseCallBack);
+        ApiRequester.sendRequest(url, requestParams, mResponseCallBack);
+    }
+
+
+    //{"code":200,"info":{"token":"338fdb41436631cd5ced4d73950154d1","accid":"15900010001"}}
+    ResponseCallBack mResponseCallBack = new ResponseCallBack<IMToken>(false) {
+
+        @Override
+        public void onSuccess(IMToken data) {
+            Toast.makeText(mContext, "onSuccess", Toast.LENGTH_SHORT).show();
+            NimUIKit.login(new LoginInfo(data.getInfo().getAccid(), data.getInfo().getToken()), new RequestCallback<LoginInfo>() {
+                @Override
+                public void onSuccess(LoginInfo param) {
+                    Toast.makeText(mContext, "login im onSuccess", Toast.LENGTH_SHORT).show();
+                    LogUtil.d(TAG, "login im onSuccess");
+                }
+
+                @Override
+                public void onFailed(int code) {
+                    LogUtil.d(TAG, "onFailed:" + code);
+                }
+
+                @Override
+                public void onException(Throwable exception) {
+                    LogUtil.d(TAG, "onException:" + exception.getMessage());
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailure(ServiceException e) {
+            LogUtil.d(TAG, e.getMsg());
+        }
+    };
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -450,26 +513,27 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 startActivity(intent);
                 break;
             case RC_MEDIA:
-                if (EMClient.getInstance().isConnected()) {
-                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-                } else {
-                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "66666", new EMCallBack() {
-                        @Override
-                        public void onSuccess() {
-                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
-                        }
-
-                        @Override
-                        public void onError(int i, String s) {
-                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onProgress(int i, String s) {
-                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                startP2P();
+//                if (EMClient.getInstance().isConnected()) {
+//                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+//                } else {
+//                    EMClient.getInstance().login(mCache.getAsString(HttpConstants.MOBILE), "66666", new EMCallBack() {
+//                        @Override
+//                        public void onSuccess() {
+//                            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
+//                        }
+//
+//                        @Override
+//                        public void onError(int i, String s) {
+//                            Toast.makeText(getActivity(), "登陆聊天系统失败，请电话联系物业", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onProgress(int i, String s) {
+//                            Toast.makeText(getActivity(), "正在登陆聊天系统...", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
                 break;
             case RC_LOCATION:
                 getActivity().startActivity(new Intent(getActivity(), CallEleActivity.class));
@@ -481,6 +545,13 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 break;
         }
 
+    }
+
+    private void startP2P() {
+        if (NimUIKit.getAccount() != null) {
+//                                NimUIKit.startP2PSession(getContext(), (String) SPUtil.get(mContext, AppConfig.phone, ""));
+            NimUIKit.startP2PSession(getContext(), "15900020005");
+        }
     }
 
     @Override
