@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
 import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
@@ -40,7 +44,11 @@ import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.MenuItem;
 import com.bit.fuxingwuye.bean.Notice;
 import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.bean.NoticeReqBean;
 import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.bean.request.DataPagesBean;
+import com.bit.fuxingwuye.bean.request.NoticeBean;
+import com.bit.fuxingwuye.bean.request.PassCodeBean;
 import com.bit.fuxingwuye.chat.ChatActivity;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
@@ -119,6 +127,10 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
 
     String topName;
     NoticeListBean notice;
+    NoticeReqBean mNoticeReq = new NoticeReqBean();
+    List<NoticeBean> Alldata =new ArrayList<>();
+    private int size = 5;
+    private int mTotalPage;
     /**
      *
      */
@@ -217,33 +229,75 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
             @Override
             public void onRefresh() {
                 page = 1;
-                commonBean.setCurrentPage(page + "");
-                // mPresenter.getNotices(commonBean,0);
+                Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+                    @Override
+                    public void onSuccess(DataPagesBean<NoticeBean> data) {
+                        super.onSuccess(data);
+                        Alldata.clear();
+                        Alldata.addAll(data.getRecords());
+
+                        showNotices(Alldata);
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                    }
+                });
             }
 
             @Override
             public void onLoadMore() {
-                LogUtil.e(Tag.tag, "onLoadMore");
-                page++;
-                commonBean.setCurrentPage(page + "");
-                if(notice!=null&&page<=notice.getTotal()){
-                    if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null){
-                        mPresenter.getNotices(mCache.getAsString(HttpConstants.COMMUNIYID),page,1);
-                    }
-                }else{
-                    page=page-1;
+                if(page <= mTotalPage){
+                    page = page + 1;
+                    Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+                        @Override
+                        public void onSuccess(DataPagesBean<NoticeBean> data) {
+                            super.onSuccess(data);
+                            List<NoticeBean> datas =data.getRecords();
+                            if(datas!=null&&!datas.isEmpty()){
+                                Alldata.addAll(data.getRecords());
+                            }
+                            showNotices(Alldata);
 
-                    fm_xrecyclerview.loadMoreComplete();
+
+
+                        }
+
+                        @Override
+                        public void onFailure(ServiceException e) {
+                            super.onFailure(e);
+                        }
+                    });
                 }
-
             }
         });
-        if(AppInfo.isNetworkAvailable(getContext())){
-            if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null){
-                mPresenter.getNotices(mCache.getAsString(HttpConstants.COMMUNIYID),1,0);
-            }
-        }
-        fm_xrecyclerview.setPullRefreshEnabled(false);
+            mNoticeReq.setCommunityId(ACache.get(getContext()).getAsString(HttpConstants.COMMUNIYID));
+            mNoticeReq.setNoticeType(1);
+            Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+                @Override
+                public void onSuccess(DataPagesBean<NoticeBean> data) {
+                    super.onSuccess(data);
+                    List<NoticeBean> datas =data.getRecords();
+                    Log.e("datas","----datas size:"+datas.size());
+                    mTotalPage = data.getTotalPage();
+
+                    showNotices(datas);
+
+
+                }
+
+                @Override
+                public void onFailure(ServiceException e) {
+                    super.onFailure(e);
+                    Log.e("datas","----datas eeee:"+e);
+                }
+            });
+
+        fm_xrecyclerview.setPullRefreshEnabled(true);
 
     }
 
@@ -258,21 +312,20 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
     }
 
     /**
-     * @param notices
-     * @param type
-     * 请求公告成功时返回的数据
+     * @param
+     * @param请求公告成功时返回的数据
+     *
      */
-    @Override
-    public void showNotices(NoticeListBean notices, int type) {
-        if(type==0){
-            notice=notices;
-            mAdapter = new ServicesAdapter(notices.getRecords());
-            fm_xrecyclerview.setAdapter(mAdapter);
-        }else if(type==1){
 
-            mAdapter.LoadMore(notices.getRecords());
+    public void showNotices(List<NoticeBean> datas) {
+
+            mAdapter = new ServicesAdapter(datas);
+            fm_xrecyclerview.setAdapter(mAdapter);
+
+
+            mAdapter.LoadMore(datas);
             fm_xrecyclerview.loadMoreComplete();
-        }
+
 
         mAdapter.setOnItemClickListener(new ServicesAdapter.OnItemClickListener() {
             @Override
@@ -487,7 +540,26 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
         if (messageEvent.getEvent().equals(HttpConstants.village)) {
             chosehousing.setText(messageEvent.getValuse());
             if(mCache.getAsString(HttpConstants.COMMUNIYID)!=null){
-                mPresenter.getNotices(mCache.getAsString(HttpConstants.COMMUNIYID),1,0);
+                page = 1;
+                Api.getNoticeList(mNoticeReq, page, size, new ResponseCallBack<DataPagesBean<NoticeBean>>() {
+                    @Override
+                    public void onSuccess(DataPagesBean<NoticeBean> data) {
+                        super.onSuccess(data);
+                        List<NoticeBean> datas =data.getRecords();
+                        Alldata.clear();
+                        if(datas!=null&&!datas.isEmpty()){
+                            showNotices(datas);
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                    }
+                });
             }
             getActivity().finish();
             startActivity(new Intent(getContext(), MainTabActivity.class));

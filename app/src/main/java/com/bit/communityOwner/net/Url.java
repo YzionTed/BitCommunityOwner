@@ -127,5 +127,9 @@ public class Url {
     public static final String V1_PASSCODE_LIST = "/v1/property/rpass/page";
 
 
+    /**
+     * 获取公告列表数据
+     */
+    public static final String V1_NOTICE_LIST = "/v1/property/notice/page";
 
 }

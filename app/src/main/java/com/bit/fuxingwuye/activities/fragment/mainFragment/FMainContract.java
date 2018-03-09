@@ -7,6 +7,7 @@ import com.bit.fuxingwuye.bean.FindBean;
 import com.bit.fuxingwuye.bean.Notice;
 import com.bit.fuxingwuye.bean.NoticeListBean;
 import com.bit.fuxingwuye.bean.UserBean;
+import com.bit.fuxingwuye.bean.request.NoticeBean;
 
 import java.util.List;
 
@@ -18,12 +19,12 @@ import java.util.List;
 public class FMainContract {
 
     public interface View extends BaseView {
-        void showNotices(NoticeListBean notices, int type);
+
         void findOne(UserBean userBean);
     }
 
     public interface Presenter extends BasePresenter<View> {
-        void getNotices(String communityId,int page, int type);
+
         void findOne(FindBean findBean);
     }
 }

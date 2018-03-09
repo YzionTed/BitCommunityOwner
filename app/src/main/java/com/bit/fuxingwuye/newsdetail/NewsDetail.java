@@ -12,7 +12,6 @@ import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.bean.NoticeListBean;
-import com.bit.fuxingwuye.bean.request.PassCodeListBean;
 import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.OssManager;
