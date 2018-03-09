@@ -29,6 +29,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * 服务端请求类
@@ -172,6 +174,7 @@ public class ApiRequester {
         requestParams.addHeader("APP-VERSION", AppInfo.getLocalVersionName(BaseApplication.getInstance()));
         requestParams.addHeader("BIT-TOKEN", ACache.get(BaseApplication.getInstance()).getAsString(HttpConstants.TOKEN));
         requestParams.addHeader("BIT-UID", ACache.get(BaseApplication.getInstance()).getAsString(HttpConstants.USERID));
+        requestParams.addHeader("PUSH-ID", JPushInterface.getRegistrationID(BaseApplication.getInstance()));
 
         return requestParams;
     }

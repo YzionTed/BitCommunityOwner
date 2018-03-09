@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.bit.communityOwner.KeyString;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
 import com.bit.fuxingwuye.base.BaseActivity;
@@ -117,6 +118,9 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
                         message.setValuse(housingPickerAdapter.getData().get(position).getName());
                         EventBus.getDefault().post(message);
                         Intent intent = new Intent(Housing.this, MainTabActivity.class);
+                        if(getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE) != null){
+                            intent.putExtra(KeyString.EXTRA_BUNDLE, getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE));
+                        }
                         startActivity(intent);
                         finish();
                     }

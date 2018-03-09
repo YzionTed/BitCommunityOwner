@@ -18,12 +18,16 @@ import com.bit.fuxingwuye.bean.FeedbackBean;
 import com.bit.fuxingwuye.bean.GetFeedbackBean;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.HouseBean;
+import com.bit.fuxingwuye.bean.NoticeReqBean;
 import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
-import com.bit.fuxingwuye.bean.request.PassCodeListBean;
+import com.bit.fuxingwuye.bean.request.DataPagesBean;
+import com.bit.fuxingwuye.bean.request.NoticeBean;
+import com.bit.fuxingwuye.bean.request.PassCodeBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 
@@ -234,9 +238,35 @@ public class Api {
         ApiRequester.post(Url.V1_USER_ADD_PASS_FLAG, passFlag, callBack);
     }
 
+    /**
+     * 获取放行条列表
+     * @param bean
+     * @param page
+     * @param size
+     * @param callBack
+     */
+    public static void  getPassCodeList(PropertyBean bean,int page,int size, ResponseCallBack<DataPagesBean<PassCodeBean>> callBack) {
+        ApiRequester.post(Url.V1_PASSCODE_LIST + "?page=" + page + "&size=" + size, bean, callBack);
+    }
 
-    public static void  getPassCodeList(PropertyBean bean,int page,int size, ResponseCallBack<PassCodeListBean> callBack){
-        ApiRequester.post(Url.V1_PASSCODE_LIST+"?page="+page+"&size="+size,bean,callBack);
 
+    /**
+     * 获取放行条列表
+     * @param bean
+     * @param page
+     * @param size
+     * @param callBack
+     */
+    public static void  getNoticeList(NoticeReqBean bean, int page, int size, ResponseCallBack<DataPagesBean<NoticeBean>> callBack) {
+        ApiRequester.post(Url.V1_NOTICE_LIST + "?page=" + page + "&size=" + size, bean, callBack);
+    }
+
+    /**
+     * 公告详情
+     * @param callBack
+     * @param o
+     */
+    public static void getNoticeDetail(ResponseCallBack<NewsDetailBean> callBack, Object... o){
+        ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
     }
 }

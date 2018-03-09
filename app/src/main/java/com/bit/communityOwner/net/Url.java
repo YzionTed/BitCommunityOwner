@@ -111,6 +111,10 @@ public class Url {
      */
     public static final String V1_PROPERTY_NOTICE_PAGE = "/v1/property/notice/page";
 
+    /**
+     * 公告详情
+     */
+    public static final String V1_NOTICE_DETAIL = "/v1/property/notice/%s/detail";
 
     /**
      * 重置密码
@@ -123,5 +127,9 @@ public class Url {
     public static final String V1_PASSCODE_LIST = "/v1/property/rpass/page";
 
 
+    /**
+     * 获取公告列表数据
+     */
+    public static final String V1_NOTICE_LIST = "/v1/property/notice/page";
 
 }

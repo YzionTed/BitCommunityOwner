@@ -36,33 +36,7 @@ public class FMainPresenter extends BaseRxPresenter<FMainContract.View> implemen
         this.fragmentMain = fragmentMain;
     }
 
-    @Override
-    public void getNotices(String communityId,int page, final int type) {
-        Map<String,Object> map=new HashMap();
-        map.put("communityId",communityId);
-        map.put("page",1000);
-        map.put("size",10);
-        Observable observable = RetrofitManager.getInstace()
-                .create(NetworkApi.class).getNotices(map);
-        Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<NoticeListBean>>() {
-            @Override
-            public void next(BaseEntity<NoticeListBean> o) {
-                if(o.isSuccess()){
-                    if(null!=o.getData()){
-                        mView.showNotices(o.getData(),type);
-                    }
-                }
-            }
 
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-        },fragmentMain.getContext(),false);
-        RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
-        addSubscrebe(rxSubscription);
-    }
 
     @Override
     public void findOne(FindBean findBean) {

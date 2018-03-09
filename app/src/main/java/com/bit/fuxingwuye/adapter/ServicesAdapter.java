@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.bean.request.NoticeBean;
 import com.bit.fuxingwuye.utils.LogUtil;
 import com.bit.fuxingwuye.utils.Tag;
 
@@ -25,19 +26,22 @@ import static com.bit.fuxingwuye.activities.houseManager.ApplicationDetailsActiv
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder>{
 
-    private List<NoticeListBean.RecordsBean> datas;
+    private List<NoticeBean> datas;
 
-    public ServicesAdapter(List<NoticeListBean.RecordsBean> datas) {
+    public ServicesAdapter(List<NoticeBean> datas) {
         this.datas = datas;
     }
     public ServicesAdapter() {
 
     }
-    public void LoadMore(List<NoticeListBean.RecordsBean> data){
-        datas.addAll(data);
+    public void LoadMore(List<NoticeBean> datas){
+        datas.addAll(datas);
 
     }
-    public NoticeListBean.RecordsBean getData(int position){
+    public void setDatas(List<NoticeBean> datas){
+        this.datas = datas;
+    }
+    public NoticeBean getData(int position){
         return datas.get(position);
     }
 

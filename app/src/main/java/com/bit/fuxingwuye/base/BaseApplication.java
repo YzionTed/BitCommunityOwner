@@ -17,6 +17,7 @@ import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.dagger.component.AppComponent;
 import com.bit.fuxingwuye.dagger.component.DaggerAppComponent;
 import com.bit.fuxingwuye.dagger.module.AppModule;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.LogUtil;
 import com.ddclient.push.DongPushMsgManager;
 import com.facebook.stetho.Stetho;
@@ -84,8 +85,8 @@ public class BaseApplication extends MultiDexApplication {
         getScreenSize();
         initImageLoader();
         IntercomSDK.initIntercomSDK(this);
-        JPushInterface.setDebugMode(false);
-        JPushInterface.init(this);
+//        JPushInterface.setDebugMode(false);
+//        JPushInterface.init(this);
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
@@ -109,6 +110,8 @@ public class BaseApplication extends MultiDexApplication {
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_GETUI);
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_JG);
 
+        //初始化数据库
+        LiteOrmUtil.getInstance().init(this);
         // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
         NIMClient.init(this, null, null);
 
@@ -338,6 +341,18 @@ public class BaseApplication extends MultiDexApplication {
 
     public static void addActivity(Activity activity) {
         listActivity.add(activity);
+    }
+
+    /**
+     * 获取界面数量
+     *
+     * @return activity size
+     */
+    public static int getActivitySize() {
+        if (listActivity != null) {
+            return listActivity.size();
+        }
+        return 0;
     }
 
     public static void finishAllActivity() {

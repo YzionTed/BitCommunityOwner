@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.bean.NoticeListBean;
+import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.OssManager;
 import com.google.gson.Gson;
@@ -28,6 +32,7 @@ public class NewsDetail extends AppCompatActivity {
     ImageView img, btn_back;
     NoticeListBean.RecordsBean bean;
 
+    private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +44,39 @@ public class NewsDetail extends AppCompatActivity {
         action_bar_title = (TextView) findViewById(R.id.action_bar_title);
         img = (ImageView) findViewById(R.id.img);
         btn_back = (ImageView) findViewById(R.id.btn_back);
-        intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        if (bundle != null) {
-            bean = gson.fromJson(bundle.getString("newsdetail"), NoticeListBean.RecordsBean.class);
-            newtitle.setText(bean.getTitle());
-            time.setText(getFormatTime(bean.getCreateAt()));
-            info.setText(bean.getBody());
-            action_bar_title.setText(bean.getTitle());
-            editorName.setText(bean.getEditorName());
-        }
-        String url = OssManager.getInstance().getUrl(bean.getThumbnailUrl());
-        GlideUtil.loadImage(NewsDetail.this, url, img);
+        id = getIntent().getStringExtra("id");
+
+        Api.getNoticeDetail(new ResponseCallBack<NewsDetailBean>() {
+            @Override
+            public void onSuccess(NewsDetailBean bean) {
+                super.onSuccess(bean);
+                newtitle.setText(bean.getTitle());
+                time.setText(getFormatTime(bean.getCreateAt()));
+                info.setText(bean.getBody());
+                action_bar_title.setText(bean.getTitle());
+                editorName.setText(bean.getEditorName());
+                String url = OssManager.getInstance().getUrl(bean.getThumbnailUrl());
+                GlideUtil.loadImage(NewsDetail.this, url, img);
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+            }
+        }, id);
+
+//        intent = getIntent();
+//        Bundle bundle = intent.getExtras();
+//        if (bundle != null) {
+//            bean = gson.fromJson(bundle.getString("newsdetail"), NoticeListBean.RecordsBean.class);
+//            newtitle.setText(bean.getTitle());
+//            time.setText(getFormatTime(bean.getCreateAt()));
+//            info.setText(bean.getBody());
+//            action_bar_title.setText(bean.getTitle());
+//            editorName.setText(bean.getEditorName());
+//        }
+//        String url = OssManager.getInstance().getUrl(bean.getThumbnailUrl());
+//        GlideUtil.loadImage(NewsDetail.this, url, img);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
