@@ -104,6 +104,27 @@
                     android:layout_height="wrap_content"
                     android:text="放行条"/>
             </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/grid_bom_pass"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/common_dp_10"
+                    android:gravity="center_horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_pass"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="临时通行"/>
+                </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
