@@ -119,6 +119,9 @@ public class BaseApplication extends MultiDexApplication {
         if (NIMUtil.isMainProcess(this)) {
             NimUIKit.init(this);
         }
+
+        //初始化数据库
+        LiteOrmUtil.getInstance().init(this);
     }
 
     public static BaseApplication getInstance() {

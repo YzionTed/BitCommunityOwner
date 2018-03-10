@@ -132,4 +132,9 @@ public class Url {
      */
     public static final String V1_NOTICE_LIST = "/v1/property/notice/page";
 
+    /**
+     * 查询虚拟卡
+     */
+    public static final String V1_CARD_LIST = "/v1/user/card/get/list";
+
 }

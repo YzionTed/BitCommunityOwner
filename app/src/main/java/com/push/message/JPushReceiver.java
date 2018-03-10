@@ -9,18 +9,24 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.bit.communityOwner.KeyString;
+import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.LogUtil;
+import com.bit.communityOwner.net.ResponseCallBack;
+import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.fragment.elevatorFrag.ChangeElevatorActivity;
 import com.bit.fuxingwuye.activities.houseManager.ApplicationRecordActivity;
 import com.bit.fuxingwuye.activities.houseManager.HouseManagerActivity;
 import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.CardListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.GsonUtil;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.google.gson.Gson;
 
+import java.util.List;
 import java.util.Random;
 import java.util.logging.LogManager;
 
@@ -39,6 +45,7 @@ import cn.qqtheme.framework.AppConfig;
 public class JPushReceiver extends BroadcastReceiver {
 
     private static final String TAG = "JIGUANG-Example";
+    private ACache mCache;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -59,6 +66,29 @@ public class JPushReceiver extends BroadcastReceiver {
                 //接收到推送下来的通知
                 String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
                 LogUtil.i("LogUtil",extras + "通知");
+                Gson gson = new Gson();
+                JPushBean jPushBean = gson.fromJson(extras, JPushBean.class);
+                switch (jPushBean.getAction()){
+                    case "100401": //房屋认证
+                    case "100402"://房屋绑定
+                        mCache = ACache.get(context);
+                        if (BaseApplication.getActivitySize() != 0){
+                            Api.getCardList(mCache.getAsString(HttpConstants.USERID), mCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<List<CardListBean>>() {
+                                @Override
+                                public void onSuccess(List<CardListBean> data) {
+                                    super.onSuccess(data);
+                                    LiteOrmUtil.getInstance().getOrm().save(data);
+                                }
+
+                                @Override
+                                public void onFailure(ServiceException e) {
+                                    super.onFailure(e);
+                                }
+                            });
+                        }
+                        break;
+                }
+
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
 //                Logger.d(TAG, "[MyReceiver] 用户点击打开了通知");
                 String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);

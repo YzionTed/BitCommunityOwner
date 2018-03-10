@@ -37,6 +37,7 @@ import com.bit.fuxingwuye.activities.replenishData.ReplenishDataActivity;
 import com.bit.fuxingwuye.activities.residential_quarters.Housing;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.bean.AppVersionInfo;
+import com.bit.fuxingwuye.bean.CardListBean;
 import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
@@ -45,6 +46,7 @@ import com.bit.fuxingwuye.newsdetail.NewsDetail;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 import com.bit.fuxingwuye.utils.DownloadUtils;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.PermissionUtils;
 import com.bit.fuxingwuye.views.TabItem;
 import com.push.message.JPushBean;
@@ -157,8 +159,25 @@ public class MainTabActivity extends SupportActivity {
                 }
             }
         }
+
+        getCardList();
     }
 
+    //查询虚拟卡
+    private void getCardList(){
+        Api.getCardList(aCache.getAsString(HttpConstants.USERID), aCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<List<CardListBean>>() {
+            @Override
+            public void onSuccess(List<CardListBean> data) {
+                super.onSuccess(data);
+                LiteOrmUtil.getInstance().getOrm().save(data);
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                super.onFailure(e);
+            }
+        });
+    }
 
     private void getAppVersion() {
         Api.getAppVersion(new ResponseCallBack<AppVersionInfo>() {

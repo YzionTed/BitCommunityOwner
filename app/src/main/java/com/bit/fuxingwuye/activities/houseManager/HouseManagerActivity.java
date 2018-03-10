@@ -31,6 +31,7 @@ import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityHouseManagerBinding;
 import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.LogUtil;
 import com.bit.fuxingwuye.utils.Tag;
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -91,6 +92,7 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_house_manager);
         mBinding.toolbar.actionBarTitle.setText("住房管理");
         mBinding.toolbar.btnBack.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -234,8 +236,6 @@ public class HouseManagerActivity extends BaseActivity<HMPresenterImpl> implemen
                 // swipe end
             }
         });
-
-
     }
 
     @Override

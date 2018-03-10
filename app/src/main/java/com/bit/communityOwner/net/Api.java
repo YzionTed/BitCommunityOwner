@@ -9,6 +9,7 @@ import com.bit.communityOwner.model.VerfriyCode;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.bean.AppVersionInfo;
 import com.bit.fuxingwuye.bean.CallPoliceBean;
+import com.bit.fuxingwuye.bean.CardListBean;
 import com.bit.fuxingwuye.bean.DoorMILiBean;
 import com.bit.fuxingwuye.bean.DoorMiLiRequestBean;
 import com.bit.fuxingwuye.bean.ElevatorCardRequestion;
@@ -31,7 +32,9 @@ import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目接口统一封装
@@ -268,5 +271,12 @@ public class Api {
      */
     public static void getNoticeDetail(ResponseCallBack<NewsDetailBean> callBack, Object... o){
         ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
+    }
+
+    public static void getCardList(String userId,String communityId,ResponseCallBack<List<CardListBean>> callBack){
+        Map<String, Object> map = new HashMap<>();
+        map.put("communityId", communityId);
+        map.put("userId", userId);
+        ApiRequester.post(Url.V1_CARD_LIST,map,callBack);
     }
 }
