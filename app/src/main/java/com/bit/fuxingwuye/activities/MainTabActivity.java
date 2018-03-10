@@ -1,6 +1,7 @@
 package com.bit.fuxingwuye.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -20,10 +21,14 @@ import com.alibaba.sdk.android.oss.OSSClient;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.bit.communityOwner.KeyString;
+import com.bit.communityOwner.model.IMToken;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.net.Api;
+import com.bit.communityOwner.net.ApiRequester;
+import com.bit.communityOwner.net.LogUtil;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
+import com.bit.communityOwner.util.CheckSumBuilder;
 import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.Bluetooth.yunduijiang.YunDuiJIangUtils;
 import com.bit.fuxingwuye.R;
@@ -40,6 +45,7 @@ import com.bit.fuxingwuye.bean.AppVersionInfo;
 import com.bit.fuxingwuye.bean.CardListBean;
 import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
+import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityMainTabBinding;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
@@ -49,6 +55,9 @@ import com.bit.fuxingwuye.utils.DownloadUtils;
 import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.PermissionUtils;
 import com.bit.fuxingwuye.views.TabItem;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.push.message.JPushBean;
 import com.umeng.analytics.MobclickAgent;
 
@@ -60,16 +69,20 @@ import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import cn.qqtheme.framework.AppConfig;
 import me.yokeyword.fragmentation.SupportActivity;
 
 public class MainTabActivity extends SupportActivity {
+    private static final String TAG = MainTabActivity.class.getSimpleName();
     public static MainTabActivity instance;
     private ActivityMainTabBinding mBinding;
+
+    private Context mContext;
 
     private List<TabItem> mTabItemList;
     Toast toast = null;
@@ -92,6 +105,7 @@ public class MainTabActivity extends SupportActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         BaseApplication.getInstance().addActivity(this);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main_tab);
         aCache = ACache.get(this);
@@ -128,7 +142,7 @@ public class MainTabActivity extends SupportActivity {
 //          yunDuiJIangUtils.login("13500000000", "123456");
 
         String phone = ACache.get(this).getAsString(HttpConstants.MOBILE);
-        if(phone!=null){
+        if (phone != null) {
             yunDuiJIangUtils.login(phone, "123456");
         }
 
@@ -149,16 +163,19 @@ public class MainTabActivity extends SupportActivity {
                         startActivity(new Intent(this, HouseManagerActivity.class).putExtra("id", jPushBean.getData().getCommunityId()));
                         break;
                     case "100402"://房屋绑定
-                        if (jPushBean.getData().getUserId().equals(aCache.getAsString(HttpConstants.USERID))){
+                        if (jPushBean.getData().getUserId().equals(aCache.getAsString(HttpConstants.USERID))) {
                             //如果申请人是自己，则跳到住房管理页面
                             startActivity(new Intent(this, HouseManagerActivity.class).putExtra("id", jPushBean.getData().getCommunityId()));
-                        }else{
-                            startActivity(new Intent(this, ApplicationRecordActivity.class).putExtra(HttpConstants.ROOMID, jPushBean.getData().getRoomId()));
+                        } else {
+                            startActivity(new Intent(this, ApplicationRecordActivity.class).putExtra(HttpConstants.ROOMID, jPushBean.getData()
+                                    .getRoomId()));
                         }
                         break;
                 }
             }
         }
+
+        createAccountId();
 
         getCardList();
     }
@@ -422,7 +439,7 @@ public class MainTabActivity extends SupportActivity {
                 new PermissionUtils.PermissionCheckCallBack() {
                     @Override
                     public void onHasPermission() {
-                       // initLoc();
+                        // initLoc();
                     }
 
                     @Override
@@ -452,7 +469,9 @@ public class MainTabActivity extends SupportActivity {
                 .setPositiveButton("确定", onClickListener)
                 .show();
     }
+
     private static final int REQUEST_CODE_STORAGE = 5;
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -490,6 +509,7 @@ public class MainTabActivity extends SupportActivity {
         }
 
     }
+
     /**
      * 显示前往应用设置Dialog
      */
@@ -505,4 +525,58 @@ public class MainTabActivity extends SupportActivity {
                 })
                 .setNegativeButton("取消", null).show();
     }
+
+    private void createAccountId() {
+        RequestParams requestParams = new RequestParams();
+        requestParams.addHeader("AppKey", "c7d64ed61462dfac25c0089ab171eaa4");
+        requestParams.addHeader("Nonce", "123456");
+        String curTime = String.valueOf((new Date()).getTime() / 1000L);
+        requestParams.addHeader("CurTime", curTime);
+        requestParams.addHeader("CheckSum", CheckSumBuilder.getCheckSum("744182fbc16c", "123456", curTime));
+        requestParams.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        TokenBean tokenBean = (TokenBean) ACache.get(mContext).getAsObject(HttpConstants.TOKENBEAN);
+        if (tokenBean != null) {
+            requestParams.addBodyParameter("accid", tokenBean.getPhone());
+        }
+//        requestParams.addBodyParameter("accid", "15900020005");
+
+//        String url = "https://api.netease.im/nimserver/user/create.action";//{"desc":"already register","code":414}
+        String url = "https://api.netease.im/nimserver/user/refreshToken.action";
+//        ApiRequester.sendRequest(url0, requestParams, mResponseCallBack);
+        ApiRequester.sendRequest(url, requestParams, mResponseCallBack);
+    }
+
+
+    //{"code":200,"info":{"token":"338fdb41436631cd5ced4d73950154d1","accid":"15900010001"}}
+    ResponseCallBack mResponseCallBack = new ResponseCallBack<IMToken>(false) {
+
+        @Override
+        public void onSuccess(IMToken data) {
+            Toast.makeText(mContext, "onSuccess", Toast.LENGTH_SHORT).show();
+            NimUIKit.login(new LoginInfo(data.getInfo().getAccid(), data.getInfo().getToken()), new RequestCallback<LoginInfo>() {
+                @Override
+                public void onSuccess(LoginInfo param) {
+                    Toast.makeText(mContext, "login im onSuccess", Toast.LENGTH_SHORT).show();
+                    LogUtil.d(TAG, "login im onSuccess");
+                }
+
+                @Override
+                public void onFailed(int code) {
+                    LogUtil.d(TAG, "onFailed:" + code);
+                }
+
+                @Override
+                public void onException(Throwable exception) {
+                    LogUtil.d(TAG, "onException:" + exception.getMessage());
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailure(ServiceException e) {
+            LogUtil.d(TAG, e.getMsg());
+        }
+    };
 }
