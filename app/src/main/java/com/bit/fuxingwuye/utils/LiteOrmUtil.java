@@ -48,6 +48,7 @@ public class LiteOrmUtil {
             CardListBean result = liteOrm.query(qb).get(0);
             return result;
         }
+
         return null;
     }
 }
