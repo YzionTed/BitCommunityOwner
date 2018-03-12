@@ -11,6 +11,7 @@ import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
@@ -18,6 +19,8 @@ import com.bit.communityOwner.net.ServiceException;
 import com.bit.communityOwner.util.StringUtils;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.constant.HttpConstants;
+
+import java.util.List;
 
 import cn.qqtheme.framework.AppConfig;
 
@@ -89,6 +92,44 @@ public class OssManager {
         }
     }
 
+    /**
+     * 文件异步批量上传阿里云
+     * @param data
+     * @param filePath 文件本地路径
+     * @param finalPath 返回的文件名列表
+     * @param uploadFinishListener 上传完成回调
+     */
+    public void uploadFileToAliYun(final OssToken data, final List<String> filePath, final List<String> finalPath, final UploadFinishListener uploadFinishListener) {
+        try {
+            if (filePath!=null&&filePath.size()<=0){
+                uploadFinishListener.uploadFinish(finalPath);
+                return;
+            }
+            if (oss != null) {
+                data.setName("ap1" + SPUtils.getInstance().getString(HttpConstants.USERID) + "_" + data.getBucket() + "_" + TimeUtils.getCurrentTime() + ".jpg");
+                PutObjectRequest put = new PutObjectRequest(data.getBucket() /*+ "-trans"*/, data.getName(), filePath.get(0));
+                OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+                    @Override
+                    public void onSuccess(PutObjectRequest putObjectRequest, PutObjectResult putObjectResult) {
+                        filePath.remove(0);
+                        finalPath.add(data.getName());
+                        uploadFileToAliYun(data,filePath,finalPath,uploadFinishListener);
+                    }
+
+                    @Override
+                    public void onFailure(PutObjectRequest putObjectRequest, ClientException e, com.alibaba.sdk.android.oss.ServiceException e1) {
+
+                    }
+                });
+                Log.d("okhttp", getUrl(filePath.get(0)));
+                data.setPath(getUrl(filePath.get(0)));
+            }
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
 
     public void refreshToken(){
         aCache = ACache.get(BaseApplication.getInstance());
@@ -113,5 +154,9 @@ public class OssManager {
                 super.onFailure(e);
             }
         });
+    }
+
+    public interface UploadFinishListener{
+        void uploadFinish(List<String> finalName);
     }
 }
