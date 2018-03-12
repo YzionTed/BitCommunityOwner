@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.bit.fuxingwuye.dagger.component.DaggerFragmentComponent;
 import com.bit.fuxingwuye.dagger.component.FragmentComponent;
 import com.bit.fuxingwuye.dagger.module.FragmentModule;
@@ -29,6 +30,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
     protected View mView;
     protected Context mContext;
     protected boolean isInited = false;
+
 
     @Override
     public void onAttach(Context context) {

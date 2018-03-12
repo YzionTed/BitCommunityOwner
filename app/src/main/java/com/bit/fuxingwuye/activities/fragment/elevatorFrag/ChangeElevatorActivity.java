@@ -14,14 +14,22 @@ import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.activities.fragment.smartGate.BluetoothNetUtils;
+import com.bit.fuxingwuye.base.BaseApplication;
+import com.bit.fuxingwuye.bean.DoorMILiBean;
 import com.bit.fuxingwuye.bean.ElevatorListBean;
 import com.bit.fuxingwuye.bean.ElevatorListRequestion;
+import com.bit.fuxingwuye.bean.StoreDoorMILiBeanList;
 import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.constant.PreferenceConst;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonAdapter;
+import com.bit.fuxingwuye.utils.PreferenceUtils;
 import com.bit.fuxingwuye.utils.ToastUtil;
 import com.bit.fuxingwuye.utils.ViewHolder;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,6 +47,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
     private ACache mCache;
 
     public String Tag = "ChangeElevatorActivity";
+    private BluetoothNetUtils bluetoothNetUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +58,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
     }
 
     private void initView() {
+        bluetoothNetUtils = new BluetoothNetUtils();
         mCache = ACache.get(this);
         actionBarTitle = (TextView) findViewById(R.id.action_bar_title);
         btnBack = (ImageView) findViewById(R.id.btn_back);
@@ -63,7 +73,45 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
 
         blueAddressIds = getIntent().getStringArrayExtra("ids");
         initListView();
+        getCashDate();
         getData();
+    }
+
+    /**
+     * 展示缓存数据
+     */
+    private void getCashDate() {
+        StoreElevatorListBeans bletoothElevateDate = bluetoothNetUtils.getBletoothElevateDate();
+        if (bletoothElevateDate != null) {
+
+            ElevatorListBean elevatorListBean = new ElevatorListBean();
+            elevatorListBean.setFirst(true);
+            elevatorListBean.setName("一键开梯");
+            if (bletoothElevateDate.getElevatorListBeans() != null) {
+                if (bletoothElevateDate.getElevatorListBeans().size() > 0) {
+                    if (!bletoothElevateDate.getElevatorListBeans().get(0).isFirst()) {
+                        bletoothElevateDate.getElevatorListBeans().add(0, elevatorListBean);
+                    }
+                } else {
+                    bletoothElevateDate.getElevatorListBeans().add(0, elevatorListBean);
+                }
+            } else {
+                List<ElevatorListBean> doorMILiBeans1 = new ArrayList<>();
+                doorMILiBeans1.add(elevatorListBean);
+                bletoothElevateDate.setElevatorListBeans(doorMILiBeans1);
+            }
+        } else {
+            bletoothElevateDate = new StoreElevatorListBeans();
+            List<ElevatorListBean> doorMILiBeans1 = new ArrayList<>();
+            ElevatorListBean elevatorListBean = new ElevatorListBean();
+            elevatorListBean.setFirst(true);
+            elevatorListBean.setName("一键开梯");
+            doorMILiBeans1.add(elevatorListBean);
+            bletoothElevateDate.setElevatorListBeans(doorMILiBeans1);
+        }
+
+        commonAdapter.setDatas(bletoothElevateDate.getElevatorListBeans());
+
     }
 
     @Override
@@ -80,7 +128,6 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
         commonAdapter = new CommonAdapter<ElevatorListBean>(this, R.layout.item_access_child) {
             @Override
             public void convert(ViewHolder holder, final ElevatorListBean elevatorListBean, final int position, View convertView) {
-
 
                 if (ChangeElevatorActivity.this.doorJinBoBean != null) {
                     if (ChangeElevatorActivity.this.doorJinBoBean.isFirstChecked()) {
@@ -100,7 +147,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                     }
                 }
 
-                holder.setText(R.id.tv_item, elevatorListBean.getElevatorNum() + elevatorListBean.getName());
+                holder.setText(R.id.tv_item, elevatorListBean.getName());
                 holder.setOnClickListener(R.id.tv_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -122,31 +169,29 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
 
     private void getData() {
 
-        ElevatorListRequestion elevatorListRequestion = new ElevatorListRequestion();
-        elevatorListRequestion.setCommunityId("5a82adf3b06c97e0cd6c0f3d");
-        elevatorListRequestion.setUserId(mCache.getAsString(HttpConstants.USERID));
-
-        Api.lanyaElevatorLists(elevatorListRequestion, new ResponseCallBack<List<ElevatorListBean>>() {
+        bluetoothNetUtils.getBluetoothElevatorDate(1, new BluetoothNetUtils.OnBlutoothElevatorCallBackListener() {
             @Override
-            public void onSuccess(List<ElevatorListBean> elevatorListBeans) {
-                super.onSuccess(elevatorListBeans);
-                if (elevatorListBeans != null) {
-                    if (elevatorListBeans.size() > 0) {
-                        ElevatorListBean elevatorListBean = new ElevatorListBean();
-                        elevatorListBean.setName("一键开门");
-                        elevatorListBean.setElevatorNum("");
-                        elevatorListBean.setFirst(true);
-                        elevatorListBeans.add(0, elevatorListBean);
-                        commonAdapter.setDatas(elevatorListBeans);
+            public void OnCallBack(int state, StoreElevatorListBeans storeElevatorListBeans) {
+
+                if (state == 1) {
+
+                    if (storeElevatorListBeans != null) {
+                        if (storeElevatorListBeans.getElevatorListBeans().size() > 0) {
+                            ElevatorListBean elevatorListBean = new ElevatorListBean();
+                            elevatorListBean.setFirst(true);
+                            elevatorListBean.setName("一键开梯");
+                            storeElevatorListBeans.getElevatorListBeans().add(0, elevatorListBean);
+                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, mCache.getAsString(HttpConstants.USERID) + PreferenceConst.MILIDOORMAC, new Gson().toJson(storeElevatorListBeans));
+                            commonAdapter.setDatas(storeElevatorListBeans.getElevatorListBeans());
+                        } else {
+                            ToastUtil.showShort("没有找到您可以开的电梯");
+                        }
+                    } else {
+                        ToastUtil.showShort("没有找到您可以开的电梯");
                     }
+                } else if (state == 2) {
+
                 }
-            }
-
-            @Override
-            public void onFailure(ServiceException e) {
-                super.onFailure(e);
-                ToastUtil.showShort(e.getMsg());
-
             }
         });
 

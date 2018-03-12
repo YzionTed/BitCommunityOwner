@@ -733,6 +733,9 @@
         <activity android:name=".activities.fragment.smartGate.VideoUnActiveOpenActivity"></activity>
         <activity android:name=".activities.fragment.elevatorFrag.ChangeElevatorActivity"></activity>
         <activity android:name=".newsdetail.NewsDetail"></activity>
+        <activity android:name=".Bluetooth.BlueDemoActivity">
+        </activity>
+
     </application>
 
 </manifest>

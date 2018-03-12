@@ -20,6 +20,7 @@ import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonAdapter;
 import com.bit.fuxingwuye.utils.PermissionUtils;
+import com.bit.fuxingwuye.utils.ToastUtil;
 import com.bit.fuxingwuye.utils.ViewHolder;
 import com.bit.fuxingwuye.views.NoScrollGridView;
 import com.ddclient.configuration.DongConfiguration;
@@ -104,7 +105,7 @@ public class RemoteDoorFragment extends BaseFragment implements AdapterView.OnIt
     private void itemClick(int i) {
         DeviceInfo deviceInfo = (DeviceInfo) commonAdapter.getItem(i);
         if (!deviceInfo.isOnline) {
-            Toast.makeText(getActivity(), deviceInfo.deviceName, Toast.LENGTH_SHORT).show();
+            ToastUtil.showShort( deviceInfo.deviceName+"设备不在线");
             return;
         }
         DongConfiguration.mDeviceInfo = deviceInfo;

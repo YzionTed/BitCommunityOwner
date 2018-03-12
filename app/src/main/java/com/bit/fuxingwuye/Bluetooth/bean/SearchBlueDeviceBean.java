@@ -9,7 +9,7 @@ import android.bluetooth.BluetoothDevice;
 /**
  * 搜索到的蓝牙设备对象
  */
-public class SearchBlueDeviceBean {
+public class SearchBlueDeviceBean implements Comparable<SearchBlueDeviceBean> {
 
     private BluetoothDevice bluetoothDevice;
     private int rssi;//信号强度
@@ -32,11 +32,17 @@ public class SearchBlueDeviceBean {
     }
 
     public float getDistace() {
-       // 10^((Math.abs(rssi) - A) / (10 * n))  距离
+        // 10^((Math.abs(rssi) - A) / (10 * n))  距离
         return distace;
     }
 
     public void setDistace(float distace) {
         this.distace = distace;
+    }
+
+    @Override
+    public int compareTo(SearchBlueDeviceBean o) {
+        int i = o.getRssi() - this.getRssi();//先按照年龄排序
+        return i;
     }
 }

@@ -14,13 +14,20 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
+import com.bit.fuxingwuye.bean.Community;
+import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.constant.PreferenceConst;
 import com.bit.fuxingwuye.dagger.component.AppComponent;
 import com.bit.fuxingwuye.dagger.component.DaggerAppComponent;
 import com.bit.fuxingwuye.dagger.module.AppModule;
 import com.bit.fuxingwuye.utils.LiteOrmUtil;
+import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.PreferenceUtils;
 import com.ddclient.push.DongPushMsgManager;
 import com.facebook.stetho.Stetho;
+import com.google.gson.Gson;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.inuker.bluetooth.library.BluetoothClientManger;
@@ -105,7 +112,7 @@ public class BaseApplication extends MultiDexApplication {
         blueToothApp = new BluetoothApplication(this);
 
         int result = IntercomSDK.initIntercomSDK(this);//米粒
-        Log.e("===","IntercomSDK  result=="+result);
+        Log.e("===", "IntercomSDK  result==" + result);
         //初始化推送设置
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_GETUI);
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_JG);
@@ -130,6 +137,39 @@ public class BaseApplication extends MultiDexApplication {
                     " 程序出错,BasicApplication instance is null");
         }
         return instance;
+    }
+
+
+    /**
+     * 获取用户登录的数据对象
+     *
+     * @return
+     */
+    public static TokenBean getUserLoginInfo() {
+        TokenBean tokenBean = null;
+        try {
+            tokenBean = (TokenBean) ACache.get(BaseApplication.getInstance())
+                    .getAsObject(HttpConstants.TOKENBEAN);
+        } catch (Exception e) {
+            return null;
+        }
+        return tokenBean;
+    }
+
+    /**
+     * 获取用户选择小区的数据对象
+     *
+     * @return
+     */
+    public static Community.RecordsBean getVillageInfo() {
+        Community.RecordsBean community = null;
+        try {
+            community = (Community.RecordsBean) ACache.get(BaseApplication.getInstance())
+                    .getAsObject(HttpConstants.XIAOQU);
+        } catch (Exception e) {
+            return null;
+        }
+        return community;
     }
 
     public Context getContext() {
@@ -368,6 +408,7 @@ public class BaseApplication extends MultiDexApplication {
     public static void removeActivity(Activity activity) {
         listActivity.remove(activity);
     }
+
     public BluetoothApplication getBlueToothApp() {
         return blueToothApp;
     }

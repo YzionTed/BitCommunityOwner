@@ -33,8 +33,10 @@ import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.Bluetooth.yunduijiang.YunDuiJIangUtils;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.fragment.elevatorFrag.ElevatorFragment;
+import com.bit.fuxingwuye.activities.fragment.elevatorFrag.StoreElevatorListBeans;
 import com.bit.fuxingwuye.activities.fragment.mainFragment.FragmentMain;
 import com.bit.fuxingwuye.activities.fragment.mineFragment.FragmentMine;
+import com.bit.fuxingwuye.activities.fragment.smartGate.BluetoothNetUtils;
 import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentDoor;
 import com.bit.fuxingwuye.activities.houseManager.ApplicationRecordActivity;
 import com.bit.fuxingwuye.activities.houseManager.HouseManagerActivity;
@@ -46,6 +48,7 @@ import com.bit.fuxingwuye.bean.CardListBean;
 import com.bit.fuxingwuye.bean.EvenBusMessage;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.TokenBean;
+import com.bit.fuxingwuye.bean.StoreDoorMILiBeanList;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityMainTabBinding;
 import com.bit.fuxingwuye.newsdetail.NewsDetail;
@@ -101,6 +104,9 @@ public class MainTabActivity extends SupportActivity {
             Manifest.permission.CALL_PHONE,//电话
             Manifest.permission.RECORD_AUDIO//录音
     };
+    private BluetoothNetUtils bluetoothNetUtils;
+
+    public static int currentFragmentPosiont=0;//当前Fragment的位置
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,13 +319,61 @@ public class MainTabActivity extends SupportActivity {
                 for (int i = 0; i < mTabItemList.size(); i++) {
                     TabItem tabitem = mTabItemList.get(i);
                     if (tabId.equals(tabitem.getTitleString())) {
+                        currentFragmentPosiont=i;
                         tabitem.setChecked(true);
                     } else {
                         tabitem.setChecked(false);
                     }
                 }
+                upBlueToothDate();
             }
         });
+
+        upBlueToothDate();
+    }
+
+
+
+    /**
+     * 更新蓝牙数据
+     */
+    public void upBlueToothDate(){
+        miLiUpDate();
+        upElevatorDate();
+    }
+
+    /**
+     * 米粒的数据更新缓存
+     */
+    private void miLiUpDate() {
+        if (bluetoothNetUtils == null) {
+            bluetoothNetUtils = new BluetoothNetUtils();
+        }
+        StoreDoorMILiBeanList doorMILiBeans = bluetoothNetUtils.getBletoothDoorDate();
+        if (doorMILiBeans != null) {
+            if (doorMILiBeans.isTimeOutNow()) {
+                bluetoothNetUtils.getMiLiNetDate(null, 2, null);
+            }
+        } else {
+            bluetoothNetUtils.getMiLiNetDate(null, 2, null);
+        }
+    }
+
+    /**
+     * 电梯蓝牙的数据更新缓存
+     */
+    private void upElevatorDate() {
+        if (bluetoothNetUtils == null) {
+            bluetoothNetUtils = new BluetoothNetUtils();
+        }
+        StoreElevatorListBeans bletoothElevateDate = bluetoothNetUtils.getBletoothElevateDate();
+        if (bletoothElevateDate != null) {
+            if (bletoothElevateDate.isTimeOutNow()) {
+                bluetoothNetUtils.getBluetoothElevatorDate(2, null);
+            }
+        } else {
+            bluetoothNetUtils.getBluetoothElevatorDate( 2, null);
+        }
     }
 
     private void HavaPermission(int currentab) {

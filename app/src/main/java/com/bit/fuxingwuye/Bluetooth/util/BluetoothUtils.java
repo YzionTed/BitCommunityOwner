@@ -58,7 +58,7 @@ public class BluetoothUtils {
         DoorMILiBean doorMILiBeanMax = null;
         for (int i = 0; i < logindata.size(); i++) {
             DoorMILiBean doorMILiBean = logindata.get(i);
-            Log.e("BluetoothDoorFragment","doorMILiBean="+doorMILiBean.getMac());
+            Log.e("BluetoothDoorFragment", "doorMILiBean=" + doorMILiBean.getMac());
             if (doorMILiBean.getDataStatus() == 1) {
                 for (int j = 0; j < searchBlueDeviceBeanList.size(); j++) {
                     BluetoothDevice bluetoothDevice = searchBlueDeviceBeanList.get(j).getBluetoothDevice();

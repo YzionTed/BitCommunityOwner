@@ -13,6 +13,7 @@ import com.bit.fuxingwuye.base.BaseFragment;
 
 public class FragmentDoor extends BaseFragment {
 
+    public static int currentDoorFragmentPositon=0;
     private RadioGroup rg_gate;
     private BluetoothDoorFragment bluetoothDoorFragment;
     private RemoteDoorFragment remoteDoorFragment;
@@ -41,8 +42,10 @@ public class FragmentDoor extends BaseFragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
                 if (checkedId == R.id.rb_remote_gate) {
+                    currentDoorFragmentPositon=1;
                     checkRemoteDoorFragment();
                 } else if (checkedId == R.id.rb_bluetooth) {
+                    currentDoorFragmentPositon=0;
                     checkBluetoothDoorFragment();
                 }
             }

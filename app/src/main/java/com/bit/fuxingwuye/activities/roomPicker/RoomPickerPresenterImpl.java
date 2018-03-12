@@ -44,6 +44,7 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
 
     /**
      * 获取社区接口
+     *
      * @param userid
      */
     @Override
@@ -54,7 +55,7 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<Community>>() {
             @Override
             public void next(BaseEntity<Community> o) {
-                LogUtil.d("back","进入这里");
+                LogUtil.d("back", "进入这里");
                 mView.showcommunity(o.getData());
             }
 
@@ -63,7 +64,7 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
 
             }
 
-        },context,true);
+        }, context, true);
         RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }
@@ -71,12 +72,13 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
 
     /**
      * 获取楼房接口
+     *
      * @param map
      */
     @Override
     public void getbuilding(String map) {
         Observable observable = RetrofitManager.getInstace()
-                .create(NetworkApi.class).getbuilding(map)
+                .create(NetworkApi.class).getbuilding(map, "1", "10000")
                 .map(new HttpResultFunc<Building>());
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<Building>>() {
             @Override
@@ -90,19 +92,20 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
 
             }
 
-        },context,true);
+        }, context, true);
         RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }
 
     /**
      * 获取房间的接口
+     *
      * @param buildingId
      */
     @Override
     public void getroom(String buildingId) {
         Observable observable = RetrofitManager.getInstace()
-                .create(NetworkApi.class).getroom(buildingId)
+                .create(NetworkApi.class).getroom(buildingId, "1", "10000")
                 .map(new HttpResultFunc<Room>());
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<BaseEntity<Room>>() {
             @Override
@@ -114,7 +117,7 @@ public class RoomPickerPresenterImpl extends BaseRxPresenter<RoomPickerContract.
             public void onError(Throwable e) {
             }
 
-        },context,true);
+        }, context, true);
         RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }

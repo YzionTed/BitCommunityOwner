@@ -7,6 +7,7 @@ import android.widget.RadioGroup;
 import com.bit.fuxingwuye.R;
 
 import com.bit.fuxingwuye.base.BaseFragment;
+import com.bit.fuxingwuye.utils.ToastUtil;
 
 /**
  * Created by Dell on 2018/3/3.
@@ -17,6 +18,7 @@ public class ElevatorFragment extends BaseFragment {
     private ElevatorCartFragment elevatorCartFragment;
     private EarlyCallFragment earlyCallFragment;
 
+    public static int currentElvateFragmentPositon=0;
     @Override
     protected int getLayoutId() {
         return R.layout.layout_frag_elevator;
@@ -37,8 +39,10 @@ public class ElevatorFragment extends BaseFragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
                 if (checkedId == R.id.rb_remote_gate) {
+                    currentElvateFragmentPositon=1;
                     checkEarlyCallFragment();
                 } else if (checkedId == R.id.rb_bluetooth) {
+                    currentElvateFragmentPositon=0;
                     checkElevatorCartFragment();
                 }
             }

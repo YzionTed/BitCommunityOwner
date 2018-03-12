@@ -1,5 +1,6 @@
 package com.bit.fuxingwuye.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class Community {
         this.records = records;
     }
 
-    public static class RecordsBean {
+    public static class RecordsBean implements Serializable{
         /**
          * address : null
          * area : null

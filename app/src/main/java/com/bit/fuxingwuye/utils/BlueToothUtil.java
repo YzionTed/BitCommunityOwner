@@ -29,6 +29,7 @@ import com.bit.fuxingwuye.bean.ElevatorListBean;
 
 import net.vidageek.mirror.dsl.Mirror;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -175,63 +176,64 @@ public class BlueToothUtil {
     }
 
 
-//    //开启广播
-//    public void openBroadcast() {
-//        if (mBluetoothLeAdvertiser == null) {
-//            mBluetoothLeAdvertiser = mBtAdapter.getBluetoothLeAdvertiser();
-//        }
-//        AdvertiseSettings settings = createAdvertiseSettings(0);
-//        AdvertiseData data = createAdvertiseData();
-//        if(mBluetoothLeAdvertiser != null){
-//            mBluetoothLeAdvertiser.startAdvertising(settings, data, mAdvCallback);
-//        }
-//    }
-//
-//    //关闭广播
-//    public void closeBroadcast() {
-//        if (mBluetoothLeAdvertiser != null) {
-//            mBluetoothLeAdvertiser.stopAdvertising(mAdvCallback);
-//            mBluetoothLeAdvertiser = null;
-//            broadcastState = false;
-//        }
-//    }
-//
-//    //广播设置
-//    private AdvertiseSettings createAdvertiseSettings(int timeoutMillis) {
-//        AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
-//        builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY);
-//        builder.setTimeout(timeoutMillis);
-//        builder.setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_HIGH);
-//        return builder.build();
-//    }
-//
+    //开启广播
+    public void openBroadcast(String keyNo) {
+        if (mBluetoothLeAdvertiser == null) {
+            mBluetoothLeAdvertiser = mBtAdapter.getBluetoothLeAdvertiser();
+        }
+        AdvertiseSettings settings = createAdvertiseSettings(5000);
+        AdvertiseData data = createAdvertiseData(keyNo);
+        if (mBluetoothLeAdvertiser != null) {
+            mBluetoothLeAdvertiser.startAdvertising(settings, data, mAdvCallback);
+        }
+    }
+
+    //关闭广播
+    public void closeBroadcast() {
+        if (mBluetoothLeAdvertiser != null) {
+            mBluetoothLeAdvertiser.stopAdvertising(mAdvCallback);
+            mBluetoothLeAdvertiser = null;
+            broadcastState = false;
+        }
+    }
+
+    //广播设置
+    private AdvertiseSettings createAdvertiseSettings(int timeoutMillis) {
+        AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
+        builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY);
+        builder.setTimeout(timeoutMillis);
+        builder.setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_HIGH);
+        return builder.build();
+    }
+
+    //
 //    //设置广播数据
-//    public AdvertiseData createAdvertiseData() {
-//
-//        AdvertiseData.Builder mDataBuilder = new AdvertiseData.Builder();
-//        String[] str = getBtAddressViaReflection().split(":");
-//        StringBuffer sbf = new StringBuffer();
+    public AdvertiseData createAdvertiseData(String keyNo) {
+
+        AdvertiseData.Builder mDataBuilder = new AdvertiseData.Builder();
+        String[] str = getBtAddressViaReflection().split(":");
+        StringBuffer sbf = new StringBuffer(keyNo);
 //        for (int i = 0; i < str.length; i++) {
 //            sbf.append(str[i]);
 //        }
-//
-//        String sum = HexUtil.getCheckSUMByte("0B" + sbf.toString());
-//        String msg = HexUtil.str2HexStr("K") + HexUtil.str2HexStr("T") + "0B" + sbf.toString() + sum.toUpperCase() + "FE";
-//        Log.e("msg", msg);
-//        mBtAdapter.setName(msg);
-//        mDataBuilder.setIncludeDeviceName(true);
-//        mDataBuilder.setIncludeTxPowerLevel(false);
-//
-//        AdvertiseData mAdvertiseData = mDataBuilder.build();
-//        if (mAdvertiseData == null) {
-//            Toast.makeText(mContext, "mAdvertiseData == null", Toast.LENGTH_LONG).show();
-//            Log.e(TAG, "mAdvertiseData == null");
-//        } else {
-//            Log.e("eeeeeee", mAdvertiseData.toString());
-//        }
-//        return mAdvertiseData;
-//
-//    }
+        Log.e(TAG,"打开梯禁==keyNo"+keyNo);
+        String sum = HexUtil.getCheckSUMByte("0B" + sbf.toString());
+        String msg = HexUtil.str2HexStr("K") + HexUtil.str2HexStr("T") + "0B" + sbf.toString() + sum.toUpperCase() + "FE";
+        Log.e("msg", msg);
+        mBtAdapter.setName(msg);
+        mDataBuilder.setIncludeDeviceName(true);
+        mDataBuilder.setIncludeTxPowerLevel(false);
+
+        AdvertiseData mAdvertiseData = mDataBuilder.build();
+        if (mAdvertiseData == null) {
+            Toast.makeText(mContext, "mAdvertiseData == null", Toast.LENGTH_LONG).show();
+            Log.e(TAG, "mAdvertiseData == null");
+        } else {
+            Log.e("eeeeeee", mAdvertiseData.toString());
+        }
+        return mAdvertiseData;
+
+    }
 
 
     //返回中央的状态和周边提供的数据
@@ -258,7 +260,7 @@ public class BlueToothUtil {
                     disConnGatt();
                     if (onBluetoothStateCallBack != null) {
                         if (!isOpenSuccess) {
-                            isOpenSuccess=false;
+                            isOpenSuccess = false;
                             onBluetoothStateCallBack.OnBluetoothState("开梯失败，重新开梯");
                         }
                     }
@@ -335,25 +337,25 @@ public class BlueToothUtil {
         }
     };
 
-//    private AdvertiseCallback mAdvCallback = new AdvertiseCallback() {
-//        public void onStartSuccess(android.bluetooth.le.AdvertiseSettings settingsInEffect) {
-//            if (settingsInEffect != null) {
-//                Log.e("debug", "onStartSuccess TxPowerLv="
-//                        + settingsInEffect.getTxPowerLevel()
-//                        + " mode=" + settingsInEffect.getMode()
-//                        + " timeout=" + settingsInEffect.getTimeout());
-//            } else {
-//                Log.e("debug", "onStartSuccess, settingInEffect is null");
-//            }
-//            broadcastState = true;
-//        }
-//
-//        public void onStartFailure(int errorCode) {
-//            Log.e("debug", "onStartFailure errorCode=" + errorCode);
-//            broadcastState = false;
-//            Toast.makeText(mContext, "开启失败", Toast.LENGTH_SHORT).show();
-//        }
-//    };
+    private AdvertiseCallback mAdvCallback = new AdvertiseCallback() {
+        public void onStartSuccess(android.bluetooth.le.AdvertiseSettings settingsInEffect) {
+            if (settingsInEffect != null) {
+                Log.e("debug", "onStartSuccess TxPowerLv="
+                        + settingsInEffect.getTxPowerLevel()
+                        + " mode=" + settingsInEffect.getMode()
+                        + " timeout=" + settingsInEffect.getTimeout());
+            } else {
+                Log.e("debug", "onStartSuccess, settingInEffect is null");
+            }
+            broadcastState = true;
+        }
+
+        public void onStartFailure(int errorCode) {
+            Log.e("debug", "onStartFailure errorCode=" + errorCode);
+            broadcastState = false;
+            Toast.makeText(mContext, "开启失败", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     //获取设备指定的特征中的特性,其中对其进行监听, setCharacteristicNotification与上面的回调onCharacteristicChanged进行一一搭配
     private void setNotification() {
@@ -407,7 +409,7 @@ public class BlueToothUtil {
     }
 
 
-    //谢文胜 临时加的代码
+    // 临时加的代码
     public interface OnCallBackListener {
         void OnCallBack(int state);//1:代表成功 2：代表失败
     }
@@ -417,6 +419,7 @@ public class BlueToothUtil {
 //        stopScan();
 //        mCurDevice = listDevice.get(devicePos);
         count = 0;
+        isOpenSuccess = false;
         checkConnGatt(mac);
     }
 
@@ -468,13 +471,21 @@ public class BlueToothUtil {
     }
 
     //发送开梯指令
-    public void sendOpen(ElevatorListBean doorJinBoBean) {
+    public void sendOpen(String macAddress) {
 
         if (onBluetoothStateCallBack != null) {
             onBluetoothStateCallBack.OnBluetoothState("发送开梯指令");
         }
-
-        StringBuffer sbf = new StringBuffer(doorJinBoBean.getKeyNo());
+        StringBuffer sbf;
+        if (macAddress.contains(":")) {
+            String[] str = macAddress.split(":");
+            sbf = new StringBuffer();
+            for (int i = 0; i < str.length; i++) {
+                sbf.append(str[i]);
+            }
+        } else {
+            sbf = new StringBuffer(macAddress);
+        }
         Log.e(TAG, "doorJinBoBean.getKeyNo()==" + sbf.toString());
         String sum = HexUtil.getCheckSUMByte("0A" + sbf.toString());
 
@@ -484,7 +495,11 @@ public class BlueToothUtil {
         byte[] end = HexUtil.getMergeBytes(HexUtil.strTobyte(sum), new byte[]{(byte) 0xFE});
         byte[] bvalue = HexUtil.getMergeBytes(head, end);
 
-        Log.e(TAG, "电梯指令：" + new String(bvalue));
+        try {
+            Log.e(TAG, "电梯指令：" + new String(bvalue,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         if (wCharacter != null) {
             wCharacter.setValue(bvalue);
         }
@@ -548,7 +563,7 @@ public class BlueToothUtil {
                                 mListener.onDisConnected(mCurDevice);
                                 if (onBluetoothStateCallBack != null) {
                                     if (!isOpenSuccess) {
-                                        isOpenSuccess=false;
+                                        isOpenSuccess = false;
                                         onBluetoothStateCallBack.OnBluetoothState("开梯失败，重新开梯");
                                     }
                                 }

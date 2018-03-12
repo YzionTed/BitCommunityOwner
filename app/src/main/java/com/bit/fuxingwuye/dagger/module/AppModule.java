@@ -30,31 +30,31 @@ public class AppModule {
     @Provides
     @Singleton
     @ContextLife("Application")
-    BaseApplication provideApplicationContext(){
+    BaseApplication provideApplicationContext() {
         return application;
     }
 
     @Provides
     @Singleton
-    FragmentMain providerFragmentMain(){
+    FragmentMain providerFragmentMain() {
         return new FragmentMain();
     }
 
     @Provides
     @Singleton
-    FragmentMine providerFragmentMine(){
+    FragmentMine providerFragmentMine() {
         return new FragmentMine();
     }
 
     @Provides
     @Singleton
-    FragmentGate providerFragmentGate(){
+    FragmentGate providerFragmentGate() {
         return new FragmentGate();
     }
 
     @Provides
     @Singleton
-    ElevatorFragment providerFragmentElevator(){
+    ElevatorFragment providerFragmentElevator() {
         return new ElevatorFragment();
     }
 }

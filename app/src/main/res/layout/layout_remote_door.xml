@@ -34,6 +34,7 @@
                 android:paddingBottom="28dp"></com.bit.fuxingwuye.views.NoScrollGridView>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_change"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"

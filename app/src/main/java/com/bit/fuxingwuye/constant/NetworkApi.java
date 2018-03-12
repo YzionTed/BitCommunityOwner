@@ -254,9 +254,9 @@ public interface NetworkApi {
     @GET(HttpConstants.community)
     Observable<BaseEntity<Community>> getcommunity(@Query("userId") String userId);
     @GET(HttpConstants.building)
-    Observable<BaseEntity<Building>> getbuilding(@Query("communityId") String communityId);
+    Observable<BaseEntity<Building>> getbuilding(@Query("communityId") String communityId,@Query("page") String page,@Query("size") String size);
     @GET(HttpConstants.room)
-    Observable<BaseEntity<Room>> getroom(@Query("buildingId") String buildingId);
+    Observable<BaseEntity<Room>> getroom(@Query("buildingId") String buildingId,@Query("page") String page,@Query("size") String size);
     @GET("/v1/user/signOut")
     Observable<BaseEntity<OutLogin>> signOut();
     @GET(Url.V1_USER_GETBYROOMID)

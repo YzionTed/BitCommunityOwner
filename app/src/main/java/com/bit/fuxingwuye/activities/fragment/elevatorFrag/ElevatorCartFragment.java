@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.Intent;
-import android.os.Handler;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -13,26 +13,23 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.bit.communityOwner.net.Api;
-import com.bit.communityOwner.net.ResponseCallBack;
-import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
 import com.bit.fuxingwuye.Bluetooth.jinbo.JiBoUtils;
 import com.bit.fuxingwuye.Bluetooth.util.BluetoothUtils;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.EAnimationActivity;
+import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.activities.fragment.smartGate.BluetoothNetUtils;
+import com.bit.fuxingwuye.activities.fragment.smartGate.FragmentDoor;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.base.BaseFragment;
-import com.bit.fuxingwuye.bean.ElevatorCardRequestion;
 import com.bit.fuxingwuye.bean.ElevatorListBean;
-import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.BlueToothUtil;
 import com.bit.fuxingwuye.utils.SensorManagerHelper;
 import com.bit.fuxingwuye.utils.ToastUtil;
 import com.bit.fuxingwuye.views.CircleProgressBar;
-import com.bit.fuxingwuye.views.DoughnutProgress;
 import com.inuker.bluetooth.library.base.Conf;
 import com.inuker.bluetooth.library.base.Register;
 
@@ -48,19 +45,23 @@ import java.util.List;
 public class ElevatorCartFragment extends BaseFragment implements View.OnClickListener, BlueToothUtil.BTUtilListener, BlueToothUtil.OnCharacteristicListener {
 
     private String Tag = "ElevatorCartFragment";
-    private ACache mCache;
 
     private Switch shake_switch;
     private CircleProgressBar circle_progress;
     private RelativeLayout rl_change_gate;
     private TextView tv_name;
-    private boolean isNeedShake = true;
+
     ElevatorListBean doorJinBoBean;
-    ElevatorListBean haiKangdoorJinBoBean;
-    private String village;
-    private int villageType;//1:天津会展 2:和谐景苑
+    ElevatorListBean openDoorBean;
+
+    private int villageType;//1:和谐景苑  2: 天津会展 3.虚拟小区 4.包头市九原区和谐警苑小区
     private boolean connected = false;
     private ImageView iv_open;
+    private BluetoothNetUtils bluetoothNetUtils;
+
+    private String haiKangOpenKeyNo;//自己公司电梯的开梯mac
+    private TextView tv_open_type;
+    public boolean isChecked;//开关是否打开
 
     @Override
     public int getLayoutId() {
@@ -70,34 +71,55 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
     @Override
     protected void initInject() {
 
-        mCache = ACache.get(getActivity());
-
-        village = mCache.getAsString(HttpConstants.village);
-
         BlueToothUtil.getInstance().setContext(getActivity());
         BlueToothUtil.getInstance().setBTUtilListener(this);
         BlueToothUtil.getInstance().setOnCharacteristicListener(this);
-
 
         circle_progress = (CircleProgressBar) mView.findViewById(R.id.loading_view);
         iv_open = (ImageView) mView.findViewById(R.id.iv_open);
         shake_switch = (Switch) mView.findViewById(R.id.shake_switch);
         rl_change_gate = (RelativeLayout) mView.findViewById(R.id.rl_change_gate);
         tv_name = (TextView) mView.findViewById(R.id.tv_name);
-
+        tv_open_type = (TextView) mView.findViewById(R.id.tv_open_type);
 
         rl_change_gate.setOnClickListener(this);
         iv_open.setOnClickListener(this);
 
+        if (bluetoothNetUtils == null) {
+            bluetoothNetUtils = new BluetoothNetUtils();
+        }
+
+        getCommutiyType();
         initListener();
-        shake_switch.setChecked(true);
+        shake_switch.setChecked(false);
+    }
+
+    /**
+     * 获取小区的类别
+     */
+    private void getCommutiyType() {
+        if ("5a82adf3b06c97e0cd6c0f3d".equals(BaseApplication.getVillageInfo().getId())) {    //和谐景苑
+            villageType = 1;
+        } else if ("5a8cfa62518089ae7afccc0c".equals(BaseApplication.getVillageInfo().getId())) {//天津展会
+            villageType = 2;
+        } else if ("5a8cfc54518089ae7afccc0d".equals(BaseApplication.getVillageInfo().getId())) {//虚拟小区
+            villageType = 3;
+        } else if ("5aa1ea6ce4b071c9f9b6f1a8".equals(BaseApplication.getVillageInfo().getId())) {//虚拟小区
+            villageType = 4;
+        }
+
+        if (villageType == 1 || villageType == 3) {
+            tv_open_type.setText("自动感应开梯");
+        } else {
+            tv_open_type.setText("摇一摇开梯");
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_open:
-
+                tv_name.setText("开始开梯");
                 circle_progress.start();
 
                 // doorJinBoBean.setKeyType(1);
@@ -106,7 +128,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 ////                   doorJinBoBean.setMacAddress("E6:48:3C:5A:D4:1D");
 ////                   doorJinBoBean.setMacType(1);
 ////                   doorJinBoBean.setKeyNo("123456123457");
-//
+
                 new Thread() {
                     @Override
                     public void run() {
@@ -118,23 +140,9 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                                     getDevice(searchBlueDeviceBeanList, 1);
                                 }
                             });
-                        } else if (doorJinBoBean.getMacType() == 1) {
-                            JiBoUtils.getInstance(getActivity()).openDevice(doorJinBoBean, openLift(doorJinBoBean), new JiBoUtils.OnOpenLiftCallBackListenter() {
-                                @Override
-                                public void OpenLiftCallBackListenter(int backState, String msg) {
-                                    tv_name.setText(doorJinBoBean.getElevatorNum() + doorJinBoBean.getName() + msg);
-                                    if (backState == 1) {//成功
-                                        circle_progress.stop();
-                                        succssAnimation();
-                                    } else {//失败
-                                        circle_progress.stop();
-                                    }
-                                }
-                            });
-                        } else if (doorJinBoBean.getMacType() == 2) {
-                            Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
-                            haiKangdoorJinBoBean = doorJinBoBean;
-                            BlueToothUtil.getInstance().connectLeDevice(haiKangdoorJinBoBean.getMacAddress());
+                        } else if (doorJinBoBean.getMacType() == 1 || doorJinBoBean.getMacType() == 2) {
+                            openDoorBean = doorJinBoBean;
+                            openElevator(doorJinBoBean.getMacAddress(), 1);
                         }
                     }
                 }.start();
@@ -157,7 +165,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         if (data != null) {
             if (resultCode == 10) {
                 doorJinBoBean = (ElevatorListBean) data.getSerializableExtra("elevatorListBean");
-                tv_name.setText(doorJinBoBean.getElevatorNum() + doorJinBoBean.getName());
+                tv_name.setText(doorJinBoBean.getName());
             }
         }
 
@@ -166,21 +174,21 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
     /**
      * 判断获取的设备是否是米粒蓝牙
      *
-     * @param searchBlueDeviceBeanList
-     * @param type                     1:点击 2：摇一摇
+     * @param searchBlueDeviceBeanList fromType 1:点击 2：摇一摇
      */
-    private void getDevice(final ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList, final int type) {
-
+    private void getDevice(final ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList, final int fromType) {
 
         if (BaseApplication.getInstance().getBlueToothApp().isLocationEnalbe()) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     ToastUtil.showShort("请打开您的定位权限！");
+                    if (fromType == 1) {
+                        isYaoyiYao = true;
+                    }
                     circle_progress.stop();
                 }
             });
-
             return;
         }
         if (searchBlueDeviceBeanList.size() < 1) {
@@ -189,123 +197,198 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 public void run() {
                     ToastUtil.showShort("没有找到蓝牙设备");
                     circle_progress.stop();
+                    if (fromType == 1) {
+                        isYaoyiYao = true;
+                    }
                 }
             });
 
             return;
         }
-        String[] doorMacArr = new String[searchBlueDeviceBeanList.size()];
 
-        for (int i = 0; i < searchBlueDeviceBeanList.size(); i++) {
-            doorMacArr[i] = searchBlueDeviceBeanList.get(i).getBluetoothDevice().getAddress();
+        if (bluetoothNetUtils == null) {
+            bluetoothNetUtils = new BluetoothNetUtils();
         }
 
-        ElevatorCardRequestion elevatorCardRequestion = new ElevatorCardRequestion();
-        elevatorCardRequestion.setCommunityId("5a82adf3b06c97e0cd6c0f3d");
-        elevatorCardRequestion.setDoorMacArr(doorMacArr);
-
-        Api.lanyaElevatorList(elevatorCardRequestion, new ResponseCallBack<List<ElevatorListBean>>() {
-            @Override
-            public void onSuccess(List<ElevatorListBean> elevatorListBeans) {
-                super.onSuccess(elevatorListBeans);
-                Log.e(Tag, "doorMILiBeans==" + elevatorListBeans);
-                final ElevatorListBean doorJinBoBean = BluetoothUtils.getMaxElevatorRsic(searchBlueDeviceBeanList, elevatorListBeans);
-                if (doorJinBoBean != null) {
-                    if (doorJinBoBean.getMacType() == 1) {
-                        Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
-                        JiBoUtils.getInstance(getActivity()).openDevice(doorJinBoBean, openLift(doorJinBoBean), new JiBoUtils.OnOpenLiftCallBackListenter() {
-                            @Override
-                            public void OpenLiftCallBackListenter(int backState, String msg) {
-                                tv_name.setText(doorJinBoBean.getElevatorNum() + doorJinBoBean.getName() + msg);
-                                if (backState == 1) {//成功
-                                    if (type == 2) {
-                                        isNeedShake = true;
-                                    }
-                                    succssAnimation();
-                                    circle_progress.stop();
-                                } else {//失败
-                                    circle_progress.stop();
-                                    if (type == 2) {
-                                        isNeedShake = true;
-                                    }
-                                }
-                            }
-                        });
-                    } else if (doorJinBoBean.getMacType() == 2) {
-                        Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                haiKangdoorJinBoBean = doorJinBoBean;
-                                BlueToothUtil.getInstance().connectLeDevice(haiKangdoorJinBoBean.getMacAddress());
-                            }
-                        });
-                    } else {
-                        Log.e(Tag, "doorJinBoBean.getMacType()==" + doorJinBoBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + doorJinBoBean.getMacAddress());
+        StoreElevatorListBeans bletoothElevateDate = bluetoothNetUtils.getBletoothElevateDate();
+        if (bletoothElevateDate != null) {
+            if (bletoothElevateDate.getElevatorListBeans() != null) {
+                if (bletoothElevateDate.getElevatorListBeans().size() > 0) {//缓存不为空时
+                    final ElevatorListBean doorJinBoBean = BluetoothUtils.getMaxElevatorRsic(searchBlueDeviceBeanList, bletoothElevateDate.getElevatorListBeans());
+                    if (doorJinBoBean != null) {//匹配最强信号
+                        openDoorBean = doorJinBoBean;
+                        openElevator(doorJinBoBean.getMacAddress(), fromType);
+                    } else {//如果搜索设备的数组个数为0,则选择蓝牙信号最强的10个蓝牙设备Mac地址和虚
+                        // 拟卡的凭证逐一尝试开门,如果成功就开门,不成功提示
+                        if (searchBlueDeviceBeanList.size() > 0) {
+                            openElevatorByAuto(searchBlueDeviceBeanList.get(0).getBluetoothDevice().getAddress(), fromType);
+                        }
                     }
                 } else {
-                    if (type == 2) {
-                        isNeedShake = true;
-                    }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            circle_progress.stop();
-                            ToastUtil.showShort("没有搜索到门的设备");
-                            Log.e(Tag, "没有搜索到门的设备！");
-                        }
-                    });
-
+                    getElevateDate(searchBlueDeviceBeanList, fromType);
                 }
+            } else {
+                getElevateDate(searchBlueDeviceBeanList, fromType);
             }
-
-            @Override
-            public void onFailure(ServiceException e) {
-                super.onFailure(e);
-                ToastUtil.showShort(e.getMsg());
-                circle_progress.stop();
-            }
-        });
+        } else {
+            getElevateDate(searchBlueDeviceBeanList, fromType);
+        }
 
     }
 
     /**
-     * 监听
+     * 获取网络的数据
+     *
+     * @param searchBlueDeviceBeanList fromType1.点击 2，摇一摇
      */
+    private void getElevateDate(final ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList, final int fromType) {
+        bluetoothNetUtils.getBluetoothElevatorDate(1, new BluetoothNetUtils.OnBlutoothElevatorCallBackListener() {
+            @Override
+            public void OnCallBack(int state, StoreElevatorListBeans storeDoorMILiBeanList) {
+                if (state == 1) {
+                    final ElevatorListBean doorJinBoBean = BluetoothUtils.getMaxElevatorRsic(searchBlueDeviceBeanList, storeDoorMILiBeanList.getElevatorListBeans());
+                    if (doorJinBoBean != null) {
+                        openDoorBean = doorJinBoBean;
+                        openElevator(doorJinBoBean.getMacAddress(), fromType);
+                    } else {
+                        openElevatorByAuto(searchBlueDeviceBeanList.get(0).getBluetoothDevice().getAddress(), fromType);
+                    }
+                } else if (state == 2) {
+                    circle_progress.stop();
+                }
+            }
+        });
+    }
+
+    /**
+     * 打开电梯
+     */
+    private void openElevator(final String macAddress, final int fromType) {
+
+        if (openDoorBean != null) {
+            if (openDoorBean.getMacType() == 1) {
+                Log.e(Tag, "匹配金箔：" + openDoorBean.getMacType() + "  openDoorBean.getMacAddress() =" + openDoorBean.getMacAddress());
+
+                Log.e(Tag, "doorJinBoBean.getMacType()==" + openDoorBean.getMacType() + "  openDoorBean.getMacAddress() =" + openDoorBean.getMacAddress());
+                JiBoUtils.getInstance(getActivity()).openDevice(macAddress, openLift(openDoorBean), new JiBoUtils.OnOpenLiftCallBackListenter() {
+                    @Override
+                    public void OpenLiftCallBackListenter(int backState, String msg) {
+                        tv_name.setText(openDoorBean.getName() + msg);
+                        if (backState == 1) {//成功
+
+                            succssAnimation();
+                            if (fromType == 1) {
+                                isYaoyiYao = true;
+                            }
+                            circle_progress.stop();
+                        } else {//失败
+                            if (fromType == 1) {
+                                isYaoyiYao = true;
+                            }
+                            circle_progress.stop();
+
+                        }
+                    }
+                });
+            } else if (openDoorBean.getMacType() == 2) {
+                Log.e(Tag, "匹配海康：" + openDoorBean.getMacType() + "  doorJinBoBean.getMacAddress() =" + openDoorBean.getMacAddress());
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        haiKangOpenKeyNo = openDoorBean.getKeyNo();
+                        BlueToothUtil.getInstance().connectLeDevice(openDoorBean.getMacAddress());
+                    }
+                });
+            } else {
+                Log.e(Tag, "openDoorBean.getMacType()==" + openDoorBean.getMacType() + "  openDoorBean.getMacAddress() =" + openDoorBean.getMacAddress());
+            }
+        }
+    }
+
+    /**
+     * 打开电梯
+     * 5秒自动连接开梯
+     */
+    private void openElevatorByAuto(final String macAddress, final int fromType) {
+        Log.e(Tag, "自动匹配蓝牙：" + macAddress);
+
+        JiBoUtils.getInstance(getActivity()).openDevice(macAddress, openLift(), new JiBoUtils.OnOpenLiftCallBackListenter() {
+            @Override
+            public void OpenLiftCallBackListenter(int backState, String msg) {
+                if (openDoorBean != null) {
+                    tv_name.setText(openDoorBean.getName() + msg);
+                }
+                if (backState == 1) {//成功
+                    succssAnimation();
+                    if (fromType == 1) {
+                        isYaoyiYao = true;
+                    }
+                    circle_progress.stop();
+                } else {//失败
+                    if (fromType == 1) {
+                        isYaoyiYao = true;
+                    }
+                    circle_progress.stop();
+
+                }
+            }
+        });
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                BlueToothUtil.getInstance().connectLeDevice(macAddress);
+            }
+        });
+    }
+
+
+    /**
+     * 监听
+     * fromType 1.点击 2，摇一摇
+     */
+    boolean isYaoyiYao = true;
 
     private void initListener() {
+
         SensorManagerHelper sensorHelper = new SensorManagerHelper(getActivity());
         sensorHelper.setOnShakeListener(new SensorManagerHelper.OnShakeListener() {
 
             @Override
             public void onShake() {
-                // TODO Auto-generated method stub
-                System.out.println("shake");
-                //  Toast.makeText(getActivity(), "你在摇哦", Toast.LENGTH_SHORT).show();
+
+                if (villageType == 1 || villageType == 3) {//天津展会 虚拟小区){
+                    return;
+                }
+                if (!isChecked) {
+                    return;
+                }
+                if (MainTabActivity.currentFragmentPosiont != 2 || FragmentDoor.currentDoorFragmentPositon != 0) {
+                    return;
+                }
                 Log.e(Tag, "shake==");
-                if (isNeedShake) {
+
+                if (isYaoyiYao) {
+                    isYaoyiYao = false;
                     circle_progress.start();
                     new Thread() {
                         @Override
                         public void run() {
                             super.run();
-                            isNeedShake = false;
-                            BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
-                                @Override
-                                public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
-                                    getDevice(searchBlueDeviceBeanList, 2);
-                                }
-                            });
+                            if (doorJinBoBean == null || doorJinBoBean.isFirst()) {
+                                BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
+                                    @Override
+                                    public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
+                                        getDevice(searchBlueDeviceBeanList, 2);
+                                    }
+                                });
+                            } else if (doorJinBoBean.getMacType() == 1 || doorJinBoBean.getMacType() == 2) {
+                                openDoorBean = doorJinBoBean;
+                                openElevator(doorJinBoBean.getMacAddress(), 2);
+                            }
                         }
                     }.start();
-
-//                    new Handler().postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList = BaseApplication.getInstance().getBlueToothApp().getSearchBlueDeviceBeanList();
-//
-//                        }
-//                    }, 2000);
                 }
             }
         });
@@ -314,7 +397,13 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.e(Tag, "isChecked==" + isChecked);
-                isNeedShake = isChecked;
+                ElevatorCartFragment.this.isChecked = isChecked;
+                if (villageType == 1 || villageType == 3) {//天津展会 虚拟小区
+                    //  tv_open_type.setText("自动感应开梯");
+                    autoGanyingOpen(isChecked);
+                } else {
+                    tv_open_type.setText("摇一摇开梯");
+                }
             }
         });
         BlueToothUtil.getInstance().setOnBluetoothStateCallBack(new BlueToothUtil.OnBluetoothStateCallBack() {
@@ -330,6 +419,44 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
+    /**
+     * 自动感应开梯
+     *
+     * @param isChecked
+     */
+    private void autoGanyingOpen(boolean isChecked) {
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            if (isChecked) {
+
+
+                StoreElevatorListBeans bletoothElevateDate = bluetoothNetUtils.getBletoothElevateDate();
+                if (bletoothElevateDate != null) {
+                    if (bletoothElevateDate.getElevatorListBeans() != null) {
+                        if (bletoothElevateDate.getElevatorListBeans().size() > 0) {//当缓存不为o
+                            BlueToothUtil.getInstance().openBroadcast(bletoothElevateDate.getElevatorListBeans().get(0).getKeyNo());
+                        }
+                    } else {
+                        Log.e(Tag, "bletoothElevateDate.getElevatorListBeans()==null  keyNo==null");
+                    }
+                } else {
+                    Log.e(Tag, "bletoothElevateDate==null  keyNo==null");
+                }
+            } else {
+                BlueToothUtil.getInstance().closeBroadcast();
+            }
+        } else {
+            ToastUtil.showShort("只支持版本sdk 21以上的");
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
 
     @Override
     protected void initEventAndData() {
@@ -342,7 +469,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 
     }
 
-    // 6、组织开梯数据
+    // 组织开梯数据
     public List<Register> openLift(ElevatorListBean doorJinBoBean) {
         Register reg = new Register();
         if (doorJinBoBean.getKeyNo().length() == 12) {
@@ -360,6 +487,16 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
             reg.PhoneMac = doorJinBoBean.getKeyNo();
         }
 
+        reg.type = Conf.STATE_DATA_LADDER;
+        List<Register> arry = new ArrayList<Register>();
+        arry.add(reg);
+        return arry;
+    }
+
+    // 组织开梯数据
+    public List<Register> openLift() {
+        Register reg = new Register();
+        reg.PhoneMac = JiBoUtils.getBtAddressViaReflection();
         reg.type = Conf.STATE_DATA_LADDER;
         List<Register> arry = new ArrayList<Register>();
         arry.add(reg);
@@ -408,6 +545,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                isYaoyiYao = true;
                 circle_progress.stop();
                 connected = false;
             }
@@ -417,13 +555,14 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onServicesDiscovered() {
+        isYaoyiYao = true;
         circle_progress.stop();
     }
 
 
     @Override
     public void onNotificationSetted() {
-        BlueToothUtil.getInstance().sendOpen(haiKangdoorJinBoBean);
+        BlueToothUtil.getInstance().sendOpen(haiKangOpenKeyNo);
     }
 
     @Override
@@ -434,10 +573,13 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
         BlueToothUtil.getInstance().handleResultCallBack(characteristic, new BlueToothUtil.OnCallBackListener() {
+
             @Override
             public void OnCallBack(int state) {
                 circle_progress.stop();
+                isYaoyiYao = true;
                 if (state == 1) {
+                    tv_name.setText("开梯成功");
                     succssAnimation();
                 } else {
                     ToastUtil.showShort("开梯失败");
@@ -459,4 +601,6 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
             //  Log.e(Tag,"写入数据成功");
         }
     }
+
+
 }

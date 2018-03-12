@@ -15,9 +15,8 @@ public class HttpConstants {
      */
     // TODO: 2017/7/1
     public static final String Base_Url_Formal = "https://api.smcm.bitiot.com.cn";//正式环境域名
-      public static final String Base_Url_Test = "http://apismcm.test.bitiot.com.cn";//测试环境域名 1
-//    public static final String Base_Url_Test = "http://39.106.249.8:9000";//测试环境域名 2
-
+    public static final String Base_Url_Test = "https://apismcm.test.bitiot.com.cn";//测试环境域名 1
+    // public static final String Base_Url_Test = "http://39.106.249.8:9000";//测试环境域名 2
 
 
     /********************************************************************************
@@ -101,11 +100,14 @@ public class HttpConstants {
     public static final String ID = "id";
     public static final String auditstatus = "auditstatus";
 
+
     /**
      * 选择小区名称
      */
     public static final String village = "village";
     public static final String loginstaut = "loginstaut";
+    public static final String XIAOQU = "xiaoqu";//选择的小区对象
+
 
     public static final String GET_CODE = "/v1/user/getVerificationCode";    // 	根据手机号获取验证码
     public static final String REGISTER = "/v1/user/add";    // 	用户注册

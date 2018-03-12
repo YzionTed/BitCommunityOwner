@@ -75,7 +75,7 @@ public class JiBoUtils {
     /**
      * 蓝牙开梯
      */
-    public void openDevice(final ElevatorListBean deviceDateBean, final List<Register> registerList, final OnOpenLiftCallBackListenter onOpenLiftCallBackListenter) {
+    public void openDevice(final String  macAddress, final List<Register> registerList, final OnOpenLiftCallBackListenter onOpenLiftCallBackListenter) {
 
         if (jiBoBean.isBluetoothSupporse()) {
             jiBoBean.setBluetoothOpen(mBluetoothClientManger.isBluetoothOpened());
@@ -135,14 +135,14 @@ public class JiBoUtils {
                 Log.e("====", "isNoticeOk=通知 =" + isNoticeOk);
                 if (isNoticeOk) {
                     //  Toast.makeText(mContext, "通知成功", Toast.LENGTH_LONG).show();
-                    if(deviceDateBean.getMacAddress().contains("#")){
-                        String macAddress = deviceDateBean.getMacAddress();
+                    if(macAddress.contains("#")){
+
                         String[] split = macAddress.split("#");
                         Log.e(Tag,"split[1]="+split[1]);
                         mBluetoothClientManger.connect(split[1]);
                         mBluetoothClientManger.write(split[1], registerList);
                     }else {
-                        mBluetoothClientManger.write(deviceDateBean.getMacAddress(), registerList);
+                        mBluetoothClientManger.write(macAddress, registerList);
                     }
                     if(onOpenLiftCallBackListenter!=null){
                         onOpenLiftCallBackListenter.OpenLiftCallBackListenter(2,"连接设备成功");
@@ -166,13 +166,12 @@ public class JiBoUtils {
 
             }
         });
-        if(deviceDateBean.getMacAddress().contains("#")){
-            String macAddress = deviceDateBean.getMacAddress();
+        if(macAddress.contains("#")){
             String[] split = macAddress.split("#");
             Log.e(Tag,"split[1]="+split[1]);
             mBluetoothClientManger.connect(split[1]);
         }else {
-            mBluetoothClientManger.connect(deviceDateBean.getMacAddress());
+            mBluetoothClientManger.connect(macAddress);
         }
 
     }

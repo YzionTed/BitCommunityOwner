@@ -117,12 +117,13 @@
                     android:src="@mipmap/icon_shake" />
 
                 <TextView
+                    android:id="@+id/tv_open_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/common_dp_10"
                     android:layout_toRightOf="@+id/iv2"
-                    android:text="摇一摇开门"
+                    android:text="自动开梯"
                     android:textColor="@color/bs_grary2"
                     android:textSize="@dimen/common_sp_14" />
 

@@ -29,6 +29,7 @@ import com.inuker.bluetooth.library.BluetoothClientManger;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -156,7 +157,7 @@ public class BluetoothApplication {
             public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
                 Log.d(TAG, "  run: startLeScan  sdk<21  ...");
                 Log.d(TAG, "run: Scan... device=" + device.getName() + " Address=" + device.getAddress());
-                addScanBloothDevice(device, rssi);
+                addScanBloothDevice(device, Math.abs(rssi));
             }
         };
     }
@@ -169,7 +170,7 @@ public class BluetoothApplication {
                 super.onScanResult(callbackType, result);
                 Log.d(TAG, "  run: startLeScan  sdk>21  ..." + "UUID==" + result.getDevice().getUuids());
 
-                addScanBloothDevice(result.getDevice(), result.getRssi());
+                addScanBloothDevice(result.getDevice(), Math.abs(result.getRssi()));
             }
 
             @Override
@@ -212,8 +213,8 @@ public class BluetoothApplication {
             SearchBlueDeviceBean searchBlueDeviceBean = new SearchBlueDeviceBean();
             searchBlueDeviceBean.setBluetoothDevice(device);
             searchBlueDeviceBean.setRssi(rssi);
-            searchBlueDeviceBeanList.add(searchBlueDeviceBean);
 
+            addSearchBlueDeviceBeanList(searchBlueDeviceBean);
             if (searchBlueDeviceListener != null) {
                 searchBlueDeviceListener.OnSearchAllDeviceCallBack(searchBlueDeviceBeanList);
                 searchBlueDeviceListener.OnSearchBludeDeviceCallBack(searchBlueDeviceBean);
@@ -221,6 +222,20 @@ public class BluetoothApplication {
         }
         Log.d(TAG, "searchBlueDeviceBeanList.size()==" + searchBlueDeviceBeanList.size());
     }
+
+    /**
+     * @param searchBlueDeviceBean 按信号大小排列蓝牙位置
+     */
+    public void addSearchBlueDeviceBeanList(SearchBlueDeviceBean searchBlueDeviceBean) {
+        searchBlueDeviceBeanList.add(searchBlueDeviceBean);
+        Collections.sort(searchBlueDeviceBeanList);
+
+//        for(int i=0;i<searchBlueDeviceBeanList.size();i++){
+//            Log.e("rris","  rris"+searchBlueDeviceBeanList.get(i).getRssi());
+//        }
+
+    }
+
 
     /**
      * 打开蓝牙设备 如果检测到蓝牙没有开启，尝试开启蓝牙
@@ -326,14 +341,14 @@ public class BluetoothApplication {
     }
 
     public ArrayList<SearchBlueDeviceBean> getSearchBlueDeviceBeanList() {
-        StringBuffer sb=new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         sb.append("蓝牙地址：");
-        if(searchBlueDeviceBeanList.size()>0){
-            for(int i=0;i<searchBlueDeviceBeanList.size();i++){
-                sb.append(searchBlueDeviceBeanList.get(i).getBluetoothDevice().getAddress()+"   ");
+        if (searchBlueDeviceBeanList.size() > 0) {
+            for (int i = 0; i < searchBlueDeviceBeanList.size(); i++) {
+                sb.append(searchBlueDeviceBeanList.get(i).getBluetoothDevice().getAddress() + "   ");
             }
         }
-        Log.e(TAG,""+sb.toString());
+        Log.e(TAG, "" + sb.toString());
         return searchBlueDeviceBeanList;
     }
 

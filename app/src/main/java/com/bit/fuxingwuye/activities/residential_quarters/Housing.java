@@ -30,7 +30,7 @@ import java.util.List;
  */
 
 public class Housing extends BaseActivity<HousingImpl> implements HousingContract.View {
-    public static int HOUSING_TAG = 0 ;
+    public static int HOUSING_TAG = 0;
     AcitivityHousingBinding binding;
     HousingPickerAdapter housingPickerAdapter;
     ACache aCache;
@@ -57,11 +57,11 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
         aCache = ACache.get(this);
         village = aCache.getAsString(HttpConstants.village);
         binding = DataBindingUtil.setContentView(this, R.layout.acitivity_housing);
-        if(HOUSING_TAG == 1){
+        if (HOUSING_TAG == 1) {
             binding.toolbar.actionBarTitle.setText("选择小区");
             binding.toolbar.btnBack.setVisibility(View.GONE);
-            HOUSING_TAG = 0 ;
-        }else {
+            HOUSING_TAG = 0;
+        } else {
             binding.toolbar.actionBarTitle.setText("切换小区");
             binding.toolbar.btnBack.setVisibility(View.VISIBLE);
         }
@@ -85,21 +85,23 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
     protected void initInject() {
         getActivityComponent().inject(this);
     }
+
     @Override
-    public void showError(){
+    public void showError() {
         binding.updata.setVisibility(View.VISIBLE);
     }
 
     /**
      * 获取社区返回的数据
+     *
      * @param community
      */
     @Override
     public void showHousing(Community community) {
-        if(community != null && community.getRecords().isEmpty()){
+        if (community != null && community.getRecords().isEmpty()) {
             binding.updata.setVisibility(View.VISIBLE);
 
-        }else{
+        } else {
             binding.updata.setVisibility(View.GONE);
         }
         if (community != null && community.getRecords().size() > 0) {
@@ -110,6 +112,7 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
                 @Override
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     if (housingPickerAdapter.getData().get(position).getName() != null) {
+                        aCache.put(HttpConstants.XIAOQU, housingPickerAdapter.getData().get(position));
                         aCache.put(HttpConstants.village, housingPickerAdapter.getData().get(position).getName());
                         LogUtil.e(Tag.tag, housingPickerAdapter.getData().get(position).getId());
                         aCache.put(HttpConstants.COMMUNIYID, housingPickerAdapter.getData().get(position).getId());
@@ -118,7 +121,7 @@ public class Housing extends BaseActivity<HousingImpl> implements HousingContrac
                         message.setValuse(housingPickerAdapter.getData().get(position).getName());
                         EventBus.getDefault().post(message);
                         Intent intent = new Intent(Housing.this, MainTabActivity.class);
-                        if(getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE) != null){
+                        if (getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE) != null) {
                             intent.putExtra(KeyString.EXTRA_BUNDLE, getIntent().getBundleExtra(KeyString.EXTRA_BUNDLE));
                         }
                         startActivity(intent);

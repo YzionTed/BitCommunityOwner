@@ -2,9 +2,7 @@ package com.bit.fuxingwuye.activities.fragment.smartGate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -14,16 +12,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bit.communityOwner.BaseActivity;
-import com.bit.communityOwner.net.Api;
-import com.bit.communityOwner.net.ResponseCallBack;
-import com.bit.communityOwner.net.ServiceException;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.bean.DoorMILiBean;
-import com.bit.fuxingwuye.bean.DoorMILiBeanList;
-import com.bit.fuxingwuye.bean.DoorMiLiRequestBean;
+import com.bit.fuxingwuye.bean.StoreDoorMILiBeanList;
+import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.constant.PreferenceConst;
 import com.bit.fuxingwuye.databinding.ActivityAddReplyBinding;
+import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonAdapter;
 import com.bit.fuxingwuye.utils.PreferenceUtils;
 import com.bit.fuxingwuye.utils.ToastUtil;
@@ -46,8 +42,9 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
     private ImageView ivRightActionBar;
     private ProgressBar pbLoaingActionBar;
     private RelativeLayout actionBar;
-
+    private ACache mCache;
     private ActivityAddReplyBinding mBinding;
+    private BluetoothNetUtils bluetoothNetUtils;
 
 
     @Override
@@ -60,6 +57,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
 
 
     protected void initView() {
+        mCache = ACache.get(this);
         doorMiLiBean = (DoorMILiBean) getIntent().getSerializableExtra("doorMILiBean");
         actionBarTitle = (TextView) findViewById(R.id.action_bar_title);
         btnRightActionBar = (TextView) findViewById(R.id.btn_right_action_bar);
@@ -75,6 +73,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
 
     protected void initDate() {
 
+        bluetoothNetUtils = new BluetoothNetUtils();
         commonAdapter = new CommonAdapter<DoorMILiBean>(this, R.layout.item_door_access) {
             @Override
             public void convert(final ViewHolder holder, final DoorMILiBean doorMILiBean, int position, View convertView) {
@@ -102,37 +101,34 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
     //放入缓存数据
     private void setCashDate() {
 
-        String prefString = PreferenceUtils.getPrefString(this, PreferenceConst.PRE_NAME, PreferenceConst.MILIDOORMAC, "");
-        if (prefString != null) {
-            DoorMILiBeanList doorMILiBeans = new Gson().fromJson(prefString, DoorMILiBeanList.class);
-            if (doorMILiBeans != null) {
-                DoorMILiBean doorMILiBean = new DoorMILiBean();
-                doorMILiBean.setFirst(true);
-                doorMILiBean.setName("一键开门");
-                if (doorMILiBeans.getDoorMILiBeans() != null) {
-                    if (doorMILiBeans.getDoorMILiBeans().size() > 0) {
-                        if (!doorMILiBeans.getDoorMILiBeans().get(0).isFirst()) {
-                            doorMILiBeans.getDoorMILiBeans().add(0, doorMILiBean);
-                        }
-                    } else {
+        StoreDoorMILiBeanList doorMILiBeans = bluetoothNetUtils.getBletoothDoorDate();
+        if (doorMILiBeans != null) {
+            DoorMILiBean doorMILiBean = new DoorMILiBean();
+            doorMILiBean.setFirst(true);
+            doorMILiBean.setName("一键开门");
+            if (doorMILiBeans.getDoorMILiBeans() != null) {
+                if (doorMILiBeans.getDoorMILiBeans().size() > 0) {
+                    if (!doorMILiBeans.getDoorMILiBeans().get(0).isFirst()) {
                         doorMILiBeans.getDoorMILiBeans().add(0, doorMILiBean);
                     }
                 } else {
-                    List<DoorMILiBean> doorMILiBeans1 = new ArrayList<>();
-                    doorMILiBeans1.add(doorMILiBean);
-                    doorMILiBeans.setDoorMILiBeans(doorMILiBeans1);
+                    doorMILiBeans.getDoorMILiBeans().add(0, doorMILiBean);
                 }
             } else {
-                doorMILiBeans = new DoorMILiBeanList();
                 List<DoorMILiBean> doorMILiBeans1 = new ArrayList<>();
-                DoorMILiBean doorMILiBean = new DoorMILiBean();
-                doorMILiBean.setFirst(true);
-                doorMILiBean.setName("一键开门");
                 doorMILiBeans1.add(doorMILiBean);
                 doorMILiBeans.setDoorMILiBeans(doorMILiBeans1);
             }
-            commonAdapter.setDatas(doorMILiBeans.getDoorMILiBeans());
+        } else {
+            doorMILiBeans = new StoreDoorMILiBeanList();
+            List<DoorMILiBean> doorMILiBeans1 = new ArrayList<>();
+            DoorMILiBean doorMILiBean = new DoorMILiBean();
+            doorMILiBean.setFirst(true);
+            doorMILiBean.setName("一键开门");
+            doorMILiBeans1.add(doorMILiBean);
+            doorMILiBeans.setDoorMILiBeans(doorMILiBeans1);
         }
+        commonAdapter.setDatas(doorMILiBeans.getDoorMILiBeans());
 
     }
 
@@ -148,7 +144,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
 
         if (ChangeAccessActivity.this.doorMiLiBean != null) {
             if (ChangeAccessActivity.this.doorMiLiBean.isFirstChecked()) {
-                if(position==0){
+                if (position == 0) {
                     ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
                 }
             } else {
@@ -179,7 +175,6 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
                 intent.putExtra("doorMILiBean", doorMILiBean);
                 setResult(10, intent);
                 finish();
-
             }
         });
     }
@@ -190,39 +185,25 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
      */
     private void getMenJinMiLi() {
 
-        DoorMiLiRequestBean doorMiLiRequestBean = new DoorMiLiRequestBean();
-        doorMiLiRequestBean.setCommunityId("5a82adf3b06c97e0cd6c0f3d");
-
-        Api.getDoorDate(doorMiLiRequestBean, new ResponseCallBack<List<DoorMILiBean>>() {
+        bluetoothNetUtils.getMiLiNetDate(null,  1, new BluetoothNetUtils.OnBlutoothDoorCallBackListener() {
             @Override
-            public void onSuccess(List<DoorMILiBean> doorMILiBeans) {
-                super.onSuccess(doorMILiBeans);
-                Log.e(Tag, "doorMILiBeans==" + doorMILiBeans);
-                if (doorMILiBeans != null) {
-
-                    if (doorMILiBeans.size() > 0) {
-                        DoorMILiBean doorMILiBean = new DoorMILiBean();
-                        doorMILiBean.setFirst(true);
-                        doorMILiBean.setName("一键开门");
-                        DoorMILiBeanList doorMILiBeanList = new DoorMILiBeanList();
-                        doorMILiBeanList.setDoorMILiBeans(doorMILiBeans);
-                        doorMILiBeanList.getDoorMILiBeans().add(0, doorMILiBean);
-                        commonAdapter.setDatas(doorMILiBeanList.getDoorMILiBeans());
-                        PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, PreferenceConst.MILIDOORMAC, new Gson().toJson(doorMILiBeanList));
-
+            public void OnCallBack(int state, StoreDoorMILiBeanList storeDoorMILiBeanList) {
+                if (state == 1) {//请求网络成功
+                    if (storeDoorMILiBeanList != null) {
+                        if (storeDoorMILiBeanList.getDoorMILiBeans().size() > 0) {
+                            DoorMILiBean doorMILiBean = new DoorMILiBean();
+                            doorMILiBean.setFirst(true);
+                            doorMILiBean.setName("一键开门");
+                            storeDoorMILiBeanList.getDoorMILiBeans().add(0, doorMILiBean);
+                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, mCache.getAsString(HttpConstants.USERID) + PreferenceConst.MILIDOORMAC, new Gson().toJson(storeDoorMILiBeanList));
+                            commonAdapter.setDatas(storeDoorMILiBeanList.getDoorMILiBeans());
+                        } else {
+                            ToastUtil.showShort("您还没有可以开锁的设备");
+                        }
                     } else {
                         ToastUtil.showShort("您还没有可以开锁的设备");
                     }
-                } else {
-                    ToastUtil.showShort("您还没有可以开锁的设备");
                 }
-
-            }
-
-            @Override
-            public void onFailure(ServiceException e) {
-                super.onFailure(e);
-
             }
         });
 
