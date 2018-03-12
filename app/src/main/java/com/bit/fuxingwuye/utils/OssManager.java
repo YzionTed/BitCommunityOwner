@@ -82,7 +82,7 @@ public class OssManager {
                 Log.d("okhttp", getUrl(filePath));
                 data.setPath(getUrl(filePath));
             }
-            return data.getPath();
+            return data.getName();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

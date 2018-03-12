@@ -35,6 +35,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
             if (mPresenter != null)
                 mPresenter.attachView(this);
             BaseApplication.getInstance().addActivity(this);
+            OssManager.getInstance().refreshToken();
             initEventAndData();
             providers();
             setupVM();
@@ -43,7 +44,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
         } catch (Exception e) {
             e.printStackTrace();
         }
-        OssManager.getInstance().refreshToken();
     }
 
     @Override
