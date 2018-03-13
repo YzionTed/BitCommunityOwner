@@ -86,7 +86,6 @@ public class BlueToothUtil {
 
     private boolean isOpenSuccess = false;
 
-
     public static synchronized BlueToothUtil getInstance() {
         if (mInstance == null) {
             mInstance = new BlueToothUtil();
@@ -178,10 +177,16 @@ public class BlueToothUtil {
 
     //开启广播
     public void openBroadcast(String keyNo) {
+
+        if (keyNo == null || keyNo.trim().length() == 0) {
+            Log.e(TAG, "广播发送的keyNo=null");
+            return;
+        }
+
         if (mBluetoothLeAdvertiser == null) {
             mBluetoothLeAdvertiser = mBtAdapter.getBluetoothLeAdvertiser();
         }
-        AdvertiseSettings settings = createAdvertiseSettings(5000);
+        AdvertiseSettings settings = createAdvertiseSettings(0);
         AdvertiseData data = createAdvertiseData(keyNo);
         if (mBluetoothLeAdvertiser != null) {
             mBluetoothLeAdvertiser.startAdvertising(settings, data, mAdvCallback);
@@ -202,6 +207,7 @@ public class BlueToothUtil {
         AdvertiseSettings.Builder builder = new AdvertiseSettings.Builder();
         builder.setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY);
         builder.setTimeout(timeoutMillis);
+
         builder.setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_HIGH);
         return builder.build();
     }
@@ -211,12 +217,12 @@ public class BlueToothUtil {
     public AdvertiseData createAdvertiseData(String keyNo) {
 
         AdvertiseData.Builder mDataBuilder = new AdvertiseData.Builder();
-        String[] str = getBtAddressViaReflection().split(":");
+        //    String[] str = getBtAddressViaReflection().split(":");
         StringBuffer sbf = new StringBuffer(keyNo);
 //        for (int i = 0; i < str.length; i++) {
 //            sbf.append(str[i]);
 //        }
-        Log.e(TAG,"打开梯禁==keyNo"+keyNo);
+        Log.e(TAG, "打开梯禁==keyNo" + keyNo);
         String sum = HexUtil.getCheckSUMByte("0B" + sbf.toString());
         String msg = HexUtil.str2HexStr("K") + HexUtil.str2HexStr("T") + "0B" + sbf.toString() + sum.toUpperCase() + "FE";
         Log.e("msg", msg);
@@ -420,6 +426,8 @@ public class BlueToothUtil {
 //        mCurDevice = listDevice.get(devicePos);
         count = 0;
         isOpenSuccess = false;
+
+        //checkConnGatt("44:A6:E5:45:12:49");
         checkConnGatt(mac);
     }
 
@@ -496,7 +504,7 @@ public class BlueToothUtil {
         byte[] bvalue = HexUtil.getMergeBytes(head, end);
 
         try {
-            Log.e(TAG, "电梯指令：" + new String(bvalue,"UTF-8"));
+            Log.e(TAG, "电梯指令：" + new String(bvalue, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -545,7 +553,7 @@ public class BlueToothUtil {
             return false;
         }
         close();
-
+        Log.e(TAG, "连接的设备mac==" + mac);
         mGatt = mCurDevice.connectGatt(mContext, false, mGattCallback);
         if (mGatt.connect()) {
 

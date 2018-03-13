@@ -139,7 +139,7 @@ public class BluetoothNetUtils {
                         storeElevatorListBeans.setElevatorListBeans(elevatorListBeans);
                         storeElevatorListBeans.setStoreTime(new Date().getTime());
 
-                        PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, new Gson().toJson(storeElevatorListBeans));
+                        PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() +BaseApplication.getVillageInfo().getId()+ PreferenceConst.BLUETOOTHELEVATOR, new Gson().toJson(storeElevatorListBeans));
                         if (onBlutoothDoorCallBackListener != null) {
                             onBlutoothDoorCallBackListener.OnCallBack(1, storeElevatorListBeans);
                         }
@@ -201,7 +201,7 @@ public class BluetoothNetUtils {
      * 获取米粒门蓝牙的数据
      */
     public StoreDoorMILiBeanList getBletoothDoorDate() {
-        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + PreferenceConst.MILIDOORMAC, "");
+        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() +BaseApplication.getVillageInfo().getId()+ PreferenceConst.MILIDOORMAC, "");
         StoreDoorMILiBeanList storeDoorMILiBeanList = null;
         try {
             if (prefString != null && prefString.trim().length() > 0) {
@@ -217,7 +217,7 @@ public class BluetoothNetUtils {
      * 获取电梯蓝牙的数据
      */
     public StoreElevatorListBeans getBletoothElevateDate() {
-        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, "");
+        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId()+BaseApplication.getVillageInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, "");
         StoreElevatorListBeans storeElevatorListBeans = null;
         try {
             if (prefString != null && prefString.trim().length() > 0) {

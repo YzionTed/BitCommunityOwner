@@ -425,7 +425,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
             LoginActivity activity = (LoginActivity) act.get();
             if (activity.count == 0) {
                 unableTimerTask();                  // 取消计时任务
-
             } else {
                 // 设置重新获取验证码为计时状态
                 mBinding.btnGetMobileVericode.setTextColor(getResources().getColor(R.color.colorP9));

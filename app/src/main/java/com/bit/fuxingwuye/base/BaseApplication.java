@@ -124,8 +124,6 @@ public class BaseApplication extends MultiDexApplication {
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_GETUI);
         IntercomSDK.initializePush(this, DongPushMsgManager.PUSH_TYPE_JG);
 
-        //初始化数据库
-        LiteOrmUtil.getInstance().init(this);
         // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
         NIMClient.init(this, null, null);
 
