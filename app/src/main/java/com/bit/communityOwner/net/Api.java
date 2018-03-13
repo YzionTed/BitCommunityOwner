@@ -24,6 +24,7 @@ import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
+import com.bit.fuxingwuye.bean.request.AddCardReqBean;
 import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.bean.request.NoticeBean;
 import com.bit.fuxingwuye.bean.request.PassCodeBean;
@@ -140,21 +141,6 @@ public class Api {
         CallPoliceBean bean = new CallPoliceBean();
         bean.setRoomid(roomId);
         ApiRequester.post(HttpConstants.CALLPOLICE, bean, callBack);
-    }
-
-
-    /**
-     * 获取业主房屋列表
-     *
-     * @param communityId
-     * @param callBack
-     */
-
-    public static void getUserRoomsList(String communityId, ResponseCallBack<List<GetUserRoomListBean>> callBack) {
-        UserRoomBean bean = new UserRoomBean();
-        bean.setAuditStatus(1);
-        bean.setCommunityId(communityId);
-        ApiRequester.post(HttpConstants.GET_ROOM_QUERY, bean, callBack);
     }
 
     public static void getAppVersion(ResponseCallBack<AppVersionInfo> callBack, Object... o) {
@@ -279,4 +265,26 @@ public class Api {
         map.put("userId", userId);
         ApiRequester.post(Url.V1_CARD_LIST,map,callBack);
     }
+
+
+    /**
+     * 获取业主房屋列表
+     *
+     * @param communityId
+     * @param callBack
+     */
+
+    public static void getUserRoomsList(String communityId, ResponseCallBack<List<GetUserRoomListBean>> callBack) {
+        UserRoomBean bean = new UserRoomBean();
+        bean.setAuditStatus(1);
+        bean.setCommunityId(communityId);
+
+    }
+
+
+    public static void addUserCard(AddCardReqBean bean, ResponseCallBack<String> callBack){
+        ApiRequester.post(Url.V1_ADD_CARD, bean, callBack);
+    }
+
+
 }

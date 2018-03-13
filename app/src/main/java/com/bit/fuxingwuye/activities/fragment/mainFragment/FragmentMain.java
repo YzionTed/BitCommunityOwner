@@ -402,12 +402,12 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 }
                 break;
             case R.id.grid_police:
-                if (AppInfo.isNetworkAvailable(getContext())) {
-                    HavaPermission(CallPoliceActivity.class);
-                } else {
-                    toastMsg("请检查网络设置!");
-                }
-                // getActivity().startActivity(new Intent(getActivity(), CallPoliceActivity.class));
+//                if (AppInfo.isNetworkAvailable(getContext())) {
+//                    HavaPermission(CallPoliceActivity.class);
+//                } else {
+//                    toastMsg("请检查网络设置!");
+//                }
+                 getActivity().startActivity(new Intent(getActivity(), CallPoliceActivity.class));
                 break;
             case R.id.grid_shop:
                 HavaPermission(ShopsActivity.class);
@@ -427,6 +427,11 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                 break;
             case R.id.grid_bom_pass:
                 toastMsg("临时通行");
+
+                Intent intent = new Intent(getActivity(), ViaActivity.class);
+                intent.putExtra("TAG",1);
+                getActivity().startActivity(intent);
+
                 break;
 
         }
