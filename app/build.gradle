@@ -131,7 +131,7 @@ dependencies {
     compile "com.facebook.stetho:stetho:${STETHO_VERSION}"
     compile "com.facebook.stetho:stetho-okhttp3:${STETHO_VERSION}"
 
-//    compile 'com.github.bumptech.glide:glide:4.2.0'
+    //    compile 'com.github.bumptech.glide:glide:4.2.0'
 
     //控制rxJava生命周期
 
@@ -142,6 +142,8 @@ dependencies {
     // Java标注 android
     compile "com.google.dagger:dagger:${Dagger2_Version}"
     annotationProcessor "com.google.dagger:dagger-compiler:${Dagger2_Version}"
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
     // 图片
 
@@ -208,12 +210,14 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation files('libs/lite-orm-1.9.2.jar')
-
     compile project(path: ':uikit')
 
     //baseAdapter依赖
     compile 'com.zhy:base-adapter:3.0.3'
     compile 'com.zhy:okhttputils:2.6.2'
+
+    //    图库选择
+    compile 'com.github.YancyYe:GalleryPick:1.2.1'
 }
 repositories {
     flatDir { dirs 'aars' }

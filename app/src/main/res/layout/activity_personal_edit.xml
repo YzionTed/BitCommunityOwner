@@ -210,11 +210,16 @@
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:visibility="gone">
-            <com.bit.fuxingwuye.views.XCRoundImageView
+            <ImageView
                 android:id="@+id/iv_head"
                 android:layout_width="@dimen/common_dp_130"
                 android:layout_height="@dimen/common_dp_130"
                 android:src="@mipmap/avatar_default"/>
+            <!--<com.bit.fuxingwuye.views.XCRoundImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/common_dp_130"
+                android:layout_height="@dimen/common_dp_130"
+                android:src="@mipmap/avatar_default"/>-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
