@@ -55,8 +55,10 @@ import com.bit.fuxingwuye.http.ProgressCancelListener;
 import com.bit.fuxingwuye.http.ProgressDialogHandler;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
+import com.bit.fuxingwuye.utils.CountDownTimerUtils;
 import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.OssManager;
+import com.bit.fuxingwuye.utils.Tag;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
 import com.bumptech.glide.Glide;
@@ -279,12 +281,36 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
         mBinding.btnGetMobileVericode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseApplication.getInstance().checkPhoneEnable(PersonalEditActivity.this);
-                if (CommonUtils.verifyPhone(mBinding.etMobile.getText().toString().trim())) {
-                    mPresenter.getCode(new CodeBean(mBinding.etMobile.getText().toString().trim(), "2", 1));
-                } else {
+//                BaseApplication.getInstance().checkPhoneEnable(PersonalEditActivity.this);
+//                if (CommonUtils.verifyPhone(mBinding.etMobile.getText().toString().trim())) {
+//                    mPresenter.getCode(new CodeBean(mBinding.etMobile.getText().toString().trim(), "2", 1));
+//                } else {
+//                    Toast.makeText(PersonalEditActivity.this, "请检查手机号", Toast.LENGTH_SHORT).show();
+//                }
+
+                CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(mBinding.btnGetMobileVericode, 60000, 1000);
+
+                countDownTimerUtils.start();
+
+                String phoneNum = mBinding.etMobile.getText().toString();
+                if (!CommonUtils.verifyPhone(phoneNum)){
                     Toast.makeText(PersonalEditActivity.this, "请检查手机号", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Api.getVerifyCode(phoneNum, new ResponseCallBack<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        super.onSuccess(data);
+                        toastMsg(data);
+                    }
+
+                    @Override
+                    public void onFailure(ServiceException e) {
+                        super.onFailure(e);
+                        LogUtil.e(Tag.tag, e.getMsg());
+                    }
+                });
             }
         });
 

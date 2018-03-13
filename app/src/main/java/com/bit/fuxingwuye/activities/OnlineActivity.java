@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class OnlineActivity extends AppCompatActivity {
 
-    private ImageButton btnBack;
+    private ImageView btnBack;
     private TextView title;
     private ListView lvOnline;
     private List<OnlineData> onlineDataList;
@@ -99,7 +100,15 @@ public class OnlineActivity extends AppCompatActivity {
      * 请求在线咨询列表
      */
     public void requestOnlineData() {
-        String url = HttpConstants.Base_Url_Test + "/v1/user/property/" + "5a82adf3b06c97e0cd6c0f3d" + "/user-list";
+
+        String baseUrl ;
+        if (HttpConstants.isFormalEnvironment){
+            baseUrl = HttpConstants.Base_Url_Formal;
+        }else {
+            baseUrl = HttpConstants.Base_Url_Test;
+        }
+
+        String url = baseUrl + "/v1/user/property/" + "5a82adf3b06c97e0cd6c0f3d" + "/user-list";
         Log.e("onlineactivity", url);
         OkHttpUtils
                 .get()

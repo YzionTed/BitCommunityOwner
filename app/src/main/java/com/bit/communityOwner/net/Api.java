@@ -134,6 +134,18 @@ public class Api {
     }
 
     /**
+     * 修改手机号时获取验证码
+     * @param phoneNum
+     * @param callBack
+     */
+    public static void getVerifyCode(String phoneNum, ResponseCallBack<String> callBack){
+        Map<String, String> params = new HashMap<>();
+        params.put("phone", phoneNum);
+        params.put("bizCode", "4");
+        ApiRequester.post(ApiRequester.createUrl(HttpConstants.GET_CODE), params, callBack);
+    }
+
+    /**
      * 一键报警
      *
      * @param roomId

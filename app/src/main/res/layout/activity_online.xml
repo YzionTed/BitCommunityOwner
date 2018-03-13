@@ -8,13 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#5D8EFE">
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_back"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="@mipmap/icon_return"/>
+            android:src="@mipmap/icon_return"/>
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
