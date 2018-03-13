@@ -188,11 +188,13 @@ public class MainTabActivity extends SupportActivity {
 
     //查询虚拟卡
     private void getCardList(){
-        Api.getCardList(aCache.getAsString(HttpConstants.USERID), aCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<List<CardListBean>>() {
+        Api.getCardList(aCache.getAsString(HttpConstants.USERID), aCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<CardListBean>() {
             @Override
-            public void onSuccess(List<CardListBean> data) {
+            public void onSuccess(CardListBean data) {
                 super.onSuccess(data);
-                LiteOrmUtil.getInstance().getOrm().save(data);
+                if (data!=null&&data.getRecords()!=null){
+                    LiteOrmUtil.getInstance().getOrm().save(data.getRecords());
+                }
             }
 
             @Override

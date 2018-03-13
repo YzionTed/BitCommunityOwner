@@ -73,11 +73,13 @@ public class JPushReceiver extends BroadcastReceiver {
                     case "100402"://房屋绑定
                         mCache = ACache.get(context);
                         if (BaseApplication.getActivitySize() != 0){
-                            Api.getCardList(mCache.getAsString(HttpConstants.USERID), mCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<List<CardListBean>>() {
+                            Api.getCardList(mCache.getAsString(HttpConstants.USERID), mCache.getAsString(HttpConstants.COMMUNIYID), new ResponseCallBack<CardListBean>() {
                                 @Override
-                                public void onSuccess(List<CardListBean> data) {
+                                public void onSuccess(CardListBean data) {
                                     super.onSuccess(data);
-                                    LiteOrmUtil.getInstance().getOrm().save(data);
+                                    if (data!=null&&data.getRecords()!=null){
+                                        LiteOrmUtil.getInstance().getOrm().save(data.getRecords());
+                                    }
                                 }
 
                                 @Override

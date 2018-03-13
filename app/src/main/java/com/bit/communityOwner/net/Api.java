@@ -20,6 +20,7 @@ import com.bit.fuxingwuye.bean.GetFeedbackBean;
 import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.HouseBean;
 import com.bit.fuxingwuye.bean.NoticeReqBean;
+import com.bit.fuxingwuye.bean.OnlineData;
 import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
@@ -33,6 +34,7 @@ import com.bit.fuxingwuye.newsdetail.bean.NewsDetailBean;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.AppInfo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -259,7 +261,7 @@ public class Api {
         ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
     }
 
-    public static void getCardList(String userId,String communityId,ResponseCallBack<List<CardListBean>> callBack){
+    public static void getCardList(String userId,String communityId,ResponseCallBack<CardListBean> callBack){
         Map<String, Object> map = new HashMap<>();
         map.put("communityId", communityId);
         map.put("userId", userId);
