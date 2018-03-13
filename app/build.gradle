@@ -210,6 +210,10 @@ dependencies {
     implementation files('libs/lite-orm-1.9.2.jar')
 
     compile project(path: ':uikit')
+
+    //baseAdapter依赖
+    compile 'com.zhy:base-adapter:3.0.3'
+    compile 'com.zhy:okhttputils:2.6.2'
 }
 repositories {
     flatDir { dirs 'aars' }

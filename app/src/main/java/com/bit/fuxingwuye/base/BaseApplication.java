@@ -17,17 +17,14 @@ import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.bean.Community;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
-import com.bit.fuxingwuye.constant.PreferenceConst;
 import com.bit.fuxingwuye.dagger.component.AppComponent;
 import com.bit.fuxingwuye.dagger.component.DaggerAppComponent;
 import com.bit.fuxingwuye.dagger.module.AppModule;
-import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.LiteOrmUtil;
 import com.bit.fuxingwuye.utils.LogUtil;
-import com.bit.fuxingwuye.utils.PreferenceUtils;
 import com.ddclient.push.DongPushMsgManager;
 import com.facebook.stetho.Stetho;
-import com.google.gson.Gson;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.inuker.bluetooth.library.BluetoothClientManger;
@@ -37,6 +34,8 @@ import com.netease.nimlib.sdk.util.NIMUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.smarthome.yunintercom.sdk.IntercomSDK;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.https.HttpsUtils;
 
 import net.lemonsoft.lemonhello.LemonHello;
 import net.lemonsoft.lemonhello.LemonHelloAction;
@@ -46,11 +45,19 @@ import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 
 import org.xutils.x;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import cn.jpush.android.api.JPushInterface;
+import okhttp3.OkHttpClient;
+import okio.Buffer;
 
 /**
  * SmartCommunity-com.bit.fuxingwuye.base
@@ -129,6 +136,22 @@ public class BaseApplication extends MultiDexApplication {
 
         //初始化数据库
         LiteOrmUtil.getInstance().init(this);
+
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String s, SSLSession sslSession) {
+                        return true;
+                    }
+                })
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .build();
+
+
+        OkHttpUtils.initClient(okHttpClient);
+
     }
 
     public static BaseApplication getInstance() {
