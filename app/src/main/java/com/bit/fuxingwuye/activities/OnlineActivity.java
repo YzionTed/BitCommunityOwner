@@ -62,7 +62,7 @@ public class OnlineActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         title = findViewById(R.id.title);
         lvOnline = findViewById(R.id.lv_online);
-
+        title.setText("在线咨询");
         requestOnlineData();
 
 
