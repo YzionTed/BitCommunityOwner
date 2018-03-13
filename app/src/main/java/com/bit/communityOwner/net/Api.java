@@ -273,7 +273,7 @@ public class Api {
         ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
     }
 
-    public static void getCardList(String userId,String communityId,ResponseCallBack<List<CardListBean>> callBack){
+    public static void getCardList(String userId,String communityId,ResponseCallBack<CardListBean> callBack){
         Map<String, Object> map = new HashMap<>();
         map.put("communityId", communityId);
         map.put("userId", userId);
