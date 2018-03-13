@@ -9,12 +9,12 @@ public class Url {
     /**
      * 测试环境
      */
-    public static final String BASE_TEST_URL = "http://apismcm.test.bitiot.com.cn";
+    public static final String BASE_TEST_URL = "https://api.smcm.bitiot.com.cn";
 
     /**
      * 正式环境
      */
-    public static final String BASE_URL = "http://apismcm.test.bitiot.com.cn";
+    public static final String BASE_URL = "https://api.smcm.bitiot.com.cn";
 
     /**
      * 获取oss token

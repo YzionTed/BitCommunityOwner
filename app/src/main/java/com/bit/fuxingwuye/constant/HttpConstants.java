@@ -8,7 +8,7 @@ package com.bit.fuxingwuye.constant;
 
 public class HttpConstants {
 
-    public static final boolean isFormalEnvironment = false;//正式环境和测试环境的更改
+    public static final boolean isFormalEnvironment = true;//正式环境和测试环境的更改
 
     /**
      * 服务器地址接口
