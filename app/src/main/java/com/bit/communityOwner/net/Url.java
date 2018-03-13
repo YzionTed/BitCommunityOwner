@@ -91,6 +91,10 @@ public class Url {
      * 用户编辑
      */
     public static final String V1_USER_EDIT = "/v1/user/edit";
+    /**
+     * 在线咨询
+     */
+    public static final String V1_ONLINE = "/v1/user/property/" + "5a82adf3b06c97e0cd6c0f3d" + "/user-list";
 
     /**
      * 修改密码

@@ -22,6 +22,7 @@ import com.bit.communityOwner.net.ServiceException;
 import com.bit.communityOwner.util.RoomUtil;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.MainTabActivity;
+import com.bit.fuxingwuye.activities.OnlineActivity;
 import com.bit.fuxingwuye.activities.addFaultRepair.FaultRepairActivity;
 import com.bit.fuxingwuye.activities.brake.BrakeActivity;
 import com.bit.fuxingwuye.activities.callEle.CallEleActivity;
@@ -339,10 +340,13 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
                         @Override
                         public void onClickMenuItem(View v, MenuItem menuItem) {
-                            if (!EasyPermissions.hasPermissions(getActivity(), media)) {
-                                EasyPermissions.requestPermissions(getActivity(), "需要获取拍照和录音权限", RC_MEDIA, media);
-                            } else {
-                                startP2P();
+
+                            startActivity(new Intent(getActivity(), OnlineActivity.class));
+
+//                            if (!EasyPermissions.hasPermissions(getActivity(), media)) {
+//                                EasyPermissions.requestPermissions(getActivity(), "需要获取拍照和录音权限", RC_MEDIA, media);
+//                            } else {
+//                                startP2P();
 //                                if (EMClient.getInstance().isConnected()) {
 //                                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, "fxwy"));
 //                                } else {
@@ -364,7 +368,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
 //                                        }
 //                                    });
 //                                }
-                            }
+//                            }
                         }
                     });
                     MenuItem menuItem2 = new MenuItem();
@@ -382,7 +386,7 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                         }
                     });
 
-//                    menuItemList.add(menuItem1);
+                    menuItemList.add(menuItem1);
                     menuItemList.add(menuItem2);
 
                     bottomMenuFragment.setMenuItems(menuItemList, "联系物业");
