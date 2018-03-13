@@ -146,17 +146,25 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
             if (ChangeAccessActivity.this.doorMiLiBean.isFirstChecked()) {
                 if (position == 0) {
                     ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                }else {
+                    ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
                 }
             } else {
                 if (ChangeAccessActivity.this.doorMiLiBean.getMac() != null) {
                     if (ChangeAccessActivity.this.doorMiLiBean.getMac().equals(doorMILiBean.getMac())) {
                         ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                    }else {
+                        ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
                     }
+                }else {
+                    ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
                 }
             }
         } else {
             if (position == 0) {
                 ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+            }else {
+                ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
             }
         }
 
@@ -195,7 +203,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
                             doorMILiBean.setFirst(true);
                             doorMILiBean.setName("一键开门");
                             storeDoorMILiBeanList.getDoorMILiBeans().add(0, doorMILiBean);
-                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, mCache.getAsString(HttpConstants.USERID) + PreferenceConst.MILIDOORMAC, new Gson().toJson(storeDoorMILiBeanList));
+                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() +BaseApplication.getVillageInfo().getId()+ PreferenceConst.MILIDOORMAC, new Gson().toJson(storeDoorMILiBeanList));
                             commonAdapter.setDatas(storeDoorMILiBeanList.getDoorMILiBeans());
                         } else {
                             ToastUtil.showShort("您还没有可以开锁的设备");

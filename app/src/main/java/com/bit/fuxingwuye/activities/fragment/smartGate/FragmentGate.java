@@ -290,7 +290,7 @@ public class FragmentGate extends BaseFragment<FGatePresenter> implements FGateC
 
     @Override
     public void onNotificationSetted() {
-        BlueToothUtil.getInstance().sendOpen();
+      //  BlueToothUtil.getInstance().sendOpen();
     }
 
     @Override

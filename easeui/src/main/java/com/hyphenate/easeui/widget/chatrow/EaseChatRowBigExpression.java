@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.R;
@@ -46,10 +48,14 @@ public class EaseChatRowBigExpression extends EaseChatRowText{
             emojicon =  EaseUI.getInstance().getEmojiconInfoProvider().getEmojiconInfo(emojiconId);
         }
         if(emojicon != null){
+            RequestOptions requestOptions = new RequestOptions()
+                    .placeholder(R.drawable.ease_default_avatar);
             if(emojicon.getBigIcon() != 0){
-                Glide.with(activity).load(emojicon.getBigIcon()).placeholder(R.drawable.ease_default_expression).into(imageView);
+                Glide.with(context).load(emojicon.getBigIcon()).apply(requestOptions).into(imageView);
+//                Glide.with(activity).load(emojicon.getBigIcon()).placeholder(R.drawable.ease_default_expression).into(imageView);
             }else if(emojicon.getBigIconPath() != null){
-                Glide.with(activity).load(emojicon.getBigIconPath()).placeholder(R.drawable.ease_default_expression).into(imageView);
+                Glide.with(context).load(emojicon.getBigIconPath()).apply(requestOptions).into(imageView);
+//                Glide.with(activity).load(emojicon.getBigIconPath()).placeholder(R.drawable.ease_default_expression).into(imageView);
             }else{
                 imageView.setImageResource(R.drawable.ease_default_expression);
             }

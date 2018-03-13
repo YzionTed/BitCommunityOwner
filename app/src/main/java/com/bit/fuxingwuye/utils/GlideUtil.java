@@ -17,6 +17,7 @@ public class GlideUtil {
         options.centerCrop()
                 .placeholder(R.mipmap.image_default_small)
                 .error(R.mipmap.image_default_small)
+                .circleCrop()
                 .fallback(R.mipmap.image_default_small);
         Glide.with(mContext).load(new CacheGlideUrl(path))
                 .apply(options)

@@ -13,10 +13,14 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bit.communityOwner.util.AppUtil;
 import com.bit.fuxingwuye.R;
+import com.bit.fuxingwuye.base.BaseApplication;
 import com.bit.fuxingwuye.bean.Online;
 import com.bit.fuxingwuye.bean.OnlineData;
 import com.bit.fuxingwuye.constant.HttpConstants;
+import com.bit.fuxingwuye.utils.ACache;
+import com.bit.fuxingwuye.utils.AppInfo;
 import com.google.gson.Gson;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.zhy.adapter.abslistview.CommonAdapter;
@@ -25,6 +29,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.Call;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -38,8 +43,6 @@ public class OnlineActivity extends AppCompatActivity {
 
     String[] media = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
     private static final int RC_MEDIA = 123;
-
-
 
 
     @Override
@@ -59,7 +62,7 @@ public class OnlineActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         title = findViewById(R.id.title);
         lvOnline = findViewById(R.id.lv_online);
-
+        title.setText("在线咨询");
         requestOnlineData();
 
 
@@ -101,6 +104,15 @@ public class OnlineActivity extends AppCompatActivity {
         OkHttpUtils
                 .get()
                 .url(url)
+                .addHeader("DEVICE-TYPE", AppUtil.getMobileModel())
+                .addHeader("OS", "2")
+                .addHeader("CLIENT", "1000")
+                .addHeader("OS-VERSION", AppUtil.getSystemVersion())
+                .addHeader("DEVICE-ID", AppInfo.getImei())
+                .addHeader("APP-VERSION", AppInfo.getLocalVersionName(BaseApplication.getInstance()))
+                .addHeader("BIT-TOKEN", ACache.get(BaseApplication.getInstance()).getAsString(HttpConstants.TOKEN))
+                .addHeader("BIT-UID", ACache.get(BaseApplication.getInstance()).getAsString(HttpConstants.USERID))
+                .addHeader("PUSH-ID", JPushInterface.getRegistrationID(BaseApplication.getInstance()))
                 .addParams("postCode", "SUPPORTSTAFF")
                 .build()
                 .execute(new StringCallback() {
@@ -111,26 +123,30 @@ public class OnlineActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("onlineactivity", response);
+//                        Log.e("onlineactivity", response);
 
-                        Online online = new Gson().fromJson(response, Online.class);
+                        try {
+                            Online online = new Gson().fromJson(response, Online.class);
 
-                        if (online != null && online.isSuccess() && online.getData() != null){
-                            onlineDataList = online.getData();
-                            if (onlineDataList != null && onlineDataList.size() > 0){
-                                lvOnline.setAdapter(new CommonAdapter<OnlineData>(OnlineActivity.this, R.layout.item_online, onlineDataList) {
-                                    @Override
-                                    protected void convert(com.zhy.adapter.abslistview.ViewHolder viewHolder, OnlineData item, int position) {
-                                        if (position == onlineDataList.size() - 1){
-                                            viewHolder.getView(R.id.divider).setVisibility(View.GONE);
+                            if (online != null && online.isSuccess() && online.getData() != null) {
+                                onlineDataList = online.getData();
+                                if (onlineDataList != null && onlineDataList.size() > 0) {
+                                    lvOnline.setAdapter(new CommonAdapter<OnlineData>(OnlineActivity.this, R.layout.item_online, onlineDataList) {
+                                        @Override
+                                        protected void convert(com.zhy.adapter.abslistview.ViewHolder viewHolder, OnlineData item, int position) {
+                                            if (position == onlineDataList.size() - 1) {
+                                                viewHolder.getView(R.id.divider).setVisibility(View.GONE);
+                                            }
+                                            viewHolder.setText(R.id.tv_name, item.getCommunityName() + item.getPropertyName());
                                         }
-                                        viewHolder.setText(R.id.tv_name, item.getCommunityName() + item.getPropertyName());
-
-
-                                    }
-                                });
+                                    });
+                                }
                             }
+                        }catch (Exception e){
+                            e.printStackTrace();
                         }
+
+
                     }
                 });
     }

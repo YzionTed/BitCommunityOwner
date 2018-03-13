@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baidu.platform.comapi.map.E;
 import com.bit.communityOwner.BaseActivity;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
@@ -133,12 +134,19 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                     if (ChangeElevatorActivity.this.doorJinBoBean.isFirstChecked()) {
                         if (position == 0) {
                             ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                        }else {
+                            ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
                         }
                     } else {
                         if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress() != null) {
                             if (ChangeElevatorActivity.this.doorJinBoBean.getMacAddress().equals(elevatorListBean.getMacAddress())) {
                                 ((CheckBox) holder.getView(R.id.tv_item)).setChecked(true);
+                            }else {
+                                ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
                             }
+                        }else {
+                            ((CheckBox) holder.getView(R.id.tv_item)).setChecked(false);
+
                         }
                     }
                 } else {
@@ -147,7 +155,11 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                     }
                 }
 
-                holder.setText(R.id.tv_item, elevatorListBean.getName());
+                if (elevatorListBean.getName() != null) {
+                    holder.setText(R.id.tv_item, elevatorListBean.getName());
+                }else {
+                    holder.setText(R.id.tv_item, "");
+                }
                 holder.setOnClickListener(R.id.tv_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -181,7 +193,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
                             elevatorListBean.setFirst(true);
                             elevatorListBean.setName("一键开梯");
                             storeElevatorListBeans.getElevatorListBeans().add(0, elevatorListBean);
-                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, mCache.getAsString(HttpConstants.USERID) + PreferenceConst.MILIDOORMAC, new Gson().toJson(storeElevatorListBeans));
+                            PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + BaseApplication.getVillageInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, new Gson().toJson(storeElevatorListBeans));
                             commonAdapter.setDatas(storeElevatorListBeans.getElevatorListBeans());
                         } else {
                             ToastUtil.showShort("没有找到您可以开的电梯");

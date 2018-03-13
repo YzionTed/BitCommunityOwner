@@ -16,9 +16,8 @@ import com.bit.fuxingwuye.constant.AppConstants;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityEditPersonalBinding;
 import com.bit.fuxingwuye.utils.ACache;
-import com.bit.fuxingwuye.utils.ImageLoaderUtil;
-import com.bit.fuxingwuye.utils.LiteOrmUtil;
-import com.bit.fuxingwuye.utils.LogUtil;
+import com.bit.fuxingwuye.utils.GlideUtil;
+import com.bit.fuxingwuye.utils.OssManager;
 
 public class EditPersonalActivity extends BaseActivity<EpPresenterImpl> implements EpContract.View, View.OnClickListener {
 
@@ -54,8 +53,12 @@ public class EditPersonalActivity extends BaseActivity<EpPresenterImpl> implemen
         } else {
             mBinding.tvSex.setText("女");
         }
-        if (!TextUtils.isEmpty(userBean.getHeadImg())) {
-            ImageLoaderUtil.setImageWithCache(userBean.getHeadImg(), mBinding.ivHeadimg);
+//        if (!TextUtils.isEmpty(userBean.getHeadImg())) {
+//            ImageLoaderUtil.setImageWithCache(userBean.getHeadImg(), mBinding.ivHeadimg);
+//        }
+        if (null != userBean.getHeadImg() && !TextUtils.isEmpty(userBean.getHeadImg())) {
+            String url = OssManager.getInstance().getUrl(userBean.getHeadImg());
+            GlideUtil.loadImage(mContext, url, mBinding.ivHeadimg);
         }
 
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

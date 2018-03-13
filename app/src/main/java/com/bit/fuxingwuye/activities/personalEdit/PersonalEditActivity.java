@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -18,22 +19,26 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
-import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.alibaba.sdk.android.oss.ClientException;
+import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
+import com.alibaba.sdk.android.oss.model.OSSRequest;
+import com.alibaba.sdk.android.oss.model.OSSResult;
 import com.bit.communityOwner.model.OssToken;
 import com.bit.communityOwner.model.UserInfo;
 import com.bit.communityOwner.net.Api;
 import com.bit.communityOwner.net.ResponseCallBack;
 import com.bit.communityOwner.net.ServiceException;
 import com.bit.communityOwner.util.LogUtil;
-import com.bit.communityOwner.util.UploadUtils;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.base.BaseActivity;
 import com.bit.fuxingwuye.base.BaseApplication;
@@ -50,13 +55,16 @@ import com.bit.fuxingwuye.http.ProgressCancelListener;
 import com.bit.fuxingwuye.http.ProgressDialogHandler;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.CommonUtils;
-import com.bit.fuxingwuye.utils.FileStorage;
 import com.bit.fuxingwuye.utils.GlideUtil;
 import com.bit.fuxingwuye.utils.OssManager;
 import com.bit.fuxingwuye.views.BottomMenuFragment;
 import com.bit.fuxingwuye.views.MenuItemOnClickListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.yancy.gallerypick.config.GalleryConfig;
+import com.yancy.gallerypick.config.GalleryPick;
+import com.yancy.gallerypick.inter.IHandlerCallBack;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -83,10 +91,111 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
     private ProgressDialogHandler mProgressDialogHandler;
     private Bitmap bit_head;
 
+    private List<String> path = new ArrayList<>();
+
+    private GalleryConfig galleryConfig;
+    private IHandlerCallBack iHandlerCallBack;
+
+    private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
+    private PersonalEditActivity mActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = this;
+        initGallery();
+        initGalleryConfig();
+
     }
+
+    private void initGallery() {
+
+        iHandlerCallBack = new IHandlerCallBack() {
+            @Override
+            public void onStart() {
+                Log.i(TAG, "onStart: 开启");
+            }
+
+            @Override
+            public void onSuccess(List<String> photoList) {
+                Log.i(TAG, "onSuccess: 返回数据");
+                path.clear();
+                for (String s : photoList) {
+                    Log.i(TAG, s);
+                    path.add(s);
+                    RequestOptions requestOptions = new RequestOptions().circleCrop();
+                    Glide.with(PersonalEditActivity.this).load(path.get(0)).apply(requestOptions).into(mBinding.ivHead);
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                Log.i(TAG, "onCancel: 取消");
+            }
+
+            @Override
+            public void onFinish() {
+                Log.i(TAG, "onFinish: 结束");
+            }
+
+            @Override
+            public void onError() {
+                Log.i(TAG, "onError: 出错");
+            }
+        };
+    }
+
+    /**
+     * 初始化图库配置信息
+     */
+    private void initGalleryConfig() {
+
+        galleryConfig = new GalleryConfig.Builder()
+                .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
+                .iHandlerCallBack(iHandlerCallBack)     // 监听接口（必填）
+                .provider("com.bit.communityOwner.provider")   // provider(必填)
+                .pathList(path)                         // 记录已选的图片
+                .multiSelect(false)                      // 是否多选   默认：false
+                .multiSelect(false, 1)                   // 配置是否多选的同时 配置多选数量   默认：false ， 9
+                .maxSize(1)                             // 配置多选时 的多选数量。    默认：9
+                .crop(true)                             // 快捷开启裁剪功能，仅当单选 或直接开启相机时有效
+                .crop(true, 1, 1, 500, 500)             // 配置裁剪功能的参数，   默认裁剪比例 1:1
+                .isShowCamera(true)                     // 是否现实相机按钮  默认：false
+                .filePath("/Gallery/Pictures")          // 图片存放路径
+                .build();
+    }
+
+    // 授权管理
+    private void initPermissions() {
+        if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "需要授权 ");
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Log.i(TAG, "拒绝过了");
+                Toast.makeText(mContext, "请在 设置-应用管理 中开启此应用的储存授权。", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.i(TAG, "进行授权");
+                ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            }
+        } else {
+            Log.i(TAG, "不需要授权 ");
+            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(mActivity);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.i(TAG, "同意授权");
+                GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(mActivity);
+            } else {
+                Log.i(TAG, "拒绝授权");
+            }
+        }
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
 
     @Override
     protected void initEventAndData() {
@@ -162,7 +271,8 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
         mBinding.ivHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addPhoto();
+//                addPhoto();
+                initPermissions();
             }
         });
 
@@ -271,34 +381,41 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
     }
 
     String imageUrl;
+    private OssToken ossToken;
 
     private void uploadImage() {
-        if (bit_head == null) {
-            Toast.makeText(PersonalEditActivity.this, "请先选择头像", Toast.LENGTH_SHORT).show();
-        } else {
-            final File file = FileStorage.compressImage(bit_head);
-            Api.ossToken(new ResponseCallBack<OssToken>() {
-                @Override
-                public void onSuccess(final OssToken data) {
-                    UploadUtils.uploadFileToAliYun(data, file.getPath(), new OSSProgressCallback<PutObjectRequest>() {
-                        @Override
-                        public void onProgress(PutObjectRequest putObjectRequest, long p, long t) {
-                            if (t == p) {
-                                imageUrl = data.getPath();
-                                LogUtil.d(TAG, "upload finished imageUrl:" + imageUrl);
-                                if (imageUrl != null) {
-                                    uploadImageInfo();
-                                }
-                            }
-                        }
-                    });
-                }
 
-                @Override
-                public void onFailure(ServiceException e) {
-                    toastMsg(e.getMsg());
+        if (path.size() == 0) {
+            Toast.makeText(PersonalEditActivity.this, "请先选择头像", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Api.ossToken(new ResponseCallBack<OssToken>() {
+            @Override
+            public void onSuccess(final OssToken data) {
+                data.setBucket("bit-test");
+                ossToken = data;
+                imageUrl = OssManager.getInstance().uploadFileToAliYun(data, path.get(0), new OSSCompletedCallback() {
+                    @Override
+                    public void onSuccess(OSSRequest ossRequest, OSSResult ossResult) {
+                        toastMsg("img upload success");
+                        LogUtil.i("okhttp",data.getName());
+                    }
+
+                    @Override
+                    public void onFailure(OSSRequest ossRequest, ClientException e, com.alibaba.sdk.android.oss.ServiceException e1) {
+                        toastMsg("img upload failure");
+                    }
+                });
+                if (!TextUtils.isEmpty(imageUrl)){
+                    uploadImageInfo();
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(ServiceException e) {
+                toastMsg(e.getMsg());
+            }
+        });
 
 //            Observable.create(new Observable.OnSubscribe<File>() {
 //                @Override
@@ -335,7 +452,7 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
 //                            mPresenter.upload(file);
 //                        }
 //                    });
-        }
+//        }
     }
 
     private void uploadImageInfo() {
@@ -348,6 +465,7 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
 
             @Override
             public void onFailure(ServiceException e) {
+                Log.e("person", e.toString());
                 toastMsg(e.getMsg());
             }
         });
@@ -491,11 +609,11 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
         }
     };
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+//    }
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {

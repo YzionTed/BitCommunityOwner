@@ -252,8 +252,6 @@ public class FragmentMain extends BaseFragment<FMainPresenter> implements FMainC
                     Alldata.addAll(datas);
                     showNotices(Alldata);
                 }
-
-
             }
 
             @Override

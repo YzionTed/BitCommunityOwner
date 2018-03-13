@@ -30,6 +30,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         state = savedInstanceState;
+        mContext = this;
         try {
             initInject();
             if (mPresenter != null)
