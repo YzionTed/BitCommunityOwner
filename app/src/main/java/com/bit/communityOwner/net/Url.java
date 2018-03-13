@@ -141,4 +141,9 @@ public class Url {
      */
     public static final String V1_CARD_LIST = "/v1/user/card/get/list";
 
+    /**
+     * 申请卡片
+     */
+    public static final String V1_ADD_CARD = "/v1/user/card/add";
+
 }

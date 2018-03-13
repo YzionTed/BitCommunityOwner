@@ -25,6 +25,7 @@ import com.bit.fuxingwuye.bean.PropertyBean;
 import com.bit.fuxingwuye.bean.ReplenishBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
+import com.bit.fuxingwuye.bean.request.AddCardReqBean;
 import com.bit.fuxingwuye.bean.request.DataPagesBean;
 import com.bit.fuxingwuye.bean.request.NoticeBean;
 import com.bit.fuxingwuye.bean.request.PassCodeBean;
@@ -144,21 +145,6 @@ public class Api {
         ApiRequester.post(HttpConstants.CALLPOLICE, bean, callBack);
     }
 
-
-    /**
-     * 获取业主房屋列表
-     *
-     * @param communityId
-     * @param callBack
-     */
-
-    public static void getUserRoomsList(String communityId, ResponseCallBack<List<GetUserRoomListBean>> callBack) {
-        UserRoomBean bean = new UserRoomBean();
-        bean.setAuditStatus(1);
-        bean.setCommunityId(communityId);
-        ApiRequester.post(HttpConstants.GET_ROOM_QUERY, bean, callBack);
-    }
-
     public static void getAppVersion(ResponseCallBack<AppVersionInfo> callBack, Object... o) {
         ApiRequester.get(ApiRequester.createUrl(HttpConstants.GET_APP_VERSION, o), null, callBack);
     }
@@ -275,10 +261,32 @@ public class Api {
         ApiRequester.get(ApiRequester.createUrl(Url.V1_NOTICE_DETAIL,o),null,callBack);
     }
 
-    public static void getCardList(String userId,String communityId,ResponseCallBack<List<CardListBean>> callBack){
+    public static void getCardList(String userId,String communityId,ResponseCallBack<CardListBean> callBack){
         Map<String, Object> map = new HashMap<>();
         map.put("communityId", communityId);
         map.put("userId", userId);
         ApiRequester.post(Url.V1_CARD_LIST,map,callBack);
     }
+
+
+    /**
+     * 获取业主房屋列表
+     *
+     * @param communityId
+     * @param callBack
+     */
+
+    public static void getUserRoomsList(String communityId, ResponseCallBack<List<GetUserRoomListBean>> callBack) {
+        UserRoomBean bean = new UserRoomBean();
+        bean.setAuditStatus(1);
+        bean.setCommunityId(communityId);
+
+    }
+
+
+    public static void addUserCard(AddCardReqBean bean, ResponseCallBack<String> callBack){
+        ApiRequester.post(Url.V1_ADD_CARD, bean, callBack);
+    }
+
+
 }

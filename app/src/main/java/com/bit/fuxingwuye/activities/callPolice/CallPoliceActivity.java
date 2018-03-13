@@ -24,6 +24,7 @@ import com.bit.fuxingwuye.bean.GetUserRoomListBean;
 import com.bit.fuxingwuye.bean.TokenBean;
 import com.bit.fuxingwuye.bean.UserBean;
 import com.bit.fuxingwuye.bean.UserRoomBean;
+import com.bit.fuxingwuye.bean.request.AddCardReqBean;
 import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.constant.NetworkApi;
 import com.bit.fuxingwuye.databinding.ActivityCallPoliceBinding;
@@ -100,7 +101,9 @@ public class CallPoliceActivity extends Activity{
             }
         });
 
-      String  communityId =  ACache.get(this).getAsString(HttpConstants.COMMUNIYID);
+      final String  communityId =  ACache.get(this).getAsString(HttpConstants.COMMUNIYID);
+      final String  userId =  ACache.get(this).getAsString(HttpConstants.USERID);
+
         if(!TextUtils.isEmpty(communityId)){
             Api.getUserRoomsList(communityId, new ResponseCallBack<List<GetUserRoomListBean>>() {
                 @Override
@@ -111,19 +114,40 @@ public class CallPoliceActivity extends Activity{
                     mAdapter = new CallPoliceAdapter(mUserRoomList);
                     mBinding.rvHouse.setLayoutManager(new GridLayoutManager(CallPoliceActivity.this, 2));
                     mBinding.rvHouse.setAdapter(mAdapter);
-                    mAdapter.setOnItemClickListener(new CallPoliceAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            if (!mUserRoomList.isEmpty()){
-                                callPoliceBean.setRoomid(mUserRoomList.get(position).getRoomId());
-                                mBinding.rvCallAnimation.setVisibility(View.VISIBLE);
-                                mBinding.tvTitle.setVisibility(View.GONE);
-                                mBinding.rvHouse.setVisibility(View.GONE);
-                                startAnimation();
-                            }
-
-                        }
-                    });
+//                    mAdapter.setOnItemClickListener(new CallPoliceAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, int position) {
+//                            if (!mUserRoomList.isEmpty()){
+//                                callPoliceBean.setRoomid(mUserRoomList.get(position).getRoomId());
+//                                mBinding.rvCallAnimation.setVisibility(View.VISIBLE);
+//                                mBinding.tvTitle.setVisibility(View.GONE);
+//                                mBinding.rvHouse.setVisibility(View.GONE);
+//                                startAnimation();
+//                                String rooms = "[{\"roomId\": \""+mUserRoomList.get(position).getRoomId()+"\", \"expireTime\":9000}]";
+//                                AddCardReqBean bean = new AddCardReqBean();
+//                                bean.setCommunityId(communityId);
+//                                bean.setUserId(userId);
+//                                bean.setKeyType("8");
+//                                bean.setProcessTime(""+3600*10);
+//                                bean.setRooms(rooms);
+//                                Api.addUserCard(bean, new ResponseCallBack<String>() {
+//                                    @Override
+//                                    public void onSuccess(String data) {
+//                                        super.onSuccess(data);
+//                                        Log.e("data","-1111---tag data:"+data);
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailure(ServiceException e) {
+//                                        super.onFailure(e);
+//                                        Log.e("data","-2222---tag data:"+e);
+//                                    }
+//                                });
+//
+//                            }
+//
+//                        }
+//                    });
 
                 }
 
@@ -133,6 +157,9 @@ public class CallPoliceActivity extends Activity{
                 }
             });
         }
+
+
+
     }
 
     private void startAnimation() {

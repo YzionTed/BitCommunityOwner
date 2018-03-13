@@ -72,7 +72,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
 
         bluetoothNetUtils = new BluetoothNetUtils();
         initListener();
-        shake_switch.setChecked(true);
+        shake_switch.setChecked(false);
     }
 
     /**
@@ -85,10 +85,12 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
             @Override
             public void onShake() {
 
+                if(!isNeedShake){
+                    return;
+                }
                 if (MainTabActivity.currentFragmentPosiont != 1 || FragmentDoor.currentDoorFragmentPositon != 0) {
                     return;
                 }
-
                 Log.e(Tag, "shake==");
                 if (isNeedShake) {
                     circle_progress.start();
@@ -275,8 +277,6 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
                             if (doorMILiBean != null) {
                                 clickBlueMiLi(doorMILiBean.getMac(), doorMILiBean.getPin(), type);
                             } else {
-
-
                                 if (type == 2) {
                                     isNeedShake = true;
                                 }

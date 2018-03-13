@@ -166,7 +166,7 @@ public class ElevatorFragment extends BaseFragment<FEPresenter> implements FECon
 
     @Override
     public void onNotificationSetted() {
-        BlueToothUtil.getInstance().sendOpen();
+       // BlueToothUtil.getInstance().sendOpen();
     }
 
     @Override

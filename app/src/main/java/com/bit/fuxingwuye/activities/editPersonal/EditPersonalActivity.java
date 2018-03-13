@@ -17,7 +17,6 @@ import com.bit.fuxingwuye.constant.HttpConstants;
 import com.bit.fuxingwuye.databinding.ActivityEditPersonalBinding;
 import com.bit.fuxingwuye.utils.ACache;
 import com.bit.fuxingwuye.utils.GlideUtil;
-import com.bit.fuxingwuye.utils.ImageLoaderUtil;
 import com.bit.fuxingwuye.utils.OssManager;
 
 public class EditPersonalActivity extends BaseActivity<EpPresenterImpl> implements EpContract.View, View.OnClickListener {
