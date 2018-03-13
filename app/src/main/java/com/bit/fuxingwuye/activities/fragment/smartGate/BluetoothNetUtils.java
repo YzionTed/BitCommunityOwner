@@ -4,6 +4,7 @@ package com.bit.fuxingwuye.activities.fragment.smartGate;
  * Created by Dell on 2018/3/8.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -35,7 +36,11 @@ public class BluetoothNetUtils {
 
 
     private static final String TAG = "BluetoothNetUtils";
+    private Context context;
 
+    public BluetoothNetUtils(Context context) {
+        this.context = context;
+    }
 
     /**
      * type==1 代表的是需要谈提示 type==2不需要提示
@@ -48,7 +53,12 @@ public class BluetoothNetUtils {
 
         if (!isNetworkAvailable(BaseApplication.getInstance())) {
             if (type == 1) {
-                ToastUtil.showShort("连接异常，请检查网络");
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showShort("连接异常，请检查网络");
+                    }
+                });
             }
             return;
         }
@@ -57,7 +67,12 @@ public class BluetoothNetUtils {
         if (recordsBean != null) {
             doorMiLiRequestBean.setCommunityId(recordsBean.getId());
         } else {
-            ToastUtil.showShort("您还未选择小区");
+            ((Activity) context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtil.showShort("您还未选择小区");
+                }
+            });
             return;
         }
 //        if (doorMacArr != null) {
@@ -85,7 +100,13 @@ public class BluetoothNetUtils {
                             if (onBlutoothDoorCallBackListener != null) {
                                 onBlutoothDoorCallBackListener.OnCallBack(2, null);
                             }
-                            ToastUtil.showShort("您还没有可以开锁的设备");
+
+                            ((Activity) context).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ToastUtil.showShort("您还没有可以开锁的设备");
+                                }
+                            });
                         }
                     }
                 } else {
@@ -93,17 +114,30 @@ public class BluetoothNetUtils {
                         if (onBlutoothDoorCallBackListener != null) {
                             onBlutoothDoorCallBackListener.OnCallBack(2, null);
                         }
-                        ToastUtil.showShort("您还没有可以开锁的设备");
+
+                        ((Activity) context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtil.showShort("您还没有可以开锁的设备");
+                            }
+                        });
+
                     }
                 }
             }
 
             @Override
-            public void onFailure(ServiceException e) {
+            public void onFailure(final ServiceException e) {
                 super.onFailure(e);
                 if (onBlutoothDoorCallBackListener != null) {
                     if (type == 1) {
-                        ToastUtil.showShort(e.getMsg());
+
+                        ((Activity) context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtil.showShort(e.getMsg());
+                            }
+                        });
                     }
                     onBlutoothDoorCallBackListener.OnCallBack(2, null);
                 }
@@ -124,7 +158,13 @@ public class BluetoothNetUtils {
         if (recordsBean != null) {
             elevatorListRequestion.setCommunityId(recordsBean.getId());
         } else {
-            ToastUtil.showShort("您还未选择小区");
+
+            ((Activity) context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastUtil.showShort("您还未选择小区");
+                }
+            });
             return;
         }
 
@@ -139,7 +179,7 @@ public class BluetoothNetUtils {
                         storeElevatorListBeans.setElevatorListBeans(elevatorListBeans);
                         storeElevatorListBeans.setStoreTime(new Date().getTime());
 
-                        PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() +BaseApplication.getVillageInfo().getId()+ PreferenceConst.BLUETOOTHELEVATOR, new Gson().toJson(storeElevatorListBeans));
+                        PreferenceUtils.setPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + BaseApplication.getVillageInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, new Gson().toJson(storeElevatorListBeans));
                         if (onBlutoothDoorCallBackListener != null) {
                             onBlutoothDoorCallBackListener.OnCallBack(1, storeElevatorListBeans);
                         }
@@ -148,23 +188,39 @@ public class BluetoothNetUtils {
                             if (onBlutoothDoorCallBackListener != null) {
                                 onBlutoothDoorCallBackListener.OnCallBack(2, null);
                             }
-                            ToastUtil.showShort("没有找到您可以开的电梯");
+
+                            ((Activity) context).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ToastUtil.showShort("没有找到您可以开的电梯");
+                                }
+                            });
                         }
                     }
-                }
-                if (type == 1) {
+                } else if (type == 1) {
                     if (onBlutoothDoorCallBackListener != null) {
                         onBlutoothDoorCallBackListener.OnCallBack(2, null);
                     }
-                    ToastUtil.showShort("没有找到您可以开的电梯");
+
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showShort("没有找到您可以开的电梯");
+                        }
+                    });
                 }
             }
 
             @Override
-            public void onFailure(ServiceException e) {
+            public void onFailure(final ServiceException e) {
                 super.onFailure(e);
                 if (onBlutoothDoorCallBackListener != null) {
-                    ToastUtil.showShort(e.getMsg());
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showShort(e.getMsg());
+                        }
+                    });
                     onBlutoothDoorCallBackListener.OnCallBack(2, null);
                 }
             }
@@ -201,7 +257,7 @@ public class BluetoothNetUtils {
      * 获取米粒门蓝牙的数据
      */
     public StoreDoorMILiBeanList getBletoothDoorDate() {
-        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() +BaseApplication.getVillageInfo().getId()+ PreferenceConst.MILIDOORMAC, "");
+        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + BaseApplication.getVillageInfo().getId() + PreferenceConst.MILIDOORMAC, "");
         StoreDoorMILiBeanList storeDoorMILiBeanList = null;
         try {
             if (prefString != null && prefString.trim().length() > 0) {
@@ -217,7 +273,7 @@ public class BluetoothNetUtils {
      * 获取电梯蓝牙的数据
      */
     public StoreElevatorListBeans getBletoothElevateDate() {
-        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId()+BaseApplication.getVillageInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, "");
+        String prefString = PreferenceUtils.getPrefString(BaseApplication.getInstance().getContext(), PreferenceConst.PRE_NAME, BaseApplication.getUserLoginInfo().getId() + BaseApplication.getVillageInfo().getId() + PreferenceConst.BLUETOOTHELEVATOR, "");
         StoreElevatorListBeans storeElevatorListBeans = null;
         try {
             if (prefString != null && prefString.trim().length() > 0) {

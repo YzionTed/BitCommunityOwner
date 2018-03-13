@@ -91,7 +91,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         iv_open.setOnClickListener(this);
 
         if (bluetoothNetUtils == null) {
-            bluetoothNetUtils = new BluetoothNetUtils();
+            bluetoothNetUtils = new BluetoothNetUtils(getActivity());
         }
 
         getCommutiyType();
@@ -221,7 +221,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                     } else {//如果搜索设备的数组个数为0,则选择蓝牙信号最强的1个蓝牙设备Mac地址和虚
                         if (searchBlueDeviceBeanList.size() > 0) {
                             CardListBean.RecordsBean cardListBean = LiteOrmUtil.getInstance().queryById(BaseApplication.getUserLoginInfo().getId(), BaseApplication.getVillageInfo().getId());
-                            if (cardListBean != null) {
+                            if (cardListBean== null) {
                                 Log.e(Tag, "获取极光推动的缓存为空");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -324,7 +324,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    /**
+       /**
      * 打开电梯
      * 5秒自动连接开梯
      */

@@ -73,7 +73,7 @@ public class ChangeAccessActivity extends BaseActivity implements View.OnClickLi
 
     protected void initDate() {
 
-        bluetoothNetUtils = new BluetoothNetUtils();
+        bluetoothNetUtils = new BluetoothNetUtils(this);
         commonAdapter = new CommonAdapter<DoorMILiBean>(this, R.layout.item_door_access) {
             @Override
             public void convert(final ViewHolder holder, final DoorMILiBean doorMILiBean, int position, View convertView) {

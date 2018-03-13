@@ -70,7 +70,7 @@ public class BluetoothDoorFragment extends BaseFragment implements View.OnClickL
         iv_open.setOnClickListener(this);
         rl_change_gate.setOnClickListener(this);
 
-        bluetoothNetUtils = new BluetoothNetUtils();
+        bluetoothNetUtils = new BluetoothNetUtils(getActivity());
         initListener();
         shake_switch.setChecked(false);
     }

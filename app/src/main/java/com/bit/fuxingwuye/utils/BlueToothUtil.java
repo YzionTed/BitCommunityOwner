@@ -178,7 +178,11 @@ public class BlueToothUtil {
     //开启广播
     public void openBroadcast(String keyNo) {
 
-        if (keyNo == null || keyNo.trim().length() == 0) {
+        if (keyNo == null) {
+            Log.e(TAG, "广播发送的keyNo=null");
+            return;
+        }
+        if ("".equals(keyNo)) {
             Log.e(TAG, "广播发送的keyNo=null");
             return;
         }
@@ -427,8 +431,14 @@ public class BlueToothUtil {
         count = 0;
         isOpenSuccess = false;
 
-        //checkConnGatt("44:A6:E5:45:12:49");
-        checkConnGatt(mac);
+        if (mac == null) {
+            return;
+        }
+        if ("".equals(mac)) {
+            return;
+        }
+      // checkConnGatt("44:A6:E5:45:12:49");
+         checkConnGatt(mac);
     }
 
     //发送开梯指令

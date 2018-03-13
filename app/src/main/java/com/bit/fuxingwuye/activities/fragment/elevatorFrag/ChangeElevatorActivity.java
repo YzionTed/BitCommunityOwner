@@ -59,7 +59,7 @@ public class ChangeElevatorActivity extends BaseActivity implements View.OnClick
     }
 
     private void initView() {
-        bluetoothNetUtils = new BluetoothNetUtils();
+        bluetoothNetUtils = new BluetoothNetUtils(this);
         mCache = ACache.get(this);
         actionBarTitle = (TextView) findViewById(R.id.action_bar_title);
         btnBack = (ImageView) findViewById(R.id.btn_back);
