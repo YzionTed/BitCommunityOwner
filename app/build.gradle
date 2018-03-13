@@ -206,7 +206,7 @@ dependencies {
     compile files('libs/smarthome-sdk-bleself-1.1.jar')
 
     //==============米粒蓝牙开门=========================================
-    compile('cn.qqtheme.framework:WheelPicker:latest.release') {
+    compile('cn.qqtheme.framework:WheelPicker:1.5.5') {
         exclude group: 'com.android.support'
     }
     implementation files('libs/lite-orm-1.9.2.jar')
