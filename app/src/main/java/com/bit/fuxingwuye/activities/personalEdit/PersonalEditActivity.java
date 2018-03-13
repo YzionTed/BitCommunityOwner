@@ -418,7 +418,7 @@ public class PersonalEditActivity extends BaseActivity<PersonalEditPresenterImpl
         Api.ossToken(new ResponseCallBack<OssToken>() {
             @Override
             public void onSuccess(final OssToken data) {
-                data.setBucket("bit-app");
+                data.setBucket("bit-smcm-img");
                 ossToken = data;
                 imageUrl = OssManager.getInstance().uploadFileToAliYun(data, path.get(0), new OSSCompletedCallback() {
                     @Override

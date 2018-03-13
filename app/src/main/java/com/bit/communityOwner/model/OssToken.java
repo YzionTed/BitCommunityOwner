@@ -22,7 +22,7 @@ public class OssToken implements Serializable {
     private String accessKeySecret;
     private String expiration;
     private String endPoint = "oss-cn-beijing.aliyuncs.com";
-    private String bucket = "bit-app";
+    private String bucket = "bit-smcm-img";
     private String name;
     private String path;
 
