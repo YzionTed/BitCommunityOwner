@@ -259,7 +259,13 @@ public class BlueToothUtil {
                     isConnected = true;
                     mCurDevice = gatt.getDevice();
                     mListener.onConnected(mCurDevice);
-                    gatt.discoverServices(); //搜索连接设备所支持的service
+                    try {
+                        Thread.sleep(300);
+                        gatt.discoverServices(); //搜索连接设备所支持的service
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     if (onBluetoothStateCallBack != null) {
                         onBluetoothStateCallBack.OnBluetoothState("连接成功");
                     }
@@ -437,8 +443,8 @@ public class BlueToothUtil {
         if ("".equals(mac)) {
             return;
         }
-      // checkConnGatt("44:A6:E5:45:12:49");
-         checkConnGatt(mac);
+        checkConnGatt("44:A6:E5:45:12:49");
+      //  checkConnGatt(mac);
     }
 
     //发送开梯指令
@@ -527,7 +533,7 @@ public class BlueToothUtil {
                 if (mGatt != null) {
                     mGatt.writeCharacteristic(wCharacter);
                     count++;
-                    if (count < 6) {
+                    if (count < 3) {
                         handler.postDelayed(this, 200);
                     } else {
                         handler.removeCallbacks(this);
@@ -566,10 +572,8 @@ public class BlueToothUtil {
         Log.e(TAG, "连接的设备mac==" + mac);
         mGatt = mCurDevice.connectGatt(mContext, false, mGattCallback);
         if (mGatt.connect()) {
-
             timer = new Timer();
             timer.schedule(new TimerTask() {
-
                 @Override
                 public void run() {
                     if (!isConnected) {
@@ -592,10 +596,9 @@ public class BlueToothUtil {
                         }
                     }
                     timer.cancel();
-
                     Log.e("lzp", "timer excute");
                 }
-            }, 3000);
+            }, 1000);
         } else {
         }
 

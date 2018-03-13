@@ -80,6 +80,9 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         BlueToothUtil.getInstance().setBTUtilListener(this);
         BlueToothUtil.getInstance().setOnCharacteristicListener(this);
 
+        BaseApplication.getInstance().getBlueToothApp().checkLocationEnable(getActivity());
+        BaseApplication.getInstance().getBlueToothApp().openBluetooth();
+
         circle_progress = (CircleProgressBar) mView.findViewById(R.id.loading_view);
         iv_open = (ImageView) mView.findViewById(R.id.iv_open);
         shake_switch = (Switch) mView.findViewById(R.id.shake_switch);
@@ -215,13 +218,14 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
             if (bletoothElevateDate.getElevatorListBeans() != null) {
                 if (bletoothElevateDate.getElevatorListBeans().size() > 0) {//缓存不为空时
                     final ElevatorListBean doorJinBoBean = BluetoothUtils.getMaxElevatorRsic(searchBlueDeviceBeanList, bletoothElevateDate.getElevatorListBeans());
+
                     if (doorJinBoBean != null) {//匹配最强信号
                         openDoorBean = doorJinBoBean;
                         openElevator(doorJinBoBean.getMacAddress(), fromType);
                     } else {//如果搜索设备的数组个数为0,则选择蓝牙信号最强的1个蓝牙设备Mac地址和虚
                         if (searchBlueDeviceBeanList.size() > 0) {
                             CardListBean.RecordsBean cardListBean = LiteOrmUtil.getInstance().queryById(BaseApplication.getUserLoginInfo().getId(), BaseApplication.getVillageInfo().getId());
-                            if (cardListBean== null) {
+                            if (cardListBean == null) {
                                 Log.e(Tag, "获取极光推动的缓存为空");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -324,13 +328,14 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-       /**
+    /**
      * 打开电梯
      * 5秒自动连接开梯
      */
     boolean isSuccess = false;//最近的两个蓝牙 进行匹配
     // 初始化定时器
     Timer timer;
+
     private void openElevatorByAuto(final ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList, int postion, final int fromType) {
         if (searchBlueDeviceBeanList.size() == 0) {
             Log.e(Tag, "自动匹配蓝牙 searchBlueDeviceBeanList.size");
@@ -492,9 +497,9 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 if (bletoothElevateDate != null) {
                     if (bletoothElevateDate.getElevatorListBeans() != null) {
                         if (bletoothElevateDate.getElevatorListBeans().size() > 0) {//当缓存不为o
-                            if(bletoothElevateDate.getElevatorListBeans().get(0).isFirst()){
+                            if (bletoothElevateDate.getElevatorListBeans().get(0).isFirst()) {
                                 BlueToothUtil.getInstance().openBroadcast(bletoothElevateDate.getElevatorListBeans().get(1).getKeyNo());
-                            }else {
+                            } else {
                                 BlueToothUtil.getInstance().openBroadcast(bletoothElevateDate.getElevatorListBeans().get(0).getKeyNo());
                             }
                         }

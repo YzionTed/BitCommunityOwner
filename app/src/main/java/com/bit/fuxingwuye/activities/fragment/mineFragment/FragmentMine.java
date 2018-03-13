@@ -157,7 +157,13 @@ public class FragmentMine extends BaseFragment<FMinePresenter> implements FMineC
             }
 
             String url = OssManager.getInstance().getUrl(tokenBean.getHeadImg());
-            GlideUtil.loadImage(getContext(), url, iv_mine_avatar);
+
+            if (url != null) {
+                if (url.trim().length() > 0) {
+                    GlideUtil.loadImage(getContext(), url, iv_mine_avatar);
+                }
+            }
+
 //            ImageLoaderUtil.setImageWithCache(tokenBean.getHeadImg(), iv_mine_avatar);
         }
     }

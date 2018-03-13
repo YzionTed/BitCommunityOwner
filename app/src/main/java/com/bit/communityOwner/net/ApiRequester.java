@@ -54,7 +54,6 @@ public class ApiRequester {
 
         if (HttpConstants.isFormalEnvironment) {
             url =   HttpConstants.Base_Url_Formal+url;
-            return ;
         } else {
             url = HttpConstants.Base_Url_Test+url;
         }
@@ -204,7 +203,6 @@ public class ApiRequester {
 
         if (HttpConstants.isFormalEnvironment) {
             url =  HttpConstants.Base_Url_Formal+url;
-            return ;
         } else {
             url =  HttpConstants.Base_Url_Test+url;
         }
