@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bit.fuxingwuye.Bluetooth.BluetoothApplication;
 import com.bit.fuxingwuye.Bluetooth.bean.SearchBlueDeviceBean;
 import com.bit.fuxingwuye.Bluetooth.jinbo.JiBoUtils;
+import com.bit.fuxingwuye.Bluetooth.util.BleUtil;
 import com.bit.fuxingwuye.Bluetooth.util.BluetoothUtils;
 import com.bit.fuxingwuye.R;
 import com.bit.fuxingwuye.activities.EAnimationActivity;
@@ -47,7 +48,7 @@ import java.util.TimerTask;
  * Created by kezhangzhao on 2018/3/1.
  */
 
-public class ElevatorCartFragment extends BaseFragment implements View.OnClickListener, BlueToothUtil.BTUtilListener, BlueToothUtil.OnCharacteristicListener {
+public class ElevatorCartFragment extends BaseFragment implements View.OnClickListener {
 
     private String Tag = "ElevatorCartFragment";
 
@@ -76,10 +77,6 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
     @Override
     protected void initInject() {
 
-        BlueToothUtil.getInstance().setContext(getActivity());
-        BlueToothUtil.getInstance().setBTUtilListener(this);
-        BlueToothUtil.getInstance().setOnCharacteristicListener(this);
-
         BaseApplication.getInstance().getBlueToothApp().checkLocationEnable(getActivity());
         BaseApplication.getInstance().getBlueToothApp().openBluetooth();
 
@@ -96,7 +93,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
         if (bluetoothNetUtils == null) {
             bluetoothNetUtils = new BluetoothNetUtils(getActivity());
         }
-
+        BleUtil.getInstance().setContext(getActivity());
         getCommutiyType();
         initListener();
         shake_switch.setChecked(false);
@@ -142,7 +139,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                     public void run() {
                         super.run();
                         if (doorJinBoBean == null || doorJinBoBean.isFirst()) {
-                            BaseApplication.getInstance().getBlueToothApp().scanBluetoothDevice(2000, new BluetoothApplication.CallBack() {
+                            BleUtil.getInstance().scanLeDevice(true, 1500, new BleUtil.OnSearchCallBack() {
                                 @Override
                                 public void onCall(ArrayList<SearchBlueDeviceBean> searchBlueDeviceBeanList) {
                                     getDevice(searchBlueDeviceBeanList, 1);
@@ -319,7 +316,7 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                     @Override
                     public void run() {
                         haiKangOpenKeyNo = openDoorBean.getKeyNo();
-                        BlueToothUtil.getInstance().connectLeDevice(openDoorBean.getMacAddress());
+                        BleUtil.getInstance().connectLeDevice(macAddress, openDoorBean.getMacAddress());
                     }
                 });
             } else {
@@ -471,15 +468,49 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
                 }
             }
         });
-        BlueToothUtil.getInstance().setOnBluetoothStateCallBack(new BlueToothUtil.OnBluetoothStateCallBack() {
+        BleUtil.getInstance().setBTUtilListener(new BleUtil.BTUtilListener() {
             @Override
-            public void OnBluetoothState(final String state) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tv_name.setText(state);
-                    }
-                });
+            public void onLeScanStart() {
+                setTvName("搜索设备",false);
+            }
+
+            @Override
+            public void onLeScanStop() {
+
+            }
+
+            @Override
+            public void onLeScanDevices(ArrayList<SearchBlueDeviceBean> listDevice) {
+
+            }
+
+            @Override
+            public void onConnected(BluetoothDevice mCurDevice) {
+                setTvName("连接设备成功",false);
+            }
+
+            @Override
+            public void onDisConnected(BluetoothDevice mCurDevice) {
+                setTvName("设备断开连接",true);
+            }
+
+            @Override
+            public void onConnecting(BluetoothDevice mCurDevice) {
+                setTvName("设备连接中...",false);
+            }
+
+            @Override
+            public void onDisConnecting(BluetoothDevice mCurDevice) {
+                setTvName("设备连接失败",true);
+            }
+            @Override
+            public void onIsSuccess(boolean isSuccess) {
+                if(isSuccess){
+                    succssAnimation();
+                    setTvName("开梯成功！", true);
+                }else {
+                    setTvName("开梯失败，重新开启！", true);
+                }
             }
         });
     }
@@ -615,108 +646,26 @@ public class ElevatorCartFragment extends BaseFragment implements View.OnClickLi
      * 成功开梯动画
      */
     public void succssAnimation() {
-        tv_name.setText("开梯成功！");
         isSuccess = true;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                tv_name.setText("开梯成功！");
                 getActivity().startActivity(new Intent(getActivity(), EAnimationActivity.class));
             }
         });
     }
 
-    @Override
-    public void onLeScanStart() {
-
-    }
-
-    @Override
-    public void onLeScanStop() {
-
-    }
-
-    @Override
-    public void onLeScanDevice(BluetoothDevice device) {
-
-    }
-
-    @Override
-    public void onLeScanDevices(List<BluetoothDevice> listDevice) {
-
-    }
-
-    @Override
-    public void onConnected(BluetoothDevice mCurDevice) {
-        connected = true;
-    }
-
-    @Override
-    public void onDisConnected(BluetoothDevice mCurDevice) {
+    public void setTvName(final String state, final boolean isStopLoading){
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                isYaoyiYao = true;
-                circle_progress.stop();
-                connected = false;
-            }
-        });
-
-    }
-
-    @Override
-    public void onServicesDiscovered() {
-        isYaoyiYao = true;
-        circle_progress.stop();
-    }
-
-
-    @Override
-    public void onNotificationSetted() {
-        BlueToothUtil.getInstance().sendOpen(haiKangOpenKeyNo);
-    }
-
-    @Override
-    public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-
-    }
-
-    @Override
-    public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
-        BlueToothUtil.getInstance().handleResultCallBack(characteristic, new BlueToothUtil.OnCallBackListener() {
-            @Override
-            public void OnCallBack(final int state) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        circle_progress.stop();
-                        isYaoyiYao = true;
-                        if (state == 1) {
-                            isSuccess = true;
-                            tv_name.setText("开梯成功");
-                            succssAnimation();
-                        } else {
-                            ToastUtil.showShort("开梯失败");
-                        }
-                    }
-                });
-
-            }
-        });
-    }
-
-
-    @Override
-    public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-        if (status == BluetoothGatt.GATT_SUCCESS) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    succssAnimation();
+                tv_name.setText(state);
+                if(isStopLoading){
+                    circle_progress.stop();
                 }
-            });
-            //  Log.e(Tag,"写入数据成功");
-        }
+            }
+        });
     }
-
 
 }

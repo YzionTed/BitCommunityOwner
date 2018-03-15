@@ -443,8 +443,8 @@ public class BlueToothUtil {
         if ("".equals(mac)) {
             return;
         }
-        checkConnGatt("44:A6:E5:45:12:49");
-      //  checkConnGatt(mac);
+      //  checkConnGatt("44:A6:E5:45:12:49");
+        checkConnGatt(mac);
     }
 
     //发送开梯指令
